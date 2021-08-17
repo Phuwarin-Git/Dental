@@ -167,7 +167,7 @@ const StudentRes = () => {
                 ) : null} <br />
 
 
-                <br /><button className="But" type="submit">Submit 1</button>
+                <br /><button className="But" type="submit">Submit</button>
             </form>
 
         </div>
