@@ -36,7 +36,7 @@ const Login = () => {
 
     function onSubmitForm(name, pass) {
         alert("Login success")
-        setUser({ username: name, password: pass })
+        setUser({ username: name, password: pass, name: fakeuser.name })
         history.push('/dashboard')
     }
 

@@ -1,7 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-const StudentProfile = () => {
+const StudentTools = () => {
 
     return (
         <div>
@@ -16,9 +16,8 @@ const StudentProfile = () => {
                     </Nav>
                 </Container>
             </Navbar>
-            <br />
-            <h1>Student Profile</h1>
+            <h1>Student Tools</h1>
         </div>
     )
 }
-export default StudentProfile;
+export default StudentTools;
