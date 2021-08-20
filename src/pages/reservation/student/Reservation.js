@@ -13,12 +13,11 @@ const StudentRes = () => {
     const { user, setUser, status, setStatus } = useContext(AuthContext);
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
-        console.log("Hello :", user.name, date, time, clinic, type, patient, dn, hn);
-        const ApiSet = ({ name: user.name, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+        console.log("Hello :", user, date, time, clinic, type, patient, dn, hn);
+        const ApiSet = ({ name: user, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
         return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
             return console.log("Res :", res)
         })
-
     }
 
     const formik = useFormik({
@@ -57,10 +56,10 @@ const StudentRes = () => {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/reservation">Reservation</Nav.Link>
-                        <Nav.Link as={Link} to="/history">History</Nav.Link>
-                        <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
                     </Nav>
                 </Container>

@@ -11,6 +11,7 @@ const StudentHistory = () => {
 
     useEffect(() => {
         getDetails();
+        console.log("User :", user)
     }, [user])
 
     const getDetails = () => {
@@ -20,9 +21,11 @@ const StudentHistory = () => {
         });
     }
 
+    //ตอนเช็คจริงๆน่าจะใช้ E-mail เผื่อมีชื่อซ้ำ
+
     const filterDetails = (item) => {
         const res = item.filter((item) => {
-            return (item.name === user.name)
+            return (item.name === user)
         })
         setDetials(res);
         console.log("details :", res)
@@ -36,10 +39,10 @@ const StudentHistory = () => {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/reservation">Reservation</Nav.Link>
-                        <Nav.Link as={Link} to="/history">History</Nav.Link>
-                        <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
                     </Nav>
                 </Container>

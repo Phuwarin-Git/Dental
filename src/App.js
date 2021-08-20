@@ -19,21 +19,17 @@ function App() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [user, setUser] = useState([]);
 
-  useEffect(() => {
-    console.log("Hello :", user.username, " Password :", user.password)
-  }, [user])
-
   return (
     <div className="App">
 
       <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
-          <Route path="/dashboard" component={StudentDashboard}></Route>
-          <Route path="/reservation" component={StudentRes}></Route>
-          <Route path="/history" component={StudentHistory}></Route>
-          <Route path="tools" conponent={StudentTools}></Route>
-          <Route path="/profile" component={StudentProfile}></Route>
+          <Route path="/StudentDashboard" component={StudentDashboard}></Route>
+          <Route path="/StudentRes" component={StudentRes}></Route>
+          <Route path="/StudentHistory" component={StudentHistory}></Route>
+          <Route path="StudentTools" conponent={StudentTools}></Route>
+          <Route path="/StudentProfile" component={StudentProfile}></Route>
           <Route path="/:id">
             <p>Error 404 page not found</p>
           </Route>
