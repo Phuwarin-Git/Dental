@@ -10,7 +10,7 @@ import { AuthContext } from '../../../App';
 import '../Yup.css'
 
 const StudentRes = () => {
-    const { user, setUser, status, setStatus } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
         console.log("Hello :", user, date, time, clinic, type, patient, dn, hn);

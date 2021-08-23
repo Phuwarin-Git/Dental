@@ -3,19 +3,13 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../App";
 import axios from "axios";
 
-const fakeuser = {
-    name: "Phuwarin Maneerat",
-    username: "Phuwarin",
-    password: "student",
-    role: "student"
-}
 
 //User ควรเป็น Email
 //Password ควรเป็น ID
 
 const Login = () => {
     const history = useHistory();
-    const { user, setUser, status, setStatus } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [auth, setAuth] = useState([]);
@@ -56,7 +50,20 @@ const Login = () => {
 
     function onSubmitForm(details) {
         setUser(details[0].first_name)
-        history.push('/StudentDashboard')
+        if (details[0].role === "student") {
+            console.log("Role :", details[0].role)
+            return history.push('/StudentDashboard')
+        } else if (details[0].role === "teacher") {
+            console.log("Role :", details[0].role)
+            return history.push('/StudentDashboard')
+        } if (details[0].role === "studentadmin") {
+            console.log("Role :", details[0].role)
+            return history.push('/StudentDashboard')
+        } if (details[0].role === "admin") {
+            console.log("Role :", details[0].role)
+            return history.push('/StudentDashboard')
+        }
+
     }
 
     return (

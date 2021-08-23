@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 const StudentHistory = () => {
-    const { user, setUser, status, setStatus } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
 
     useEffect(() => {
