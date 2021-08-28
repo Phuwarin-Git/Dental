@@ -13,8 +13,8 @@ const StudentRes = () => {
     const { user } = useContext(AuthContext);
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
-        console.log("Hello :", user, date, time, clinic, type, patient, dn, hn);
-        const ApiSet = ({ name: user, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+        console.log("Hello :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
+        const ApiSet = ({ name: user.first_name, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
         return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
             return console.log("Res :", res)
         })
@@ -61,6 +61,7 @@ const StudentRes = () => {
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

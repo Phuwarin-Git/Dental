@@ -1,9 +1,11 @@
 import Navbar from 'react-bootstrap/Navbar'
+import { useContext } from 'react';
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card'
+import { AuthContext } from '../../../App';
 const StudentDashboard = () => {
-
+    const { user } = useContext(AuthContext);
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -14,6 +16,7 @@ const StudentDashboard = () => {
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

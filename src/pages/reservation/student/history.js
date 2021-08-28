@@ -25,7 +25,7 @@ const StudentHistory = () => {
 
     const filterDetails = (item) => {
         const res = item.filter((item) => {
-            return (item.name === user)
+            return (item.name === user.first_name)
         })
         setDetials(res);
         console.log("details :", res)
@@ -44,6 +44,7 @@ const StudentHistory = () => {
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -65,8 +66,6 @@ const StudentHistory = () => {
                                 <lable>ประเภทงาน : {item.worktype}</lable><br />
                                 <lable>คนไข้ : {item.patient}</lable><br />
                                 <lable>อาจารย์ผู้ตรวจ : {item.teacher}</lable><br />
-
-
                             </Card.Text>
                         </Card.Body>
                     </Card>

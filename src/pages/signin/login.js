@@ -27,7 +27,7 @@ const Login = () => {
 
     const getDetails = () => {
         axios.get("http://localhost:3000/name/find/all").then((item) => {
-            console.log("name :", item.data)
+            // console.log("name :", item.data)
             return setAuth(item.data)
         });
     }
@@ -49,18 +49,18 @@ const Login = () => {
     }
 
     function onSubmitForm(details) {
-        setUser(details[0].first_name)
+        setUser(details[0])
         if (details[0].role === "student") {
-            console.log("Role :", details[0].role)
+            // console.log("Role :", details[0].role)
             return history.push('/StudentDashboard')
         } else if (details[0].role === "teacher") {
-            console.log("Role :", details[0].role)
-            return history.push('/StudentDashboard')
+            // console.log("Role :", details[0].role)
+            return history.push('/StudentAdminDashboard')
         } if (details[0].role === "studentadmin") {
-            console.log("Role :", details[0].role)
-            return history.push('/StudentDashboard')
+            // console.log("Role :", details[0].role)
+            return history.push('/StudentAdminDashboard')
         } if (details[0].role === "admin") {
-            console.log("Role :", details[0].role)
+            // console.log("Role :", details[0].role)
             return history.push('/StudentDashboard')
         }
 
