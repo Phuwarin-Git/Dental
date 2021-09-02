@@ -26,7 +26,7 @@ const Login = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://localhost:3000/name/find/all").then((item) => {
+        axios.get("http://selab.mfu.ac.th:8318/name/find/all").then((item) => {
             // console.log("name :", item.data)
             return setAuth(item.data)
         });
