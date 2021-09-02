@@ -6,22 +6,38 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 const StudentAdminReservation = () => {
     const { user } = useContext(AuthContext);
     const [allUnit, setAllUnit] = useState([]);
     const [details, setDetails] = useState([]);
+    const [select, setSelect] = useState([]);
+
 
     useEffect(() => {
         getDetails();
         getUnit();
     }, [user])
 
+
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/null").then((item) => {
             console.log("Null Unit :", item.data)
+
+            for (let i in item.data) {
+                let obj = {
+                    ...item.data[i],
+                    select: null
+                }
+                item.data[i] = obj
+            }
+            console.log("Test ==>", item.data)
             return setDetails(item.data);
         });
     }
+
     const getUnit = () => {
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
             console.log("Unit lists:", item.data)
@@ -29,9 +45,12 @@ const StudentAdminReservation = () => {
         });
     }
 
-    function onSubmitUnit(e) {
-        e.preventDefault();
-        return alert("Hello");
+
+    function handleSubmit(id, value) {
+        // e.preventDefault();
+        alert('Unit : ' + id + ' Value :' + value);
+        let body = { unit: value }
+        axios.put("http://localhost:3000/details/updateUnit/" + id, body)
     }
 
 
@@ -62,21 +81,27 @@ const StudentAdminReservation = () => {
                         <Card.Body style={{ backgroundColor: '#1c82ff' }}>
 
                             <Card.Text>
-                                <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; เวลา : {item.time} </Card.Title>
+                                <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; เวลา : {item.unit} </Card.Title>
                                 <lable>ประเภทงาน : {item.worktype}</lable><br />
                                 <lable>คนไข้ : {item.patient}</lable><br />
-                                <form onSubmit={onSubmitUnit}>
-                                    <select class="target">
+
+                                <form onSubmit={() => { handleSubmit(item.id, item.select) }}>
+                                    <select onChange={(event) => {
+                                        console.log('Hi', event.target.value)
+                                        item.select = event.target.value
+                                    }} class="target">
                                         <option value="selected" selected="selected">Choose Unit</option>
                                         {allUnit.map((item) => {
-                                            return <option value={item.unit_code} value={item.unit_code}>{item.unit_code}</option>
+                                            return <option key={item.unit_id} value={item.unit_code} value={item.unit_code}>{item.unit_code}</option>
                                         })}
                                     </select>
                                     <button type="submit">ยืนยัน</button>
                                 </form>
+
                             </Card.Text>
                         </Card.Body>
                     </Card>
+
                 </div>
             })}
         </div>
