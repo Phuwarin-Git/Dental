@@ -15,6 +15,7 @@ const StudentRes = () => {
     function submitForm(date, time, clinic, type, patient, dn, hn) {
         console.log("Hello :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
         const ApiSet = ({ name: user.first_name, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+        alert("Success")
         return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
             return console.log("Res :", res)
         })
