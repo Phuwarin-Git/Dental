@@ -134,7 +134,7 @@ const StudentRes = () => {
                 >
                     <option value="" label="Select the type" />
                     <option value="ฟุ้งกระจาย" label="AGPs" />
-                    <option value="ไม่ฟุ้ง" label="Non-AGPs" />
+                    <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
                 </select>
                 {formik.touched.type && formik.errors.type ? (
                     <div className="error">{formik.errors.type}</div>

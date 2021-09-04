@@ -1,11 +1,40 @@
+import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
-import { useContext } from 'react';
-import { Nav, Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Nav, Container, Button } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner'
 import Card from 'react-bootstrap/Card'
+import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
+import axios from "axios";
 const StudentDashboard = () => {
     const { user } = useContext(AuthContext);
+    const [details, setDetials] = useState([]);
+
+    useEffect(() => {
+        getDetails();
+        console.log("User :", user)
+    }, [user])
+
+    const getDetails = () => {
+        axios.get("http://selab.mfu.ac.th:8318/details/find/null").then((item) => {
+            console.log("data :", item.data)
+            return filterDetails(item.data);
+        });
+    }
+
+    //ตอนเช็คจริงๆน่าจะใช้ E-mail เผื่อมีชื่อซ้ำ
+
+    const filterDetails = (item) => {
+        const res = item.filter((item) => {
+            return (item.name === user.first_name)
+        })
+        setDetials(res);
+        console.log("details :", res)
+    }
+
+
+
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -21,27 +50,40 @@ const StudentDashboard = () => {
                 </Container>
             </Navbar>
             <br />
-            <h1>Student dashboard</h1>
-            <p>งานที่กำลังจะถึง</p>
-            <Card
-                style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}
-                className="mb-2"
-            >
-                <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}>วันที่ : xxx</Card.Header>
-                <Card.Body style={{ backgroundColor: '#1c82ff' }}>
+            <h1>Student Dashboard</h1>
+            {details.map((item) => {
+                return <div key={item.id}>
+                    <br />
+                    <Card
+                        style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
+                        className="mb-2"
+                    >
+                        <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
+                        <Card.Body style={{ backgroundColor: '#1c82ff' }}>
 
-                    <Card.Text>
-                        <Card.Title>Clinic : xxx &nbsp;&nbsp; Unit : xxx </Card.Title>
-                        <lable>ช่วงเวลา : xxx</lable>&nbsp;&nbsp;
-                        <lable>ประเภทงาน : xxx</lable><br />
-                        <lable>คนไข้ : xxx</lable><br />
-                        <lable>อาจารย์ผู้ตรวจ : xxx</lable><br />
+                            <Card.Text>
+                                <Card.Title>{"อาจารย์ & Unit"} : <Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
+                                    รอดำเนินการ...{" "}
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
 
+                                </Button> </Card.Title>
+                                <lable>Clinic : {item.clinic}</lable>&nbsp;&nbsp;
+                                <lable>ช่วงเวลา : {item.time}</lable><br />
+                                <lable>ประเภทงาน : {item.worktype}</lable><br />
+                                <lable>คนไข้ : {item.patient}</lable><br />
 
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </div>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
+            })}
+        </div >
     )
 }
 export default StudentDashboard;
