@@ -60,24 +60,21 @@ const StudentDashboard = () => {
                     >
                         <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
                         <Card.Body style={{ backgroundColor: '#1c82ff' }}>
-
                             <Card.Text>
-                                <Card.Title>{"อาจารย์ & Unit"} : <Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
-                                    รอดำเนินการ...{" "}
+                                <lable>Clinic : {item.clinic}</lable>&nbsp;&nbsp;
+                                <lable>ช่วงเวลา : {item.time}</lable><br />
+                                <lable>ประเภทงาน : {item.worktype}</lable><br />
+                                <lable>คนไข้ : {item.patient}</lable><br />
+                                <lable>{"สถานะ"} : <Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
                                     <Spinner
                                         as="span"
                                         animation="border"
                                         size="sm"
                                         role="status"
                                         aria-hidden="true"
-                                    />
-
-                                </Button> </Card.Title>
-                                <lable>Clinic : {item.clinic}</lable>&nbsp;&nbsp;
-                                <lable>ช่วงเวลา : {item.time}</lable><br />
-                                <lable>ประเภทงาน : {item.worktype}</lable><br />
-                                <lable>คนไข้ : {item.patient}</lable><br />
-
+                                    /> {" "}รอดำเนินการ...{" "}
+                                </Button>
+                                </lable>
                             </Card.Text>
                         </Card.Body>
                     </Card>
