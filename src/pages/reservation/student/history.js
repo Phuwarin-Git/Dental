@@ -43,6 +43,7 @@ const StudentHistory = () => {
                         <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
+                        <Nav.Link as={Link} to="/ToothPage">Tooth</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
                         <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>

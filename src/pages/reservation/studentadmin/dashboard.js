@@ -14,6 +14,7 @@ const StudentAdminDashboard = () => {
                         <Nav.Link as={Link} to="/StudentAdminReservation">Unit Selected</Nav.Link>
                         <Nav.Link as={Link} to="/StudentAdminLimitCase">Case Limit</Nav.Link>
                         <Nav.Link as={Link} to="/StudentAdminHistory">History</Nav.Link>
+                        <Nav.Link as={Link} to="/ToothAdmin">Tooth</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
                         <Nav.Link style={{ color: '#3258fc' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
