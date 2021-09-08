@@ -17,6 +17,7 @@ import StudentAdminLimitCase from './pages/reservation/studentadmin/caselimit';
 import StudentAdminReservation from './pages/reservation/studentadmin/reservation';
 import ToothPage from './pages/equipment/student/tooth';
 import ToothAdmin from './pages/equipment/studentadmin/toothadmin';
+import Withdrawal from './pages/equipment/student/Withdraw';
 
 const AuthContext = createContext();
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/StudentAdminLimitCase" component={StudentAdminLimitCase}></Route>
           <Route path="/ToothPage" component={ToothPage}></Route>
           <Route path="/ToothAdmin" component={ToothAdmin}></Route>
+          <Route path="/Withdrawal" component={Withdrawal}></Route>
           <Route path="/:id">
             <p>Error 404 page not found</p>
           </Route>

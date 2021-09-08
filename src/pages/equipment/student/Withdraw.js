@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
-const ToothPage = () => {
+const Withdrawal = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
 
@@ -63,6 +63,7 @@ const ToothPage = () => {
                                     <lable>ประเภทงาน : {item.worktype}</lable><br />
                                     <lable>คนไข้ : {item.patient}</lable><br />
                                     <lable>อาจารย์ผู้ตรวจ : {item.teacher}</lable><br />
+                                    <button type="button" class="btn btn-warning">Withdraw</button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -73,4 +74,4 @@ const ToothPage = () => {
         </div>
     )
 }
-export default ToothPage;
+export default Withdrawal;
