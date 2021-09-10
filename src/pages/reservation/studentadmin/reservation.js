@@ -82,6 +82,7 @@ const StudentAdminReservation = () => {
 
                             <Card.Text>
                                 <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; เวลา : {item.time} </Card.Title>
+                                <lable>นักศึกษา : {item.name}</lable><br />
                                 <lable>ประเภทงาน : {item.worktype}</lable><br />
                                 <lable>คนไข้ : {item.patient}</lable><br />
 
