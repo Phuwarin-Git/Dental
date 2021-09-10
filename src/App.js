@@ -8,6 +8,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 import Login from './pages/signin/login';
 import StudentDashboard from './pages/reservation/student/dashboard';
+import StudentLimt from './pages/reservation/student/limit';
 import StudentRes from './pages/reservation/student/Reservation';
 import StudentHistory from './pages/reservation/student/history';
 import StudentProfile from './pages/reservation/student/Profile';
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/" component={Login}></Route>
           <Route path="/StudentDashboard" component={StudentDashboard}></Route>
           <Route path="/StudentRes" component={StudentRes}></Route>
+          <Route path="/StudentLimt" component={StudentLimt}></Route>
           <Route path="/StudentHistory" component={StudentHistory}></Route>
           <Route path="/StudentProfile" component={StudentProfile}></Route>
           <Route path="/StudentAdminDashboard" component={StudentAdminDashboard}></Route>
