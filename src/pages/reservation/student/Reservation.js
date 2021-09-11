@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
@@ -11,14 +11,39 @@ import '../Yup.css'
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
+    const [limit, setLimit] = useState([]);
+
+
+
+    useEffect(() => {
+        getDetails();
+    }, [user])
+
+    const getDetails = () => {
+        axios.get("http://selab.mfu.ac.th:8318/limitcase/find/all").then((item) => {
+            console.log("Limit :", item.data)
+            return setLimit(item.data);
+        });
+    }
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
+
         console.log("Hello :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
         const ApiSet = ({ name: user.first_name, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
-        alert("Success")
-        return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
-            return console.log("Res :", res)
+
+        const findDate = limit.filter((item) => {
+            return ((item.date === date) && (item.time === time))
         })
+
+        if (findDate.length === 1) {
+            alert("Success")
+            return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
+                return console.log("Res :", res)
+            })
+        } else {
+            alert('ไม่มีรายละเอียดงานวันที่เลือก')
+        }
+
     }
 
     const formik = useFormik({
