@@ -95,7 +95,7 @@ const StudentRes = () => {
             <br />
             <h1>Student Reservation</h1>
             <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="date">First Name :{" "}</label>
+                <label htmlFor="date">วันที่ :{" "}</label>
                 <input
                     id="date"
                     name="date"
@@ -109,7 +109,7 @@ const StudentRes = () => {
                 ) : null} <br />
 
 
-                <label htmlFor="time">Date :{" "}</label>
+                <label htmlFor="time">ช่วงเวลา :{" "}</label>
                 <select
                     id="time"
                     name="time"
@@ -117,15 +117,15 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.time}
                 >
-                    <option value="" label="Select the time" />
-                    <option value="ช่วงเช้า" label="morning" />
-                    <option value="ช่วงบ่าย" label="afternoon" />
+                    <option value="" label="เลือกช่วงเวลา" />
+                    <option value="ช่วงเช้า" label="ช่วงเช้า" />
+                    <option value="ช่วงบ่าย" label="ช่วงบ่าย" />
                 </select>
                 {formik.touched.time && formik.errors.time ? (
                     <div className="error">{formik.errors.time}</div>
                 ) : null}<br />
 
-                <label htmlFor="Clinic">Date :{" "}</label>
+                <label htmlFor="Clinic">คลินิก :{" "}</label>
                 <select
                     id="clinic"
                     name="clinic"
@@ -133,7 +133,7 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.clinic}
                 >
-                    <option value="" label="Select a clinic" />
+                    <option value="" label="เลือกคลินิก" />
                     <option value="od" label="OD" />
                     <option value="tmd" label="TMD" />
                     <option value="oper" label="OPER" />
@@ -150,7 +150,7 @@ const StudentRes = () => {
                     <div className="error">{formik.errors.clinic}</div>
                 ) : null}<br />
 
-                <label htmlFor="type">Type :{" "}</label>
+                <label htmlFor="type">ประเภทงาน :{" "}</label>
                 <select
                     id="type"
                     name="type"
@@ -158,7 +158,7 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.type}
                 >
-                    <option value="" label="Select the type" />
+                    <option value="" label="เลือกประเภทงาน" />
                     <option value="ฟุ้งกระจาย" label="AGPs" />
                     <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
                 </select>
@@ -166,12 +166,12 @@ const StudentRes = () => {
                     <div className="error">{formik.errors.type}</div>
                 ) : null}<br />
 
-                <label htmlFor="patient">Patient Name :{" "}</label>
+                <label htmlFor="patient">คนไข้ :{" "}</label>
                 <input
                     id="patient"
                     name="patient"
                     type="text"
-                    placeholder="Patient name"
+                    placeholder="ชื่อคนไข้"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.patient}
@@ -185,7 +185,7 @@ const StudentRes = () => {
                     id="dn"
                     name="dn"
                     type="number"
-                    placeholder="DN must be number"
+                    placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.dn}
@@ -199,7 +199,7 @@ const StudentRes = () => {
                     id="hn"
                     name="hn"
                     type="number"
-                    placeholder="HN must be number"
+                    placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.hn}
