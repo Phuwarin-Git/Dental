@@ -2,7 +2,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import React, { createContext, useEffect, useState } from 'react';
 
@@ -22,8 +22,9 @@ const AuthContext = createContext();
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [user, setUser] = useState([]);
+
   useEffect(() => {
-    console.log('User :', user)
+    console.log('User :', user, ' Status :', loginStatus);
   }, [user])
   return (
     <div className="App">
@@ -31,21 +32,21 @@ function App() {
       <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
-          <Route path="/StudentDashboard" component={StudentDashboard}></Route>
-          <Route path="/StudentRes" component={StudentRes}></Route>
-          <Route path="/StudentLimt" component={StudentLimt}></Route>
-          <Route path="/StudentHistory" component={StudentHistory}></Route>
-          <Route path="/StudentProfile" component={StudentProfile}></Route>
-          <Route path="/StudentAdminDashboard" component={StudentAdminDashboard}></Route>
-          <Route path="/StudentAdminReservation" component={StudentAdminReservation}></Route>
-          <Route path="/StudentAdminHistory" component={StudentAdminHistory}></Route>
-          <Route path="/StudentAdminLimitCase" component={StudentAdminLimitCase}></Route>
+          <Route path="/StudentDashboard" render={() => loginStatus === true ? <StudentDashboard /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentRes" render={() => loginStatus === true ? <StudentRes /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentLimt" render={() => loginStatus === true ? <StudentLimt /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentHistory" render={() => loginStatus === true ? <StudentHistory /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentProfile" render={() => loginStatus === true ? <StudentProfile /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentAdminDashboard" render={() => loginStatus === true ? <StudentAdminDashboard /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentAdminReservation" render={() => loginStatus === true ? <StudentAdminReservation /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentAdminHistory" render={() => loginStatus === true ? <StudentAdminHistory /> : (<Redirect to="/" />)}></Route>
+          <Route path="/StudentAdminLimitCase" render={() => loginStatus === true ? <StudentAdminLimitCase /> : (<Redirect to="/" />)}></Route>
           <Route path="/:id">
-            <p>Error 404 page not found</p>
+            <h1 style={{ color: 'black' }}>Error 404 page not found</h1>
           </Route>
         </Switch>
       </AuthContext.Provider>
-    </div>
+    </div >
   );
 }
 export { AuthContext };
