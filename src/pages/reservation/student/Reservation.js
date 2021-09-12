@@ -6,8 +6,9 @@ import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
-
 import '../Yup.css'
+
+import ToolModal from './modal/tool';
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
@@ -210,6 +211,7 @@ const StudentRes = () => {
 
 
                 <br /><button className="But" type="submit">Submit</button>
+                <ToolModal />
             </form>
 
         </div>
