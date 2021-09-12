@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Login = () => {
     const history = useHistory();
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser, setLoginStatus } = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [auth, setAuth] = useState([]);
@@ -49,7 +49,9 @@ const Login = () => {
     }
 
     function onSubmitForm(details) {
+        setLoginStatus(true)
         setUser(details[0])
+
         if (details[0].role === "student") {
             // console.log("Role :", details[0].role)
             return history.push('/StudentDashboard')

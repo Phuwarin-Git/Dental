@@ -5,7 +5,8 @@ import Table from 'react-bootstrap/Table'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
-const StudentAdminDashboard = () => {
+const StudentLimt = () => {
+
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
 
@@ -27,13 +28,13 @@ const StudentAdminDashboard = () => {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/StudentAdminDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminReservation">Unit Selected</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminLimitCase">Case Limit</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/ToothAdmin">Tooth</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#3258fc' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -57,7 +58,7 @@ const StudentAdminDashboard = () => {
                     </tr>
                 </thead>
                 {limit.map(item => {
-                    return <tbody key={item.id}>
+                    return <tbody >
                         <tr>
                             <td style={{ color: 'white' }}>{item.date}</td>
                             <td style={{ color: 'white' }}>{item.time}</td>
@@ -80,4 +81,4 @@ const StudentAdminDashboard = () => {
         </div >
     )
 }
-export default StudentAdminDashboard;
+export default StudentLimt;

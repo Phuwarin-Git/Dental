@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
@@ -11,14 +11,39 @@ import '../Yup.css'
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
+    const [limit, setLimit] = useState([]);
+
+
+
+    useEffect(() => {
+        getDetails();
+    }, [user])
+
+    const getDetails = () => {
+        axios.get("http://selab.mfu.ac.th:8318/limitcase/find/all").then((item) => {
+            console.log("Limit :", item.data)
+            return setLimit(item.data);
+        });
+    }
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
+
         console.log("Hello :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
         const ApiSet = ({ name: user.first_name, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
-        alert("Success")
-        return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
-            return console.log("Res :", res)
+
+        const findDate = limit.filter((item) => {
+            return ((item.date === date) && (item.time === time))
         })
+
+        if (findDate.length === 1) {
+            alert("Success")
+            return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
+                return console.log("Res :", res)
+            })
+        } else {
+            alert('ไม่มีรายละเอียดงานวันที่เลือก')
+        }
+
     }
 
     const formik = useFormik({
@@ -58,6 +83,7 @@ const StudentRes = () => {
                 <Container>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
                         <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
@@ -70,7 +96,7 @@ const StudentRes = () => {
             <br />
             <h1>Student Reservation</h1>
             <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="date">First Name :{" "}</label>
+                <label htmlFor="date">วันที่ :{" "}</label>
                 <input
                     id="date"
                     name="date"
@@ -84,7 +110,7 @@ const StudentRes = () => {
                 ) : null} <br />
 
 
-                <label htmlFor="time">Date :{" "}</label>
+                <label htmlFor="time">ช่วงเวลา :{" "}</label>
                 <select
                     id="time"
                     name="time"
@@ -92,15 +118,15 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.time}
                 >
-                    <option value="" label="Select the time" />
-                    <option value="ช่วงเช้า" label="morning" />
-                    <option value="ช่วงบ่าย" label="afternoon" />
+                    <option value="" label="เลือกช่วงเวลา" />
+                    <option value="ช่วงเช้า" label="ช่วงเช้า" />
+                    <option value="ช่วงบ่าย" label="ช่วงบ่าย" />
                 </select>
                 {formik.touched.time && formik.errors.time ? (
                     <div className="error">{formik.errors.time}</div>
                 ) : null}<br />
 
-                <label htmlFor="Clinic">Date :{" "}</label>
+                <label htmlFor="Clinic">คลินิก :{" "}</label>
                 <select
                     id="clinic"
                     name="clinic"
@@ -108,7 +134,7 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.clinic}
                 >
-                    <option value="" label="Select a clinic" />
+                    <option value="" label="เลือกคลินิก" />
                     <option value="od" label="OD" />
                     <option value="tmd" label="TMD" />
                     <option value="oper" label="OPER" />
@@ -125,7 +151,7 @@ const StudentRes = () => {
                     <div className="error">{formik.errors.clinic}</div>
                 ) : null}<br />
 
-                <label htmlFor="type">Type :{" "}</label>
+                <label htmlFor="type">ประเภทงาน :{" "}</label>
                 <select
                     id="type"
                     name="type"
@@ -133,7 +159,7 @@ const StudentRes = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.type}
                 >
-                    <option value="" label="Select the type" />
+                    <option value="" label="เลือกประเภทงาน" />
                     <option value="ฟุ้งกระจาย" label="AGPs" />
                     <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
                 </select>
@@ -141,12 +167,12 @@ const StudentRes = () => {
                     <div className="error">{formik.errors.type}</div>
                 ) : null}<br />
 
-                <label htmlFor="patient">Patient Name :{" "}</label>
+                <label htmlFor="patient">คนไข้ :{" "}</label>
                 <input
                     id="patient"
                     name="patient"
                     type="text"
-                    placeholder="Patient name"
+                    placeholder="ชื่อคนไข้"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.patient}
@@ -160,7 +186,7 @@ const StudentRes = () => {
                     id="dn"
                     name="dn"
                     type="number"
-                    placeholder="DN must be number"
+                    placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.dn}
@@ -174,7 +200,7 @@ const StudentRes = () => {
                     id="hn"
                     name="hn"
                     type="number"
-                    placeholder="HN must be number"
+                    placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.hn}

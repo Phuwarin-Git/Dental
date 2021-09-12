@@ -40,6 +40,7 @@ const StudentHistory = () => {
                 <Container>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
                         <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
                         <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
