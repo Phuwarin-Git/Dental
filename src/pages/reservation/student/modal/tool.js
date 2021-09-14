@@ -1,7 +1,6 @@
 
 import StyleModal from "./index.view";
-import React, { useContext, useEffect, useState, ScrollView } from 'react';
-import {ScrollView} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
@@ -10,7 +9,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import '../../Yup.css'
 import { Label } from 'semantic-ui-react';
-import { nativeTouchData } from "react-dom/test-utils";
 
 const ToolModal = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -379,7 +377,7 @@ const ToolModal = () => {
                         <h1>Equipment Withdraw</h1>
                     </center>
 
-                    <div style={{ height: 600, marginLeft:15 }}>
+                    <div style={{ height: 600, marginLeft: 15 }}>
                         <div>
                             <label htmlFor="ToolId">HN :{" "}</label>
                             <input
@@ -1829,9 +1827,7 @@ const ToolModal = () => {
                                 <div className="error">{formik.errors.POPON_n}</div>
                             ) : null} <br />
                         </div>
-                        
                     </div>
-                   
                 </div>
             </StyleModal>
         </div>
