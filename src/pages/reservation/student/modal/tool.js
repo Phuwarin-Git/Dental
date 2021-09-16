@@ -16,7 +16,9 @@ import Accordion from 'react-bootstrap/Accordion';
 
 
 const ToolModal = () => {
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = React.useState(true);
+
+    // Modal.setAppElement('#yourAppElement');
 
     function openModal() {
         setIsOpen(true);
@@ -271,15 +273,9 @@ const ToolModal = () => {
             KFile30mm4580_endo: KFile30mm4580_endo,
         })
 
-        alert("Success")
-        return axios.post("http://selab.mfu.ac.th:8318/Tool_PERIO_OD/create", ApiSet).then((res) => {
-            return console.log("Res :", res),
-                axios.post("http://selab.mfu.ac.th:8318/Tool_Endo/create", ApiSet1).then((res) => {
-                    return console.log("Res :", res)
-                }),
-                axios.post("http://selab.mfu.ac.th:8318/Tool_PERIO_OD/create", ApiSet2).then((res) => {
-                    return console.log("Res :", res)
-                })
+        console.log("Success")
+        return axios.post("http://selab.mfu.ac.th:8318/Tool/create", ApiSet1).then((res) => {
+            return console.log("Res API 1 SET :", res)
         })
 
 
@@ -319,11 +315,11 @@ const ToolModal = () => {
             unitcleaningkit_periood: " ",
             gumsurgerykit_periood: " ",
             gumsurgicalgown_periood: " ",
-            testkit_toolcc1: " ",
-            glassofwater_toolcc1: " ",
-            Tripplesyring_toolcc1: " ",
-            FabricMiddlepunch_toolcc1: " ",
-            veil_toolcc1: " ",
+            testkit_toolcc1: "",
+            glassofwater_toolcc1: "",
+            Tripplesyring_toolcc1: "",
+            FabricMiddlepunch_toolcc1: "",
+            veil_toolcc1: "",
             UNC15Probe_toolcc1: " ",
             medicinecup_toolcc1: " ",
             Dappendish_toolcc1: " ",
@@ -649,9 +645,9 @@ const ToolModal = () => {
 
     return (
         <div>
-            <button className="butRes" onClick={openModal}>
+            {/* <button className="butRes" onClick={openModal}>
                 Details
-            </button>
+            </button> */}
             <StyleModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -673,6 +669,7 @@ const ToolModal = () => {
                                             <input
                                                 id="testkit_toolcc1"
                                                 name="testkit_toolcc1"
+                                                type="number"
                                                 placeholder="Number Only"
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
@@ -682,6 +679,7 @@ const ToolModal = () => {
                                             <input
                                                 id="glassofwater_toolcc1"
                                                 name="glassofwater_toolcc1"
+                                                type="number"
                                                 placeholder="Number Only"
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
