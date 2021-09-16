@@ -13,6 +13,7 @@ import ToolModal from './modal/tool';
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
+    const [open, setOpen] = useState(false);
 
 
 
@@ -39,7 +40,8 @@ const StudentRes = () => {
         if (findDate.length === 1) {
             alert("Success")
             return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
-                return console.log("Res :", res)
+                console.log("Res :", res)
+                return setOpen(true);
             })
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
@@ -212,7 +214,7 @@ const StudentRes = () => {
 
 
                 <br /><button className="But" type="submit">Submit</button>
-                <ToolModal />
+                {open === true ? <ToolModal /> : console.log("Modal it's not open")}
             </form>
 
         </div>
