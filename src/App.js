@@ -16,6 +16,7 @@ import StudentAdminDashboard from './pages/reservation/studentadmin/dashboard';
 import StudentAdminHistory from './pages/reservation/studentadmin/history';
 import StudentAdminLimitCase from './pages/reservation/studentadmin/caselimit';
 import StudentAdminReservation from './pages/reservation/studentadmin/reservation';
+import Adminconfirm from './pages/reservation/Admintool/Adminconfirm';
 
 const AuthContext = createContext();
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/StudentAdminReservation" render={() => loginStatus === true ? <StudentAdminReservation /> : (<Redirect to="/" />)}></Route>
           <Route path="/StudentAdminHistory" render={() => loginStatus === true ? <StudentAdminHistory /> : (<Redirect to="/" />)}></Route>
           <Route path="/StudentAdminLimitCase" render={() => loginStatus === true ? <StudentAdminLimitCase /> : (<Redirect to="/" />)}></Route>
+          <Route path="/Adminconfirm" render={() => loginStatus === true ? <Adminconfirm /> : (<Redirect to="/" />)}></Route>
           <Route path="/:id">
             <h1 style={{ color: 'black' }}>Error 404 page not found</h1>
           </Route>
