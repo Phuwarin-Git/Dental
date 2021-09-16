@@ -4,7 +4,10 @@ import { Nav, Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
+import HistoryModal from './historyModal/modal';
 import axios from "axios";
+
+
 const StudentHistory = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
@@ -68,7 +71,9 @@ const StudentHistory = () => {
                                 <lable>คนไข้ : {item.patient}</lable><br />
                                 <lable>อาจารย์ผู้ตรวจ : {item.teacher}</lable><br />
                             </Card.Text>
+                            <HistoryModal />
                         </Card.Body>
+
                     </Card>
                 </div>
             })}

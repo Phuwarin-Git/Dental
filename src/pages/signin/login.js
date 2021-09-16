@@ -64,6 +64,8 @@ const Login = () => {
         } if (details[0].role === "admin") {
             // console.log("Role :", details[0].role)
             return history.push('/StudentDashboard')
+        } if (details[0].role === "AdminTool") {
+            return history.push('/Adminconfirm')
         }
 
     }
