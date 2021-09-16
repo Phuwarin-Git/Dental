@@ -64,16 +64,25 @@ const StudentHistory = () => {
                         <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
                         <Card.Body style={{ backgroundColor: '#1c82ff' }}>
 
-                            <Card.Text>
+                            <Card.Text style={{ marginBottom: '-5%' }}>
                                 <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; Unit : {item.unit} </Card.Title>
                                 <lable>ช่วงเวลา : {item.time}</lable>&nbsp;&nbsp;
                                 <lable>ประเภทงาน : {item.worktype}</lable><br />
                                 <lable>คนไข้ : {item.patient}</lable><br />
-                                <lable>อาจารย์ผู้ตรวจ : {item.teacher}</lable><br />
+                                <lable>อาจารย์ผู้ตรวจ : อาจารย์ใจดี จริงจริง</lable><br />
                             </Card.Text>
-                            <HistoryModal />
+                            <HistoryModal
+                                unit={item.unit}
+                                name={item.name}
+                                year={item.studentyear}
+                                date={item.date}
+                                clinic={item.clinic}
+                                type={item.worktype}
+                                patient={item.patient}
+                                dn={item.dn}
+                                hn={item.hn}
+                            />
                         </Card.Body>
-
                     </Card>
                 </div>
             })}

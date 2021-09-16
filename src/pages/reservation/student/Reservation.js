@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import '../Yup.css'
@@ -14,7 +14,7 @@ const StudentRes = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
     const [open, setOpen] = useState(false);
-
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -40,8 +40,9 @@ const StudentRes = () => {
         if (findDate.length === 1) {
             alert("Success")
             return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
-                console.log("Res :", res)
-                return setOpen(true);
+                console.log("Res Create Details :", res)
+                // return setOpen(true);
+                return history.push('/ToolModal')
             })
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
