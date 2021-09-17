@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
 
@@ -12,13 +12,15 @@ import '../Yup.css'
 
 const StudentAdminLimitCase = () => {
     const { user } = useContext(AuthContext);
+    const history = useHistory();
 
     function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho) {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
         const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
         alert("Success")
         return axios.post("http://selab.mfu.ac.th:8318/limitcase/create", ApiSet).then((res) => {
-            return console.log("Res Limit :", res)
+            console.log("Res Limit :", res)
+            return history.push('/StudentAdminDashboard')
         })
     }
 
