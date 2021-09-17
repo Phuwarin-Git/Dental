@@ -3,12 +3,12 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
-import { AuthContext } from '../../../App';
-import Adminmodal from './adminmodal/adminmodal';
+import { AuthContext } from '../../../../App';
+import adminhistorymodal from './adminhistorymodal/adminhistorymodal';
 import axios from "axios";
 
 
-const Adminconfirm = () => {
+const Adminhistoryday = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
 
@@ -44,14 +44,14 @@ const Adminconfirm = () => {
                 <Container>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/Adminconfirm">ConfirmTool</Nav.Link>
-                        <Nav.Link as={Link} to="./adminhistory/adminhistoryday.js">History</Nav.Link>
+                        <Nav.Link as={Link} to="/Adminconfirm">History</Nav.Link>
                         <Nav.Link as={Link} to="/">Logout</Nav.Link>
                         <Nav.Link style={{ color: '#DC7633' }} as={Link}>Name : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
-            <h1>Tool Confirm</h1>
+            <h1>Tool History</h1>
             {details.map((item) => {
                 return <div key={item.id}>
                     <br />
@@ -81,4 +81,4 @@ const Adminconfirm = () => {
         </div >
     )
 }
-export default Adminconfirm;
+export default Adminhistoryday;
