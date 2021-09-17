@@ -20,7 +20,7 @@ const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn })
 
     return (
         <div>
-            <Button style={{ background: '#262626', color: '#34fa6c', marginLeft: '75%', marginTop: '-10%' }} onClick={openModal}>
+            <Button style={{ background: '#262626', color: '#34fa6c', marginLeft: '75%', marginTop: '20px' }} onClick={openModal}>
                 Details
             </Button>
             <StyleModal
@@ -32,31 +32,40 @@ const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn })
                 <div>
                     <center>
                         <h1 style={{ color: 'black' }}>รายละเอียดการจอง</h1>
-                        <Container>
-                            <Row>
-                                <Col><p>Date : {date}</p></Col>
-                                <Col><p>Clinic : {clinic}</p></Col>
+                    </center>
+                    <Container style={{ marginLeft: '50px' }}>
+                        <Row>
+                            <Col><p>Date : {date}</p></Col>
+                            <Col><p>Clinic : {clinic}</p></Col>
+                        </Row>
+                        <Row>
+                            <Col><p>Name : {name}</p> </Col>
+                            <Col><p>Year : {year}</p> </Col>
+                        </Row>
+                        <Row>
+                            <Col><p>Work Type : {type}</p></Col>
+                            <Col><p>Unit : {unit}</p></Col>
 
-                            </Row>
-                            <Row>
-                                <Col sm={8}><p>Name : {name}</p> </Col>
-                                <Col sm={4}><p>Year : {year}</p> </Col>
-                            </Row>
-                            <Row>
-                                <Col><p>Work Type : {type}</p></Col>
-                                <Col><p>Unit : {unit}</p></Col>
-
-                            </Row>
-                            <Row>
-                                <Col><p>dn : {dn}</p></Col>
-                                <Col><p>hn : {hn}</p></Col>
-                            </Row>
-                            <Row>
-                                <Col><p>Patient : {patient}</p></Col>
-                            </Row>
-                        </Container>
+                        </Row>
+                        <Row>
+                            <Col><p>dn : {dn}</p></Col>
+                            <Col><p>hn : {hn}</p></Col>
+                        </Row>
+                        <Row>
+                            <Col><p>Patient : {patient}</p></Col>
+                        </Row>
+                    </Container>
+                    <center>
                         <h1 style={{ color: 'black' }}>รายการอุปกรณ์</h1>
                     </center>
+                    <div style={{ marginLeft: '20px' }}>
+                        <label>คีมเล็ก : 1</label><br />
+                        <label>ผ้าพันแผล : 3</label><br />
+                        <label>สำลี : 1</label><br />
+                        <label>ผ้าพันแผล : 1</label><br />
+                        <label>ผ้าพันแผล : 1</label>
+                        <lable>{" "}</lable>
+                    </div>
                 </div>
             </StyleModal>
         </div>
