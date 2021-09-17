@@ -57,7 +57,7 @@ const Login = () => {
             return history.push('/StudentDashboard')
         } else if (details[0].role === "teacher") {
             // console.log("Role :", details[0].role)
-            return history.push('/StudentAdminDashboard')
+            return history.push('/TeacherDashboard')
         } if (details[0].role === "studentadmin") {
             // console.log("Role :", details[0].role)
             return history.push('/StudentAdminDashboard')

@@ -18,6 +18,10 @@ import StudentAdminLimitCase from './pages/reservation/studentadmin/caselimit';
 import StudentAdminReservation from './pages/reservation/studentadmin/reservation';
 import Adminconfirm from './pages/reservation/Admintool/Adminconfirm';
 import ToolModal from './pages/reservation/student/modal/tool';
+import TeacherDashboard from './pages/reservation/teacher/dashboard';
+import TeacherSelectWork from './pages/reservation/teacher/selectwork';
+import TeacherHistory from './pages/reservation/teacher/history';
+import TeacherProfile from './pages/reservation/teacher/profile';
 
 const AuthContext = createContext();
 
@@ -45,6 +49,10 @@ function App() {
           <Route path="/StudentAdminLimitCase" render={() => loginStatus === true ? <StudentAdminLimitCase /> : (<Redirect to="/" />)}></Route>
           <Route path="/Adminconfirm" render={() => loginStatus === true ? <Adminconfirm /> : (<Redirect to="/" />)}></Route>
           <Route path="/ToolModal" render={() => loginStatus === true ? <ToolModal /> : (<Redirect to="/" />)}></Route>
+          <Route path="/TeacherDashboard" render={() => loginStatus === true ? <TeacherDashboard /> : (<Redirect to="/" />)}></Route>
+          <Route path="/TeacherSelectWork" render={() => loginStatus === true ? <TeacherSelectWork /> : (<Redirect to="/" />)}></Route>
+          <Route path="/TeacherHistory" render={() => loginStatus === true ? <TeacherHistory /> : (<Redirect to="/" />)}></Route>
+          <Route path="/TeacherProfile" render={() => loginStatus === true ? <TeacherProfile /> : (<Redirect to="/" />)}></Route>
           <Route path="/:id">
             <h1 style={{ color: 'black' }}>Error 404 page not found</h1>
           </Route>
