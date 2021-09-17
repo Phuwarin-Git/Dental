@@ -96,7 +96,7 @@ const StudentAdminReservation = () => {
                                             return <option key={item.unit_id} value={item.unit_code} value={item.unit_code}>{item.unit_code}</option>
                                         })}
                                     </select>
-                                    <button type="submit">ยืนยัน</button>
+                                    <button style={{ borderRadius: '10px', marginLeft: '10px', backgroundColor: '#02ed60' }} type="submit">ยืนยัน</button>
                                 </form>
 
                             </Card.Text>
