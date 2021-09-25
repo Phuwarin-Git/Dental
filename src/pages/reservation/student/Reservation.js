@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useFormik } from 'formik';
+import { useFormik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
-import { Nav, Container } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import '../Yup.css'
-
 import ToolModal from './modal/tool';
+import StudentLimt from './limit';
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
@@ -62,19 +65,19 @@ const StudentRes = () => {
         },
         validationSchema: Yup.object({
             date: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             time: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             clinic: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             type: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             patient: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             dn: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
             hn: Yup.string()
-                .required('Required'),
+                .required('*จำเป็นต้องกรอกข้อมูล'),
         }),
         onSubmit: values => {
             return submitForm(values.date, values.time, values.clinic, values.type, values.patient, values.dn, values.hn);
@@ -97,124 +100,154 @@ const StudentRes = () => {
             </Navbar>
             <br />
             <h1>Student Reservation</h1>
-            <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="date">วันที่ :{" "}</label>
-                <input
-                    id="date"
-                    name="date"
-                    type="date"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.date}
-                />
-                {formik.touched.date && formik.errors.date ? (
-                    <div className="error">{formik.errors.date}</div>
-                ) : null} <br />
+            <Container>
+                <Row>
+                    <Col>
+                        <StudentLimt />
+                    </Col>
+
+                    <Col>
+                        <form onSubmit={formik.handleSubmit}>
+                            <label htmlFor="date">วันที่ :{" "}</label>
+                            <input
+                                id="date"
+                                name="date"
+                                type="date"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.date}
+                            />
+                            {formik.touched.date && formik.errors.date ? (
+                                <div className="error">{formik.errors.date}</div>
+                            ) : null} <br />
 
 
-                <label htmlFor="time">ช่วงเวลา :{" "}</label>
-                <select
-                    id="time"
-                    name="time"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.time}
-                >
-                    <option value="" label="เลือกช่วงเวลา" />
-                    <option value="ช่วงเช้า" label="ช่วงเช้า" />
-                    <option value="ช่วงบ่าย" label="ช่วงบ่าย" />
-                </select>
-                {formik.touched.time && formik.errors.time ? (
-                    <div className="error">{formik.errors.time}</div>
-                ) : null}<br />
-
-                <label htmlFor="Clinic">คลินิก :{" "}</label>
-                <select
-                    id="clinic"
-                    name="clinic"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.clinic}
-                >
-                    <option value="" label="เลือกคลินิก" />
-                    <option value="od" label="OD" />
-                    <option value="tmd" label="TMD" />
-                    <option value="oper" label="OPER" />
-                    <option value="perio" label="PERIO" />
-                    <option value="sur" label="SUR" />
-                    <option value="prosth" label="PROSTH" />
-                    <option value="endo" label="ENDO" />
-                    <option value="pedo" label="PEDO" />
-                    <option value="xray" label="X-RAY" />
-                    <option value="om" label="OM" />
-                    <option value="ortho" label="Ortho" />
-                </select>
-                {formik.touched.clinic && formik.errors.clinic ? (
-                    <div className="error">{formik.errors.clinic}</div>
-                ) : null}<br />
-
-                <label htmlFor="type">ประเภทงาน :{" "}</label>
-                <select
-                    id="type"
-                    name="type"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.type}
-                >
-                    <option value="" label="เลือกประเภทงาน" />
-                    <option value="ฟุ้งกระจาย" label="AGPs" />
-                    <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
-                </select>
-                {formik.touched.type && formik.errors.type ? (
-                    <div className="error">{formik.errors.type}</div>
-                ) : null}<br />
-
-                <label htmlFor="patient">คนไข้ :{" "}</label>
-                <input
-                    id="patient"
-                    name="patient"
-                    type="text"
-                    placeholder="ชื่อคนไข้"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.patient}
-                />
-                {formik.touched.patient && formik.errors.patient ? (
-                    <div className="error">{formik.errors.patient}</div>
-                ) : null} <br />
-
-                <label htmlFor="dn">DN :{" "}</label>
-                <input
-                    id="dn"
-                    name="dn"
-                    type="number"
-                    placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dn}
-                />
-                {formik.touched.dn && formik.errors.dn ? (
-                    <div className="error">{formik.errors.dn}</div>
-                ) : null} <br />
-
-                <label htmlFor="hn">HN :{" "}</label>
-                <input
-                    id="hn"
-                    name="hn"
-                    type="number"
-                    placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.hn}
-                />
-                {formik.touched.hn && formik.errors.hn ? (
-                    <div className="error">{formik.errors.hn}</div>
-                ) : null} <br />
+                            <lable>เลือกช่วงเวลา : </lable>
+                            <input
+                                id="ช่วงเช้า"
+                                type="radio"
+                                value="ช่วงเช้า"
+                                name='time'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.time === "ช่วงเช้า"}
+                            />
+                            <label
+                                className="custom-control-label"
+                                htmlFor="ช่วงเช้า"
+                            >
+                                &nbsp;&nbsp;ช่วงเช้า
+                            </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input
+                                id="ช่วงบ่าย"
+                                type="radio"
+                                value="ช่วงบ่าย"
+                                name='time'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.time === "ช่วงบ่าย"}
+                            />
+                            <label
+                                className="custom-control-label"
+                                htmlFor="ช่วงบ่าย"
+                            >
+                                &nbsp;&nbsp;ช่วงบ่าย
+                            </label>
+                            {formik.touched.time && formik.errors.time ? (
+                                <div className="error">{formik.errors.time}</div>
+                            ) : null}<br />
 
 
-                <br /><button className="But" type="submit">Submit</button>
-                {open === true ? <ToolModal /> : console.log("Modal it's not open")}
-            </form>
+                            <label htmlFor="Clinic">คลินิก :{" "}</label>
+                            <select
+                                id="clinic"
+                                name="clinic"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.clinic}
+                            >
+                                <option value="" label="เลือกคลินิก" />
+                                <option value="od" label="OD" />
+                                <option value="tmd" label="TMD" />
+                                <option value="oper" label="OPER" />
+                                <option value="perio" label="PERIO" />
+                                <option value="sur" label="SUR" />
+                                <option value="prosth" label="PROSTH" />
+                                <option value="endo" label="ENDO" />
+                                <option value="pedo" label="PEDO" />
+                                <option value="xray" label="X-RAY" />
+                                <option value="om" label="OM" />
+                                <option value="ortho" label="Ortho" />
+                            </select>
+                            {formik.touched.clinic && formik.errors.clinic ? (
+                                <div className="error">{formik.errors.clinic}</div>
+                            ) : null}<br />
+
+                            <label htmlFor="type">ประเภทงาน :{" "}</label>
+                            <select
+                                id="type"
+                                name="type"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.type}
+                            >
+                                <option value="" label="เลือกประเภทงาน" />
+                                <option value="ฟุ้งกระจาย" label="AGPs" />
+                                <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
+                            </select>
+                            {formik.touched.type && formik.errors.type ? (
+                                <div className="error">{formik.errors.type}</div>
+                            ) : null}<br />
+
+                            <label htmlFor="patient">คนไข้ :{" "}</label>
+                            <input
+                                id="patient"
+                                name="patient"
+                                type="text"
+                                placeholder="ชื่อคนไข้"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.patient}
+                            />
+                            {formik.touched.patient && formik.errors.patient ? (
+                                <div className="error">{formik.errors.patient}</div>
+                            ) : null} <br />
+
+                            <label htmlFor="dn">DN :{" "}</label>
+                            <input
+                                id="dn"
+                                name="dn"
+                                type="number"
+                                placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.dn}
+                            />
+                            {formik.touched.dn && formik.errors.dn ? (
+                                <div className="error">{formik.errors.dn}</div>
+                            ) : null} <br />
+
+                            <label htmlFor="hn">HN :{" "}</label>
+                            <input
+                                id="hn"
+                                name="hn"
+                                type="number"
+                                placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.hn}
+                            />
+                            {formik.touched.hn && formik.errors.hn ? (
+                                <div className="error">{formik.errors.hn}</div>
+                            ) : null} <br />
+
+
+                            <br /><button className="But" type="submit">Submit</button>
+                            {open === true ? <ToolModal /> : console.log("Modal it's not open")}
+                        </form>
+                    </Col>
+                </Row>
+            </Container>
+
 
         </div>
     )

@@ -1,6 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Navbar from 'react-bootstrap/Navbar'
-import { Nav, Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
@@ -25,21 +23,6 @@ const StudentLimt = () => {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
-                <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
-            <br />
-            <h1>Student Limit</h1>
             <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
                 <thead>
                     <tr>
