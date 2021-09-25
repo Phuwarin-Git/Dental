@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container, Button } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner'
-import Card from 'react-bootstrap/Card'
+import Table from 'react-bootstrap/Table'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
@@ -40,7 +40,7 @@ const StudentDashboard = () => {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/StudentDashboard">Dashboard</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentDashboard">แดชบอร์ด</Nav.Link>
                         <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
                         <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
                         <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
@@ -52,35 +52,38 @@ const StudentDashboard = () => {
             </Navbar>
             <br />
             <h1>Student Dashboard</h1>
-            {details.map((item) => {
-                return <div key={item.id}>
-                    <br />
-                    <Card
-                        style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
-                        className="mb-2"
-                    >
-                        <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
-                        <Card.Body style={{ backgroundColor: '#1c82ff' }}>
-                            <Card.Text>
-                                <lable>Clinic : {item.clinic}</lable>&nbsp;&nbsp;
-                                <lable>ช่วงเวลา : {item.time}</lable><br />
-                                <lable>ประเภทงาน : {item.worktype}</lable><br />
-                                <lable>คนไข้ : {item.patient}</lable><br />
-                                <lable>{"สถานะ"} : <Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    /> {" "}รอดำเนินการ...{" "}
-                                </Button>
-                                </lable>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-            })}
+            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
+                <thead>
+                    <tr>
+                        <th>วันที่</th>
+                        <th>ช่วงเวลา</th>
+                        <th>คลินิก</th>
+                        <th>ประเภทงาน</th>
+                        <th>คนไข้</th>
+                        <th>สถานะ</th>
+                    </tr>
+                </thead>
+                {details.map(item => {
+                    return <tbody key={item.id}>
+                        <tr>
+                            <td style={{ color: 'white' }}>{item.date}</td>
+                            <td style={{ color: 'white' }}>{item.time}</td>
+                            <td style={{ color: 'white' }}>{item.clinic}</td>
+                            <td style={{ color: 'white' }}>{item.worktype}</td>
+                            <td style={{ color: 'white' }}>{item.patient}</td>
+                            <td style={{ color: 'white' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                /> {" "}รอดำเนินการ...{" "}
+                            </Button></td>
+                        </tr>
+                    </tbody>
+                })}
+            </Table>
         </div >
     )
 }
