@@ -1,12 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
-import { Nav, Container } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import Adminmodal from './adminmodal/adminmodal';
 import axios from "axios";
-
+import Adminitem from './adminhistory/adminitem/adminitem';
+import Container from 'react-bootstrap/Container'
+import Table from 'react-bootstrap/Table'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
@@ -38,46 +42,51 @@ const Adminconfirm = () => {
 
 
     return (
-        <div style={{ background: '#E59866',minHeight:'1080px'}}>
-
-            <Navbar bg="dark" variant="dark">
+        <div style={{ background: '#FFFFFF',minHeight:'1080px'}}>
+                 <Navbar style={{background:'#1565C0'}} >
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/Adminconfirm">ConfirmTool</Nav.Link>
-                        <Nav.Link as={Link} to="./adminhistory/adminhistoryday.js">History</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#DC7633' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentRes"></Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentHistory"></Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentProfile"></Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff', marginLeft:'850px'}} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
-            <h1>Tool Confirm</h1>
-            {details.map((item) => {
-                return <div key={item.id}>
-                    <br />
-                    <Card
-                        style={{ width: '30rem', marginLeft: 'auto', marginRight: 'auto' }}
-                        className="mb-2"
-                    >
-                        <Card.Header style={{ backgroundColor: '#873600', color: 'white' }}> วันที่ : {item.date}</Card.Header>
-                        <Card.Body style={{ backgroundColor: '#DC7633' }}>
-
-                            <Card.Text style={{}}>
-                                <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; Unit : {item.unit} </Card.Title>
-                                <lable>ช่วงเวลา : {item.time}</lable>&nbsp;&nbsp;
-                                <lable>ประเภทงาน : {item.worktype}</lable><br />
-                                <lable>ผู้เบิกอุปกรณ์ : {item.name}</lable><br />
-                                <lable>คนไข้ : {item.patient}</lable><br />
-                                <lable>อาจารย์ผู้ตรวจ : {item.teacher}</lable><br />
-                            </Card.Text>
-                            <Adminmodal
-/>
-                        </Card.Body>
-
-                    </Card>
-                    <br/>
-                </div>
-            })}
+            <h1 style={{color:'#1565C0'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+            <br/>
+            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: '#1565C0', maxWidth: '97%' }}>
+                <thead>
+                    <tr>
+                        <th>วันที่</th>
+                        <th>ช่วงเวลา</th>
+                        <th>คลินิก</th>
+                        <th>ประเภทงาน</th>
+                        <th>คนไข้</th>
+                        <th>ผู้เบิกอุปกรณ์</th>
+                        <th>ชั้นปีการศีกษา</th>
+                        <th>อุปกรณ์ที่เบิก</th>
+                    </tr>
+                </thead>
+                {details.map(item => {
+                    return <tbody key={item.id}>
+                        <tr>
+                            <td style={{ color: 'white' }}>{item.date}</td>
+                            <td style={{ color: 'white' }}>{item.time}</td>
+                            <td style={{ color: 'white' }}>{item.clinic}</td>
+                            <td style={{ color: 'white' }}>{item.worktype}</td>
+                            <td style={{ color: 'white' }}>{item.patient}</td>
+                            <td style={{ color: 'white' }}>{item.name}</td>
+                            <td style={{ color: 'white' }}>{item.studentyear}</td>
+                            <td><Adminmodal/></td>
+                            
+                        </tr>
+                    </tbody>
+                })}
+            </Table>
         </div >
     )
 }

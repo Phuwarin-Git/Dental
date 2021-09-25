@@ -631,24 +631,25 @@ const ToolModal = () => {
                 values.KFile25mm840_endo,
                 values.KFile25mm4580_endo,
                 values.KFile30mm840_endo,
-                values.KFile30mm4580_endo	,
+                values.KFile30mm4580_endo,
             );
         },
     });
 
     return (
-        <div>
+        <div style={{ background: '#FFFFFF',minHeight:'1080px'}}>
 
             <form onSubmit={formik.handleSubmit}>
                 <div>
                     <center>
-                        <h1>Equipment Withdraw</h1>
+                        <h1 style={{color:'#1565C0'}}>เบิกเครื่องมือ</h1>
+                        <br/>
                     </center>
                     <div style={{ minHeight: 250 }}>
                         <Accordion>
-                            <Accordion.Item eventKey="0">
-                                <Accordion.Header>Tool</Accordion.Header>
-                                <Accordion.Body class="col" variant="outline-secondary" style={{ backgroundColor: "#16AFF9" }}>
+                            <Accordion.Item style={{width:'700px'}} eventKey="0">
+                                <Accordion.Header>เบิกเครื่องมือ CC1</Accordion.Header>
+                                <Accordion.Body class="col" variant="outline-secondary" style={{ backgroundColor: "#ffff" }}>
                                     <Container style={{ fontSize: 15 }}>
                                         <Row>
                                             <Col>
@@ -1063,9 +1064,9 @@ const ToolModal = () => {
                                     </Container>
                                 </Accordion.Body>
                             </Accordion.Item>
-                            <Accordion.Item eventKey="1">
-                                <Accordion.Header>Tool_Endo</Accordion.Header>
-                                <Accordion.Body style={{ backgroundColor: "#16AFF9" }}>
+                            <Accordion.Item style={{width:'700px'}} eventKey="1">
+                                <Accordion.Header>เครื่องมือเบิกงาน Endo CC1</Accordion.Header>
+                                <Accordion.Body style={{ backgroundColor: "#ffff" }}>
                                     <Container style={{ fontSize: 15 }}>
                                         <Row>
                                             <Col>
@@ -1534,9 +1535,9 @@ const ToolModal = () => {
                                     </Container>
                                 </Accordion.Body>
                             </Accordion.Item>
-                            <Accordion.Item eventKey="3">
-                                <Accordion.Header>Tool_PERIO_OD</Accordion.Header>
-                                <Accordion.Body style={{ backgroundColor: "#16AFF9" }}>
+                            <Accordion.Item style={{width:'700px'}} eventKey="3">
+                                <Accordion.Header>เบิกเครื่องมือ คลินิก PERIO/OD CC2</Accordion.Header>
+                                <Accordion.Body style={{ backgroundColor: "#ffff" }}>
                                     <Container style={{ fontSize: 15 }}>
                                         <Row>
                                             <Col>
@@ -1877,7 +1878,7 @@ const ToolModal = () => {
                         </Accordion>
                         <br />
                         <center>
-                            <button className="But" style={{ backgroundColor: '#08B60D' }} type="submit" >Submit</button>
+                            <button className="But" style={{ backgroundColor: '#1565C0' }} type="submit" >Submit</button>
 
                         </center>
                     </div>

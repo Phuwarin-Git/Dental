@@ -16,8 +16,8 @@ const Adminmodal = () => {
 
     return (
         <div>
-            <Button style={{ background: '#E59866', color: 'black' ,width:"150px",}} onClick={openModal}>
-                Details
+            <Button style={{ background: '#1565C0', color: 'white' ,width:"150px",}} onClick={openModal}>
+                อุปกรณ์
             </Button>
             <StyleModal
                 isOpen={modalIsOpen}
@@ -27,7 +27,7 @@ const Adminmodal = () => {
                 <CloseButton onClick={closeModal} />
                 <div>
                     <center style={{}}>
-                        <p >เครื่องมือเบิกงาน Endo</p>
+                        <h3 style={{ color: '#1565C0'}}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
                     <div style={{marginLeft:"50px",}}>
                     <p>Syringe ยาชา จำนวน 1 ชิ้น </p>
