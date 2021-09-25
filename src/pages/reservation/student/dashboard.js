@@ -41,12 +41,11 @@ const StudentDashboard = () => {
                 <Container>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/StudentDashboard">แดชบอร์ด</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentLimt">Limit</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentRes">Reservation</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentProfile">Profile</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                        <Nav.Link as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                        <Nav.Link as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
