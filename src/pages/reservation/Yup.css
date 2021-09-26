@@ -1,13 +1,11 @@
 .error{
     color: red;
-    margin-top: -10px;
     margin-bottom: -30px;
 }
-input,select{
+select{
     padding: 5px;
     border-radius: 15px;
     border: none;
-    box-shadow: 1px 1px 0.8px #0c1d2e;
     margin-left: 5px;
     margin-top: 10px;
     margin-bottom: 14px;

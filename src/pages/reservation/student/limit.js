@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
-import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 const StudentLimt = () => {
@@ -23,8 +22,18 @@ const StudentLimt = () => {
 
     return (
         <div>
-            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
-                <thead>
+            <h1 style={{ marginLeft: '-350px' }}>จำนวนภาระงาน</h1>
+            <Table
+                style={{
+                    borderRadius: '10px',
+                    marginLeft: '-350px',
+                    minWidth: '1000px'
+                }}
+                striped
+                borderless
+                hover
+                variant="dark"
+            > <thead>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>

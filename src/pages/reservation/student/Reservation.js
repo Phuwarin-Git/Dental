@@ -9,9 +9,11 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from "axios";
 import { AuthContext } from '../../../App';
-import '../Yup.css'
 import ToolModal from './modal/tool';
 import StudentLimt from './limit';
+import But from './reservationCss/ButtonRes';
+import Input from './reservationCss/InputRes'
+import Selected from './reservationCss/SelectRes';
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
@@ -45,7 +47,7 @@ const StudentRes = () => {
             return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
                 // return setOpen(true);
-                return history.push('/ToolModal')
+                return history.push('/StudentDashboard')
             })
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
@@ -99,17 +101,18 @@ const StudentRes = () => {
                 </Container>
             </Navbar>
             <br />
-            <h1>Student Reservation</h1>
+
             <Container>
                 <Row>
-                    <Col>
+                    <Col >
                         <StudentLimt />
                     </Col>
 
-                    <Col>
-                        <form onSubmit={formik.handleSubmit}>
-                            <label htmlFor="date">วันที่ :{" "}</label>
-                            <input
+                    <Col >
+                        <h1>จองการทำงาน</h1>
+                        <form style={{ textAlign: 'left' }} onSubmit={formik.handleSubmit}>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่</label>
+                            <Input
                                 id="date"
                                 name="date"
                                 type="date"
@@ -119,10 +122,10 @@ const StudentRes = () => {
                             />
                             {formik.touched.date && formik.errors.date ? (
                                 <div className="error">{formik.errors.date}</div>
-                            ) : null} <br />
+                            ) : null} <br /><br />
 
 
-                            <lable>เลือกช่วงเวลา : </lable>
+                            <lable style={{ marginRight: '2%', fontWeight: 'bold' }}>เลือกช่วงเวลา : </lable>
                             <input
                                 id="ช่วงเช้า"
                                 type="radio"
@@ -131,13 +134,10 @@ const StudentRes = () => {
                                 onChange={formik.handleChange}
                                 defaultChecked={formik.values.time === "ช่วงเช้า"}
                             />
-                            <label
-                                className="custom-control-label"
-                                htmlFor="ช่วงเช้า"
-                            >
-                                &nbsp;&nbsp;ช่วงเช้า
-                            </label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '10%' }}>ช่วงเช้า</label>
+
+
                             <input
                                 id="ช่วงบ่าย"
                                 type="radio"
@@ -146,19 +146,17 @@ const StudentRes = () => {
                                 onChange={formik.handleChange}
                                 defaultChecked={formik.values.time === "ช่วงบ่าย"}
                             />
-                            <label
-                                className="custom-control-label"
-                                htmlFor="ช่วงบ่าย"
-                            >
-                                &nbsp;&nbsp;ช่วงบ่าย
-                            </label>
+                            &nbsp;&nbsp;&nbsp;
+                            <label>ช่วงบ่าย</label>
+
                             {formik.touched.time && formik.errors.time ? (
                                 <div className="error">{formik.errors.time}</div>
                             ) : null}<br />
 
 
-                            <label htmlFor="Clinic">คลินิก :{" "}</label>
-                            <select
+
+                            <label style={{ fontWeight: 'bold' }} htmlFor="Clinic">คลินิก</label>
+                            <Selected
                                 id="clinic"
                                 name="clinic"
                                 onChange={formik.handleChange}
@@ -177,13 +175,13 @@ const StudentRes = () => {
                                 <option value="xray" label="X-RAY" />
                                 <option value="om" label="OM" />
                                 <option value="ortho" label="Ortho" />
-                            </select>
+                            </Selected>
                             {formik.touched.clinic && formik.errors.clinic ? (
                                 <div className="error">{formik.errors.clinic}</div>
                             ) : null}<br />
 
-                            <label htmlFor="type">ประเภทงาน :{" "}</label>
-                            <select
+                            <label style={{ fontWeight: 'bold' }} htmlFor="type">ประเภทงาน</label>
+                            <Selected
                                 id="type"
                                 name="type"
                                 onChange={formik.handleChange}
@@ -193,13 +191,13 @@ const StudentRes = () => {
                                 <option value="" label="เลือกประเภทงาน" />
                                 <option value="ฟุ้งกระจาย" label="AGPs" />
                                 <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
-                            </select>
+                            </Selected>
                             {formik.touched.type && formik.errors.type ? (
                                 <div className="error">{formik.errors.type}</div>
                             ) : null}<br />
 
-                            <label htmlFor="patient">คนไข้ :{" "}</label>
-                            <input
+                            <label style={{ fontWeight: 'bold' }} htmlFor="patient">ชื่อคนไข้</label>
+                            <Input
                                 id="patient"
                                 name="patient"
                                 type="text"
@@ -212,8 +210,8 @@ const StudentRes = () => {
                                 <div className="error">{formik.errors.patient}</div>
                             ) : null} <br />
 
-                            <label htmlFor="dn">DN :{" "}</label>
-                            <input
+                            <label style={{ fontWeight: 'bold' }} htmlFor="dn">DN</label>
+                            <Input
                                 id="dn"
                                 name="dn"
                                 type="number"
@@ -226,8 +224,8 @@ const StudentRes = () => {
                                 <div className="error">{formik.errors.dn}</div>
                             ) : null} <br />
 
-                            <label htmlFor="hn">HN :{" "}</label>
-                            <input
+                            <label style={{ fontWeight: 'bold' }} htmlFor="hn">HN </label>
+                            <Input
                                 id="hn"
                                 name="hn"
                                 type="number"
@@ -240,16 +238,18 @@ const StudentRes = () => {
                                 <div className="error">{formik.errors.hn}</div>
                             ) : null} <br />
 
-
-                            <br /><button className="But" type="submit">Submit</button>
+                            <center>
+                                <br /><But type="submit">Submit</But>
+                            </center>
                             {open === true ? <ToolModal /> : console.log("Modal it's not open")}
+
                         </form>
                     </Col>
                 </Row>
             </Container>
 
 
-        </div>
+        </div >
     )
 }
 export default StudentRes;

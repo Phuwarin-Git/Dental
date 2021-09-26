@@ -51,39 +51,47 @@ const StudentDashboard = () => {
             </Navbar>
             <br />
             <h1>Student Dashboard</h1>
-            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
-                <thead>
-                    <tr>
-                        <th>วันที่</th>
-                        <th>ช่วงเวลา</th>
-                        <th>คลินิก</th>
-                        <th>ประเภทงาน</th>
-                        <th>คนไข้</th>
-                        <th>สถานะ</th>
-                    </tr>
-                </thead>
-                {details.map(item => {
-                    return <tbody key={item.id}>
+            <div className="PaddingDiv">
+                <Table
+                    className="tableResponsive"
+                    striped
+                    borderless
+                    hover
+                    variant="dark"
+                >
+                    <thead>
                         <tr>
-                            <td style={{ color: 'white' }}>{item.date}</td>
-                            <td style={{ color: 'white' }}>{item.time}</td>
-                            <td style={{ color: 'white' }}>{item.clinic}</td>
-                            <td style={{ color: 'white' }}>{item.worktype}</td>
-                            <td style={{ color: 'white' }}>{item.patient}</td>
-                            <td style={{ color: 'white' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
-                                <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                /> {" "}รอดำเนินการ...{" "}
-                            </Button></td>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>คนไข้</th>
+                            <th>สถานะ</th>
                         </tr>
-                    </tbody>
-                })}
-            </Table>
-        </div >
+                    </thead>
+                    {details.map(item => {
+                        return <tbody key={item.id}>
+                            <tr>
+                                <td style={{ color: 'white' }}>{item.date}</td>
+                                <td style={{ color: 'white' }}>{item.time}</td>
+                                <td style={{ color: 'white' }}>{item.clinic}</td>
+                                <td style={{ color: 'white' }}>{item.worktype}</td>
+                                <td style={{ color: 'white' }}>{item.patient}</td>
+                                <td style={{ color: 'white' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    /> {" "}รอดำเนินการ...{" "}
+                                </Button></td>
+                            </tr>
+                        </tbody>
+                    })}
+                </Table>
+            </div >
+        </div>
     )
 }
 export default StudentDashboard;
