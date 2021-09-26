@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
+import Table from 'react-bootstrap/Table'
 import { Nav, Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
@@ -34,43 +35,47 @@ const StudentHistory = () => {
         console.log("details :", res)
     }
 
-
-
-
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
-                <Container>
+            <Navbar style={{ backgroundColor: '#1565C0' }}>
+                <Container >
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/StudentDashboard">แดชบอร์ด</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentProfile">บัญชี</Nav.Link>
-                        <Nav.Link as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentDashboard">แดชบอร์ด</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
                         <Nav.Link style={{ color: '#32fcf6' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', textAlign: 'right' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
             <h1>Student History</h1>
-            {details.map((item) => {
-                return <div key={item.id}>
-                    <br />
-                    <Card
-                        style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
-                        className="mb-2"
-                    >
-                        <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
-                        <Card.Body style={{ backgroundColor: '#1c82ff' }}>
 
-                            <Card.Text style={{ marginBottom: '-5%' }}>
-                                <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; Unit : {item.unit} </Card.Title>
-                                <lable>ช่วงเวลา : {item.time}</lable>&nbsp;&nbsp;
-                                <lable>ประเภทงาน : {item.worktype}</lable><br />
-                                <lable>คนไข้ : {item.patient}</lable><br />
-                                <lable>อาจารย์ผู้ตรวจ : อาจารย์ใจดี จริงจริง</lable><br />
-                            </Card.Text>
-                            <HistoryModal
+            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
+                <thead>
+                    <tr>
+                        <th>วันที่</th>
+                        <th>ช่วงเวลา</th>
+                        <th>Unit</th>
+                        <th>คลินิก</th>
+                        <th>ประเภทงาน</th>
+                        <th>คนไข้</th>
+                        <th>อาจารย์ผู้ตรวจ</th>
+                        <th>รายละเอียด</th>
+                    </tr>
+                </thead>
+                {details.map(item => {
+                    return <tbody key={item.id}>
+                        <tr>
+                            <td style={{ color: 'white' }}>{item.date}</td>
+                            <td style={{ color: 'white' }}>{item.time}</td>
+                            <td style={{ color: 'white' }}>{item.unit}</td>
+                            <td style={{ color: 'white' }}>{item.clinic}</td>
+                            <td style={{ color: 'white' }}>{item.worktype}</td>
+                            <td style={{ color: 'white' }}>{item.patient}</td>
+                            <td style={{ color: 'white' }}>ใจดีน้า</td>
+                            <td style={{ color: 'white' }}><HistoryModal
                                 unit={item.unit}
                                 name={item.name}
                                 year={item.studentyear}
@@ -80,11 +85,11 @@ const StudentHistory = () => {
                                 patient={item.patient}
                                 dn={item.dn}
                                 hn={item.hn}
-                            />
-                        </Card.Body>
-                    </Card>
-                </div>
-            })}
+                            /></td>
+                        </tr>
+                    </tbody>
+                })}
+            </Table>
         </div >
     )
 }
