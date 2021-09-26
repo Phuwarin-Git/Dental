@@ -42,19 +42,20 @@ const Adminconfirm = () => {
 
 
     return (
-        <div style={{ background: '#FFFFFF',minHeight:'1080px'}}>
-                 <Navbar style={{background:'#1565C0'}} >
+        
+        <div style={{ background: '#F2F4F4',minHeight:'1080px'}}>
+                 <Navbar style={{background:'#1565C0',paddingBottom:'0.5%'}} >
                 <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentRes"></Nav.Link>
-                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentHistory"></Nav.Link>
-                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="/StudentProfile"></Nav.Link>
+                    <Nav  className="me-auto">
+                        <Nav.Link style={{ color: '#ffff' }} >อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="">ประวัติการจองอุปกรณ์</Nav.Link>
                         <Nav.Link style={{ color: '#ffff' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff', marginLeft:'850px'}} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff', marginLeft:'750px'}} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
+            <br />
+            <div style={{ background: '#ffff',minHeight:'650px',paddingLeft:'10%',paddingRight:'10%'}}>
             <br />
             <h1 style={{color:'#1565C0'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
             <br/>
@@ -88,6 +89,9 @@ const Adminconfirm = () => {
                 })}
             </Table>
         </div >
+        </div> 
     )
+    
 }
+
 export default Adminconfirm;
