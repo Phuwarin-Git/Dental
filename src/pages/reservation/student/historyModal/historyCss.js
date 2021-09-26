@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Modal from "react-modal";
 
 const StyleModal = styled(Modal)`
-  margin-top: 20%;
-  margin-left: 50%;
+  margin-top: 10%;
+  margin-left: auto;
   margin-bottom: auto;
   margin-right: auto;
   background-color: #70b0ff;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
+  // transform: translate(-50%, -50%);
+  border-radius: 10px;
   width: 400px;
   min-height: 250px;
 `;

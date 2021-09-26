@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import HistoryModal from './historyModal/modal';
 import axios from "axios";
+import './whycss.css'
 
 
 const StudentHistory = () => {
@@ -36,7 +37,7 @@ const StudentHistory = () => {
     }
 
     return (
-        <div>
+        <div >
             <Navbar style={{ backgroundColor: '#1565C0' }}>
                 <Container >
                     <Nav className="me-auto">
@@ -51,45 +52,52 @@ const StudentHistory = () => {
             </Navbar>
             <br />
             <h1>Student History</h1>
-
-            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
-                <thead>
-                    <tr>
-                        <th>วันที่</th>
-                        <th>ช่วงเวลา</th>
-                        <th>Unit</th>
-                        <th>คลินิก</th>
-                        <th>ประเภทงาน</th>
-                        <th>คนไข้</th>
-                        <th>อาจารย์ผู้ตรวจ</th>
-                        <th>รายละเอียด</th>
-                    </tr>
-                </thead>
-                {details.map(item => {
-                    return <tbody key={item.id}>
+            <div className="PaddingDiv">
+                <Table
+                    className="tableResponsive"
+                    striped
+                    borderless
+                    hover
+                    variant="dark"
+                >
+                    <thead>
                         <tr>
-                            <td style={{ color: 'white' }}>{item.date}</td>
-                            <td style={{ color: 'white' }}>{item.time}</td>
-                            <td style={{ color: 'white' }}>{item.unit}</td>
-                            <td style={{ color: 'white' }}>{item.clinic}</td>
-                            <td style={{ color: 'white' }}>{item.worktype}</td>
-                            <td style={{ color: 'white' }}>{item.patient}</td>
-                            <td style={{ color: 'white' }}>ใจดีน้า</td>
-                            <td style={{ color: 'white' }}><HistoryModal
-                                unit={item.unit}
-                                name={item.name}
-                                year={item.studentyear}
-                                date={item.date}
-                                clinic={item.clinic}
-                                type={item.worktype}
-                                patient={item.patient}
-                                dn={item.dn}
-                                hn={item.hn}
-                            /></td>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>Unit</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>คนไข้</th>
+                            <th>อาจารย์ผู้ตรวจ</th>
+                            <th>รายละเอียด</th>
                         </tr>
+                    </thead>
+                    <tbody >
+                        {details.map(item => {
+                            return <tr key={item.id}>
+                                <td style={{ color: 'white' }}>{item.date}</td>
+                                <td style={{ color: 'white' }}>{item.time}</td>
+                                <td style={{ color: 'white' }}>{item.unit}</td>
+                                <td style={{ color: 'white' }}>{item.clinic}</td>
+                                <td style={{ color: 'white' }}>{item.worktype}</td>
+                                <td style={{ color: 'white' }}>{item.patient}</td>
+                                <td style={{ color: 'white' }}>ใจดีน้า</td>
+                                <td style={{ color: 'white' }}><HistoryModal
+                                    unit={item.unit}
+                                    name={item.name}
+                                    year={item.studentyear}
+                                    date={item.date}
+                                    clinic={item.clinic}
+                                    type={item.worktype}
+                                    patient={item.patient}
+                                    dn={item.dn}
+                                    hn={item.hn}
+                                /></td>
+                            </tr>
+                        })}
                     </tbody>
-                })}
-            </Table>
+                </Table>
+            </div>
         </div >
     )
 }
