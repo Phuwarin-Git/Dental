@@ -27,9 +27,11 @@ const Adminmodal = () => {
                 <CloseButton onClick={closeModal} />
                 <div>
                     <center style={{}}>
-                        <h3 style={{ color: '#1565C0'}}>เครื่องมือเบิกงาน Endo</h3>
+                    <br/>
+                        <h3 style={{ color: '#0047AB'}}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
                     <div style={{marginLeft:"50px",}}>
+                        <br/>
                     <p>Syringe ยาชา จำนวน 1 ชิ้น </p>
                     <p>หัว Endo Burs Box จำนวน 1 ชิ้น</p>
                     <p>หัว Gate Drill ฟันหน้า 1 ชิ้น</p>

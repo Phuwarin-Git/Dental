@@ -42,23 +42,47 @@ const Adminconfirm = () => {
 
 
     return (
-        
         <div style={{ background: '#F2F4F4',minHeight:'1080px'}}>
+            <nav style={{background:'#0047AB'}}> 
+            
+            <div style={{ paddingLeft:'50px',paddingTop:'10px',paddingBottom:'10px'}}>
+            <h2  class="text-justify">Mae Fah Luang University Dental Clinic</h2>      
+            
+            </div>
+        </nav>
                  <Navbar style={{background:'#1565C0',paddingBottom:'0.5%'}} >
                 <Container>
                     <Nav  className="me-auto">
                         <Nav.Link style={{ color: '#ffff' }} >อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
                         <Nav.Link style={{ color: '#ffff' }} as={Link} to="">ประวัติการจองอุปกรณ์</Nav.Link>
                         <Nav.Link style={{ color: '#ffff' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff', marginLeft:'750px'}} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff', marginLeft:'500px'}} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
             <div style={{ background: '#ffff',minHeight:'650px',paddingLeft:'10%',paddingRight:'10%'}}>
             <br />
-            <h1 style={{color:'#1565C0'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+            <h1 style={{color:'#0047AB'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+
+            <div class="d-flex justify-content-end">
+            <select style={{width:'200px',}} class="form-control form-control-sm">
+                <option>Select</option>
+                <option>OD</option>
+                <option>TMD</option>
+                <option>OPER</option>
+                <option>PERIO</option>
+                <option>SUR</option>
+                <option>PROSTH</option>
+                <option>ENDO</option>
+                <option>PEDO</option>
+                <option>X-Ray</option>
+                <option>OM</option>
+                <option>Ortho</option>
+            </select>
+            </div>
             <br/>
+            
             <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: '#1565C0', maxWidth: '97%' }}>
                 <thead>
                     <tr>
