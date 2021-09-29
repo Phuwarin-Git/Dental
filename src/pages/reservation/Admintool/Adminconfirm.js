@@ -64,10 +64,11 @@ const Adminconfirm = () => {
             <div style={{ background: '#ffff',minHeight:'650px',paddingLeft:'10%',paddingRight:'10%'}}>
             <br />
             <h1 style={{color:'#0047AB'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
-
+            
             <div class="d-flex justify-content-end">
-            <select style={{width:'200px',}} class="form-control form-control-sm">
-                <option>Select</option>
+            <h4 style={{paddingRight:'10px',paddingTop:'8px'}}>คลินิก:</h4>
+            <select style={{width:'110px',}} class="form-control form-control-sm">
+                <option>เลือกคลินิก</option>
                 <option>OD</option>
                 <option>TMD</option>
                 <option>OPER</option>
