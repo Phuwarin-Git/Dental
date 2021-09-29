@@ -31,7 +31,7 @@ const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn })
             >
 
                 <div>
-                    <Card border="info" style={{ width: '400px' }}>
+                    <Card border="dark" style={{ width: '400px' }}>
 
                         <Card.Header><h2>รายละเอียด</h2>
                             <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />

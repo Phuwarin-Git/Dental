@@ -5,6 +5,8 @@ import Table from 'react-bootstrap/Table'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
+import DentalHospital from '../picture/DentalHospital.png'
+
 const StudentAdminDashboard = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
@@ -24,58 +26,21 @@ const StudentAdminDashboard = () => {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+
+            <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/StudentAdminDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminReservation">Unit Selected</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminLimitCase">Case Limit</Nav.Link>
-                        <Nav.Link as={Link} to="/StudentAdminHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#3258fc' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '300px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
-            <br />
-            <h1>Student Limit</h1>
-            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>OD</th>
-                        <th>TMD</th>
-                        <th>OPER</th>
-                        <th>PERIO</th>
-                        <th>SUR</th>
-                        <th>RPOSTH</th>
-                        <th>ENDO</th>
-                        <th>X-RAY</th>
-                        <th>OM</th>
-                        <th>ORTHO</th>
-                    </tr>
-                </thead>
-                {limit.map(item => {
-                    return <tbody key={item.id}>
-                        <tr>
-                            <td style={{ color: 'white' }}>{item.date}</td>
-                            <td style={{ color: 'white' }}>{item.time}</td>
-                            <td style={{ color: 'white' }}>{item.od}</td>
-                            <td style={{ color: 'white' }}>{item.tmd}</td>
-                            <td style={{ color: 'white' }}>{item.oper}</td>
-                            <td style={{ color: 'white' }}>{item.perio}</td>
-                            <td style={{ color: 'white' }}>{item.sur}</td>
-                            <td style={{ color: 'white' }}>{item.prosth}</td>
-                            <td style={{ color: 'white' }}>{item.endo}</td>
-                            <td style={{ color: 'white' }}>{item.xray}</td>
-                            <td style={{ color: 'white' }}>{item.om}</td>
-                            <td style={{ color: 'white' }}>{item.ortho}</td>
-                        </tr>
-                    </tbody>
+            <div style={{ backgroundImage: `url(${DentalHospital})`, height: '980px' }}></div>
 
-                })}
-
-            </Table>
         </div >
     )
 }

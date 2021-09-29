@@ -7,16 +7,18 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Spinner from 'react-bootstrap/Spinner'
 import Table from 'react-bootstrap/Table'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import DentalHospital from '../picture/DentalHospital.png'
-import { FaBeer } from 'react-icons/fa';
-import { BsFillAlarmFill } from "react-icons/bs";
+
+import { BsFillCalendarFill, BsReverseLayoutTextWindowReverse, BsPersonFill } from "react-icons/bs";
 
 const StudentDashboard = () => {
+
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         getDetails();
@@ -50,12 +52,12 @@ const StudentDashboard = () => {
                     {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
                     <Container >
                         <Nav className="me-auto">
-                            <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
-                            <Nav.Link style={{ color: '#32fcf6' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                            <Nav.Link style={{ backgroundColor: '#ff2521', borderRadius: '10px', color: 'black', marginLeft: '550px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
+                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                            <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                            <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                         </Nav>
                     </Container>
                 </Navbar>
@@ -108,57 +110,31 @@ const StudentDashboard = () => {
                             </Table>
                         </Col>
 
-                        <Col>
-                            <h1>รายละเอียดต่างๆ</h1>
+                        <Col style={{ marginLeft: '100px' }}>
+                            <h1>การทำงาน</h1>
                             <Row>
-                                <Col>
-                                    <Card style={{ width: '15rem' }}>
-                                        <Card.Body>
-                                            <Card.Title>Card Title</Card.Title>
-                                            <Card.Text>
-                                                หน้าหลัก<BsFillAlarmFill />
-                                            </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                                <Col>
-                                    <Card style={{ width: '15rem' }}>
-                                        <Card.Body>
-                                            <Card.Title>Card Title</Card.Title>
-                                            <Card.Text>
-                                                จองการทำงาน
-                                            </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
+                                <Card style={{ width: '200px' }}>
+                                    <Card.Body>
+                                        <Card.Title><BsFillCalendarFill style={{ width: '60px', height: '60px' }} /></Card.Title>
+                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentRes') }} variant="primary">จองการทำงาน</Button>
+                                    </Card.Body>
+                                </Card>
                             </Row>
                             <Row>
-                                <Col>
-                                    <Card style={{ width: '15rem' }}>
-                                        <Card.Body>
-                                            <Card.Title>Card Title</Card.Title>
-                                            <Card.Text>
-                                                ประวัติ
-                                            </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-
-                                <Col>
-                                    <Card style={{ width: '15rem' }}>
-                                        <Card.Body>
-                                            <Card.Title>Card Title</Card.Title>
-                                            <Card.Text>
-                                                บัญชี
-                                            </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-
+                                <Card style={{ width: '200px', marginTop: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title><BsReverseLayoutTextWindowReverse style={{ width: '60px', height: '60px' }} /></Card.Title>
+                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentHistory') }} variant="primary">ประวัติ</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Row>
+                            <Row>
+                                <Card style={{ width: '200px', marginTop: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title><BsPersonFill style={{ width: '60px', height: '60px' }} /></Card.Title>
+                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentProfile') }} variant="primary">บัญชี</Button>
+                                    </Card.Body>
+                                </Card>
                             </Row>
                         </Col>
 
