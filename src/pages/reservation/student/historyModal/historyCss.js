@@ -6,7 +6,7 @@ const StyleModal = styled(Modal)`
   margin-left: auto;
   margin-bottom: auto;
   margin-right: auto;
-  background-color: #70b0ff;
+  background-color: transparent;
   // transform: translate(-50%, -50%);
   border-radius: 10px;
   width: 400px;
