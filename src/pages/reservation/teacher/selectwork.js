@@ -8,8 +8,11 @@ import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
-
+import './whycss.css'
 import '../Yup.css'
+import Button from './reservationCss/ButtonRes';
+import { BsSearch } from "react-icons/bs";
+
 
 const TeacherSelectWork = () => {
     const { user } = useContext(AuthContext);
@@ -27,62 +30,83 @@ const TeacherSelectWork = () => {
         });
     }
 
-    function submitReject() {
-        return alert("ปฏิเสธแล้ว")
-    }
 
     function submitApprove() {
-        return alert("เลือกสำเร็จ")
+        let body = [{ teacher: 'TeacherArkira', id: '250' }, { teacher: 'Doraemon', id: '251' }];
+        axios.put("http://localhost:3000/details/updateTeacher/", body)
+        console.log('Body data :', body)
+        return alert("เลือกสำเร็จ โดย :", user.first_name,)
     }
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar style={{ backgroundColor: '#1565C0' }}>
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/TeacherDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherSelectWork">Work Selection</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherProfile">Profile</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#3258fc' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherSelectWork">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
-            <h1>Work Selection</h1>
-            <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: 'pink', maxWidth: '97%' }}>
-                <thead>
-                    <tr>
-                        <th>Unit</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Name</th>
-                        <th>Year</th>
-                        <th>Clinic</th>
-                        <th>Worktype</th>
-                        <th>Reject</th>
-                        <th>Approve</th>
 
-                    </tr>
-                </thead>
-                {details.map(item => {
-                    return <tbody >
+            <div className="PaddingDiv">
+
+
+                <div class="search">
+                    <input type="date" class="searchTerm" id="input_text" placeholder="ค้นหาวันที่"></input>
+                    <button type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+                </div>
+
+
+                <Table
+                    style={{ marginTop: '20px' }}
+                    className="tableResponsive"
+                    striped
+                    borderless
+                    hover
+                    variant="dark"
+                >
+                    <thead>
                         <tr>
-                            <td style={{ color: 'white' }}>{item.unit}</td>
-                            <td style={{ color: 'white' }}>{item.date}</td>
-                            <td style={{ color: 'white' }}>{item.time}</td>
-                            <td style={{ color: 'white' }}>{item.name}</td>
-                            <td style={{ color: 'white' }}>{item.studentyear}</td>
-                            <td style={{ color: 'white' }}>{item.clinic}</td>
-                            <td style={{ color: 'white' }}>{item.worktype}</td>
-                            <td><button style={{ backgroundColor: '#e85702', borderRadius: '10px', width: '80px', height: '35px' }} onClick={() => submitReject()}>ปฏิเสธ</button></td>
-                            <td><button style={{ backgroundColor: '#00d60b', borderRadius: '10px', width: '80px', height: '35px' }} onClick={() => submitApprove()}>ยืนยัน</button></td>
+                            <th>เลือกตรวจงาน</th>
+                            <th>คลินิก</th>
+                            <th>Unit</th>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>ชื่อนักศึกษา</th>
+                            <th>ชั้นปี</th>
+                            <th>ประเภทงาน</th>
                         </tr>
-                    </tbody>
-                })}
-            </Table>
-
+                    </thead>
+                    {details.map(item => {
+                        return <tbody >
+                            <tr>
+                                <td>
+                                    <label class="styleCheckBox">
+                                        <input type="checkbox" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td style={{ color: 'white' }}>{item.clinic}</td>
+                                <td style={{ color: 'white' }}>{item.unit}</td>
+                                <td style={{ color: 'white' }}>{item.date}</td>
+                                <td style={{ color: 'white' }}>{item.time}</td>
+                                <td style={{ color: 'white' }}>{item.name}</td>
+                                <td style={{ color: 'white' }}>{item.studentyear}</td>
+                                <td style={{ color: 'white' }}>{item.worktype}</td>
+                            </tr>
+                        </tbody>
+                    })}
+                </Table>
+                <Button onClick={() => submitApprove()}>ยืนยัน</Button>
+            </div>
         </div >
     )
 }

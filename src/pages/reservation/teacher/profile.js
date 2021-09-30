@@ -12,15 +12,15 @@ const TeacherProfile = () => {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar style={{ backgroundColor: '#1565C0' }}>
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/TeacherDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherSelectWork">Work Selection</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherHistory">History</Nav.Link>
-                        <Nav.Link as={Link} to="/TeacherProfile">Profile</Nav.Link>
-                        <Nav.Link as={Link} to="/">Logout</Nav.Link>
-                        <Nav.Link style={{ color: '#3258fc' }} as={Link}>Name : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherSelectWork">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
