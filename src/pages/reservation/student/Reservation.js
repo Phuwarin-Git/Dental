@@ -46,8 +46,7 @@ const StudentRes = () => {
             alert("Success")
             return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
-                // return setOpen(true);
-                return history.push('/StudentDashboard')
+                return setOpen(true);
             })
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
