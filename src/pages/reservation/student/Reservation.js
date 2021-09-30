@@ -27,7 +27,7 @@ const StudentRes = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/limitcase/find/all").then((item) => {
+        axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
             return setLimit(item.data);
         });
@@ -44,7 +44,7 @@ const StudentRes = () => {
 
         if (findDate.length === 1) {
             alert("Success")
-            return axios.post("http://selab.mfu.ac.th:8318/details/create", ApiSet).then((res) => {
+            return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
                 return setOpen(true);
             })

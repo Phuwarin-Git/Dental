@@ -23,7 +23,7 @@ const StudentAdminReservation = () => {
 
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/details/find/null").then((item) => {
+        axios.get("http://localhost:3000/details/find/null").then((item) => {
             console.log("Null Unit :", item.data)
 
             for (let i in item.data) {
@@ -39,7 +39,7 @@ const StudentAdminReservation = () => {
     }
 
     const getUnit = () => {
-        axios.get("http://selab.mfu.ac.th:8318/unit/find/all").then((item) => {
+        axios.get("http://localhost:3000/unit/find/all").then((item) => {
             console.log("Unit lists:", item.data)
             return setAllUnit(item.data);
         });
@@ -50,7 +50,7 @@ const StudentAdminReservation = () => {
         // e.preventDefault();
         alert('Unit : ' + id + ' Value :' + value);
         let body = { unit: value }
-        axios.put("http://selab.mfu.ac.th:8318/details/updateUnit/" + id, body)
+        axios.put("http://localhost:3000/details/updateUnit/" + id, body)
     }
 
 

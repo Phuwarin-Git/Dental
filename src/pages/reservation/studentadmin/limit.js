@@ -14,7 +14,9 @@ const Limit = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/limitcase/find/all").then((item) => {
+
+        // http://selab.mfu.ac.th:8318/limitcase/find/all
+        axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
             return setLimit(item.data);
         });

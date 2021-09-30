@@ -24,7 +24,7 @@ const StudentAdminLimitCase = () => {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
         const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
         alert("Success")
-        return axios.post("http://selab.mfu.ac.th:8318/limitcase/create", ApiSet).then((res) => {
+        return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
             console.log("Res Limit :", res)
             return history.push('/StudentAdminDashboard')
         })

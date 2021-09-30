@@ -17,7 +17,7 @@ const StudentAdminDashboard = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/limitcase/find/all").then((item) => {
+        axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
             return setLimit(item.data);
         });
