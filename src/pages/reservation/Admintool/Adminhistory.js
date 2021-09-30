@@ -12,7 +12,8 @@ import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './adminmodal/TableAdminconfirm.css'
-const Adminconfirm = () => {
+
+const Adminhistory = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
 
@@ -59,7 +60,7 @@ const Adminconfirm = () => {
 
                 <Nav style={{ marginLeft: '-5%' }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#ffff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/Adminhistory">ประวัติการเบิกอุปกรณ์</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
                     </Container>
                 </Nav>
 
@@ -79,23 +80,24 @@ const Adminconfirm = () => {
                 </Nav>
 
                 <br />
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเบิกอุปกรณ์</h1>
 
                 <div class="d-flex justify-content-end">
-                    <h4 style={{ paddingRight: '10px', paddingTop: '15px', fontWeight: 'bold', fontSize: '18px' }}>คลินิก:</h4>
+                    <h4 style={{ paddingRight: '10px', paddingTop: '15px', fontWeight: 'bold', fontSize: '18px' }}>เดือน:</h4>
                     <select style={{ width: '110px' }} class="form-control form-control-sm">
-                        <option>เลือกคลินิก</option>
-                        <option>OD</option>
-                        <option>TMD</option>
-                        <option>OPER</option>
-                        <option>PERIO</option>
-                        <option>SUR</option>
-                        <option>PROSTH</option>
-                        <option>ENDO</option>
-                        <option>PEDO</option>
-                        <option>X-Ray</option>
-                        <option>OM</option>
-                        <option>Ortho</option>
+                        <option>เลือกเดือน</option>
+                        <option>มกราคม</option>
+                        <option>กุมภาพันธ์</option>
+                        <option>มีนาคม</option>
+                        <option>เมษายน</option>
+                        <option>พฤษภาคม</option>
+                        <option>มิถุนายน</option>
+                        <option>กรกฎาคม</option>
+                        <option>สิงหาคม</option>
+                        <option>กันยายน</option>
+                        <option>ตุลาคม</option>
+                        <option>พฤศจิกายน</option>
+                        <option>ธันวาคม</option>
                     </select>
                 </div>
                 <br />
@@ -135,4 +137,4 @@ const Adminconfirm = () => {
 
 }
 
-export default Adminconfirm;
+export default Adminhistory;

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from 'react';
 import CloseButton from 'react-bootstrap/CloseButton'
 import StyleModal from "./adminhistory";
 import { Button } from 'react-bootstrap';
+import axios from "axios";
+import Table from 'react-bootstrap/Table'
 
 const Adminmodal = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [Tool, setDetials] = useState([]);
 
     function openModal() {
         setIsOpen(true);
@@ -14,7 +17,15 @@ const Adminmodal = () => {
         setIsOpen(false);
     }
 
+    const getTool = () => {
+        axios.get("http://selab.mfu.ac.th:8318/Tool/find/null").then((item) => {
+            setDetials(item.data)
+            console.log("data :", item.data)
+        });
+    }
+
     return (
+        
         <div>
             <Button style={{ background: '#1565C0', color: 'white' ,width:"150px",}} onClick={openModal}>
                 อุปกรณ์
@@ -32,13 +43,37 @@ const Adminmodal = () => {
                     </center>
                     <div style={{marginLeft:"50px",}}>
                         <br/>
-                    <p>Syringe ยาชา จำนวน 1 ชิ้น </p>
-                    <p>หัว Endo Burs Box จำนวน 1 ชิ้น</p>
-                    <p>หัว Gate Drill ฟันหน้า 1 ชิ้น</p>
-                    <p>Glasslab จำนวน 1 ชิ้น</p>
-                    <p>ชุดเครื่องมือ FRC Box set จำนวน 1 ชิ้น</p>
-                    <p>K - File 25 mm. (45-80) จำนวน 1 ชิ้น</p>
-                    <p>เข็มล้าง เบอร์ 24/27 จำนวน 1 ชิ้น</p>
+                        
+                        <Table
+                                className="tableResponsive"
+                                striped
+                                borderless
+                                hover
+                                variant="dark"
+                                style={{ width: '800px' }}
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>วันที่</th>
+                                        <th>ช่วงเวลา</th>
+                                        <th>คลินิก</th>
+                                        <th>ประเภทงาน</th>
+                                        <th>คนไข้</th>
+                                        <th>สถานะ</th>
+                                    </tr>
+                                </thead>
+                                {Tool.map(item => {
+                                    return <tbody>
+                                        <tr>
+                                            <td style={{ color: 'white' }}>{item.testkit_toolcc1}</td>
+                                            <td>asdasd</td>
+                                            <td>asdasd</td>
+                                            <td>asdasd</td>
+                                        </tr>
+                                    </tbody>
+                                })}
+                            </Table>
+
                     <br />
                     </div>
                 </div>
