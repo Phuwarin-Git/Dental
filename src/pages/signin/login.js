@@ -80,9 +80,8 @@ const Login = () => {
                 <p style={{ fontSize: '13px'}}>Username</p>
                 <input placeholder="username" onChange={usernameOnChange}></input><br />
                 <p style={{ fontSize: '13px'}}>Password</p>
-                <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
+                <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br/>
                 <button type="submit">Login</button>
-                
             </form>
             </div>
         </div>
