@@ -22,7 +22,7 @@ const Adminconfirm = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/details/find/notnull").then((item) => {
+        axios.get("http://localhost:3000/details/find/notnull").then((item) => {
             console.log("data :", item.data)
             return setDetials(item.data);
         });

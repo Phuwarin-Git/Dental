@@ -58,13 +58,13 @@ const Adminmodal = () => {
                         >
                             <thead>
                                 <tr>
-                                    <th>วันที่</th>
+                                    <th>ชื่ออุปกรณ์</th>
                                 </tr>
                             </thead>
                             {Tool.map(item => {
                                 return <tbody key={Tool.ID}>
                                     <tr>
-                                        <td style={{ color: 'white' }}>{item.testkit_toolcc1}</td>
+                                        <td style={{ color: 'white' }}>ชุดตรวจ จำนวน :    {item.testkit_toolcc1}</td>
                                     </tr>
                                 </tbody>
                             })}
