@@ -2,11 +2,10 @@ import StyleModal from "./index.view";
 import React, { useContext, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import CloseButton from 'react-bootstrap/CloseButton'
 import axios from "axios";
 import '../../Yup.css'
 import { Label } from 'semantic-ui-react';
-import Modal from 'react-modal';
-import Accordion from 'react-bootstrap/Accordion'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -275,7 +274,7 @@ const ToolModal = () => {
 
         console.log("Success", ApiSet1)
         return axios.post("http://localhost:3000/Tool/create", ApiSet1).then((res) => {
-            history.push('StudentDashboard');
+            history.push('/StudentDashboard')
             return console.log("Res API 1 SET :", res)
         })
 
@@ -652,16 +651,18 @@ const ToolModal = () => {
                 onRequestClose={closeModal}
                 contentLabel="modal"
             >
-                <center>
-                    <h1 style={{ color: '#FFFFFF' }}>เบิกอุปกรณ์</h1>
-                    <br />
-                </center>
-                <label />
-                <div>
-                    <input type="search" />
-                </div>
-                <label style={{ marginLeft: 15, marginBottom: 10 }}>รายการ</label>
-                <label style={{ marginLeft: 15, marginBottom: 10 }}>รายการ 1</label>
+
+                <Row>
+                    <Col><CloseButton onClick={closeModal} size="15" style={{ marginRight: 300 }} /></Col>
+                    <Col>  <h1 style={{ color: '#FFFFFF' }}>เบิกอุปกรณ์</h1></Col>
+
+
+                    <Col><h1 style={{ marginLeft: 200 }}>CC1</h1></Col>
+                </Row>
+                <br />
+                <input type="search" /><br /><br />
+                <label style={{ marginLeft: 15, marginBottom: 15 }}>รายการ</label>
+                <label style={{ marginLeft: 475, marginBottom: 15 }}>รายการ</label>
 
                 <form onSubmit={formik.handleSubmit}>
                     <div>
@@ -1210,7 +1211,9 @@ const ToolModal = () => {
                                                 </select>
                                             </Col>
                                         </Row>
-
+                                    </Col>
+                                    {/* Middleeeeeeeeeeeeeeeeeeeee                        */}
+                                    <Col>
                                         <Row>
                                             <Col>
                                                 <label htmlFor="Compositsandingsetfastrewinding_toolcc1">ชุดขัด Composit กรอเร็ว{""}</label>
@@ -1237,9 +1240,7 @@ const ToolModal = () => {
                                                 </select>
                                             </Col>
                                         </Row>
-                                    </Col>
-                                    {/* Middleeeeeeeeeeeeeeeeeeeee                        */}
-                                    <Col>
+
                                         <Row>
                                             <Col>
                                                 <label htmlFor="plasticcomposit_toolcc1">plastic composit{""}</label>
@@ -1757,9 +1758,13 @@ const ToolModal = () => {
                                 </Row>
                             </Container>
 
-                            <div style={{ flex: 1, height: 2, backgroundColor: '#797D7F', marginBottom: 30, marginTop: 10 }}>
+                            <div style={{ flex: 1, height: 2, backgroundColor: '#D0D3D4', marginBottom: 30, marginTop: 10 }}>
                             </div>
+                            <label style={{ marginLeft: 15, marginBottom: 15 }}>รายการ</label>
+                            <label style={{ marginLeft: 475, marginBottom: 15 }}>รายการ</label>
+
                             <Container style={{ fontSize: 15 }}>
+
                                 <Row>
                                     <Col>
                                         <Row>
@@ -1768,11 +1773,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="FabricMiddlepunch_endo"
+                                                    name="FabricMiddlepunch_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.FabricMiddlepunch_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1795,11 +1800,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="veil_endo"
+                                                    name="veil_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.veil_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1822,11 +1827,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="testkit_endo"
+                                                    name="testkit_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.testkit_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1849,11 +1854,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Tripplesyringe_endo"
+                                                    name="Tripplesyringe_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Tripplesyringe_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1876,11 +1881,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Twoouncesglass_endo"
+                                                    name="Twoouncesglass_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Twoouncesglass_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1904,11 +1909,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Mouthprop_endo"
+                                                    name="Mouthprop_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Mouthprop_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1931,11 +1936,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="AnestheticSyringe_endo"
+                                                    name="AnestheticSyringe_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.AnestheticSyringe_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1958,11 +1963,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="cottonbud_endo"
+                                                    name="cottonbud_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.cottonbud_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -1985,11 +1990,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Airotor_endo"
+                                                    name="Airotor_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Airotor_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2012,11 +2017,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Contra_endo"
+                                                    name="Contra_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Contra_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2039,11 +2044,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="FileStand_endo"
+                                                    name="FileStand_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.FileStand_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2066,11 +2071,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="PlatePaperPoint_endo"
+                                                    name="PlatePaperPoint_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.PlatePaperPoint_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2093,11 +2098,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="RubberdamFlame_endo"
+                                                    name="RubberdamFlame_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.RubberdamFlame_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2120,11 +2125,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="RubberdamSheet_endo"
+                                                    name="RubberdamSheet_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.RubberdamSheet_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2147,11 +2152,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Clamp_endo"
+                                                    name="Clamp_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Clamp_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2174,11 +2179,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="EndoBursBoxHead_endo"
+                                                    name="EndoBursBoxHead_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.EndoBursBoxHead_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2201,11 +2206,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Barbedbrodch_endo"
+                                                    name="Barbedbrodch_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Barbedbrodch_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2228,11 +2233,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Lentulospiral_endo"
+                                                    name="Lentulospiral_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Lentulospiral_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2255,11 +2260,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="ProtaperHand21mm_endo"
+                                                    name="ProtaperHand21mm_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.ProtaperHand21mm_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2282,11 +2287,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="ProtaperHand25mm_endo"
+                                                    name="ProtaperHand25mm_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.ProtaperHand25mm_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2309,11 +2314,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="GateDrillheadfrontteeth_endo"
+                                                    name="GateDrillheadfrontteeth_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.GateDrillheadfrontteeth_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2336,11 +2341,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="GateDrillheadrearteeth_endo"
+                                                    name="GateDrillheadrearteeth_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.GateDrillheadrearteeth_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2367,7 +2372,7 @@ const ToolModal = () => {
                                                     name="Tripplesyring_toolcc1"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Syringerinse5ml_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2391,11 +2396,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="WashneedleNo2427_endo"
+                                                    name="WashneedleNo2427_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.WashneedleNo2427_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2418,11 +2423,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HooktheRootZx_endo"
+                                                    name="HooktheRootZx_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HooktheRootZx_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2445,11 +2450,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Glasslab_endo"
+                                                    name="Glasslab_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Glasslab_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2472,11 +2477,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HighPowerSuction_endo"
+                                                    name="HighPowerSuction_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HighPowerSuction_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2499,11 +2504,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="OCBoxset_endo"
+                                                    name="OCBoxset_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.OCBoxset_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2526,11 +2531,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="FRCBoxset_endo"
+                                                    name="FRCBoxset_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.FRCBoxset_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2553,11 +2558,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="CFile21_endo"
+                                                    name="CFile21_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.CFile21_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2580,11 +2585,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="CFile25_endo"
+                                                    name="CFile25_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.CFile25_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2607,11 +2612,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HFile21mm1540_endo"
+                                                    name="HFile21mm1540_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HFile21mm1540_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2634,11 +2639,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HFile21mm4580_endo"
+                                                    name="HFile21mm4580_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HFile21mm4580_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2661,11 +2666,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HFile25mm1540_endo"
+                                                    name="HFile25mm1540_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HFile25mm1540_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2688,11 +2693,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="HFile25mm4580_endo"
+                                                    name="HFile25mm4580_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.HFile25mm4580_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2715,11 +2720,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="NitiFile21mm1540_endo"
+                                                    name="NitiFile21mm1540_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.NitiFile21mm1540_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2742,11 +2747,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="NitiFile21mm4560_endo"
+                                                    name="NitiFile21mm4560_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.NitiFile21mm4560_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2769,11 +2774,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="NitiFile25mm1540_endo"
+                                                    name="NitiFile25mm1540_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.NitiFile25mm1540_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2796,11 +2801,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="NitiFile25mm4560_endo"
+                                                    name="NitiFile25mm4560_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.NitiFile25mm4560_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2823,11 +2828,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile21mm840_endo"
+                                                    name="KFile21mm840_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile21mm840_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2850,11 +2855,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile21mm4580_endo"
+                                                    name="KFile21mm4580_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile21mm4580_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2877,11 +2882,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile25mm840_endo"
+                                                    name="KFile25mm840_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile25mm840_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2904,11 +2909,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile25mm4580_endo"
+                                                    name="KFile25mm4580_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile25mm4580_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2931,11 +2936,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile30mm840_endo"
+                                                    name="KFile30mm840_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile30mm840_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2958,11 +2963,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="KFile30mm4580_endo"
+                                                    name="KFile30mm4580_endo"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.KFile30mm4580_endo}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -2981,8 +2986,11 @@ const ToolModal = () => {
                                     </Col>
                                 </Row>
                             </Container>
-                            <div style={{ flex: 1, height: 1, backgroundColor: '#797D7F', marginBottom: 30, marginTop: 10 }}>
+                            <div style={{ flex: 1, height: 2, backgroundColor: '#D0D3D4', marginBottom: 30, marginTop: 10 }}>
                             </div>
+                            <label style={{ marginLeft: 15, marginBottom: 15 }}>รายการ</label>
+                            <label style={{ marginLeft: 475, marginBottom: 15 }}>รายการ</label>
+
                             <Container style={{ fontSize: 15 }}>
                                 <Row>
                                     <Col>
@@ -2992,11 +3000,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="testkit_periood"
+                                                    name="testkit_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.testkit_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3019,11 +3027,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="backteethscalingkit_periood"
+                                                    name="backteethscalingkit_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.backteethscalingkit_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3046,11 +3054,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="sickelfrontteeth_periood"
+                                                    name="sickelfrontteeth_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.sickelfrontteeth_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3073,11 +3081,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="sickelposteriorteethS204SD_periood"
+                                                    name="sickelposteriorteethS204SD_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.sickelposteriorteethS204SD_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3100,11 +3108,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="frontteethcuretteSG34_periood"
+                                                    name="frontteethcuretteSG34_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.frontteethcuretteSG34_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3127,11 +3135,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="AfterFive_periood"
+                                                    name="AfterFive_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.AfterFive_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3154,11 +3162,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="MiniFive_periood"
+                                                    name="MiniFive_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.MiniFive_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3181,11 +3189,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="PeriodontalProbeUNC15_periood"
+                                                    name="PeriodontalProbeUNC15_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.PeriodontalProbeUNC15_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3208,11 +3216,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="WHOProbe_periood"
+                                                    name="WHOProbe_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.WHOProbe_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3235,11 +3243,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="NeberProbe_periood"
+                                                    name="NeberProbe_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.NeberProbe_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3262,11 +3270,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="pourthemedicine_periood"
+                                                    name="pourthemedicine_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.pourthemedicine_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3289,11 +3297,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Dappendish_periood"
+                                                    name="Dappendish_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Dappendish_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3316,11 +3324,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Mouthprop_periood"
+                                                    name="Mouthprop_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Mouthprop_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3343,11 +3351,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="AnestheticSyringe_periood"
+                                                    name="AnestheticSyringe_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.AnestheticSyringe_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3370,11 +3378,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="whetstone_periood"
+                                                    name="whetstone_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.whetstone_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3397,11 +3405,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="P5scraper_periood"
+                                                    name="P5scraper_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.P5scraper_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3425,11 +3433,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="P10scraper_periood"
+                                                    name="P10scraper_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.P10scraper_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3452,11 +3460,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Rabbercup_periood"
+                                                    name="Rabbercup_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Rabbercup_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3479,11 +3487,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Rabberbrush_periood"
+                                                    name="Rabberbrush_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Rabberbrush_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3506,11 +3514,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="cottonbud_periood"
+                                                    name="cottonbud_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.cottonbud_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3533,11 +3541,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Airotor_periood"
+                                                    name="Airotor_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Airotor_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3560,11 +3568,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Contra_periood"
+                                                    name="Contra_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Contra_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3587,11 +3595,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Phophy_periood"
+                                                    name="Phophy_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Phophy_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3614,11 +3622,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Straight_periood"
+                                                    name="Straight_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Straight_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3641,11 +3649,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Triplesyring_periood"
+                                                    name="Triplesyring_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Triplesyring_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3668,11 +3676,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="ruler_periood"
+                                                    name="ruler_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.ruler_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3695,11 +3703,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="Retractor_periood"
+                                                    name="Retractor_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.Retractor_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3722,11 +3730,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="FabricMiddlepunch_periood"
+                                                    name="FabricMiddlepunch_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.FabricMiddlepunch_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3749,11 +3757,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="veil_periood"
+                                                    name="veil_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.veil_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3776,11 +3784,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="unitcleaningkit_periood"
+                                                    name="unitcleaningkit_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.unitcleaningkit_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3803,11 +3811,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="gumsurgerykit_periood"
+                                                    name="gumsurgerykit_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.gumsurgerykit_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3830,11 +3838,11 @@ const ToolModal = () => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    id="Tripplesyring_toolcc1"
-                                                    name="Tripplesyring_toolcc1"
+                                                    id="gumsurgicalgown_periood"
+                                                    name="gumsurgicalgown_periood"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
+                                                    value={formik.values.gumsurgicalgown_periood}
                                                 >
                                                     <option value="" label="เลือกจำนวน" />
                                                     <option value="1" label="1" />
@@ -3856,7 +3864,8 @@ const ToolModal = () => {
                             </Container>
                             <br />
                             <center>
-                                <button className="But" style={{ backgroundColor: '#1565C0' }} type="submit" >Submit</button>
+                                <button className="But" style={{ backgroundColor: '#1565C0', marginBottom: 10 }} type="submit" >Submit</button>
+
                             </center>
                         </div>
                     </div>
