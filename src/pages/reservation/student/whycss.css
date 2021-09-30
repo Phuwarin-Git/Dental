@@ -7,8 +7,10 @@
   }
   .tableResponsive {
     font-size: 100%;
+    width: 83%;
     border-radius: 10px;
-
+    margin-left: auto;
+    margin-right:auto;
   }
   .pagingDiv {
     display: flex;
