@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import './adminmodal/TableAdminconfirm.css'
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
@@ -42,31 +42,48 @@ const Adminconfirm = () => {
 
 
     return (
-        <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
+        <div style={{ background: '#F2F4F4', minHeight: '1080px'}}>
             <nav style={{ background: '#0047AB' }}>
 
-                <div style={{ paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
-                    <h2 class="text-justify">Mae Fah Luang University Dental Clinic</h2>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
 
                 </div>
             </nav>
-            <Navbar style={{ background: '#1565C0', paddingBottom: '0.5%' }} >
-                <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#ffff' }} >อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff' }} as={Link} to="">ประวัติการจองอุปกรณ์</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff', marginLeft: '500px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
-                    </Nav>
+            <Navbar style={{ background: '#1565C0', paddingBottom: '0.5%'}} >
+            <Nav style={{ marginLeft:'4%'}}  >      
+                <Container> 
+                        <Nav.Link style={{ color: '#ffff',fontWeight:'bold', fontSize:'18px' }} ></Nav.Link>
                 </Container>
+                </Nav>
+
+                <Nav style={{ marginLeft:'-5%'}}  >      
+                <Container> 
+                        <Nav.Link style={{ color: '#ffff',fontWeight:'bold', fontSize:'18px'}} as={Link} to="">ประวัติการเบิกอุปกรณ์</Nav.Link>
+                </Container>
+                </Nav>
+
+                <Nav style={{ marginLeft:'15%'}}  >      
+                <Container> 
+                        <Nav.Link style={{ color: '#ffff', marginLeft: '800px',fontWeight:'bold', fontSize:'18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                </Container>
+                </Nav>
             </Navbar>
-            <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%' }}>
+            
+            <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%',paddingBottom:'6%' }}>
+
+                <Nav style={{ paddingRight:'80%',paddingTop:'1%'}}  >      
+                <Container> 
+                        <Nav.Link style={{ color: '#000',fontWeight:'bold', fontSize:'18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                </Container>
+                </Nav>
+
                 <br />
-                <h1 style={{ color: '#0047AB' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+                <h1 style={{ color: '#0047AB',fontWeight:'bold'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
                 <div class="d-flex justify-content-end">
-                    <h4 style={{ paddingRight: '10px', paddingTop: '8px' }}>คลินิก:</h4>
-                    <select style={{ width: '110px', }} class="form-control form-control-sm">
+                    <h4 style={{ paddingRight: '10px', paddingTop: '15px',fontWeight:'bold', fontSize:'18px' }}>คลินิก:</h4>
+                    <select style={{ width: '110px' }} class="form-control form-control-sm">
                         <option>เลือกคลินิก</option>
                         <option>OD</option>
                         <option>TMD</option>
@@ -83,7 +100,7 @@ const Adminconfirm = () => {
                 </div>
                 <br />
 
-                <Table striped bordered hover variant="dark" style={{ marginLeft: 'auto', marginRight: 'auto', color: '#1565C0', maxWidth: '97%' }}>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%'}}>
                     <thead>
                         <tr>
                             <th>วันที่</th>
@@ -99,13 +116,13 @@ const Adminconfirm = () => {
                     {details.map(item => {
                         return <tbody key={item.id}>
                             <tr>
-                                <td style={{ color: 'white' }}>{item.date}</td>
-                                <td style={{ color: 'white' }}>{item.time}</td>
-                                <td style={{ color: 'white' }}>{item.clinic}</td>
-                                <td style={{ color: 'white' }}>{item.worktype}</td>
-                                <td style={{ color: 'white' }}>{item.patient}</td>
-                                <td style={{ color: 'white' }}>{item.name}</td>
-                                <td style={{ color: 'white' }}>{item.studentyear}</td>
+                                <td style={{ color: 'black',fontWeight:'bold' }}>{item.date}</td>
+                                <td style={{ color: 'black'  }}>{item.time}</td>
+                                <td style={{ color: 'black' }}>{item.clinic}</td>
+                                <td style={{ color: 'black' }}>{item.worktype}</td>
+                                <td style={{ color: 'black'}}>{item.patient}</td>
+                                <td style={{ color: 'black',fontWeight:'bold'}}>{item.name}</td>
+                                <td style={{ color: 'black' }}>{item.studentyear}</td>
                                 <td><Adminmodal /></td>
 
                             </tr>
