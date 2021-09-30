@@ -17,6 +17,7 @@ import { BsSearch } from "react-icons/bs";
 const TeacherSelectWork = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
+    const [isChecked, setIsChecked] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -24,18 +25,27 @@ const TeacherSelectWork = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://selab.mfu.ac.th:8318/details/find/notnull").then((item) => {
+        axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             console.log("Limit :", item.data)
             return setDetails(item.data);
         });
     }
 
+    function handleOnChange(e) {
+        setIsChecked([...isChecked, { id: e.target.value, teacher: user.first_name }]);
+        console.log('Value :', e.target.value)
+        console.log('isChecked :', isChecked)
+    };
+
+    // const getCheking = (id, teacher) => {
+    //     return console.log('id :', id, 'teacher :', teacher)
+    // }
 
     function submitApprove() {
-        let body = [{ teacher: 'TeacherArkira', id: '250' }, { teacher: 'Doraemon', id: '251' }];
+        let body = isChecked;
         axios.put("http://localhost:3000/details/updateTeacher/", body)
         console.log('Body data :', body)
-        return alert("เลือกสำเร็จ โดย :", user.first_name,)
+        return alert("เลือกสำเร็จ")
     }
 
     return (
@@ -58,7 +68,13 @@ const TeacherSelectWork = () => {
 
 
                 <div class="search">
-                    <input type="date" class="searchTerm" id="input_text" placeholder="ค้นหาวันที่"></input>
+                    <input
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                    >
+                    </input>
                     <button type="submit" class="searchButton">
                         <BsSearch />
                     </button>
@@ -86,11 +102,16 @@ const TeacherSelectWork = () => {
                         </tr>
                     </thead>
                     {details.map(item => {
-                        return <tbody >
+                        return <tbody key={item.id}>
                             <tr>
                                 <td>
-                                    <label class="styleCheckBox">
-                                        <input type="checkbox" />
+                                    <label key={item.id} class="styleCheckBox">
+                                        <input
+                                            key={item.id}
+                                            value={item.id}
+                                            // checked={getCheking({ id: item.id }, { teacher: user.first_name })}
+                                            onChange={handleOnChange}
+                                            type="checkbox" />
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>

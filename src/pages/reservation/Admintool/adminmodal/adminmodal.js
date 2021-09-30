@@ -9,6 +9,10 @@ const Adminmodal = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [Tool, setDetials] = useState([]);
 
+    useEffect(() => {
+        getTool();
+    }, [])
+
     function openModal() {
         setIsOpen(true);
     }
@@ -18,16 +22,16 @@ const Adminmodal = () => {
     }
 
     const getTool = () => {
-        axios.get("http://selab.mfu.ac.th:8318/Tool/find/null").then((item) => {
+        axios.get("http://localhost:3000/Tool/find/all").then((item) => {
             setDetials(item.data)
             console.log("data :", item.data)
         });
     }
 
     return (
-        
+
         <div>
-            <Button style={{ background: '#1565C0', color: 'white' ,width:"150px",}} onClick={openModal}>
+            <Button style={{ background: '#1565C0', color: 'white', width: "150px", }} onClick={openModal}>
                 อุปกรณ์
             </Button>
             <StyleModal
@@ -38,43 +42,35 @@ const Adminmodal = () => {
                 <CloseButton onClick={closeModal} />
                 <div>
                     <center style={{}}>
-                    <br/>
-                        <h3 style={{ color: '#0047AB'}}>เครื่องมือเบิกงาน Endo</h3>
+                        <br />
+                        <h3 style={{ color: '#0047AB' }}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
-                    <div style={{marginLeft:"50px",}}>
-                        <br/>
-                        
-                        <Table
-                                className="tableResponsive"
-                                striped
-                                borderless
-                                hover
-                                variant="dark"
-                                style={{ width: '800px' }}
-                            >
-                                <thead>
-                                    <tr>
-                                        <th>วันที่</th>
-                                        <th>ช่วงเวลา</th>
-                                        <th>คลินิก</th>
-                                        <th>ประเภทงาน</th>
-                                        <th>คนไข้</th>
-                                        <th>สถานะ</th>
-                                    </tr>
-                                </thead>
-                                {Tool.map(item => {
-                                    return <tbody>
-                                        <tr>
-                                            <td style={{ color: 'white' }}>{item.testkit_toolcc1}</td>
-                                            <td>asdasd</td>
-                                            <td>asdasd</td>
-                                            <td>asdasd</td>
-                                        </tr>
-                                    </tbody>
-                                })}
-                            </Table>
+                    <div style={{ marginLeft: "50px", }}>
+                        <br />
 
-                    <br />
+                        <Table
+                            className="tableResponsive"
+                            striped
+                            borderless
+                            hover
+                            variant="dark"
+                            style={{ width: '800px' }}
+                        >
+                            <thead>
+                                <tr>
+                                    <th>วันที่</th>
+                                </tr>
+                            </thead>
+                            {Tool.map(item => {
+                                return <tbody key={Tool.ID}>
+                                    <tr>
+                                        <td style={{ color: 'white' }}>{item.testkit_toolcc1}</td>
+                                    </tr>
+                                </tbody>
+                            })}
+                        </Table>
+
+                        <br />
                     </div>
                 </div>
             </StyleModal>
