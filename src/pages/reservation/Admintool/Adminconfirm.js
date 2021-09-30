@@ -42,7 +42,7 @@ const Adminconfirm = () => {
 
 
     return (
-        <div style={{ background: '#F2F4F4', minHeight: '1080px'}}>
+        <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
 
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
@@ -50,39 +50,39 @@ const Adminconfirm = () => {
 
                 </div>
             </nav>
-            <Navbar style={{ background: '#1565C0', paddingBottom: '0.5%'}} >
-            <Nav style={{ marginLeft:'4%'}}  >      
-                <Container> 
-                        <Nav.Link style={{ color: '#ffff',fontWeight:'bold', fontSize:'18px' }} ></Nav.Link>
-                </Container>
+            <Navbar style={{ background: '#1565C0', paddingBottom: '0.5%' }} >
+                <Nav style={{ marginLeft: '4%' }}  >
+                    <Container>
+                        <Nav.Link style={{ color: '#ffff', fontWeight: 'bold', fontSize: '18px' }} ></Nav.Link>
+                    </Container>
                 </Nav>
 
-                <Nav style={{ marginLeft:'-5%'}}  >      
-                <Container> 
-                        <Nav.Link style={{ color: '#ffff',fontWeight:'bold', fontSize:'18px'}} as={Link} to="">ประวัติการเบิกอุปกรณ์</Nav.Link>
-                </Container>
+                <Nav style={{ marginLeft: '-5%' }}  >
+                    <Container>
+                        <Nav.Link style={{ color: '#ffff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="">ประวัติการเบิกอุปกรณ์</Nav.Link>
+                    </Container>
                 </Nav>
 
-                <Nav style={{ marginLeft:'15%'}}  >      
-                <Container> 
-                        <Nav.Link style={{ color: '#ffff', marginLeft: '800px',fontWeight:'bold', fontSize:'18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
-                </Container>
+                <Nav style={{ marginLeft: '15%' }}  >
+                    <Container>
+                        <Nav.Link style={{ color: '#ffff', marginLeft: '800px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Container>
                 </Nav>
             </Navbar>
-            
-            <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%',paddingBottom:'6%' }}>
 
-                <Nav style={{ paddingRight:'80%',paddingTop:'1%'}}  >      
-                <Container> 
-                        <Nav.Link style={{ color: '#000',fontWeight:'bold', fontSize:'18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                </Container>
+            <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%', paddingBottom: '6%' }}>
+
+                <Nav style={{ paddingRight: '80%', paddingTop: '1%' }}  >
+                    <Container>
+                        <Nav.Link style={{ color: '#000', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                    </Container>
                 </Nav>
 
                 <br />
-                <h1 style={{ color: '#0047AB',fontWeight:'bold'}}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
                 <div class="d-flex justify-content-end">
-                    <h4 style={{ paddingRight: '10px', paddingTop: '15px',fontWeight:'bold', fontSize:'18px' }}>คลินิก:</h4>
+                    <h4 style={{ paddingRight: '10px', paddingTop: '15px', fontWeight: 'bold', fontSize: '18px' }}>คลินิก:</h4>
                     <select style={{ width: '110px' }} class="form-control form-control-sm">
                         <option>เลือกคลินิก</option>
                         <option>OD</option>
@@ -100,8 +100,8 @@ const Adminconfirm = () => {
                 </div>
                 <br />
 
-                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%'}}>
-                    <thead>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
                             <th>วันที่</th>
                             <th>ช่วงเวลา</th>
@@ -116,14 +116,14 @@ const Adminconfirm = () => {
                     {details.map(item => {
                         return <tbody key={item.id}>
                             <tr>
-                                <td style={{ color: 'black',fontWeight:'bold' }}>{item.date}</td>
-                                <td style={{ color: 'black'  }}>{item.time}</td>
-                                <td style={{ color: 'black' }}>{item.clinic}</td>
-                                <td style={{ color: 'black' }}>{item.worktype}</td>
-                                <td style={{ color: 'black'}}>{item.patient}</td>
-                                <td style={{ color: 'black',fontWeight:'bold'}}>{item.name}</td>
-                                <td style={{ color: 'black' }}>{item.studentyear}</td>
-                                <td><Adminmodal /></td>
+                                <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.date}</td>
+                                <td className='tdAdmin' style={{ color: 'black' }}>{item.time}</td>
+                                <td className='tdAdmin' style={{ color: 'black' }}>{item.clinic}</td>
+                                <td className='tdAdmin' style={{ color: 'black' }}>{item.worktype}</td>
+                                <td className='tdAdmin' style={{ color: 'black' }}>{item.patient}</td>
+                                <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
+                                <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
+                                <td className='tdAdmin' ><Adminmodal /></td>
 
                             </tr>
                         </tbody>
