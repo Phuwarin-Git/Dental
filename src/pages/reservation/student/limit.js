@@ -32,8 +32,8 @@ const StudentLimt = () => {
                 striped
                 borderless
                 hover
-                variant="dark"
-            > <thead>
+                variant="primary"
+            > <thead style={{ backgroundColor: '#1f5bcc', color: 'white' }}>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
@@ -50,20 +50,20 @@ const StudentLimt = () => {
                     </tr>
                 </thead>
                 {limit.map(item => {
-                    return <tbody >
+                    return <tbody style={{ color: 'black' }}>
                         <tr>
-                            <td style={{ color: 'white' }}>{item.date}</td>
-                            <td style={{ color: 'white' }}>{item.time}</td>
-                            <td style={{ color: 'white' }}>{item.od}</td>
-                            <td style={{ color: 'white' }}>{item.tmd}</td>
-                            <td style={{ color: 'white' }}>{item.oper}</td>
-                            <td style={{ color: 'white' }}>{item.perio}</td>
-                            <td style={{ color: 'white' }}>{item.sur}</td>
-                            <td style={{ color: 'white' }}>{item.prosth}</td>
-                            <td style={{ color: 'white' }}>{item.endo}</td>
-                            <td style={{ color: 'white' }}>{item.xray}</td>
-                            <td style={{ color: 'white' }}>{item.om}</td>
-                            <td style={{ color: 'white' }}>{item.ortho}</td>
+                            <td>{item.date}</td>
+                            <td>{item.time}</td>
+                            <td>{item.od}</td>
+                            <td>{item.tmd}</td>
+                            <td>{item.oper}</td>
+                            <td>{item.perio}</td>
+                            <td>{item.sur}</td>
+                            <td>{item.prosth}</td>
+                            <td>{item.endo}</td>
+                            <td>{item.xray}</td>
+                            <td>{item.om}</td>
+                            <td>{item.ortho}</td>
                         </tr>
                     </tbody>
 

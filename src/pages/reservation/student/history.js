@@ -20,7 +20,7 @@ const StudentHistory = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://localhost:3000/details/find/notnull").then((item) => {
+        axios.get("http://localhost:3000/details/find/teachernotnull").then((item) => {
             console.log("data :", item.data)
             return filterDetails(item.data);
         });
@@ -57,31 +57,32 @@ const StudentHistory = () => {
                     striped
                     borderless
                     hover
-                    variant="dark"
+                    variant="primary"
                 >
-                    <thead>
+                    <thead className="thedTop">
                         <tr>
-                            <th>วันที่</th>
-                            <th>ช่วงเวลา</th>
-                            <th>Unit</th>
-                            <th>คลินิก</th>
-                            <th>ประเภทงาน</th>
-                            <th>คนไข้</th>
-                            <th>อาจารย์ผู้ตรวจ</th>
-                            <th>รายละเอียด</th>
+                            <th style={{ color: 'white' }}>วันที่</th>
+                            <th style={{ color: 'white' }}>ช่วงเวลา</th>
+                            <th style={{ color: 'white' }}>Unit</th>
+                            <th style={{ color: 'white' }}>คลินิก</th>
+                            <th style={{ color: 'white' }}>ประเภทงาน</th>
+                            <th style={{ color: 'white' }}>คนไข้</th>
+                            <th style={{ color: 'white' }}>อาจารย์ผู้ตรวจ</th>
+                            <th style={{ color: 'white' }}>รายละเอียด</th>
                         </tr>
                     </thead>
-                    <tbody >
-                        {details.map(item => {
-                            return <tr key={item.id}>
-                                <td style={{ color: 'white' }}>{item.date}</td>
-                                <td style={{ color: 'white' }}>{item.time}</td>
-                                <td style={{ color: 'white' }}>{item.unit}</td>
-                                <td style={{ color: 'white' }}>{item.clinic}</td>
-                                <td style={{ color: 'white' }}>{item.worktype}</td>
-                                <td style={{ color: 'white' }}>{item.patient}</td>
-                                <td style={{ color: 'white' }}>ใจดีน้า</td>
-                                <td style={{ color: 'white' }}><HistoryModal
+
+                    {details.map(item => {
+                        return <tbody key={item.id} >
+                            <tr >
+                                <td className='tdStudent'>{item.date}</td>
+                                <td className='tdStudent'>{item.time}</td>
+                                <td className='tdStudent'>{item.unit}</td>
+                                <td className='tdStudent'>{item.clinic}</td>
+                                <td className='tdStudent'>{item.worktype}</td>
+                                <td className='tdStudent'>{item.patient}</td>
+                                <td className='tdStudent'>{item.teacher}</td>
+                                <td className='tdStudent'><HistoryModal
                                     unit={item.unit}
                                     name={item.name}
                                     year={item.studentyear}
@@ -93,8 +94,9 @@ const StudentHistory = () => {
                                     hn={item.hn}
                                 /></td>
                             </tr>
-                        })}
-                    </tbody>
+                        </tbody>
+                    })}
+
                 </Table>
             </div>
         </div >

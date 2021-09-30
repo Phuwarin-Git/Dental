@@ -1,11 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container, Button } from 'react-bootstrap';
-import Spinner from 'react-bootstrap/Spinner'
-import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
-import axios from "axios";
 const TeacherDashboard = () => {
     const { user } = useContext(AuthContext);
 
@@ -20,7 +17,7 @@ const TeacherDashboard = () => {
                         <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
                         <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link>
                         <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

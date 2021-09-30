@@ -5,6 +5,12 @@
     margin-left: auto;
     margin-right:auto;
   }
+
+  .thedTop{
+    background-color: #1f5bcc;
+    border-radius: 10px;
+  }
+  
   .tableResponsive {
     font-size: 100%;
     width: 83%;

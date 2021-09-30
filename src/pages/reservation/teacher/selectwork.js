@@ -58,7 +58,7 @@ const TeacherSelectWork = () => {
                         <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
                         <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link>
                         <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ backgroundColor: '#ff3b38', borderRadius: '10px', color: 'black', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -87,18 +87,18 @@ const TeacherSelectWork = () => {
                     striped
                     borderless
                     hover
-                    variant="dark"
+                    variant="primary"
                 >
-                    <thead>
+                    <thead style={{ backgroundColor: '#1f5bcc' }}>
                         <tr>
-                            <th>เลือกตรวจงาน</th>
-                            <th>คลินิก</th>
-                            <th>Unit</th>
-                            <th>วันที่</th>
-                            <th>ช่วงเวลา</th>
-                            <th>ชื่อนักศึกษา</th>
-                            <th>ชั้นปี</th>
-                            <th>ประเภทงาน</th>
+                            <th style={{ color: 'white' }} >เลือกตรวจงาน</th>
+                            <th style={{ color: 'white' }} >คลินิก</th>
+                            <th style={{ color: 'white' }} >Unit</th>
+                            <th style={{ color: 'white' }} >วันที่</th>
+                            <th style={{ color: 'white' }} >ช่วงเวลา</th>
+                            <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
+                            <th style={{ color: 'white' }} >ชั้นปี</th>
+                            <th style={{ color: 'white' }} >ประเภทงาน</th>
                         </tr>
                     </thead>
                     {details.map(item => {
@@ -109,19 +109,18 @@ const TeacherSelectWork = () => {
                                         <input
                                             key={item.id}
                                             value={item.id}
-                                            // checked={getCheking({ id: item.id }, { teacher: user.first_name })}
                                             onChange={handleOnChange}
                                             type="checkbox" />
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td style={{ color: 'white' }}>{item.clinic}</td>
-                                <td style={{ color: 'white' }}>{item.unit}</td>
-                                <td style={{ color: 'white' }}>{item.date}</td>
-                                <td style={{ color: 'white' }}>{item.time}</td>
-                                <td style={{ color: 'white' }}>{item.name}</td>
-                                <td style={{ color: 'white' }}>{item.studentyear}</td>
-                                <td style={{ color: 'white' }}>{item.worktype}</td>
+                                <td style={{ color: 'black' }}>{item.clinic}</td>
+                                <td style={{ color: 'black' }}>{item.unit}</td>
+                                <td style={{ color: 'black' }}>{item.date}</td>
+                                <td style={{ color: 'black' }}>{item.time}</td>
+                                <td style={{ color: 'black' }}>{item.name}</td>
+                                <td style={{ color: 'black' }}>{item.studentyear}</td>
+                                <td style={{ color: 'black' }}>{item.worktype}</td>
                             </tr>
                         </tbody>
                     })}
