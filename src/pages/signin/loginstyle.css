@@ -1,0 +1,14 @@
+.grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: end;
+  padding-right: 200px;
+  padding-top: 200px;
+}
+.content {
+  background-color: #f1f1f1;
+  border: 50px;
+  box-sizing: border-box;
+  padding: 35px;
+  border-radius: 3%;
+}

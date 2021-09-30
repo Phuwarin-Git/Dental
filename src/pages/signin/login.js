@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../App";
 import axios from "axios";
-
+import './loginstyle.css';
 
 //User ควรเป็น Email
 //Password ควรเป็น ID
@@ -71,17 +71,24 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div style={{ background: '#0047AB' }}>
+        <div class="grid">
+            <div class="content">
             <form onSubmit={checkAuth}>
-                <h2>Hello User</h2>
-                <p>Username</p>
+                <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
+                <h6 style={{ fontSize: '14px' }}>Use your email or username</h6>
+                <p style={{ fontSize: '13px'}}>Username</p>
                 <input placeholder="username" onChange={usernameOnChange}></input><br />
-                <p>Password</p>
+                <p style={{ fontSize: '13px'}}>Password</p>
                 <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
                 <button type="submit">Login</button>
+                
             </form>
-
+            </div>
         </div>
+        </div>
+        
+        
     )
 }
 export default Login;
