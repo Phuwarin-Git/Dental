@@ -45,26 +45,59 @@ const Adminmodal = () => {
                         <br />
                         <h3 style={{ color: '#0047AB' }}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
-                    <div style={{ marginLeft: "50px", }}>
+                    <div style={{ marginLeft: "50px", overflowY:'auto' }}>
                         <br />
 
                         <Table
-                            className="tableResponsive"
                             striped
                             borderless
                             hover
-                            variant="dark"
-                            style={{ width: '800px' }}
+                            variant=""
+                            style={{ width: '650px' }}
+                            bordered
                         >
                             <thead>
                                 <tr>
-                                    <th>ชื่ออุปกรณ์</th>
+                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px',paddingLeft:'47px'}}>ชื่ออุปกรณ์</th>
+                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px',textAlign:'end'}}>จำนวน</th>
                                 </tr>
+                                
                             </thead>
                             {Tool.map(item => {
                                 return <tbody key={Tool.ID}>
                                     <tr>
-                                        <td style={{ color: 'white' }}>ชุดตรวจ จำนวน :    {item.testkit_toolcc1}</td>
+                                        <td style={{ color: 'black', fontSize: '18px', paddingLeft:'50px' }}>
+                                        ชุดตรวจ 
+                                         <br/>
+                                          แก้วนํ้า  
+                                          <br/>
+                                          Tripple syring
+                                          <br/>
+                                          ผ้าเจาะกลาง
+                                          <br/>
+                                          ผ้าคลุม
+                                          <br/>
+                                          UNC 15 Probe
+                                          </td> 
+
+                                          <br/>
+
+                                          <td style={{ color: 'black', fontSize: '18px', paddingRight:'10px' }}>                                             
+                                          {item.testkit_toolcc1}
+                                          <br/>
+                                         {item.glassofwater_toolcc1}
+                                         <br/>
+                                         {item.Tripplesyring_toolcc1}
+                                         <br/>
+                                         {item.FabricMiddlepunch_toolcc1}
+                                         <br/>
+                                         {item.veil_toolcc1}
+                                         <br/>
+                                         {item.UNC15Probe_toolcc1}
+                                         </td>
+                                         
+                                            
+
                                     </tr>
                                 </tbody>
                             })}
