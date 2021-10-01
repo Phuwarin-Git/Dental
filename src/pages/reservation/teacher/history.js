@@ -61,7 +61,6 @@ const TeacherHistory = () => {
                     <thead className="thedTop">
                         <tr>
                             <th style={{ color: 'white' }}>วันที่</th>
-                            <th style={{ color: 'white' }}>อาจารย์ผู้ตรวจ</th>
                             <th style={{ color: 'white' }}>ช่วงเวลา</th>
                             <th style={{ color: 'white' }}>Unit</th>
                             <th style={{ color: 'white' }}>คลินิก</th>
@@ -76,7 +75,6 @@ const TeacherHistory = () => {
                         return <tbody key={item.id} >
                             <tr >
                                 <td className='tdStudent'>{item.date}</td>
-                                <td className='tdStudent'>{item.teacher}</td>
                                 <td className='tdStudent'>{item.time}</td>
                                 <td className='tdStudent'>{item.unit}</td>
                                 <td className='tdStudent'>{item.clinic}</td>

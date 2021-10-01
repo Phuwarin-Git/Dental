@@ -98,13 +98,15 @@ const TeacherSelectWork = () => {
                     <thead style={{ backgroundColor: '#1f5bcc' }}>
                         <tr>
                             <th style={{ color: 'white' }} >เลือกตรวจงาน</th>
-                            <th style={{ color: 'white' }} >คลินิก</th>
                             <th style={{ color: 'white' }} >Unit</th>
                             <th style={{ color: 'white' }} >วันที่</th>
                             <th style={{ color: 'white' }} >ช่วงเวลา</th>
-                            <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
-                            <th style={{ color: 'white' }} >ชั้นปี</th>
+                            <th style={{ color: 'white' }} >คลินิก</th>
                             <th style={{ color: 'white' }} >ประเภทงาน</th>
+                            <th style={{ color: 'white' }} >ชั้นปี</th>
+                            <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
+
+
                         </tr>
                     </thead>
                     {details.map(item => {
@@ -120,13 +122,15 @@ const TeacherSelectWork = () => {
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td style={{ color: 'black' }}>{item.clinic}</td>
                                 <td style={{ color: 'black' }}>{item.unit}</td>
                                 <td style={{ color: 'black' }}>{item.date}</td>
                                 <td style={{ color: 'black' }}>{item.time}</td>
-                                <td style={{ color: 'black' }}>{item.name}</td>
-                                <td style={{ color: 'black' }}>{item.studentyear}</td>
+                                <td style={{ color: 'black' }}>{item.clinic}</td>
                                 <td style={{ color: 'black' }}>{item.worktype}</td>
+                                <td style={{ color: 'black' }}>{item.studentyear}</td>
+                                <td style={{ color: 'black' }}>{item.name}</td>
+
+
                             </tr>
                         </tbody>
                     })}
