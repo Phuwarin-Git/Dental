@@ -253,7 +253,7 @@ const StudentRes = () => {
                             ) : null} <br />
 
                             <center>
-                                <br /><But type="submit">Submit</But>
+                                <br /><But style={{ fontWeight: 'bold' }} type="submit">ยืนยัน</But>
                             </center>
                             {open === true ? <ToolModal /> : console.log("Modal it's not open")}
 

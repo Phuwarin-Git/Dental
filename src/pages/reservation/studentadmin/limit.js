@@ -39,8 +39,8 @@ const Limit = () => {
             >
                 <thead style={{ backgroundColor: '#1f5bcc', color: 'white' }}>
                     <tr>
-                        <th>Date</th>
-                        <th>Time</th>
+                        <th>วันที่</th>
+                        <th>เวลา</th>
                         <th>OD</th>
                         <th>TMD</th>
                         <th>OPER</th>

@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import Button from './reservationCss/ButtonRes'
 
 const StudentAdminReservation = () => {
+    const history = useHistory();
     const { user } = useContext(AuthContext);
     const [allUnit, setAllUnit] = useState([]);
     const [details, setDetails] = useState([]);
@@ -44,27 +45,25 @@ const StudentAdminReservation = () => {
     }
 
 
-    // function handleSubmit(id, value) {
-    //     // e.preventDefault();
-    //     alert('Unit : ' + id + ' Value :' + value);
-    //     let body = { unit: value }
-    //     axios.put("http://localhost:3000/details/updateUnit/" + id, body)
-    // }
-
     function handleOnChange(e) {
-        // setSelect([...select, { unit: e.target.value.unit }]);
-        console.log('Value :', e.target.value)
-        console.log('Key :', e.target.key)
-        console.log('ID :', e.target.id)
-        console.log('Name :', e.target.name)
-        // console.log('Seleted :', select)
+        console.log('Value :', e.target.value.split(" "))
+        let first = e.target.value.split(" ")
+        console.log('id :', first[0])
+        console.log('unit :', first[1])
+        setSelect([...select, { id: first[0], unit: first[1] }]);
+        console.log('Seleted :', select)
     };
 
     function submitApprove() {
-        let body = select;
-        // axios.put("http://localhost:3000/details/updateTeacher/", body)
-        console.log('Body data :', body)
-        return alert("เลือกสำเร็จ")
+        if (select.length === 0) {
+            return alert('กรุณาเลือก Unit')
+        } else {
+            let body = select;
+            axios.put("http://localhost:3000/details/updateUnitSet/", body)
+            console.log('Body data :', body)
+            alert("เลือกสำเร็จ")
+            return history.push('/StudentAdminHistory')
+        }
     }
 
 
@@ -149,9 +148,12 @@ const StudentAdminReservation = () => {
                             <td style={{ color: 'black' }}>{item.name}</td>
                             <td style={{ color: 'black' }}>
                                 <select onChange={handleOnChange}>
-                                    <option value="selected" selected="selected">Choose Unit</option>
+                                    <option value="selected" selected="selected">เลือก Unit</option>
                                     {allUnit.map((items) => {
-                                        return <option id={item.id} key={items.unit_id} name={item.id} value={items.unit_code}>{items.unit_code}</option>
+                                        return <option
+                                            value={item.id + " " + items.unit_code}>
+                                            {items.unit_code}
+                                        </option>
                                     })}
                                 </select>
                             </td>
@@ -159,7 +161,7 @@ const StudentAdminReservation = () => {
                     </tbody>
                 })}
             </Table>
-            <Button onClick={() => submitApprove()}>ยืนยัน</Button>
+            <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
         </div>
     )
 }

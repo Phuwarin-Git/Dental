@@ -99,7 +99,7 @@ const StudentAdminLimitCase = () => {
                     <Col>
                         <h1>จำกัดภาระงาน</h1>
                         <form onSubmit={formik.handleSubmit}>
-                            <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่ :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 style={{ marginBottom: '10px' }}
                                 id="date"
@@ -143,7 +143,7 @@ const StudentAdminLimitCase = () => {
                             ) : null}<br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="od">OD :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="od"
                                 name="od"
@@ -157,7 +157,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="tmd">TMD :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="tmd"
                                 name="tmd"
@@ -171,7 +171,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="oper">OPER :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="oper"
                                 name="oper"
@@ -185,7 +185,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="perio">PERIO :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="perio"
                                 name="perio"
@@ -199,7 +199,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="sur">SUR :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="sur"
                                 name="sur"
@@ -227,7 +227,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="endo">ENDO :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="endo"
                                 name="endo"
@@ -240,7 +240,7 @@ const StudentAdminLimitCase = () => {
                                 <div className="error">{formik.errors.endo}</div>
                             ) : null} <br />
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="xray">X-ray :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="xray"
                                 name="xray"
@@ -254,7 +254,7 @@ const StudentAdminLimitCase = () => {
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="om">OM :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 id="om"
                                 name="om"
@@ -267,7 +267,7 @@ const StudentAdminLimitCase = () => {
                                 <div className="error">{formik.errors.om}</div>
                             ) : null} <br />
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="ortho">ORTHO :{" "}</label>
+                            <label style={{ fontWeight: 'bold' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
                             <Input
                                 id="ortho"
                                 name="ortho"
@@ -280,7 +280,7 @@ const StudentAdminLimitCase = () => {
                                 <div className="error">{formik.errors.ortho}</div>
                             ) : null} <br />
 
-                            <br /><Button className="But" type="submit">Submit</Button>
+                            <br /><Button style={{ marginLeft: '80px' }} className="But" type="submit">ยืนยัน</Button>
                         </form>
                     </Col>
                 </Row>

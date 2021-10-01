@@ -131,7 +131,7 @@ const TeacherSelectWork = () => {
                         </tbody>
                     })}
                 </Table>
-                <Button onClick={() => submitApprove()}>ยืนยัน</Button>
+                <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
             </div>
         </div >
     )
