@@ -38,12 +38,12 @@ const Login = () => {
             return (item.email === username && item.student_id === password)
         })
         if (checkAu.length === 1) {
-            alert("Login success")
+            alert("เข้าสู่ระบบสำเร็จ")
             console.log("Check :", checkAu)
             onSubmitForm(checkAu)
             // return console.log("Username :", username, " Password :", password)
         } else {
-            return alert("Login failed")
+            return alert("E-mail หรือ รหัสผ่านผิด, กรุณากรอกใหม่อีกครั้ง")
         }
 
     }
@@ -72,22 +72,22 @@ const Login = () => {
 
     return (
         <div style={{ background: '#0047AB' }}>
-        <div class="grid">
-            <div class="content">
-            <form onSubmit={checkAuth}>
-                <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
-                <h6 style={{ fontSize: '14px' }}>Use your email or username</h6>
-                <p style={{ fontSize: '13px'}}>Username</p>
-                <input placeholder="username" onChange={usernameOnChange}></input><br />
-                <p style={{ fontSize: '13px'}}>Password</p>
-                <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br/>
-                <button type="submit">Login</button>
-            </form>
+            <div class="grid">
+                <div class="content">
+                    <form onSubmit={checkAuth}>
+                        <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
+                        <h6 style={{ fontSize: '14px' }}>Use your email or username</h6>
+                        <p style={{ fontSize: '13px' }}>Username</p>
+                        <input placeholder="username" onChange={usernameOnChange}></input><br />
+                        <p style={{ fontSize: '13px' }}>Password</p>
+                        <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
             </div>
         </div>
-        </div>
-        
-        
+
+
     )
 }
 export default Login;

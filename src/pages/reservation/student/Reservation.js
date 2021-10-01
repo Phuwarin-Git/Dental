@@ -178,18 +178,34 @@ const StudentRes = () => {
                                 <div className="error">{formik.errors.clinic}</div>
                             ) : null}<br />
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="type">ประเภทงาน</label>
-                            <Selected
-                                id="type"
-                                name="type"
+                            <label style={{ marginRight: '3%', fontWeight: 'bold' }} htmlFor="type">ประเภทงาน : </label>
+                            <input
+                                id="ฟุ้งกระจาย"
+                                type="radio"
+                                value="ฟุ้งกระจาย"
+                                name='type'
                                 onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.type}
-                            >
-                                <option value="" label="เลือกประเภทงาน" />
-                                <option value="ฟุ้งกระจาย" label="AGPs" />
-                                <option value="ไม่ฟุ้งกระจาย" label="Non-AGPs" />
-                            </Selected>
+                                defaultChecked={formik.values.type === "ฟุ้งกระจาย"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '8%' }}>ฟุ้งกระจาย</label>
+
+
+                            <input
+                                id="ไม่ฟุ้งกระจาย"
+                                type="radio"
+                                value="ไม่ฟุ้งกระจาย"
+                                name='type'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.type === "ไม่ฟุ้งกระจาย"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label>ไม่ฟุ้งกระจาย</label>
+
+                            {formik.touched.type && formik.errors.type ? (
+                                <div className="error">{formik.errors.type}</div>
+                            ) : null}<br />
+
                             {formik.touched.type && formik.errors.type ? (
                                 <div className="error">{formik.errors.type}</div>
                             ) : null}<br />
