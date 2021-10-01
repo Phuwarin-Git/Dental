@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card'
+import Table from 'react-bootstrap/Table'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
-
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import Button from './reservationCss/ButtonRes'
 
 const StudentAdminReservation = () => {
     const { user } = useContext(AuthContext);
@@ -46,11 +44,27 @@ const StudentAdminReservation = () => {
     }
 
 
-    function handleSubmit(id, value) {
-        // e.preventDefault();
-        alert('Unit : ' + id + ' Value :' + value);
-        let body = { unit: value }
-        axios.put("http://localhost:3000/details/updateUnit/" + id, body)
+    // function handleSubmit(id, value) {
+    //     // e.preventDefault();
+    //     alert('Unit : ' + id + ' Value :' + value);
+    //     let body = { unit: value }
+    //     axios.put("http://localhost:3000/details/updateUnit/" + id, body)
+    // }
+
+    function handleOnChange(e) {
+        // setSelect([...select, { unit: e.target.value.unit }]);
+        console.log('Value :', e.target.value)
+        console.log('Key :', e.target.key)
+        console.log('ID :', e.target.id)
+        console.log('Name :', e.target.name)
+        // console.log('Seleted :', select)
+    };
+
+    function submitApprove() {
+        let body = select;
+        // axios.put("http://localhost:3000/details/updateTeacher/", body)
+        console.log('Body data :', body)
+        return alert("เลือกสำเร็จ")
     }
 
 
@@ -69,8 +83,9 @@ const StudentAdminReservation = () => {
                 </Container>
             </Navbar>
             <br />
-            <h1>Student Admin Unit Selection</h1>
-            {details.map((item) => {
+            <h1>การเลือกที่นั่ง</h1>
+
+            {/* {details.map((item) => {
                 return <div key={item.id}>
                     <br />
                     <Card
@@ -85,7 +100,6 @@ const StudentAdminReservation = () => {
                                 <lable>นักศึกษา : {item.name}</lable><br />
                                 <lable>ประเภทงาน : {item.worktype}</lable><br />
                                 <lable>คนไข้ : {item.patient}</lable><br />
-
                                 <form onSubmit={() => { handleSubmit(item.id, item.select) }}>
                                     <select onChange={(event) => {
                                         console.log('Hi', event.target.value)
@@ -98,13 +112,54 @@ const StudentAdminReservation = () => {
                                     </select>
                                     <button style={{ borderRadius: '10px', marginLeft: '10px', backgroundColor: '#02ed60' }} type="submit">ยืนยัน</button>
                                 </form>
-
                             </Card.Text>
                         </Card.Body>
                     </Card>
-
                 </div>
-            })}
+            })} */}
+
+
+            <Table
+                style={{ marginTop: '20px' }}
+                className="tableResponsive"
+                striped
+                borderless
+                hover
+                variant="primary"
+            >
+                <thead style={{ backgroundColor: '#1f5bcc' }}>
+                    <tr>
+                        <th style={{ color: 'white' }} >วันที่</th>
+                        <th style={{ color: 'white' }} >ช่วงเวลา</th>
+                        <th style={{ color: 'white' }} >คลินิก</th>
+                        <th style={{ color: 'white' }} >ประเภทงาน</th>
+                        <th style={{ color: 'white' }} >ชื่อผู้ป่วย</th>
+                        <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
+                        <th style={{ color: 'white' }} >Unit</th>
+                    </tr>
+                </thead>
+                {details.map(item => {
+                    return <tbody key={item.id}>
+                        <tr>
+                            <td style={{ color: 'black' }}>{item.date}</td>
+                            <td style={{ color: 'black' }}>{item.time}</td>
+                            <td style={{ color: 'black' }}>{item.clinic}</td>
+                            <td style={{ color: 'black' }}>{item.worktype}</td>
+                            <td style={{ color: 'black' }}>{item.patient}</td>
+                            <td style={{ color: 'black' }}>{item.name}</td>
+                            <td style={{ color: 'black' }}>
+                                <select onChange={handleOnChange}>
+                                    <option value="selected" selected="selected">Choose Unit</option>
+                                    {allUnit.map((items) => {
+                                        return <option id={item.id} key={items.unit_id} name={item.id} value={items.unit_code}>{items.unit_code}</option>
+                                    })}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                })}
+            </Table>
+            <Button onClick={() => submitApprove()}>ยืนยัน</Button>
         </div>
     )
 }

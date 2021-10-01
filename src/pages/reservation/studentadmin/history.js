@@ -37,8 +37,10 @@ const StudentAdminHistory = () => {
                     </Nav>
                 </Container>
             </Navbar>
+            <br />
 
-            <div style={{ marginTop: '50px' }} className="PaddingDiv">
+            <div className="PaddingDiv">
+                <h1>ประวัติ</h1>
                 <Table
                     className="tableResponsive"
                     striped

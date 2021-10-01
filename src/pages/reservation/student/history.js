@@ -50,8 +50,9 @@ const StudentHistory = () => {
                     </Nav>
                 </Container>
             </Navbar>
-
-            <div style={{ marginTop: '50px' }} className="PaddingDiv">
+            <br />
+            <div className="PaddingDiv">
+                <h1>ประวัติการจองการทำงาน</h1>
                 <Table
                     className="tableResponsive"
                     striped

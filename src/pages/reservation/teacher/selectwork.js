@@ -1,7 +1,5 @@
 
 import React, { useContext, useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
 import Table from 'react-bootstrap/Table'
 import { Nav, Container } from 'react-bootstrap';
@@ -105,8 +103,6 @@ const TeacherSelectWork = () => {
                             <th style={{ color: 'white' }} >ประเภทงาน</th>
                             <th style={{ color: 'white' }} >ชั้นปี</th>
                             <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
-
-
                         </tr>
                     </thead>
                     {details.map(item => {
