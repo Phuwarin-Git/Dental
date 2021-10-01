@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../App";
 import axios from "axios";
 import './loginstyle.css';
-
+import Navbar from 'react-bootstrap/Navbar'
 //User ควรเป็น Email
 //Password ควรเป็น ID
 
@@ -71,7 +71,17 @@ const Login = () => {
     }
 
     return (
-        <div style={{ background: '#0047AB' }}>
+        
+        <div style={{ background: '#ffff' }}>
+             <nav style={{ background: '#0047AB' }}>
+                            <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
+                            </div>
+                    </nav>
+
+                <Navbar style={{ background: '#1565C0', paddingBottom: '2%' }} >
+                    </Navbar>
+
             <div class="grid">
                 <div class="content">
                     <form onSubmit={checkAuth}>
