@@ -19,12 +19,15 @@ const StudentRes = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
     const [open, setOpen] = useState(false);
+    const [getUnique, setUnique] = useState([])
+
     const history = useHistory();
 
 
     useEffect(() => {
         getDetails();
     }, [user])
+
 
     const getDetails = () => {
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
@@ -33,10 +36,19 @@ const StudentRes = () => {
         });
     }
 
-    function submitForm(date, time, clinic, type, patient, dn, hn) {
+    function uniqueID() {
+        console.log("Called")
+        function chr4() {
+            return Math.random().toString(16).slice(-4);
+        }
+        return chr4() + chr4() +
+            '-' + chr4() +
+            '-' + chr4() +
+            '-' + chr4() +
+            '-' + chr4() + chr4() + chr4();
+    }
 
-        console.log("Hello :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
-        const ApiSet = ({ name: user.first_name, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+    function submitForm(date, time, clinic, type, patient, dn, hn) {
 
         const findDate = limit.filter((item) => {
             return ((item.date === date) && (item.time === time))
@@ -44,6 +56,11 @@ const StudentRes = () => {
 
         if (findDate.length === 1) {
             alert("Success")
+            let a = uniqueID()
+            setUnique(a);
+            console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
+            const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+
             return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
                 return setOpen(true);
@@ -255,7 +272,7 @@ const StudentRes = () => {
                             <center>
                                 <br /><But style={{ fontWeight: 'bold' }} type="submit">ยืนยัน</But>
                             </center>
-                            {open === true ? <ToolModal /> : console.log("Modal it's not open")}
+                            {open === true ? <ToolModal unique={getUnique} /> : console.log("Modal it's not open")}
 
                         </form>
                     </Col>
