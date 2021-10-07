@@ -43,7 +43,7 @@ const Adminmodal = () => {
                 <div>
                     <center style={{}}>
                         <br />
-                        <h3 style={{ color: '#0047AB' }}>เครื่องมือเบิกงาน Endo</h3>
+                        <h3 style={{ color: '#0047AB' , fontWeight: 'bold' }}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
                     <div style={{ marginLeft: "50px", overflowY:'auto' }}>
                         <br />

@@ -4,6 +4,15 @@ import { AuthContext } from "../../App";
 import axios from "axios";
 import './loginstyle.css';
 import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
+import  image1  from '../reservation/image/maefahluang1.jpg';
+import  image2  from '../reservation/image/maefahluang2.jpg';
+import  image3  from '../reservation/image/imagedetal3.jpg';
+import  image4  from '../reservation/image/imagedetal4.jpg';
 //User ควรเป็น Email
 //Password ควรเป็น ID
 
@@ -72,18 +81,29 @@ const Login = () => {
 
     return (
         
-        <div style={{ background: '#ffff' }}>
-             <nav style={{ background: '#0047AB' }}>
+        <div style={{ background: '#ffff'}}>
+             <nav style={{ background: '#0047AB'}}>
                             <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                             </div>
                     </nav>
 
-                <Navbar style={{ background: '#1565C0', paddingBottom: '2%' }} >
+                <Navbar style={{ background: '#1565C0', paddingBottom: '2%'  }} >
                     </Navbar>
 
-            <div class="grid">
-                <div class="content">
+
+        <div style={{ background: '',paddingTop:'5%'}}>             
+            <Container>
+                  <Row>
+                  <Col xs={8} md={4} xl={6} style={{marginLeft:'-40%',maxWidth:'100%'}} >
+                    <AliceCarousel autoPlay autoPlayInterval="2000" >
+          <p><img style={{maxHeight:'600px'}} src={image1} classname="sliderimg" /></p>
+          <p><img style={{maxHeight:'600px'}} src={image2} classname="sliderimg" /></p>
+          <p><img style={{maxHeight:'600px'}} src={image3} classname="sliderimg" /></p>
+                    </AliceCarousel>
+        </Col>
+         <Col xs={6} md={4} style={{marginLeft:'6%',marginTop:'10%'}}>       
+                <div class="content" >
                     <form onSubmit={checkAuth}>
                         <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
                         <h6 style={{ fontSize: '14px' }}>Use your email or username</h6>
@@ -94,9 +114,15 @@ const Login = () => {
                         <button type="submit">Login</button>
                     </form>
                 </div>
-            </div>
-        </div>
+        </Col>
+        
 
+
+        </Row>
+        
+             </Container>
+             </div>
+</div>
 
     )
 }

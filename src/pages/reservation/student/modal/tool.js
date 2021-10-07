@@ -658,14 +658,17 @@ const ToolModal = ({ unique }) => {
             >
 
                 <Row>
-                    <Col><CloseButton onClick={closeModal} size="15" style={{ marginRight: 300 }} /></Col>
-                    <Col>  <h1 style={{ color: '#FFFFFF' }}>เบิกอุปกรณ์</h1></Col>
+                <Col><CloseButton  onClick={closeModal} size="15" style={{ marginRight: 300 }} /></Col>
+                    <Col>  <h1 style={{ color: '#1565C0', fontWeight: 'bold'  }}>เบิกอุปกรณ์</h1></Col>
 
 
-                    <Col><h1 style={{ marginLeft: 200 }}>CC1</h1></Col>
+                    <Col><h1 style={{ marginLeft: 200 }}></h1></Col>
                 </Row>
                 <br />
-                <input type="search" /><br /><br />
+                <div style={{ marginLeft: '700px' }}>
+                Search
+                <input type="search" />
+                </div>
                 <label style={{ marginLeft: 15, marginBottom: 15 }}>รายการ</label>
                 <label style={{ marginLeft: 475, marginBottom: 15 }}>รายการ</label>
 

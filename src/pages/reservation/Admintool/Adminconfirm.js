@@ -85,7 +85,7 @@ const Adminconfirm = () => {
 
                 <Nav style={{ marginLeft: '15%' }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#ffff', marginLeft: '800px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#ffff', marginLeft: '980px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Container>
                 </Nav>
             </Navbar>
