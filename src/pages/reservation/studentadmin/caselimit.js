@@ -23,11 +23,20 @@ const StudentAdminLimitCase = () => {
     function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho) {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
         const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
-        alert("Success")
-        return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
+        const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
+        if (confirmBox == true) {      
+            console.log(confirmBox)
+            alert("การจำกัดงานสำเร็จ")          
+            return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
             console.log("Res Limit :", res)
             return history.push('/StudentAdminDashboard')
-        })
+             })
+        } else {
+            alert("โปรตรวจสอบข้อมูลอีกครั้ง")     
+            console.log(confirmBox)
+              
+        }
+        
     }
 
     const formik = useFormik({

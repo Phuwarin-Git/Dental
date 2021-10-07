@@ -15,6 +15,7 @@ import But from './reservationCss/ButtonRes';
 import Input from './reservationCss/InputRes'
 import Selected from './reservationCss/SelectRes';
 
+
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
@@ -41,13 +42,20 @@ const StudentRes = () => {
         const findDate = limit.filter((item) => {
             return ((item.date === date) && (item.time === time))
         })
-
-        if (findDate.length === 1) {
-            alert("Success")
-            return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
-                console.log("Res Create Details :", res)
-                return setOpen(true);
-            })
+          if (findDate.length === 1) {
+            const confirmBox = window.confirm("ต้องการยืนยันการจองหรือไม่")
+            if (confirmBox == true) {      
+                console.log(confirmBox)         
+                return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
+                     console.log("Res Create Details :", res)
+                    return setOpen(true);
+                 })
+            } else {
+                alert("โปรตรวจสอบข้อมูลอีกครั้ง")     
+                console.log(confirmBox)
+                  
+            }
+          
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
         }

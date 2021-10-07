@@ -56,13 +56,23 @@ const StudentAdminReservation = () => {
 
     function submitApprove() {
         if (select.length === 0) {
-            return alert('กรุณาเลือก Unit')
+             alert('กรุณาเลือก Unit')
         } else {
             let body = select;
+            const confirmBox = window.confirm("ต้องการยืนยันการเลือกยูนิตหรือไม่")
+        if (confirmBox == true) {      
+            console.log(confirmBox)
+            alert("การเลือกยูนิตสำเร็จ")          
             axios.put("http://localhost:3000/details/updateUnitSet/", body)
             console.log('Body data :', body)
-            alert("เลือกสำเร็จ")
             return history.push('/StudentAdminHistory')
+             
+        } else {
+            alert("โปรตรวจสอบข้อมูลอีกครั้ง")     
+            console.log(confirmBox)
+              
+        }
+            
         }
     }
 
