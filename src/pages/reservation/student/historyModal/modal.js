@@ -50,7 +50,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
 
     return (
         <div>
-            <Button style={{ background: '#2884ed', color: 'black' }} onClick={openModal}>
+            <Button style={{ background: '#1565C0', color: 'white' }} onClick={openModal}>
                 Details
             </Button>
             <StyleModal
