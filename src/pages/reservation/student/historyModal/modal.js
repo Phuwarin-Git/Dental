@@ -12,6 +12,7 @@ import './modalCss.css'
 const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn }) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [tools, setTools] = useState([]);
+    const [getJson, setJson] = useState([]);
 
     function openModal() {
         setIsOpen(true);
@@ -37,13 +38,14 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
         const res = item.filter((item) => {
             return (item.uniqueID === unique)
         })
-        setTools(res);
         console.log("Details Tools:", res)
-        console.log("Tool :", tools)
+        const myJSON = JSON.stringify(res, null, 2);
 
-        // for (const key in tools) {
-        //     console.log(`${key}: ${tools[key]}`);
-        // }
+
+        setTools(myJSON);
+
+
+
     }
 
     return (
@@ -90,11 +92,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                 </Container>
                                 <Card.Title style={{ textAlign: 'center' }}>รายการอุปกรณ์</Card.Title>
                                 <Container>
-                                    {tools.map(item => {
-                                        return <div key={item.key}>
-                                            <p>{item.uniqueID}</p>
-                                        </div>
-                                    })}
+                                    <p>{tools}</p>
                                 </Container>
                             </Card.Text>
                         </Card.Body>
