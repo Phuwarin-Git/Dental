@@ -49,24 +49,19 @@ const StudentHistory = () => {
             </Navbar>
             <br />
             <div className="PaddingDiv">
-                <h1>ประวัติการจองการทำงาน</h1>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
                 <Table
-                    className="tableResponsive"
-                    striped
-                    borderless
-                    hover
-                    variant="primary"
-                >
-                    <thead className="thedTop">
+                    striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
-                            <th style={{ color: 'white' }}>วันที่</th>
-                            <th style={{ color: 'white' }}>ช่วงเวลา</th>
-                            <th style={{ color: 'white' }}>Unit</th>
-                            <th style={{ color: 'white' }}>คลินิก</th>
-                            <th style={{ color: 'white' }}>ประเภทงาน</th>
-                            <th style={{ color: 'white' }}>คนไข้</th>
-                            <th style={{ color: 'white' }}>อาจารย์ผู้ตรวจ</th>
-                            <th style={{ color: 'white' }}>รายละเอียด</th>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>Unit</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>คนไข้</th>
+                            <th>อาจารย์ผู้ตรวจ</th>
+                            <th>รายละเอียด</th>
                         </tr>
                     </thead>
 

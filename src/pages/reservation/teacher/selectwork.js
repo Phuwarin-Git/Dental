@@ -42,13 +42,21 @@ const TeacherSelectWork = () => {
 
     function submitApprove() {
         if (isChecked.length === 0) {
-            return alert('กรุณาเลือกงานที่ต้องการตรวจ');
+            alert('กรุณาเลือกงานที่ต้องการตรวจ');
         } else {
             let body = isChecked;
-            axios.put("http://localhost:3000/details/updateTeacher/", body)
-            console.log('Body data :', body)
-            alert("เลือกสำเร็จ")
-            return history.push('/TeacherHistory')
+            const confirmBox = window.confirm("ต้องการยืนยันการตรวจงานหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                axios.put("http://localhost:3000/details/updateTeacher/", body)
+                console.log('Body data :', body)
+                alert('การเลือกตรวจงานสำเร็จ');
+                return history.push('/TeacherHistory')
+            } else {
+                alert("โปรตรวจสอบข้อมูลอีกครั้ง")
+                console.log(confirmBox)
+
+            }
         }
     }
 
