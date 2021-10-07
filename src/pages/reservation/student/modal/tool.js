@@ -669,8 +669,26 @@ const ToolModal = ({ unique }) => {
                 Search
                 <input type="search" />
                 </div>
-                <label style={{ marginLeft: 15, marginBottom: 15 }}>รายการ</label>
-                <label style={{ marginLeft: 475, marginBottom: 15 }}>รายการ</label>
+
+                
+                <div>
+                <lable style={{ marginRight: '2%', fontWeight: 'bold' }}> </lable>
+                            <input
+                                id="ช่วงเช้า"
+                                type="radio"
+                                value="ช่วงเช้า"
+                                name='time'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.time === "ช่วงเช้า"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '10%', fontWeight: 'bold',fontSize:'20px' }}>เบิกเซตอุปกรณ์</label>
+                </div>
+                <br/>
+
+                
+                <label style={{ marginLeft: 15, marginBottom: 15 , fontWeight: 'bold'}}>รายการ</label>
+                <label style={{ marginLeft: 410, marginBottom: 15 , fontWeight: 'bold'}}>รายการ</label>
 
                 <form onSubmit={formik.handleSubmit}>
                     <div>
