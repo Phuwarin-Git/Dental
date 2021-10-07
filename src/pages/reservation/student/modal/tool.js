@@ -654,10 +654,10 @@ const ToolModal = () => {
 
                 <Row>
                     <Col><CloseButton onClick={closeModal} size="15" style={{ marginRight: 300 }} /></Col>
-                    <Col>  <h1 style={{ color: '#FFFFFF' }}>เบิกอุปกรณ์</h1></Col>
+                    <Col>  <h1 style={{ color: '#1565C0',marginRight: '500px' }}>เบิกอุปกรณ์</h1></Col>
 
 
-                    <Col><h1 style={{ marginLeft: 200 }}>CC1</h1></Col>
+ 
                 </Row>
                 <br />
                 <input type="search" /><br /><br />
@@ -3864,7 +3864,7 @@ const ToolModal = () => {
                             </Container>
                             <br />
                             <center>
-                                <button className="But" style={{ backgroundColor: '#1565C0', marginBottom: 10 }} type="submit" >Submit</button>
+                                <button className="But" style={{ backgroundColor: '#ffff', marginBottom: 10 }} type="submit" >Submit</button>
 
                             </center>
                         </div>

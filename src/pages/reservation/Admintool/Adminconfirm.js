@@ -15,11 +15,16 @@ import './adminmodal/TableAdminconfirm.css'
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
-
+    const [getod, setod] = useState([]);
     useEffect(() => {
         getDetails();
+        filterDetails();
         console.log("User :", user)
     }, [user])
+
+    useEffect(() => {
+        console.log("odtest", getod)
+    }, [getod])
 
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/notnull").then((item) => {
@@ -30,16 +35,31 @@ const Adminconfirm = () => {
 
     //ตอนเช็คจริงๆน่าจะใช้ E-mail เผื่อมีชื่อซ้ำ
 
-    const filterDetails = (item) => {
-        const res = item.filter((item) => {
-            return (item.name === user.first_name)
+    const filterDetails = () => {
+        const res = details.filter((item) => {
+            return (item.patient === "Jakkarayo")
         })
-        setDetials(res);
-        console.log("details :", res)
+        setod(res)
     }
 
+    // const FilterDetails = () =>{
+    //     constructor(props) 
+    //       super(props);
+    //       this.state = {
+    //         data: this.props.data,
+    //         priority: '',
+    //       };
+    //       this.handleChange = this.handleChange.bind(this);
+    //     }
+      
+    //  const handleChange = (e) => {
+    //       var val = e.target.value;
+    //       this.setState({ priority: val });
+    //       this.props.changeOption(val);
+    //     }
 
 
+    
 
     return (
         <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
@@ -131,8 +151,9 @@ const Adminconfirm = () => {
                 </Table>
             </div >
         </div>
+                
     )
-
+                
 }
 
 export default Adminconfirm;
