@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import CloseButton from 'react-bootstrap/CloseButton'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
@@ -6,10 +6,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StyleModal from "./historyCss";
 import { Button } from 'react-bootstrap';
+import axios from "axios";
 import './modalCss.css'
 
-const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn }) => {
+const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn }) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [tools, setTools] = useState([]);
 
     function openModal() {
         setIsOpen(true);
@@ -17,6 +19,31 @@ const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn })
 
     function closeModal() {
         setIsOpen(false);
+    }
+
+
+    useEffect(() => {
+        getTools();
+    }, [modalIsOpen])
+
+    const getTools = () => {
+        axios.get("http://localhost:3000/tool/find/notnull").then((item) => {
+            console.log("data :", item.data)
+            return filterToolsDetails(item.data);
+        });
+    }
+
+    const filterToolsDetails = (item) => {
+        const res = item.filter((item) => {
+            return (item.uniqueID === unique)
+        })
+        setTools(res);
+        console.log("Details Tools:", res)
+        console.log("Tool :", tools)
+
+        // for (const key in tools) {
+        //     console.log(`${key}: ${tools[key]}`);
+        // }
     }
 
     return (
@@ -63,24 +90,11 @@ const HistoryModal = ({ unit, name, year, date, clinic, type, patient, dn, hn })
                                 </Container>
                                 <Card.Title style={{ textAlign: 'center' }}>รายการอุปกรณ์</Card.Title>
                                 <Container>
-                                    <Row>
-                                        <label>คีมเล็ก : 1</label>
-                                    </Row>
-                                    <Row>
-                                        <label>ผ้าพันแผล : 3</label>
-                                    </Row>
-                                    <Row>
-                                        <label>สำลี : 1</label>
-                                    </Row>
-                                    <Row>
-                                        <label>ผ้าพันแผล : 1</label>
-                                    </Row>
-                                    <Row>
-                                        <label>ผ้าพันแผล : 1</label>
-                                    </Row>
-                                    <Row>
-                                        <lable>{" "}</lable>
-                                    </Row>
+                                    {tools.map(item => {
+                                        return <div key={item.key}>
+                                            <p>{item.uniqueID}</p>
+                                        </div>
+                                    })}
                                 </Container>
                             </Card.Text>
                         </Card.Body>

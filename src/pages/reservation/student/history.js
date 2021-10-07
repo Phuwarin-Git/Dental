@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Table from 'react-bootstrap/Table'
 import { Nav, Container } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import HistoryModal from './historyModal/modal';
@@ -25,8 +24,6 @@ const StudentHistory = () => {
             return filterDetails(item.data);
         });
     }
-
-    //ตอนเช็คจริงๆน่าจะใช้ E-mail เผื่อมีชื่อซ้ำ
 
     const filterDetails = (item) => {
         const res = item.filter((item) => {
@@ -84,6 +81,7 @@ const StudentHistory = () => {
                                 <td className='tdStudent'>{item.patient}</td>
                                 <td className='tdStudent'>{item.teacher}</td>
                                 <td className='tdStudent'><HistoryModal
+                                    unique={item.uniqueID}
                                     unit={item.unit}
                                     name={item.name}
                                     year={item.studentyear}
