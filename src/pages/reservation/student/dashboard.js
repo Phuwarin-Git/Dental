@@ -74,10 +74,10 @@ const StudentDashboard = () => {
                                 striped
                                 borderless
                                 hover
-                                variant="dark"
+                                variant="primary"
                                 style={{ width: '800px' }}
                             >
-                                <thead>
+                                <thead style={{ backgroundColor: '#1f5bcc', color: 'white' }}>
                                     <tr>
                                         <th>วันที่</th>
                                         <th>ช่วงเวลา</th>
@@ -90,12 +90,12 @@ const StudentDashboard = () => {
                                 {details.map(item => {
                                     return <tbody key={item.id}>
                                         <tr>
-                                            <td style={{ color: 'white' }}>{item.date}</td>
-                                            <td style={{ color: 'white' }}>{item.time}</td>
-                                            <td style={{ color: 'white' }}>{item.clinic}</td>
-                                            <td style={{ color: 'white' }}>{item.worktype}</td>
-                                            <td style={{ color: 'white' }}>{item.patient}</td>
-                                            <td style={{ color: 'white' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
+                                            <td style={{ color: 'black' }}>{item.date}</td>
+                                            <td style={{ color: 'black' }}>{item.time}</td>
+                                            <td style={{ color: 'black' }}>{item.clinic}</td>
+                                            <td style={{ color: 'black' }}>{item.worktype}</td>
+                                            <td style={{ color: 'black' }}>{item.patient}</td>
+                                            <td style={{ color: 'black' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
                                                 <Spinner
                                                     as="span"
                                                     animation="border"
