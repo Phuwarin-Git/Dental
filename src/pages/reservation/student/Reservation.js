@@ -61,6 +61,89 @@ const StudentRes = () => {
             console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
             const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
 
+            if (clinic === "od") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { od: findDate[0].od - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("OD = ", findDate[0].od)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "tmd") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { tmd: findDate[0].tmd - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateTMD = ", findDate[0].tmd)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "oper") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { oper: findDate[0].oper - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateOper = ", findDate[0].oper)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "perio") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { perio: findDate[0].perio - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDatePerio = ", findDate[0].perio)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "sur") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { sur: findDate[0].sur - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateSur = ", findDate[0].sur)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "prosth") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { prosth: findDate[0].prosth - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateProsth = ", findDate[0].prosth)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "endo") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { endo: findDate[0].endo - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateEndo = ", findDate[0].endo)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "xray") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { xray: findDate[0].xray - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateXray = ", findDate[0].xray)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "om") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { om: findDate[0].om - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateOm = ", findDate[0].om)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            } else if (clinic === "ortho") {
+                console.log("FindDate :", findDate)
+                let limit_id = findDate[0].limit_id
+                let UpdateCase = { ortho: findDate[0].ortho - 1 }
+                console.log("limit ID :", limit_id)
+                console.log("findDateOrtho = ", findDate[0].ortho)
+                console.log(" Case - 1 :", UpdateCase)
+                axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+            }
+
+
             return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
                 return setOpen(true);
