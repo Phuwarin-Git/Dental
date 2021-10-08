@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import axios from "axios";
 import Table from 'react-bootstrap/Table'
 
-const Adminmodal = () => {
+const Adminmodal = ({ unique }) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [Tool, setDetials] = useState([]);
 
@@ -22,10 +22,20 @@ const Adminmodal = () => {
     }
 
     const getTool = () => {
-        axios.get("http://localhost:3000/Tool/find/all").then((item) => {
-            setDetials(item.data)
+        axios.get("http://localhost:3000/Tool/find/notnull").then((item) => {
             console.log("data :", item.data)
+            return filterToolsDetails(item.data);
         });
+    }
+
+    const filterToolsDetails = (item) => {
+        const res = item.filter((item) => {
+            return (item.uniqueID === unique)
+        })
+        console.log("Details Tools:", res)
+        const myJSON = JSON.stringify(res, null, 2);
+
+        setDetials(myJSON);
     }
 
     return (
@@ -43,12 +53,12 @@ const Adminmodal = () => {
                 <div>
                     <center style={{}}>
                         <br />
-                        <h3 style={{ color: '#0047AB' , fontWeight: 'bold' }}>เครื่องมือเบิกงาน Endo</h3>
+                        <h3 style={{ color: '#0047AB', fontWeight: 'bold' }}>เครื่องมือเบิกงาน Endo</h3>
                     </center>
-                    <div style={{ marginLeft: "50px", overflowY:'auto' }}>
+                    <div style={{ marginLeft: "50px", overflowY: 'auto' }}>
                         <br />
-
-                        <Table
+                        <p>{Tool}</p>
+                        {/* <Table
                             striped
                             borderless
                             hover
@@ -58,50 +68,50 @@ const Adminmodal = () => {
                         >
                             <thead>
                                 <tr>
-                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px',paddingLeft:'47px'}}>ชื่ออุปกรณ์</th>
-                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px',textAlign:'end'}}>จำนวน</th>
+                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px', paddingLeft: '47px' }}>ชื่ออุปกรณ์</th>
+                                    <th style={{ color: 'black', fontWeight: 'bold', fontSize: '18px', textAlign: 'end' }}>จำนวน</th>
                                 </tr>
-                                
+
                             </thead>
                             {Tool.map(item => {
                                 return <tbody key={Tool.ID}>
                                     <tr>
-                                        <td style={{ color: 'black', fontSize: '18px', paddingLeft:'50px' }}>
-                                        ชุดตรวจ 
-                                         <br/>
-                                          แก้วนํ้า  
-                                          <br/>
-                                          Tripple syring
-                                          <br/>
-                                          ผ้าเจาะกลาง
-                                          <br/>
-                                          ผ้าคลุม
-                                          <br/>
-                                          UNC 15 Probe
-                                          </td> 
+                                        <td style={{ color: 'black', fontSize: '18px', paddingLeft: '50px' }}>
+                                            ชุดตรวจ
+                                            <br />
+                                            แก้วนํ้า
+                                            <br />
+                                            Tripple syring
+                                            <br />
+                                            ผ้าเจาะกลาง
+                                            <br />
+                                            ผ้าคลุม
+                                            <br />
+                                            UNC 15 Probe
+                                        </td>
 
-                                          <br/>
+                                        <br />
 
-                                          <td style={{ color: 'black', fontSize: '18px', paddingRight:'10px' }}>                                             
-                                          {item.testkit_toolcc1}
-                                          <br/>
-                                         {item.glassofwater_toolcc1}
-                                         <br/>
-                                         {item.Tripplesyring_toolcc1}
-                                         <br/>
-                                         {item.FabricMiddlepunch_toolcc1}
-                                         <br/>
-                                         {item.veil_toolcc1}
-                                         <br/>
-                                         {item.UNC15Probe_toolcc1}
-                                         </td>
-                                         
-                                            
+                                        <td style={{ color: 'black', fontSize: '18px', paddingRight: '10px' }}>
+                                            {item.testkit_toolcc1}
+                                            <br />
+                                            {item.glassofwater_toolcc1}
+                                            <br />
+                                            {item.Tripplesyring_toolcc1}
+                                            <br />
+                                            {item.FabricMiddlepunch_toolcc1}
+                                            <br />
+                                            {item.veil_toolcc1}
+                                            <br />
+                                            {item.UNC15Probe_toolcc1}
+                                        </td>
+
+
 
                                     </tr>
                                 </tbody>
                             })}
-                        </Table>
+                        </Table> */}
 
                         <br />
                     </div>

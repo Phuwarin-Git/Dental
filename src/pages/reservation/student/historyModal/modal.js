@@ -41,11 +41,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
         console.log("Details Tools:", res)
         const myJSON = JSON.stringify(res, null, 2);
 
-
         setTools(myJSON);
-
-
-
     }
 
     return (

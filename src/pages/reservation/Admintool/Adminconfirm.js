@@ -51,7 +51,7 @@ const Adminconfirm = () => {
     //       };
     //       this.handleChange = this.handleChange.bind(this);
     //     }
-      
+
     //  const handleChange = (e) => {
     //       var val = e.target.value;
     //       this.setState({ priority: val });
@@ -59,7 +59,7 @@ const Adminconfirm = () => {
     //     }
 
 
-    
+
 
     return (
         <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
@@ -143,7 +143,7 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.patient}</td>
                                 <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
-                                <td className='tdAdmin' ><Adminmodal /></td>
+                                <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
 
                             </tr>
                         </tbody>
@@ -151,9 +151,9 @@ const Adminconfirm = () => {
                 </Table>
             </div >
         </div>
-                
+
     )
-                
+
 }
 
 export default Adminconfirm;
