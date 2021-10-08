@@ -670,13 +670,13 @@ const ToolModal = ({ unique }) => {
                 onRequestClose={closeModal}
                 contentLabel='modal'
             >
-                <Row style={{ flex: 1, height: 55, backgroundColor: '#16AFF9' }}>
+                <Row style={{ flex: 1, height: 55, backgroundColor: '#fff' }}>
                     <Col>
                         <CloseButton onClick={closeModal} style={{ marginRight: 300 }} />
                     </Col>
                     <Col>
                         {' '}
-                        <h1 style={{ color: '#FFFFFF' }}>เบิกอุปกรณ์</h1>
+                        <h1 style={{ color: '#0047AB' }}>เบิกอุปกรณ์</h1>
                     </Col>
 
                     <Col>
@@ -733,7 +733,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='testkit_toolcc1'
                                                     name='testkit_toolcc1'
                                                     onChange={formik.handleChange}
@@ -765,7 +765,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='glassofwater_toolcc1'
                                                     name='glassofwater_toolcc1'
                                                     onChange={formik.handleChange}
@@ -797,7 +797,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Tripplesyring_toolcc1'
                                                     name='Tripplesyring_toolcc1'
                                                     onChange={formik.handleChange}
@@ -830,7 +830,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='FabricMiddlepunch_toolcc1'
                                                     name='FabricMiddlepunch_toolcc1'
                                                     onChange={formik.handleChange}
@@ -863,7 +863,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='veil_toolcc1'
                                                     name='veil_toolcc1'
                                                     onChange={formik.handleChange}
@@ -896,7 +896,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='UNC15Probe_toolcc1'
                                                     name='UNC15Probe_toolcc1'
                                                     onChange={formik.handleChange}
@@ -929,7 +929,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='medicinecup_toolcc1'
                                                     name='medicinecup_toolcc1'
                                                     onChange={formik.handleChange}
@@ -962,7 +962,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Dappendish_toolcc1'
                                                     name='Dappendish_toolcc1'
                                                     onChange={formik.handleChange}
@@ -995,7 +995,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Mouthprop_toolcc1'
                                                     name='Mouthprop_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1028,7 +1028,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Glasslab_toolcc1'
                                                     name='Glasslab_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1061,7 +1061,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Airotor_toolcc1'
                                                     name='Airotor_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1094,7 +1094,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Contra_toolcc1'
                                                     name='Contra_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1127,7 +1127,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='cottonbud_toolcc1'
                                                     name='cottonbud_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1160,7 +1160,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rubbercup_toolcc1'
                                                     name='Rubbercup_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1193,7 +1193,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='AnestheticSyringe_toolcc1'
                                                     name='AnestheticSyringe_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1226,7 +1226,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='BladeHolder_toolcc1'
                                                     name='BladeHolder_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1259,7 +1259,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Blade_toolcc1'
                                                     name='Blade_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1292,7 +1292,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Compositstopperset_toolcc1'
                                                     name='Compositstopperset_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1325,7 +1325,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Amalgamfillingset_toolcc1'
                                                     name='Amalgamfillingset_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1358,7 +1358,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Compositsandingsetslowrewind_toolcc1'
                                                     name='Compositsandingsetslowrewind_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1395,7 +1395,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Compositsandingsetfastrewinding_toolcc1'
                                                     name='Compositsandingsetfastrewinding_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1431,7 +1431,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='plasticcomposit_toolcc1'
                                                     name='plasticcomposit_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1464,7 +1464,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Spoonexcavatorlarge_toolcc1'
                                                     name='Spoonexcavatorlarge_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1497,7 +1497,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='MatrixV3_toolcc1'
                                                     name='MatrixV3_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1530,7 +1530,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='MatrixV3Forcep_toolcc1'
                                                     name='MatrixV3Forcep_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1563,7 +1563,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rounddimondbursetslow_toolcc1'
                                                     name='Rounddimondbursetslow_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1596,7 +1596,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Cylinderdimondbursetslow_toolcc1'
                                                     name='Cylinderdimondbursetslow_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1629,7 +1629,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rounddimondbursetfast_toolcc1'
                                                     name='Rounddimondbursetfast_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1662,7 +1662,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Cylinderdimondbursetfast_toolcc1'
                                                     name='Cylinderdimondbursetfast_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1695,7 +1695,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Dycalcarrier_toolcc1'
                                                     name='Dycalcarrier_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1728,7 +1728,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Spatulaplastic_toolcc1'
                                                     name='Spatulaplastic_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1761,7 +1761,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Cementspatula_toolcc1'
                                                     name='Cementspatula_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1794,7 +1794,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Mendrelscrubset_toolcc1'
                                                     name='Mendrelscrubset_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1827,7 +1827,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Poponsmall_toolcc1'
                                                     name='Poponsmall_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1860,7 +1860,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rubberdamset_toolcc1'
                                                     name='Rubberdamset_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1893,7 +1893,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='clamp_toolcc1'
                                                     name='clamp_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1926,7 +1926,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Steelheadslowdown_toolcc1'
                                                     name='Steelheadslowdown_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1959,7 +1959,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Astropolpolishingset_toolcc1'
                                                     name='Astropolpolishingset_toolcc1'
                                                     onChange={formik.handleChange}
@@ -1992,7 +1992,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='IvoryTofflemirematrix_toolcc1'
                                                     name='IvoryTofflemirematrix_toolcc1'
                                                     onChange={formik.handleChange}
@@ -2025,7 +2025,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='hightpowersuction_toolcc1'
                                                     name='hightpowersuction_toolcc1'
                                                     onChange={formik.handleChange}
@@ -2101,7 +2101,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='FabricMiddlepunch_endo'
                                                     name='FabricMiddlepunch_endo'
                                                     onChange={formik.handleChange}
@@ -2131,7 +2131,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='veil_endo'
                                                     name='veil_endo'
                                                     onChange={formik.handleChange}
@@ -2164,7 +2164,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='testkit_endo'
                                                     name='testkit_endo'
                                                     onChange={formik.handleChange}
@@ -2197,7 +2197,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Tripplesyringe_endo'
                                                     name='Tripplesyringe_endo'
                                                     onChange={formik.handleChange}
@@ -2230,7 +2230,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Twoouncesglass_endo'
                                                     name='Twoouncesglass_endo'
                                                     onChange={formik.handleChange}
@@ -2263,7 +2263,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Mouthprop_endo'
                                                     name='Mouthprop_endo'
                                                     onChange={formik.handleChange}
@@ -2296,7 +2296,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='AnestheticSyringe_endo'
                                                     name='AnestheticSyringe_endo'
                                                     onChange={formik.handleChange}
@@ -2329,7 +2329,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='cottonbud_endo'
                                                     name='cottonbud_endo'
                                                     onChange={formik.handleChange}
@@ -2362,7 +2362,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Airotor_endo'
                                                     name='Airotor_endo'
                                                     onChange={formik.handleChange}
@@ -2395,7 +2395,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Contra_endo'
                                                     name='Contra_endo'
                                                     onChange={formik.handleChange}
@@ -2428,7 +2428,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='FileStand_endo'
                                                     name='FileStand_endo'
                                                     onChange={formik.handleChange}
@@ -2461,7 +2461,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='PlatePaperPoint_endo'
                                                     name='PlatePaperPoint_endo'
                                                     onChange={formik.handleChange}
@@ -2494,7 +2494,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='RubberdamFlame_endo'
                                                     name='RubberdamFlame_endo'
                                                     onChange={formik.handleChange}
@@ -2527,7 +2527,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='RubberdamSheet_endo'
                                                     name='RubberdamSheet_endo'
                                                     onChange={formik.handleChange}
@@ -2560,7 +2560,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Clamp_endo'
                                                     name='Clamp_endo'
                                                     onChange={formik.handleChange}
@@ -2593,7 +2593,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='EndoBursBoxHead_endo'
                                                     name='EndoBursBoxHead_endo'
                                                     onChange={formik.handleChange}
@@ -2626,7 +2626,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Barbedbrodch_endo'
                                                     name='Barbedbrodch_endo'
                                                     onChange={formik.handleChange}
@@ -2659,7 +2659,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Lentulospiral_endo'
                                                     name='Lentulospiral_endo'
                                                     onChange={formik.handleChange}
@@ -2692,7 +2692,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='ProtaperHand21mm_endo'
                                                     name='ProtaperHand21mm_endo'
                                                     onChange={formik.handleChange}
@@ -2725,7 +2725,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='ProtaperHand25mm_endo'
                                                     name='ProtaperHand25mm_endo'
                                                     onChange={formik.handleChange}
@@ -2758,7 +2758,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='GateDrillheadfrontteeth_endo'
                                                     name='GateDrillheadfrontteeth_endo'
                                                     onChange={formik.handleChange}
@@ -2791,7 +2791,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='GateDrillheadrearteeth_endo'
                                                     name='GateDrillheadrearteeth_endo'
                                                     onChange={formik.handleChange}
@@ -2824,7 +2824,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Tripplesyring_toolcc1'
                                                     name='Tripplesyring_toolcc1'
                                                     onChange={formik.handleChange}
@@ -2858,7 +2858,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='WashneedleNo2427_endo'
                                                     name='WashneedleNo2427_endo'
                                                     onChange={formik.handleChange}
@@ -2891,7 +2891,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HooktheRootZx_endo'
                                                     name='HooktheRootZx_endo'
                                                     onChange={formik.handleChange}
@@ -2924,7 +2924,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Glasslab_endo'
                                                     name='Glasslab_endo'
                                                     onChange={formik.handleChange}
@@ -2957,7 +2957,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HighPowerSuction_endo'
                                                     name='HighPowerSuction_endo'
                                                     onChange={formik.handleChange}
@@ -2990,7 +2990,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='OCBoxset_endo'
                                                     name='OCBoxset_endo'
                                                     onChange={formik.handleChange}
@@ -3023,7 +3023,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='FRCBoxset_endo'
                                                     name='FRCBoxset_endo'
                                                     onChange={formik.handleChange}
@@ -3056,7 +3056,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='CFile21_endo'
                                                     name='CFile21_endo'
                                                     onChange={formik.handleChange}
@@ -3089,7 +3089,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='CFile25_endo'
                                                     name='CFile25_endo'
                                                     onChange={formik.handleChange}
@@ -3122,7 +3122,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HFile21mm1540_endo'
                                                     name='HFile21mm1540_endo'
                                                     onChange={formik.handleChange}
@@ -3155,7 +3155,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HFile21mm4580_endo'
                                                     name='HFile21mm4580_endo'
                                                     onChange={formik.handleChange}
@@ -3188,7 +3188,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HFile25mm1540_endo'
                                                     name='HFile25mm1540_endo'
                                                     onChange={formik.handleChange}
@@ -3221,7 +3221,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='HFile25mm4580_endo'
                                                     name='HFile25mm4580_endo'
                                                     onChange={formik.handleChange}
@@ -3254,7 +3254,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='NitiFile21mm1540_endo'
                                                     name='NitiFile21mm1540_endo'
                                                     onChange={formik.handleChange}
@@ -3287,7 +3287,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='NitiFile21mm4560_endo'
                                                     name='NitiFile21mm4560_endo'
                                                     onChange={formik.handleChange}
@@ -3320,7 +3320,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='NitiFile25mm1540_endo'
                                                     name='NitiFile25mm1540_endo'
                                                     onChange={formik.handleChange}
@@ -3353,7 +3353,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='NitiFile25mm4560_endo'
                                                     name='NitiFile25mm4560_endo'
                                                     onChange={formik.handleChange}
@@ -3386,7 +3386,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile21mm840_endo'
                                                     name='KFile21mm840_endo'
                                                     onChange={formik.handleChange}
@@ -3419,7 +3419,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile21mm4580_endo'
                                                     name='KFile21mm4580_endo'
                                                     onChange={formik.handleChange}
@@ -3452,7 +3452,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile25mm840_endo'
                                                     name='KFile25mm840_endo'
                                                     onChange={formik.handleChange}
@@ -3485,7 +3485,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile25mm4580_endo'
                                                     name='KFile25mm4580_endo'
                                                     onChange={formik.handleChange}
@@ -3518,7 +3518,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile30mm840_endo'
                                                     name='KFile30mm840_endo'
                                                     onChange={formik.handleChange}
@@ -3551,7 +3551,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='KFile30mm4580_endo'
                                                     name='KFile30mm4580_endo'
                                                     onChange={formik.handleChange}
@@ -3627,7 +3627,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='testkit_periood'
                                                     name='testkit_periood'
                                                     onChange={formik.handleChange}
@@ -3660,7 +3660,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='backteethscalingkit_periood'
                                                     name='backteethscalingkit_periood'
                                                     onChange={formik.handleChange}
@@ -3693,7 +3693,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='sickelfrontteeth_periood'
                                                     name='sickelfrontteeth_periood'
                                                     onChange={formik.handleChange}
@@ -3726,7 +3726,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='sickelposteriorteethS204SD_periood'
                                                     name='sickelposteriorteethS204SD_periood'
                                                     onChange={formik.handleChange}
@@ -3761,7 +3761,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='frontteethcuretteSG34_periood'
                                                     name='frontteethcuretteSG34_periood'
                                                     onChange={formik.handleChange}
@@ -3794,7 +3794,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='AfterFive_periood'
                                                     name='AfterFive_periood'
                                                     onChange={formik.handleChange}
@@ -3827,7 +3827,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='MiniFive_periood'
                                                     name='MiniFive_periood'
                                                     onChange={formik.handleChange}
@@ -3860,7 +3860,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='PeriodontalProbeUNC15_periood'
                                                     name='PeriodontalProbeUNC15_periood'
                                                     onChange={formik.handleChange}
@@ -3893,7 +3893,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='WHOProbe_periood'
                                                     name='WHOProbe_periood'
                                                     onChange={formik.handleChange}
@@ -3926,7 +3926,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='NeberProbe_periood'
                                                     name='NeberProbe_periood'
                                                     onChange={formik.handleChange}
@@ -3959,7 +3959,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='pourthemedicine_periood'
                                                     name='pourthemedicine_periood'
                                                     onChange={formik.handleChange}
@@ -3992,7 +3992,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Dappendish_periood'
                                                     name='Dappendish_periood'
                                                     onChange={formik.handleChange}
@@ -4025,7 +4025,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Mouthprop_periood'
                                                     name='Mouthprop_periood'
                                                     onChange={formik.handleChange}
@@ -4058,7 +4058,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='AnestheticSyringe_periood'
                                                     name='AnestheticSyringe_periood'
                                                     onChange={formik.handleChange}
@@ -4091,7 +4091,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='whetstone_periood'
                                                     name='whetstone_periood'
                                                     onChange={formik.handleChange}
@@ -4124,7 +4124,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='P5scraper_periood'
                                                     name='P5scraper_periood'
                                                     onChange={formik.handleChange}
@@ -4158,7 +4158,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='P10scraper_periood'
                                                     name='P10scraper_periood'
                                                     onChange={formik.handleChange}
@@ -4191,7 +4191,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rabbercup_periood'
                                                     name='Rabbercup_periood'
                                                     onChange={formik.handleChange}
@@ -4224,7 +4224,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Rabberbrush_periood'
                                                     name='Rabberbrush_periood'
                                                     onChange={formik.handleChange}
@@ -4257,7 +4257,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='cottonbud_periood'
                                                     name='cottonbud_periood'
                                                     onChange={formik.handleChange}
@@ -4290,7 +4290,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Airotor_periood'
                                                     name='Airotor_periood'
                                                     onChange={formik.handleChange}
@@ -4323,7 +4323,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Contra_periood'
                                                     name='Contra_periood'
                                                     onChange={formik.handleChange}
@@ -4356,7 +4356,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Phophy_periood'
                                                     name='Phophy_periood'
                                                     onChange={formik.handleChange}
@@ -4389,7 +4389,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Straight_periood'
                                                     name='Straight_periood'
                                                     onChange={formik.handleChange}
@@ -4422,7 +4422,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Triplesyring_periood'
                                                     name='Triplesyring_periood'
                                                     onChange={formik.handleChange}
@@ -4455,7 +4455,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='ruler_periood'
                                                     name='ruler_periood'
                                                     onChange={formik.handleChange}
@@ -4488,7 +4488,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='Retractor_periood'
                                                     name='Retractor_periood'
                                                     onChange={formik.handleChange}
@@ -4521,7 +4521,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='FabricMiddlepunch_periood'
                                                     name='FabricMiddlepunch_periood'
                                                     onChange={formik.handleChange}
@@ -4554,7 +4554,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='veil_periood'
                                                     name='veil_periood'
                                                     onChange={formik.handleChange}
@@ -4587,7 +4587,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='unitcleaningkit_periood'
                                                     name='unitcleaningkit_periood'
                                                     onChange={formik.handleChange}
@@ -4620,7 +4620,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='gumsurgerykit_periood'
                                                     name='gumsurgerykit_periood'
                                                     onChange={formik.handleChange}
@@ -4653,7 +4653,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#9BD3F9' }}
+                                                    style={{ backgroundColor: '#FFFFFF' }}
                                                     id='gumsurgicalgown_periood'
                                                     name='gumsurgicalgown_periood'
                                                     onChange={formik.handleChange}
@@ -4682,7 +4682,7 @@ const ToolModal = ({ unique }) => {
                         <center>
                             <button
                                 className='But'
-                                style={{ backgroundColor: '#1565C0', marginBottom: 10 }}
+                                style={{ backgroundColor: '#0047AB', marginBottom: 10 }}
                                 type='submit'
                             >
                                 Submit
