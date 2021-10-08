@@ -40,36 +40,30 @@ const StudentAdminHistory = () => {
             <br />
 
             <div className="PaddingDiv">
-                <h1>ประวัติ</h1>
-                <Table
-                    className="tableResponsive"
-                    striped
-                    borderless
-                    hover
-                    variant="primary"
-                >
-                    <thead className="thedTop">
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติ</h1>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
-                            <th style={{ color: 'white' }}>ชื่อนักศึกษา</th>
-                            <th style={{ color: 'white' }}>วันที่</th>
-                            <th style={{ color: 'white' }}>ช่วงเวลา</th>
-                            <th style={{ color: 'white' }}>Unit</th>
-                            <th style={{ color: 'white' }}>คลินิก</th>
-                            <th style={{ color: 'white' }}>ประเภทงาน</th>
-                            <th style={{ color: 'white' }}>คนไข้</th>
+                            <th>ชื่อนักศึกษา</th>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>Unit</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>คนไข้</th>
                         </tr>
                     </thead>
 
                     {details.map(item => {
                         return <tbody key={item.id} >
                             <tr >
-                                <td>{item.name}</td>
-                                <td>{item.date}</td>
-                                <td>{item.time}</td>
-                                <td>{item.unit}</td>
-                                <td>{item.clinic}</td>
-                                <td>{item.worktype}</td>
-                                <td>{item.patient}</td>
+                                <td className='tdStudent'>{item.name}</td>
+                                <td className='tdStudent'>{item.date}</td>
+                                <td className='tdStudent'>{item.time}</td>
+                                <td className='tdStudent'>{item.unit}</td>
+                                <td className='tdStudent'>{item.clinic}</td>
+                                <td className='tdStudent'>{item.worktype}</td>
+                                <td className='tdStudent'>{item.patient}</td>
                             </tr>
                         </tbody>
                     })}

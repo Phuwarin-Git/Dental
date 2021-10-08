@@ -23,11 +23,20 @@ const StudentAdminLimitCase = () => {
     function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho) {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
         const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
-        alert("Success")
-        return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
-            console.log("Res Limit :", res)
-            return history.push('/StudentAdminDashboard')
-        })
+        const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
+        if (confirmBox == true) {
+            console.log(confirmBox)
+            alert("การจำกัดงานสำเร็จ")
+            return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
+                console.log("Res Limit :", res)
+                return history.push('/StudentAdminDashboard')
+            })
+        } else {
+            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
+            console.log(confirmBox)
+
+        }
+
     }
 
     const formik = useFormik({
@@ -92,198 +101,195 @@ const StudentAdminLimitCase = () => {
             </Navbar>
             <br />
             <Container>
-                <Row>
-                    <Col>
-                        <Limit />
-                    </Col>
-                    <Col>
-                        <h1>จำกัดภาระงาน</h1>
-                        <form onSubmit={formik.handleSubmit}>
-                            <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ marginBottom: '10px' }}
-                                id="date"
-                                name="date"
-                                type="date"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.date}
-                            />
-                            {formik.touched.date && formik.errors.date ? (
-                                <div className="error">{formik.errors.date}</div>
-                            ) : null} <br />
+
+                <Limit />
+
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำกัดภาระงาน</h1>
+                <form onSubmit={formik.handleSubmit}>
+                    <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        style={{ marginBottom: '10px' }}
+                        id="date"
+                        name="date"
+                        type="date"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.date}
+                    />
+                    {formik.touched.date && formik.errors.date ? (
+                        <div className="error">{formik.errors.date}</div>
+                    ) : null} <br />
 
 
-                            <lable style={{ marginRight: '2%', fontWeight: 'bold' }}>เลือกช่วงเวลา : </lable>
-                            <input
-                                id="ช่วงเช้า"
-                                type="radio"
-                                value="ช่วงเช้า"
-                                name='time'
-                                onChange={formik.handleChange}
-                                defaultChecked={formik.values.time === "ช่วงเช้า"}
-                            />
-                            &nbsp;&nbsp;&nbsp;
-                            <label style={{ marginRight: '10%' }}>ช่วงเช้า</label>
+                    <lable style={{ marginRight: '2%', fontWeight: 'bold' }}>เลือกช่วงเวลา : </lable>
+                    <input
+                        id="ช่วงเช้า"
+                        type="radio"
+                        value="ช่วงเช้า"
+                        name='time'
+                        onChange={formik.handleChange}
+                        defaultChecked={formik.values.time === "ช่วงเช้า"}
+                    />
+                    &nbsp;&nbsp;&nbsp;
+                    <label style={{ marginRight: '10%' }}>ช่วงเช้า</label>
 
 
-                            <input
-                                id="ช่วงบ่าย"
-                                type="radio"
-                                value="ช่วงบ่าย"
-                                name='time'
-                                onChange={formik.handleChange}
-                                defaultChecked={formik.values.time === "ช่วงบ่าย"}
-                            />
-                            &nbsp;&nbsp;&nbsp;
-                            <label>ช่วงบ่าย</label>
+                    <input
+                        id="ช่วงบ่าย"
+                        type="radio"
+                        value="ช่วงบ่าย"
+                        name='time'
+                        onChange={formik.handleChange}
+                        defaultChecked={formik.values.time === "ช่วงบ่าย"}
+                    />
+                    &nbsp;&nbsp;&nbsp;
+                    <label>ช่วงบ่าย</label>
 
-                            {formik.touched.time && formik.errors.time ? (
-                                <div className="error">{formik.errors.time}</div>
-                            ) : null}<br />
-
-
-                            <label style={{ fontWeight: 'bold' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="od"
-                                name="od"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.od}
-                            />
-                            {formik.touched.od && formik.errors.od ? (
-                                <div className="error">{formik.errors.od}</div>
-                            ) : null} <br />
+                    {formik.touched.time && formik.errors.time ? (
+                        <div className="error">{formik.errors.time}</div>
+                    ) : null}<br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="tmd"
-                                name="tmd"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.tmd}
-                            />
-                            {formik.touched.tmd && formik.errors.tmd ? (
-                                <div className="error">{formik.errors.tmd}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="od"
+                        name="od"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.od}
+                    />
+                    {formik.touched.od && formik.errors.od ? (
+                        <div className="error">{formik.errors.od}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="oper"
-                                name="oper"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.oper}
-                            />
-                            {formik.touched.oper && formik.errors.oper ? (
-                                <div className="error">{formik.errors.oper}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="tmd"
+                        name="tmd"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.tmd}
+                    />
+                    {formik.touched.tmd && formik.errors.tmd ? (
+                        <div className="error">{formik.errors.tmd}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="perio"
-                                name="perio"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.perio}
-                            />
-                            {formik.touched.perio && formik.errors.perio ? (
-                                <div className="error">{formik.errors.perio}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="oper"
+                        name="oper"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.oper}
+                    />
+                    {formik.touched.oper && formik.errors.oper ? (
+                        <div className="error">{formik.errors.oper}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="sur"
-                                name="sur"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.sur}
-                            />
-                            {formik.touched.sur && formik.errors.sur ? (
-                                <div className="error">{formik.errors.sur}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="perio"
+                        name="perio"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.perio}
+                    />
+                    {formik.touched.perio && formik.errors.perio ? (
+                        <div className="error">{formik.errors.perio}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="prosth">PROSTH :{" "}</label>
-                            <Input
-                                id="prosth"
-                                name="prosth"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.prosth}
-                            />
-                            {formik.touched.prosth && formik.errors.prosth ? (
-                                <div className="error">{formik.errors.prosth}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="sur"
+                        name="sur"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.sur}
+                    />
+                    {formik.touched.sur && formik.errors.sur ? (
+                        <div className="error">{formik.errors.sur}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="endo"
-                                name="endo"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.endo}
-                            />
-                            {formik.touched.endo && formik.errors.endo ? (
-                                <div className="error">{formik.errors.endo}</div>
-                            ) : null} <br />
-
-                            <label style={{ fontWeight: 'bold' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="xray"
-                                name="xray"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.xray}
-                            />
-                            {formik.touched.xray && formik.errors.xray ? (
-                                <div className="error">{formik.errors.xray}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="prosth">PROSTH :{" "}</label>
+                    <Input
+                        id="prosth"
+                        name="prosth"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.prosth}
+                    />
+                    {formik.touched.prosth && formik.errors.prosth ? (
+                        <div className="error">{formik.errors.prosth}</div>
+                    ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                id="om"
-                                name="om"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.om}
-                            />
-                            {formik.touched.om && formik.errors.om ? (
-                                <div className="error">{formik.errors.om}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="endo"
+                        name="endo"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.endo}
+                    />
+                    {formik.touched.endo && formik.errors.endo ? (
+                        <div className="error">{formik.errors.endo}</div>
+                    ) : null} <br />
 
-                            <label style={{ fontWeight: 'bold' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
-                            <Input
-                                id="ortho"
-                                name="ortho"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.ortho}
-                            />
-                            {formik.touched.ortho && formik.errors.ortho ? (
-                                <div className="error">{formik.errors.ortho}</div>
-                            ) : null} <br />
+                    <label style={{ fontWeight: 'bold' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="xray"
+                        name="xray"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.xray}
+                    />
+                    {formik.touched.xray && formik.errors.xray ? (
+                        <div className="error">{formik.errors.xray}</div>
+                    ) : null} <br />
 
-                            <br /><Button style={{ marginLeft: '80px' }} className="But" type="submit">ยืนยัน</Button>
-                        </form>
-                    </Col>
-                </Row>
+
+                    <label style={{ fontWeight: 'bold' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input
+                        id="om"
+                        name="om"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.om}
+                    />
+                    {formik.touched.om && formik.errors.om ? (
+                        <div className="error">{formik.errors.om}</div>
+                    ) : null} <br />
+
+                    <label style={{ fontWeight: 'bold' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
+                    <Input
+                        id="ortho"
+                        name="ortho"
+                        type="number"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.ortho}
+                    />
+                    {formik.touched.ortho && formik.errors.ortho ? (
+                        <div className="error">{formik.errors.ortho}</div>
+                    ) : null} <br />
+
+                    <br /><Button style={{ marginLeft: '80px' }} className="But" type="submit">ยืนยัน</Button>
+                </form>
+
             </Container>
 
 

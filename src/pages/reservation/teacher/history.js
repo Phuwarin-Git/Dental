@@ -50,23 +50,17 @@ const TeacherHistory = () => {
             <br />
 
             <div className="PaddingDiv">
-                <h1>ประวัติการเลือกตรวจงาน</h1>
-                <Table
-                    className="tableResponsive"
-                    striped
-                    borderless
-                    hover
-                    variant="primary"
-                >
-                    <thead className="thedTop">
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
-                            <th style={{ color: 'white' }}>วันที่</th>
-                            <th style={{ color: 'white' }}>ช่วงเวลา</th>
-                            <th style={{ color: 'white' }}>Unit</th>
-                            <th style={{ color: 'white' }}>คลินิก</th>
-                            <th style={{ color: 'white' }}>ประเภทงาน</th>
-                            <th style={{ color: 'white' }}>คนไข้</th>
-                            <th style={{ color: 'white' }}>ชื่อนักศึกษา</th>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>Unit</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>คนไข้</th>
+                            <th>ชื่อนักศึกษา</th>
 
                         </tr>
                     </thead>

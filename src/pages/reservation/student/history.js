@@ -50,8 +50,7 @@ const StudentHistory = () => {
             <br />
             <div className="PaddingDiv">
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
-                <Table
-                    striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
                         <tr>
                             <th>วันที่</th>

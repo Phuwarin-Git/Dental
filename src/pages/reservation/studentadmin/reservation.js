@@ -56,13 +56,21 @@ const StudentAdminReservation = () => {
 
     function submitApprove() {
         if (select.length === 0) {
-            return alert('กรุณาเลือก Unit')
+            alert('กรุณาเลือก Unit')
         } else {
             let body = select;
-            axios.put("http://localhost:3000/details/updateUnitSet/", body)
-            console.log('Body data :', body)
-            alert("เลือกสำเร็จ")
-            return history.push('/StudentAdminHistory')
+            const confirmBox = window.confirm("ต้องการยืนยันการเลือกยูนิตหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                alert("การเลือกยูนิตสำเร็จ")
+                axios.put("http://localhost:3000/details/updateUnitSet/", body)
+                console.log('Body data :', body)
+                return history.push('/StudentAdminHistory')
+            } else {
+                alert("โปรตรวจสอบข้อมูลอีกครั้ง")
+                console.log(confirmBox)
+
+            }
         }
     }
 
@@ -82,7 +90,7 @@ const StudentAdminReservation = () => {
                 </Container>
             </Navbar>
             <br />
-            <h1>การเลือกที่นั่ง</h1>
+            <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
 
             {/* {details.map((item) => {
                 return <div key={item.id}>
@@ -117,37 +125,29 @@ const StudentAdminReservation = () => {
                 </div>
             })} */}
 
-
-            <Table
-                style={{ marginTop: '20px' }}
-                className="tableResponsive"
-                striped
-                borderless
-                hover
-                variant="primary"
-            >
-                <thead style={{ backgroundColor: '#1f5bcc' }}>
+            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <thead className='theadAdmin'>
                     <tr>
-                        <th style={{ color: 'white' }} >วันที่</th>
-                        <th style={{ color: 'white' }} >ช่วงเวลา</th>
-                        <th style={{ color: 'white' }} >คลินิก</th>
-                        <th style={{ color: 'white' }} >ประเภทงาน</th>
-                        <th style={{ color: 'white' }} >ชื่อผู้ป่วย</th>
-                        <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
-                        <th style={{ color: 'white' }} >Unit</th>
+                        <th>วันที่</th>
+                        <th>ช่วงเวลา</th>
+                        <th>คลินิก</th>
+                        <th>ประเภทงาน</th>
+                        <th>ชื่อผู้ป่วย</th>
+                        <th>ชื่อนักศึกษา</th>
+                        <th>Unit</th>
                     </tr>
                 </thead>
                 {details.map(item => {
                     return <tbody key={item.id}>
                         <tr>
-                            <td style={{ color: 'black' }}>{item.date}</td>
-                            <td style={{ color: 'black' }}>{item.time}</td>
-                            <td style={{ color: 'black' }}>{item.clinic}</td>
-                            <td style={{ color: 'black' }}>{item.worktype}</td>
-                            <td style={{ color: 'black' }}>{item.patient}</td>
-                            <td style={{ color: 'black' }}>{item.name}</td>
-                            <td style={{ color: 'black' }}>
-                                <select onChange={handleOnChange}>
+                            <td className='tdStudent'>{item.date}</td>
+                            <td className='tdStudent'>{item.time}</td>
+                            <td className='tdStudent'>{item.clinic}</td>
+                            <td className='tdStudent'>{item.worktype}</td>
+                            <td className='tdStudent'>{item.patient}</td>
+                            <td className='tdStudent'>{item.name}</td>
+                            <td className='tdStudent'>
+                                <select style={{ backgroundColor: '#1f5bcc', color: 'white' }} onChange={handleOnChange}>
                                     <option value="selected" selected="selected">เลือก Unit</option>
                                     {allUnit.map((items) => {
                                         return <option

@@ -55,7 +55,6 @@ const TeacherSelectWork = () => {
             } else {
                 alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)
-
             }
         }
     }
@@ -78,7 +77,7 @@ const TeacherSelectWork = () => {
 
             <div className="PaddingDiv">
 
-                <h1>จองการตรวจงาน</h1>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
                 <div class="search">
                     <input
                         type="date"
@@ -93,30 +92,23 @@ const TeacherSelectWork = () => {
                 </div>
 
 
-                <Table
-                    style={{ marginTop: '20px' }}
-                    className="tableResponsive"
-                    striped
-                    borderless
-                    hover
-                    variant="primary"
-                >
-                    <thead style={{ backgroundColor: '#1f5bcc' }}>
+                <Table striped bordered hover variant="" style={{ marginTop: '40px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
-                            <th style={{ color: 'white' }} >เลือกตรวจงาน</th>
-                            <th style={{ color: 'white' }} >Unit</th>
-                            <th style={{ color: 'white' }} >วันที่</th>
-                            <th style={{ color: 'white' }} >ช่วงเวลา</th>
-                            <th style={{ color: 'white' }} >คลินิก</th>
-                            <th style={{ color: 'white' }} >ประเภทงาน</th>
-                            <th style={{ color: 'white' }} >ชั้นปี</th>
-                            <th style={{ color: 'white' }} >ชื่อนักศึกษา</th>
+                            <th>เลือกตรวจงาน</th>
+                            <th>Unit</th>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>ชั้นปี</th>
+                            <th>ชื่อนักศึกษา</th>
                         </tr>
                     </thead>
                     {details.map(item => {
                         return <tbody key={item.id}>
                             <tr>
-                                <td>
+                                <td className='tdStudent'>
                                     <label key={item.id} class="styleCheckBox">
                                         <input
                                             key={item.id}
@@ -126,15 +118,13 @@ const TeacherSelectWork = () => {
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td style={{ color: 'black' }}>{item.unit}</td>
-                                <td style={{ color: 'black' }}>{item.date}</td>
-                                <td style={{ color: 'black' }}>{item.time}</td>
-                                <td style={{ color: 'black' }}>{item.clinic}</td>
-                                <td style={{ color: 'black' }}>{item.worktype}</td>
-                                <td style={{ color: 'black' }}>{item.studentyear}</td>
-                                <td style={{ color: 'black' }}>{item.name}</td>
-
-
+                                <td className='tdStudent'>{item.unit}</td>
+                                <td className='tdStudent'>{item.date}</td>
+                                <td className='tdStudent'>{item.time}</td>
+                                <td className='tdStudent'>{item.clinic}</td>
+                                <td className='tdStudent'>{item.worktype}</td>
+                                <td className='tdStudent'>{item.studentyear}</td>
+                                <td className='tdStudent'>{item.name}</td>
                             </tr>
                         </tbody>
                     })}

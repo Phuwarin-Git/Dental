@@ -25,19 +25,9 @@ const Limit = () => {
 
     return (
         <div>
-            <h1 style={{ marginLeft: '-350px' }}>จำนวนภาระงาน</h1>
-            <Table
-                style={{
-                    borderRadius: '10px',
-                    marginLeft: '-350px',
-                    minWidth: '1000px'
-                }}
-                striped
-                borderless
-                hover
-                variant="primary"
-            >
-                <thead style={{ backgroundColor: '#1f5bcc', color: 'white' }}>
+            <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
+            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <thead className='theadAdmin'>
                     <tr>
                         <th>วันที่</th>
                         <th>เวลา</th>
@@ -56,18 +46,18 @@ const Limit = () => {
                 {limit.map(item => {
                     return <tbody style={{ color: 'black' }} key={item.id}>
                         <tr>
-                            <td>{item.date}</td>
-                            <td>{item.time}</td>
-                            <td>{item.od}</td>
-                            <td>{item.tmd}</td>
-                            <td>{item.oper}</td>
-                            <td>{item.perio}</td>
-                            <td>{item.sur}</td>
-                            <td>{item.prosth}</td>
-                            <td>{item.endo}</td>
-                            <td>{item.xray}</td>
-                            <td>{item.om}</td>
-                            <td>{item.ortho}</td>
+                            <td className='tdStudent'>{item.date}</td>
+                            <td className='tdStudent'>{item.time}</td>
+                            <td className='tdStudent'>{item.od}</td>
+                            <td className='tdStudent'>{item.tmd}</td>
+                            <td className='tdStudent'>{item.oper}</td>
+                            <td className='tdStudent'>{item.perio}</td>
+                            <td className='tdStudent'>{item.sur}</td>
+                            <td className='tdStudent'>{item.prosth}</td>
+                            <td className='tdStudent'>{item.endo}</td>
+                            <td className='tdStudent'>{item.xray}</td>
+                            <td className='tdStudent'>{item.om}</td>
+                            <td className='tdStudent'>{item.ortho}</td>
                         </tr>
                     </tbody>
 

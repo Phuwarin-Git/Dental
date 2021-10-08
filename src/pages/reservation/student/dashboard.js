@@ -10,7 +10,7 @@ import Table from 'react-bootstrap/Table'
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
-import DentalHospital from '../picture/DentalHospital.png'
+// import DentalHospital from '../picture/DentalHospital.png'
 
 import { BsFillCalendarFill, BsReverseLayoutTextWindowReverse, BsPersonFill } from "react-icons/bs";
 
@@ -47,98 +47,56 @@ const StudentDashboard = () => {
 
     return (
         <div style={{ minHeight: '2000px' }}>
-            <div style={{ backgroundImage: `url(${DentalHospital})`, height: '980px' }}>
-                <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
-                    {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
-                    <Container >
-                        <Nav className="me-auto">
-                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                            <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
-                            <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                            <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
-                        </Nav>
-                    </Container>
-                </Navbar>
-            </div>
+            <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
+                {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
+                <Container >
+                    <Nav className="me-auto">
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#32fcf6', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
 
             <div>
                 <br />
                 <Container>
-                    <Row>
-                        <Col>
-                            <h1>การจองที่อยู่ระหว่างการดำเนินการ</h1>
-                            <Table
-                                className="tableResponsive"
-                                striped
-                                borderless
-                                hover
-                                variant="primary"
-                                style={{ width: '800px' }}
-                            >
-                                <thead style={{ backgroundColor: '#1f5bcc', color: 'white' }}>
-                                    <tr>
-                                        <th>วันที่</th>
-                                        <th>ช่วงเวลา</th>
-                                        <th>คลินิก</th>
-                                        <th>ประเภทงาน</th>
-                                        <th>คนไข้</th>
-                                        <th>สถานะ</th>
-                                    </tr>
-                                </thead>
-                                {details.map(item => {
-                                    return <tbody key={item.id}>
-                                        <tr>
-                                            <td style={{ color: 'black' }}>{item.date}</td>
-                                            <td style={{ color: 'black' }}>{item.time}</td>
-                                            <td style={{ color: 'black' }}>{item.clinic}</td>
-                                            <td style={{ color: 'black' }}>{item.worktype}</td>
-                                            <td style={{ color: 'black' }}>{item.patient}</td>
-                                            <td style={{ color: 'black' }}><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
-                                                <Spinner
-                                                    as="span"
-                                                    animation="border"
-                                                    size="sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                /> {" "}รอดำเนินการ...{" "}
-                                            </Button></td>
-                                        </tr>
-                                    </tbody>
-                                })}
-                            </Table>
-                        </Col>
-
-                        <Col style={{ marginLeft: '100px' }}>
-                            <h1>การทำงาน</h1>
-                            <Row>
-                                <Card style={{ width: '200px' }}>
-                                    <Card.Body>
-                                        <Card.Title><BsFillCalendarFill style={{ width: '60px', height: '60px' }} /></Card.Title>
-                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentRes') }} variant="primary">จองการทำงาน</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Row>
-                            <Row>
-                                <Card style={{ width: '200px', marginTop: '10px' }}>
-                                    <Card.Body>
-                                        <Card.Title><BsReverseLayoutTextWindowReverse style={{ width: '60px', height: '60px' }} /></Card.Title>
-                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentHistory') }} variant="primary">ประวัติ</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Row>
-                            <Row>
-                                <Card style={{ width: '200px', marginTop: '10px' }}>
-                                    <Card.Body>
-                                        <Card.Title><BsPersonFill style={{ width: '60px', height: '60px' }} /></Card.Title>
-                                        <Button style={{ width: '150px' }} onClick={() => { history.push('/StudentProfile') }} variant="primary">บัญชี</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Row>
-                        </Col>
-
-                    </Row>
+                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การจองที่อยู่ระหว่างการดำเนินการ</h1>
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                        <thead className='theadAdmin'>
+                            <tr>
+                                <th>วันที่</th>
+                                <th>ช่วงเวลา</th>
+                                <th>คลินิก</th>
+                                <th>ประเภทงาน</th>
+                                <th>คนไข้</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        {details.map(item => {
+                            return <tbody key={item.id}>
+                                <tr>
+                                    <td className='tdStudent'>{item.date}</td>
+                                    <td className='tdStudent'>{item.time}</td>
+                                    <td className='tdStudent'>{item.clinic}</td>
+                                    <td className='tdStudent'>{item.worktype}</td>
+                                    <td className='tdStudent'>{item.patient}</td>
+                                    <td className='tdStudent'><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
+                                        <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        /> {" "}รอดำเนินการ...{" "}
+                                    </Button></td>
+                                </tr>
+                            </tbody>
+                        })}
+                    </Table>
                 </Container>
 
             </div >
