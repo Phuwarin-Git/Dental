@@ -12,7 +12,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useHistory } from 'react-router-dom'
-
+import Toolcss from './Toolcss.css'
 const ToolModal = ({ unique }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true)
 
@@ -687,14 +687,14 @@ const ToolModal = ({ unique }) => {
                 <br />
                 <Row>
                     <Col style={{ marginBottom: -40 }}>
-                        <label style={{ fontSize: 25, marginLeft: 20, color: '#0047AB' }}>
+                        <label style={{ fontSize: 25, marginLeft: 100, color: '#0047AB' }}>
                             เครื่องมือ
                         </label>
                     </Col>
                     <Col>
                         <div style={{ marginLeft: '750px', marginBottom: 20 }}>
                             Search
-                            <input style={{ marginLeft: 10 }} title='Search' type='search' />
+                            <input style={{ marginRight: 150 }} title='Search' type='search' />
                         </div>
                     </Col>
                 </Row>
@@ -733,7 +733,7 @@ const ToolModal = ({ unique }) => {
                                             </Col>
                                             <Col style={{ marginTop: -10 }}>
                                                 <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
+                                                    style={{ backgroundColor: '#FFFFFF'}}
                                                     id='testkit_toolcc1'
                                                     name='testkit_toolcc1'
                                                     onChange={formik.handleChange}
