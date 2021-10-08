@@ -46,7 +46,7 @@ const StudentDashboard = () => {
 
 
     return (
-        <div style={{ minHeight: '2000px' }}>
+        <div style={{ minHeight: '1080px' }}>
             <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
                 {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
                 <Container >

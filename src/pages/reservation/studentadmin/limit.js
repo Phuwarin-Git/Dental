@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
 import { AuthContext } from '../../../App';
 import axios from "axios";
+import { Button } from 'react-bootstrap';
 
 
 const Limit = () => {
@@ -41,6 +42,8 @@ const Limit = () => {
                         <th>X-RAY</th>
                         <th>OM</th>
                         <th>ORTHO</th>
+                        <th>แก้ไขรายละเอียด</th>
+                        <th>ลบภาระงาน</th>
                     </tr>
                 </thead>
                 {limit.map(item => {
@@ -58,6 +61,8 @@ const Limit = () => {
                             <td className='tdStudent'>{item.xray}</td>
                             <td className='tdStudent'>{item.om}</td>
                             <td className='tdStudent'>{item.ortho}</td>
+                            <td className='tdStudent'><Button>แก้ไข</Button></td>
+                            <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                         </tr>
                     </tbody>
 
