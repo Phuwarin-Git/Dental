@@ -3,9 +3,11 @@ import Table from 'react-bootstrap/Table'
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import { Button } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 
 const Limit = () => {
+    const history = useHistory();
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
 
@@ -15,7 +17,6 @@ const Limit = () => {
     }, [user])
 
     const getDetails = () => {
-
         // http://selab.mfu.ac.th:8318/limitcase/find/all
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
@@ -23,6 +24,22 @@ const Limit = () => {
         });
     }
 
+    function deleteLimitCase(id) {
+        // let letmitid = { limit_id: id }
+        console.log("Delete ID :", id)
+        // axios.delete("http://localhost:3000/limitcase/delete/" + id);
+        // return history.push('/StudentAdminDashboard')
+        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        if (confirmBox == true) {
+            console.log(confirmBox)
+            alert("ลบการจำกัดงานสำเร็จ")
+            axios.delete("http://localhost:3000/limitcase/delete/" + id);
+            return history.push('/StudentAdminDashboard')
+        } else {
+            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
+            console.log(confirmBox)
+        }
+    }
 
     return (
         <div>
@@ -43,7 +60,7 @@ const Limit = () => {
                         <th>OM</th>
                         <th>ORTHO</th>
                         <th>แก้ไขรายละเอียด</th>
-                        <th>ลบภาระงาน</th>
+                        <th>ลบ</th>
                     </tr>
                 </thead>
                 {limit.map(item => {
@@ -62,7 +79,7 @@ const Limit = () => {
                             <td className='tdStudent'>{item.om}</td>
                             <td className='tdStudent'>{item.ortho}</td>
                             <td className='tdStudent'><Button>แก้ไข</Button></td>
-                            <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                            <td className='tdStudent'><Button onClick={() => deleteLimitCase(item.limit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                         </tr>
                     </tbody>
 

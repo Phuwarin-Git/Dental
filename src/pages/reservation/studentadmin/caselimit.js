@@ -34,7 +34,6 @@ const StudentAdminLimitCase = () => {
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
-
         }
 
     }
