@@ -69,7 +69,6 @@ const StudentAdminReservation = () => {
             } else {
                 alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)
-
             }
         }
     }
