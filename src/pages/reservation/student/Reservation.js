@@ -186,6 +186,11 @@ const StudentRes = () => {
 
     return (
         <div>
+            <nav style={{ background: '#0047AB' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
+                </div>
+            </nav>
             <Navbar style={{ backgroundColor: '#1565C0' }}>
                 <Container >
                     <Nav className="me-auto">
