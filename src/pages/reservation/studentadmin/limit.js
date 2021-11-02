@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import FormInput from './updateForm';
 import * as XLSX from "xlsx";
+import ConfirmLimit from './confirmModal/modal';
 
 const Limit = () => {
     const history = useHistory();
@@ -19,17 +20,7 @@ const Limit = () => {
         console.log("User :", user)
     }, [user])
     useEffect(() => {
-        console.log(items[0])
-    //   console.log(items.OD)
-    //   console.log(items.TMD)
-    //   console.log(items.OPER)
-    //   console.log(items.PERIO)
-    //   console.log(items.SUR)
-    //   console.log(items.RPOSTH)
-    //   console.log(items.ENDO)
-    //   console.log(items.XRAY)
-    //   console.log(items.OM)
-    //   console.log(items.ORTHO)
+        console.log("Excell File :", items)
     }, [items])
 
     const getDetails = () => {
@@ -60,47 +51,42 @@ const Limit = () => {
     function changeStatus(ID) {
         setEditingIndex([...editingIndex, ID])
     }
-    
+
     const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
+        const promise = new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
 
-    fileReader.onload = (e) => {
-    const bufferArray = e.target.result;
+            fileReader.onload = (e) => {
+                const bufferArray = e.target.result;
+                const wb = XLSX.read(bufferArray, { type: "buffer" });
+                const wsname = wb.SheetNames[0];
+                const ws = wb.Sheets[wsname];
+                const data = XLSX.utils.sheet_to_json(ws);
+                resolve(data);
+            };
 
-    const wb = XLSX.read(bufferArray, { type: "buffer" });
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
 
-    const wsname = wb.SheetNames[0];
+        promise.then((d) => {
+            setItems(d);
+        });
+    }
 
-    const ws = wb.Sheets[wsname];
-
-    const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setItems(d);
-      
-    });}
-    
 
 
     return (
         <div>
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
-            <input type="file"onChange={(e) => {
+            <input type="file" onChange={(e) => {
                 const file = e.target.files[0];
                 readExcel(file);
-                }}
-             />
-             
+            }}
+            />
+
             <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                 <thead className='theadAdmin'>
                     <tr>
@@ -144,8 +130,11 @@ const Limit = () => {
                             </tr>
                         </tbody>)
                 })}
-
             </Table>
+            {items.length != 0 ? (<div>
+                <h1>มาแล้ว</h1>
+                <ConfirmLimit excel={items} /></div>) : (
+                <h1>ยัง</h1>)}
         </div >
     )
 }
