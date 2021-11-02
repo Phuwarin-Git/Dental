@@ -33,9 +33,8 @@ const Adminmodal = ({ unique }) => {
             return (item.uniqueID === unique)
         })
         console.log("Details Tools:", res)
-        const myJSON = JSON.stringify(res, null, 2);
 
-        setDetials(myJSON);
+        setDetials(res);
     }
 
     return (
@@ -57,7 +56,7 @@ const Adminmodal = ({ unique }) => {
                     </center>
                     <div style={{ marginLeft: "50px", overflowY: 'auto' }}>
                         <br />
-                        <p>{Tool}</p>
+                        {Tool.map(tool=><p>{tool.Rounddimondbursetslow_toolcc1}</p>)}
                         {/* <Table
                             striped
                             borderless
