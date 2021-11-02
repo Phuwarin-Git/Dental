@@ -23,6 +23,11 @@ import TeacherSelectWork from './pages/reservation/teacher/selectwork';
 import TeacherHistory from './pages/reservation/teacher/history';
 import TeacherProfile from './pages/reservation/teacher/profile';
 import Adminhistory from './pages/reservation/Admintool/Adminhistory';
+import AdminDashboard from './pages/reservation/Admin/dashboard';
+import AdminUser from './pages/reservation/Admin/user';
+import AdminUnit from './pages/reservation/Admin/unit';
+import AdminProfile from './pages/reservation/Admin/profile';
+
 
 const AuthContext = createContext();
 
@@ -55,6 +60,10 @@ function App() {
           <Route path="/TeacherSelectWork" render={() => loginStatus === true ? <TeacherSelectWork /> : (<Redirect to="/" />)}></Route>
           <Route path="/TeacherHistory" render={() => loginStatus === true ? <TeacherHistory /> : (<Redirect to="/" />)}></Route>
           <Route path="/TeacherProfile" render={() => loginStatus === true ? <TeacherProfile /> : (<Redirect to="/" />)}></Route>
+          <Route path="/AdminDashboard" render={() => loginStatus === true ? <AdminDashboard /> : (<Redirect to="/" />)}></Route>
+          <Route path="/AdminUser" render={() => loginStatus === true ? <AdminUser /> : (<Redirect to="/" />)}></Route>
+          <Route path="/AdminUnit" render={() => loginStatus === true ? <AdminUnit /> : (<Redirect to="/" />)}></Route>
+          <Route path="/AdminProfile" render={() => loginStatus === true ? <AdminProfile /> : (<Redirect to="/" />)}></Route>
           <Route path="/:id">
             <h1 style={{ color: 'black' }}>Error 404 page not found</h1>
           </Route>
