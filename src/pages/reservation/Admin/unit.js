@@ -1,18 +1,77 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table'
+import { AuthContext } from '../../../App';
+import axios from "axios";
+import { Button } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
+import * as XLSX from "xlsx";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { AuthContext } from '../../../App';
-import axios from "axios";
-
-
 const AdminUnit = () => {
-
+    const history = useHistory();
     const { user } = useContext(AuthContext);
+    const [unit, setUnit] = useState([]);
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
-        console.log("User :", user)
+        getDetails();
+        console.log("UNIT :", unit)
     }, [user])
+   
+
+    const getDetails = () => {
+        // http://selab.mfu.ac.th:8318/limitcase/find/all
+        axios.get("http://localhost:3000/unit/find/all").then((item) => {
+            console.log("Unit :", item.data)
+            return setUnit(item.data);
+        });
+    }
+
+    function deleteUnit(id) {       
+        console.log("Delete ID :", id) 
+        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        if (confirmBox == true) {
+            console.log(confirmBox)
+            alert("ลบการจำกัดงานสำเร็จ")
+            axios.delete("http://localhost:3000/unit/delete/" + id);
+        } else {
+            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
+            console.log(confirmBox)
+        }
+    }
+
+    
+    
+    const readExcel = (file) => {
+    const promise = new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsArrayBuffer(file);
+
+    fileReader.onload = (e) => {
+    const bufferArray = e.target.result;
+
+    const wb = XLSX.read(bufferArray, { type: "buffer" });
+
+    const wsname = wb.SheetNames[0];
+
+    const ws = wb.Sheets[wsname];
+
+    const data = XLSX.utils.sheet_to_json(ws);
+
+        resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+    promise.then((d) => {
+      setItems(d);
+      
+    });}
+    
 
 
     return (
@@ -37,7 +96,42 @@ const AdminUnit = () => {
             </Navbar>
 
             <div>
-                <h1>Admin Unit</h1>
+                <h1>Manage Unit</h1>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
+            <input type="file"onChange={(e) => {
+                const file = e.target.files[0];
+                readExcel(file);
+                }}
+             />
+<Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <thead className='theadAdmin'>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th>Name</th>
+                        <th>ชั้น</th>
+                        <th>ประเภท</th>
+                        <th>วันเริ่มต้นการปิดใช้งาน</th>
+                        <th>วันสิ้นสุดการปิดใช้งาน</th>
+                        <th>แก้ไขรายละเอียด</th>
+                        <th>ลบ</th>
+                    </tr>
+                </thead>
+                {unit.map(item => {
+                    return <tbody key={item.unit_id}>
+                            <tr>
+                                <td className='tdStudent'>{item.unit_id}</td>
+                                <td className='tdStudent'>{item.unit_code}</td>
+                                <td className='tdStudent'>{item.unit_floor}</td>
+                                <td className='tdStudent'>{item.unit_type}</td>
+                                <td className='tdStudent'>{item.unavailable_start_date}</td>
+                                <td className='tdStudent'>{item.unavailable_end_date}</td>
+                                {/* <td className='tdStudent'><Button onClick={() => changeStatus(item.unit_id)}>แก้ไข</Button></td>
+                                <td className='tdStudent'><Button onClick={() => deleteUnit(item.unit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td> */}
+                            </tr>
+                        </tbody>
+                })}
+
+            </Table>
             </div>
         </div>
     )
