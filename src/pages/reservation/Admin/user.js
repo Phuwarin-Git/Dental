@@ -21,7 +21,7 @@ const AdminUser = () => {
    
 
     const getDetails = () => {
-        // http://selab.mfu.ac.th:8318/limitcase/find/all
+        // http://selab.mfu.ac.th:8320/limitcase/find/all
         axios.get("http://localhost:3000/name/find/all").then((item) => {
             console.log("Name :", item.data)
             return setUnit(item.data);
@@ -86,12 +86,12 @@ const AdminUser = () => {
             {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
             <Container >
                 <Nav className="me-auto">
-                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
-                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
-                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
-                    <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                    <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
+                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
+                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
+                    <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
+                    <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                    <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
