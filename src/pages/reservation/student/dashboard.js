@@ -73,12 +73,12 @@ const StudentDashboard = () => {
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>
                             <tr>
-                                <th>วันที่</th>
-                                <th>ช่วงเวลา</th>
-                                <th>คลินิก</th>
-                                <th>ประเภทงาน</th>
-                                <th>คนไข้</th>
-                                <th>สถานะ</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>วันที่</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>ช่วงเวลา</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>คลินิก</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>ประเภทงาน</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>คนไข้</th>
+                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>สถานะ</th>
                             </tr>
                         </thead>
                         {details.map(item => {

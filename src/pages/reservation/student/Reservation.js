@@ -234,12 +234,12 @@ const StudentRes = () => {
             <Navbar style={{ backgroundColor: '#1565C0' }}>
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
-                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -251,8 +251,9 @@ const StudentRes = () => {
 
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการทำงาน</h1>
                 <form style={{ textAlign: 'left' }} onSubmit={formik.handleSubmit}>
-                    <label style={{ fontWeight: 'bold' }} htmlFor="date">วันที่</label>
+                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="date">วันที่</label>
                     <Input
+                        style={{ fontSize:'18px' }}
                         id="date"
                         name="date"
                         type="date"
@@ -265,8 +266,9 @@ const StudentRes = () => {
                     ) : null} <br /><br />
 
 
-                    <lable style={{ marginRight: '2%', fontWeight: 'bold' }}>เลือกช่วงเวลา : </lable>
+                    <lable style={{ marginRight: '2%', fontWeight: 'bold',fontSize:'20px' }}>เลือกช่วงเวลา : </lable>
                     <input
+                        style={{ fontSize:'18px' }}
                         id="ช่วงเช้า"
                         type="radio"
                         value="ช่วงเช้า"
@@ -275,10 +277,11 @@ const StudentRes = () => {
                         defaultChecked={formik.values.time === "ช่วงเช้า"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '10%' }}>ช่วงเช้า</label>
+                    <label style={{ marginRight: '10%',fontSize:'18px' }}>ช่วงเช้า</label>
 
 
                     <input
+                        style={{ fontSize:'18px' }}
                         id="ช่วงบ่าย"
                         type="radio"
                         value="ช่วงบ่าย"
@@ -287,7 +290,7 @@ const StudentRes = () => {
                         defaultChecked={formik.values.time === "ช่วงบ่าย"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label>ช่วงบ่าย</label>
+                    <label style={{ marginRight: '10%',fontSize:'18px' }}>ช่วงบ่าย</label>
 
                     {formik.touched.time && formik.errors.time ? (
                         <div className="error">{formik.errors.time}</div>
@@ -295,8 +298,9 @@ const StudentRes = () => {
 
 
 
-                    <label style={{ fontWeight: 'bold' }} htmlFor="Clinic">คลินิก</label>
+                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="Clinic">คลินิก</label>
                     <Selected
+                        style={{ fontSize:'18px' }}
                         id="clinic"
                         name="clinic"
                         onChange={formik.handleChange}
@@ -320,8 +324,9 @@ const StudentRes = () => {
                         <div className="error">{formik.errors.clinic}</div>
                     ) : null}<br />
 
-                    <label style={{ marginRight: '3%', fontWeight: 'bold' }} htmlFor="type">ประเภทงาน : </label>
+                    <label style={{ marginRight: '3%', fontWeight: 'bold',fontSize:'20px' }} htmlFor="type">ประเภทงาน : </label>
                     <input
+                        style={{ fontSize:'18px' }}
                         id="ฟุ้งกระจาย"
                         type="radio"
                         value="ฟุ้งกระจาย"
@@ -330,10 +335,11 @@ const StudentRes = () => {
                         defaultChecked={formik.values.type === "ฟุ้งกระจาย"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '8%' }}>ฟุ้งกระจาย</label>
+                    <label style={{ marginRight: '8%',fontSize:'18px' }}>ฟุ้งกระจาย</label>
 
 
                     <input
+                        style={{ fontSize:'18px' }}
                         id="ไม่ฟุ้งกระจาย"
                         type="radio"
                         value="ไม่ฟุ้งกระจาย"
@@ -342,7 +348,7 @@ const StudentRes = () => {
                         defaultChecked={formik.values.type === "ไม่ฟุ้งกระจาย"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label>ไม่ฟุ้งกระจาย</label>
+                    <label style={{ marginRight: '8%',fontSize:'18px' }}>ไม่ฟุ้งกระจาย</label>
 
                     {formik.touched.type && formik.errors.type ? (
                         <div className="error">{formik.errors.type}</div>
@@ -352,8 +358,9 @@ const StudentRes = () => {
                         <div className="error">{formik.errors.type}</div>
                     ) : null}<br />
 
-                    <label style={{ fontWeight: 'bold' }} htmlFor="patient">ชื่อคนไข้</label>
+                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="patient">ชื่อคนไข้</label>
                     <Input
+                        style={{ fontSize:'18px' }}
                         id="patient"
                         name="patient"
                         type="text"
@@ -366,8 +373,9 @@ const StudentRes = () => {
                         <div className="error">{formik.errors.patient}</div>
                     ) : null} <br />
 
-                    <label style={{ fontWeight: 'bold' }} htmlFor="dn">DN</label>
+                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="dn">DN</label>
                     <Input
+                        style={{ fontSize:'18px' }}
                         id="dn"
                         name="dn"
                         type="number"
@@ -380,8 +388,9 @@ const StudentRes = () => {
                         <div className="error">{formik.errors.dn}</div>
                     ) : null} <br />
 
-                    <label style={{ fontWeight: 'bold' }} htmlFor="hn">HN </label>
+                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="hn">HN </label>
                     <Input
+                        style={{ fontSize:'18px' }}
                         id="hn"
                         name="hn"
                         type="number"
@@ -395,7 +404,7 @@ const StudentRes = () => {
                     ) : null} <br />
 
                     <center>
-                        <br /><But style={{ fontWeight: 'bold' }} type="submit">ยืนยัน</But>
+                        <br /><But style={{ fontWeight: 'bold',fontSize:'22px' }} type="submit">ยืนยัน</But>
                     </center>
                     {open === true ? <ToolModal unique={getUnique} /> : console.log("Modal it's not open")}
 

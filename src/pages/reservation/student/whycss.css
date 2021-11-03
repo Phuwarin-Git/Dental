@@ -29,8 +29,10 @@
   .theadAdmin {
     background-color: #f1f1f1;
     color: #0047ab;
+    font-size: 22px;
   }
 .tdStudent{
   background-color: #ffffff;
   color: rgb(0, 0, 0);
+  font-size: 19px;
 }

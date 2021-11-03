@@ -105,12 +105,12 @@ const Login = () => {
                             <div class="content" >
                                 <form onSubmit={checkAuth}>
                                     <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
-                                    <h6 style={{ fontSize: '14px' }}>Use your email or username</h6>
-                                    <p style={{ fontSize: '13px' }}>Username</p>
-                                    <input placeholder="username" onChange={usernameOnChange}></input><br />
-                                    <p style={{ fontSize: '13px' }}>Password</p>
-                                    <input type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
-                                    <button type="submit">Login</button>
+                                    <h6 style={{ fontSize: '20px' }}>Use your email or username</h6>
+                                    <p style={{ fontSize: '23px' }}>Username</p>
+                                    <input style={{  fontSize: '20px' }} placeholder="username" onChange={usernameOnChange}></input><br />
+                                    <p style={{ fontSize: '23px' }}>Password</p>
+                                    <input style={{  fontSize: '20px' }} type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
+                                    <button style={{  fontSize: '20px' }} type="submit">Login</button>
                                 </form>
                             </div>
                         </Col>

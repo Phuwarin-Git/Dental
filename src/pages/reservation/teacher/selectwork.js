@@ -85,6 +85,7 @@ const TeacherSelectWork = () => {
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
                 <div class="search">
                     <input
+                        style={{ fontSize:'18px' }}
                         type="date"
                         class="searchTerm"
                         id="input_text"
@@ -134,7 +135,7 @@ const TeacherSelectWork = () => {
                         </tbody>
                     })}
                 </Table>
-                <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                <Button style={{ fontWeight: 'bold',fontSize:'22px' }} onClick={() => submitApprove()}>ยืนยัน</Button>
             </div>
         </div >
     )
