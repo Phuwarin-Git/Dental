@@ -13,7 +13,17 @@ import './modalCss.css'
 
 const ConfirmLimit = ({ excel }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
+    // const [listExcel, setList] = useState([]);
     const history = useHistory();
+
+    // useEffect(() => {
+    //     setList(excel)
+    // }, [excel])
+
+    // useEffect(() => {
+    //     console.log('list :', listExcel)
+    // }, [listExcel])
+
 
     function openModal() {
         setIsOpen(true);
@@ -26,23 +36,39 @@ const ConfirmLimit = ({ excel }) => {
     useEffect(() => {
     }, [modalIsOpen])
 
-    function createLimit(date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho) {
-        console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
-        const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
+    function createLimit() {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
             alert("การจำกัดงานสำเร็จ")
-            return axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
-                console.log("Res Limit :", res)
-                return history.push('/StudentAdminDashboard')
-            })
+            console.log("excel :", excel)
+            for (let i = 0; i < excel.length; i++) {
+                let a = [{
+                    // date: listExcel[i].วันที่,
+                    time: excel[i].เวลา,
+                    od: excel[i].OD,
+                    tmd: excel[i].TMD,
+                    oper: excel[i].OPER,
+                    perio: excel[i].PERIO,
+                    sur: excel[i].SUR,
+                    prosth: excel[i].RPOSTH,
+                    endo: excel[i].ENDO,
+                    xray: excel[i].XRAY,
+                    om: excel[i].OM,
+                    ortho: excel[i].ORTHO
+                }]
+                console.log("Check A :", a)
+                axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {
+                    console.log("Res Limit :", res)
+                })
+            }
+            return history.push('/StudentAdminDashboard')
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
-
     }
+
 
     return (
         <div>
@@ -51,7 +77,6 @@ const ConfirmLimit = ({ excel }) => {
                 onRequestClose={closeModal}
                 contentLabel="modal"
             >
-
                 <div>
                     <Card border="dark">
 
@@ -97,7 +122,7 @@ const ConfirmLimit = ({ excel }) => {
                             </Table>
                             <center>
                                 <Button onClick={() => createLimit()}>ยืนยัน</Button>
-                                <Button style={{ marginLeft: '10px', backgroundColor: 'red' }}>ยกเลิก</Button>
+                                <Button onClick={() => closeModal()} style={{ marginLeft: '10px', backgroundColor: 'red' }}>ยกเลิก</Button>
                             </center>
                         </Card.Body>
                     </Card>
