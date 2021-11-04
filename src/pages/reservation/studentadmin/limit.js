@@ -81,7 +81,8 @@ const Limit = () => {
     return (
         <div>
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
-            <input type="file" onChange={(e) => {
+
+            <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
                 const file = e.target.files[0];
                 readExcel(file);
             }}
@@ -133,8 +134,7 @@ const Limit = () => {
             </Table>
             {items.length != 0 ? (<div>
                 <h1>มาแล้ว</h1>
-                <ConfirmLimit excel={items} /></div>) : (
-                <h1>ยัง</h1>)}
+                <ConfirmLimit excel={items} /></div>) : (console.log("ยัง"))}
         </div >
     )
 }
