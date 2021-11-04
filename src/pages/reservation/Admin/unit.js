@@ -18,6 +18,10 @@ const AdminUnit = () => {
         getDetails();
         console.log("UNIT :", unit)
     }, [user])
+    useEffect(() => {
+        console.log("Excell File :", items)
+    }, [items])
+
    
 
     const getDetails = () => {
