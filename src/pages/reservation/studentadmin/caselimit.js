@@ -94,12 +94,12 @@ const StudentAdminLimitCase = () => {
             <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
-                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
-                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '300px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
+                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
+                        <Nav.Link style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '300px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -110,9 +110,9 @@ const StudentAdminLimitCase = () => {
 
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำกัดภาระงาน</h1>
                 <form onSubmit={formik.handleSubmit}>
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         style={{ marginBottom: '10px' }}
                         id="date"
                         name="date"
@@ -126,7 +126,7 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <lable style={{ marginRight: '2%', fontWeight: 'bold',fontSize:'20px' }}>เลือกช่วงเวลา : </lable>
+                    <lable style={{ marginRight: '2%', fontWeight: 'bold', fontSize: '20px' }}>เลือกช่วงเวลา : </lable>
                     <input
                         id="ช่วงเช้า"
                         type="radio"
@@ -136,7 +136,7 @@ const StudentAdminLimitCase = () => {
                         defaultChecked={formik.values.time === "ช่วงเช้า"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '10%',fontSize:'18px' }}>ช่วงเช้า</label>
+                    <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงเช้า</label>
 
 
                     <input
@@ -148,16 +148,16 @@ const StudentAdminLimitCase = () => {
                         defaultChecked={formik.values.time === "ช่วงบ่าย"}
                     />
                     &nbsp;&nbsp;&nbsp;
-                    <label style={{ fontSize:'18px' }}>ช่วงบ่าย</label>
+                    <label style={{ fontSize: '18px' }}>ช่วงบ่าย</label>
 
                     {formik.touched.time && formik.errors.time ? (
                         <div className="error">{formik.errors.time}</div>
                     ) : null}<br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="od"
                         name="od"
                         type="number"
@@ -170,9 +170,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="tmd"
                         name="tmd"
                         type="number"
@@ -185,9 +185,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="oper"
                         name="oper"
                         type="number"
@@ -200,9 +200,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="perio"
                         name="perio"
                         type="number"
@@ -215,9 +215,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="sur"
                         name="sur"
                         type="number"
@@ -230,9 +230,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="prosth">PROSTH :{" "}</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="prosth">PROSTH :{" "}</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="prosth"
                         name="prosth"
                         type="number"
@@ -245,9 +245,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="endo"
                         name="endo"
                         type="number"
@@ -259,9 +259,9 @@ const StudentAdminLimitCase = () => {
                         <div className="error">{formik.errors.endo}</div>
                     ) : null} <br />
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="xray"
                         name="xray"
                         type="number"
@@ -274,9 +274,9 @@ const StudentAdminLimitCase = () => {
                     ) : null} <br />
 
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="om"
                         name="om"
                         type="number"
@@ -288,9 +288,9 @@ const StudentAdminLimitCase = () => {
                         <div className="error">{formik.errors.om}</div>
                     ) : null} <br />
 
-                    <label style={{ fontWeight: 'bold',fontSize:'20px' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
+                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
                     <Input
-                        style={{ fontSize:'18px' }}
+                        style={{ fontSize: '18px' }}
                         id="ortho"
                         name="ortho"
                         type="number"
@@ -302,7 +302,7 @@ const StudentAdminLimitCase = () => {
                         <div className="error">{formik.errors.ortho}</div>
                     ) : null} <br />
 
-                    <br /><Button style={{ marginLeft: '80px',fontSize:'22px' }} className="But" type="submit">ยืนยัน</Button>
+                    <br /><Button style={{ marginLeft: '80px', fontSize: '22px' }} className="But" type="submit">ยืนยัน</Button>
                 </form>
 
             </Container>

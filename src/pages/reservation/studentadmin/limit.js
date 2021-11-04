@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 import FormInput from './updateForm';
 import * as XLSX from "xlsx";
 import ConfirmLimit from './confirmModal/modal';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Limit = () => {
     const history = useHistory();
@@ -82,15 +84,23 @@ const Limit = () => {
         <div>
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
 
-            <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
-                const file = e.target.files[0];
-                readExcel(file);
-            }}
-            />
+            <Row>
+                <Col>
+                    <Button>จำกัดภาระงาน</Button>
+                </Col>
+                <Col>
+                    <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
+                        const file = e.target.files[0];
+                        readExcel(file);
+                    }} />
+                </Col>
+            </Row>
 
-            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+
+
+            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                 <thead className='theadAdmin'>
-                    <tr>
+                    <tr style={{ fontSize: '16px' }}>
                         <th>วันที่</th>
                         <th>เวลา</th>
                         <th>OD</th>

@@ -56,12 +56,12 @@ const StudentDashboard = () => {
                 {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
-                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -73,12 +73,12 @@ const StudentDashboard = () => {
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>
                             <tr>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>วันที่</th>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>ช่วงเวลา</th>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>คลินิก</th>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>ประเภทงาน</th>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>คนไข้</th>
-                                <th style={{  fontWeight: 'bold', fontSize: '23px' }}>สถานะ</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>วันที่</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>ช่วงเวลา</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>คลินิก</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>ประเภทงาน</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>คนไข้</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะ</th>
                             </tr>
                         </thead>
                         {details.map(item => {

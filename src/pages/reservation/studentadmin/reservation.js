@@ -84,50 +84,17 @@ const StudentAdminReservation = () => {
             <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '300px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '300px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
             <br />
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
-
-            {/* {details.map((item) => {
-                return <div key={item.id}>
-                    <br />
-                    <Card
-                        style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
-                        className="mb-2"
-                    >
-                        <Card.Header style={{ backgroundColor: '#0067e6', color: 'white' }}> วันที่ : {item.date}</Card.Header>
-                        <Card.Body style={{ backgroundColor: '#1c82ff' }}>
-
-                            <Card.Text>
-                                <Card.Title>Clinic : {item.clinic} &nbsp;&nbsp; เวลา : {item.time} </Card.Title>
-                                <lable>นักศึกษา : {item.name}</lable><br />
-                                <lable>ประเภทงาน : {item.worktype}</lable><br />
-                                <lable>คนไข้ : {item.patient}</lable><br />
-                                <form onSubmit={() => { handleSubmit(item.id, item.select) }}>
-                                    <select onChange={(event) => {
-                                        console.log('Hi', event.target.value)
-                                        item.select = event.target.value
-                                    }} class="target">
-                                        <option value="selected" selected="selected">Choose Unit</option>
-                                        {allUnit.map((item) => {
-                                            return <option key={item.unit_id} value={item.unit_code} value={item.unit_code}>{item.unit_code}</option>
-                                        })}
-                                    </select>
-                                    <button style={{ borderRadius: '10px', marginLeft: '10px', backgroundColor: '#02ed60' }} type="submit">ยืนยัน</button>
-                                </form>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-            })} */}
 
             <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                 <thead className='theadAdmin'>

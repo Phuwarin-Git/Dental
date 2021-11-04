@@ -44,7 +44,7 @@ const ConfirmLimit = ({ excel }) => {
             console.log("excel :", excel)
             for (let i = 0; i < excel.length; i++) {
                 let a = [{
-                    // date: listExcel[i].วันที่,
+                    date: excel[i].วันที่,
                     time: excel[i].เวลา,
                     od: excel[i].OD,
                     tmd: excel[i].TMD,
