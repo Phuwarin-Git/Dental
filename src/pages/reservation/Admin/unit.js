@@ -13,7 +13,7 @@ const AdminUnit = () => {
     const { user } = useContext(AuthContext);
     const [unit, setUnit] = useState([]);
     const [items, setItems] = useState([]);
-
+    
     useEffect(() => {
         getDetails();
         console.log("UNIT :", unit)
@@ -44,33 +44,28 @@ const AdminUnit = () => {
     
     
     const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
+        const promise = new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
 
-    fileReader.onload = (e) => {
-    const bufferArray = e.target.result;
+            fileReader.onload = (e) => {
+                const bufferArray = e.target.result;
+                const wb = XLSX.read(bufferArray, { type: "buffer" });
+                const wsname = wb.SheetNames[0];
+                const ws = wb.Sheets[wsname];
+                const data = XLSX.utils.sheet_to_json(ws);
+                resolve(data);
+            };
 
-    const wb = XLSX.read(bufferArray, { type: "buffer" });
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
 
-    const wsname = wb.SheetNames[0];
-
-    const ws = wb.Sheets[wsname];
-
-    const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setItems(d);
-      
-    });}
+        promise.then((d) => {
+            setItems(d);
+        });
+    }
     
 
 
@@ -98,12 +93,11 @@ const AdminUnit = () => {
             <div>
                 <h1>Manage Unit</h1>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-            <input type="file"onChange={(e) => {
-                const file = e.target.files[0];
-                readExcel(file);
-                }}
-             />
-<Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
+                        const file = e.target.files[0];
+                        readExcel(file);
+                    }} />
+            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                 <thead className='theadAdmin'>
                     <tr>
                         <th>ลำดับ</th>

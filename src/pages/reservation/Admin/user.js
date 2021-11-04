@@ -99,11 +99,10 @@ const AdminUser = () => {
         <div>
             <h1>Manage User</h1>
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-            <input type="file"onChange={(e) => {
-                const file = e.target.files[0];
-                readExcel(file);
-                }}
-             />
+            <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
+                        const file = e.target.files[0];
+                        readExcel(file);
+                    }} />
 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                 <thead className='theadAdmin'>
                     <tr>
