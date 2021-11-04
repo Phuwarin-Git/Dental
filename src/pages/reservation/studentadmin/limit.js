@@ -82,19 +82,26 @@ const Limit = () => {
 
     return (
         <div>
+
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
 
-            <Row>
+            <Row style={{ marginBottom: '10px' }}>
                 <Col>
-                    <Button>จำกัดภาระงาน</Button>
+                    <Button style={{ backgroundColor: '#4487E3', fontWeight: 'bold' }}>จำกัดภาระงาน</Button>
                 </Col>
-                <Col>
-                    <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
+                <Col></Col>
+                <Col></Col>
+                <Col style={{ marginRight: '-70px' }}>
+                </Col>
+                <Col style={{ marginRight: '-80px', fontWeight: 'bold', fontSize: '18px' }}><label>Excel : </label></Col>
+                <Col style={{ marginRight: '-50px' }}>
+                    <input type="file" onChange={(e) => {
                         const file = e.target.files[0];
                         readExcel(file);
                     }} />
                 </Col>
             </Row>
+
 
 
 
@@ -142,9 +149,11 @@ const Limit = () => {
                         </tbody>)
                 })}
             </Table>
-            {items.length != 0 ? (<div>
-                <h1>มาแล้ว</h1>
-                <ConfirmLimit excel={items} /></div>) : (console.log("ยัง"))}
+            {
+                items.length != 0 ? (<div>
+                    <h1>มาแล้ว</h1>
+                    <ConfirmLimit excel={items} /></div>) : (console.log("ยัง"))
+            }
         </div >
     )
 }
