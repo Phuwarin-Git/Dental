@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ConfirmLimit = ({ excel }) => {
+const ModalUser = ({ excel }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
     // const [listExcel, setList] = useState([]);
     const history = useHistory();
@@ -47,18 +47,18 @@ const ConfirmLimit = ({ excel }) => {
                     // date: listExcel[i].วันที่,
                     id: excel[i].ลำดับ,
                     student_id: excel[i].ID,
-                    first_name: excel[i].ชื่อ-สกุล,
+                    first_name: excel[i].ชื่อสกุล,
                     student_year: excel[i].ชั้นปี,
-                    email: excel[i].E-mail,
+                    email: excel[i].Email,
                     role: excel[i].ตำแหน่ง,
-                    
+
                 }]
                 console.log("Check A :", a)
-                axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {
+                axios.post("http://localhost:3000/name/createMultiTable", a).then((res) => {
                     console.log("Res Limit :", res)
                 })
             }
-            return history.push('/StudentAdminDashboard')
+            return history.push('/AdminDashboard')
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
@@ -92,14 +92,14 @@ const ConfirmLimit = ({ excel }) => {
                                     </tr>
                                 </thead>
                                 {excel.map(item => {
-                                    return <tbody key={item.limit_id}>
+                                    return <tbody key={item.ลำดับ}>
                                         <tr>
-                                            <td className='tdStudent'>{item.id}</td>
-                                            <td className='tdStudent'>{item.student_id}</td>
-                                            <td className='tdStudent'>{item.first_name}</td>
-                                            <td className='tdStudent'>{item.student_year}</td>
-                                            <td className='tdStudent'>{item.email}</td>
-                                            <td className='tdStudent'>{item.role}</td>
+                                            <td className='tdStudent'>{item.ลำดับ}</td>
+                                            <td className='tdStudent'>{item.ID}</td>
+                                            <td className='tdStudent'>{item.ชื่อสกุล}</td>
+                                            <td className='tdStudent'>{item.ชั้นปี}</td>
+                                            <td className='tdStudent'>{item.Email}</td>
+                                            <td className='tdStudent'>{item.ตำแหน่ง}</td>
                                         </tr>
                                     </tbody>
                                 })}
@@ -116,4 +116,4 @@ const ConfirmLimit = ({ excel }) => {
     );
 };
 
-export default ConfirmLimit;
+export default ModalUser;

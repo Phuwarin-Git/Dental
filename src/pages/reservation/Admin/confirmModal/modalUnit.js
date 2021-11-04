@@ -11,18 +11,18 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ConfirmLimit = ({ excel }) => {
+const ModalUnit = ({ excel }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
-    // const [listExcel, setList] = useState([]);
+    const [listExcel, setList] = useState([]);
     const history = useHistory();
 
-    // useEffect(() => {
-    //     setList(excel)
-    // }, [excel])
+    useEffect(() => {
+        setList(excel)
+    }, [excel])
 
-    // useEffect(() => {
-    //     console.log('list :', listExcel)
-    // }, [listExcel])
+    useEffect(() => {
+        console.log('list :', listExcel)
+    }, [listExcel])
 
 
     function openModal() {
@@ -51,14 +51,14 @@ const ConfirmLimit = ({ excel }) => {
                     unit_type: excel[i].ประเภท,
                     unavailable_start_date: excel[i].วันเริ่มต้นการปิดใช้งาน,
                     unavailable_end_date: excel[i].วันสิ้นสุดการปิดใช้งาน,
-                   
+
                 }]
                 console.log("Check A :", a)
-                axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {
+                axios.post("http://localhost:3000/unit/createMultiTable", a).then((res) => {
                     console.log("Res Limit :", res)
                 })
             }
-            return history.push('/StudentAdminDashboard')
+            return history.push('/AdminDashboard')
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
@@ -89,18 +89,18 @@ const ConfirmLimit = ({ excel }) => {
                                         <th>ประเภท</th>
                                         <th>วันเริ่มต้นการปิดใช้งาน</th>
                                         <th>วันสิ้นสุดการปิดใช้งาน</th>
-                                     
+
                                     </tr>
                                 </thead>
                                 {excel.map(item => {
                                     return <tbody key={item.limit_id}>
                                         <tr>
-                                            <td className='tdStudent'>{item.unit_id}</td>
-                                            <td className='tdStudent'>{item.unit_code}</td>
-                                            <td className='tdStudent'>{item.unit_floor}</td>
-                                            <td className='tdStudent'>{item.unit_type}</td>
-                                            <td className='tdStudent'>{item.unavailable_start_date}</td>
-                                            <td className='tdStudent'>{item.unavailable_end_date}</td>
+                                            <td className='tdStudent'>{item.ลำดับ}</td>
+                                            <td className='tdStudent'>{item.Name}</td>
+                                            <td className='tdStudent'>{item.ชั้น}</td>
+                                            <td className='tdStudent'>{item.ประเภท}</td>
+                                            <td className='tdStudent'>{item.วันเริ่มต้นการปิดใช้งาน}</td>
+                                            <td className='tdStudent'>{item.วันสิ้นสุดการปิดใช้งาน}</td>
                                         </tr>
                                     </tbody>
                                 })}
@@ -117,4 +117,4 @@ const ConfirmLimit = ({ excel }) => {
     );
 };
 
-export default ConfirmLimit;
+export default ModalUnit;

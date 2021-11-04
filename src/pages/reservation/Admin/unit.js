@@ -8,21 +8,19 @@ import * as XLSX from "xlsx";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import ModalUnit from './confirmModal/modalUnit';
+
 const AdminUnit = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
     const [unit, setUnit] = useState([]);
     const [items, setItems] = useState([]);
-    
+
     useEffect(() => {
         getDetails();
         console.log("UNIT :", unit)
     }, [user])
-    useEffect(() => {
-        console.log("Excell File :", items)
-    }, [items])
 
-   
 
     const getDetails = () => {
         // http://selab.mfu.ac.th:8320/limitcase/find/all
@@ -32,8 +30,8 @@ const AdminUnit = () => {
         });
     }
 
-    function deleteUnit(id) {       
-        console.log("Delete ID :", id) 
+    function deleteUnit(id) {
+        console.log("Delete ID :", id)
         const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -45,8 +43,8 @@ const AdminUnit = () => {
         }
     }
 
-    
-    
+
+
     const readExcel = (file) => {
         const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -70,7 +68,7 @@ const AdminUnit = () => {
             setItems(d);
         });
     }
-    
+
 
 
     return (
@@ -98,24 +96,24 @@ const AdminUnit = () => {
                 <h1>Manage Unit</h1>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
                 <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
-                        const file = e.target.files[0];
-                        readExcel(file);
-                    }} />
-            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                <thead className='theadAdmin'>
-                    <tr>
-                        <th>ลำดับ</th>
-                        <th>Name</th>
-                        <th>ชั้น</th>
-                        <th>ประเภท</th>
-                        <th>วันเริ่มต้นการปิดใช้งาน</th>
-                        <th>วันสิ้นสุดการปิดใช้งาน</th>
-                        <th>แก้ไขรายละเอียด</th>
-                        <th>ลบ</th>
-                    </tr>
-                </thead>
-                {unit.map(item => {
-                    return <tbody key={item.unit_id}>
+                    const file = e.target.files[0];
+                    readExcel(file);
+                }} />
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>Name</th>
+                            <th>ชั้น</th>
+                            <th>ประเภท</th>
+                            <th>วันเริ่มต้นการปิดใช้งาน</th>
+                            <th>วันสิ้นสุดการปิดใช้งาน</th>
+                            <th>แก้ไขรายละเอียด</th>
+                            <th>ลบ</th>
+                        </tr>
+                    </thead>
+                    {unit.map(item => {
+                        return <tbody key={item.unit_id}>
                             <tr>
                                 <td className='tdStudent'>{item.unit_id}</td>
                                 <td className='tdStudent'>{item.unit_code}</td>
@@ -127,10 +125,15 @@ const AdminUnit = () => {
                                 <td className='tdStudent'><Button onClick={() => deleteUnit(item.unit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td> */}
                             </tr>
                         </tbody>
-                })}
+                    })}
 
-            </Table>
+                </Table>
             </div>
+            {
+                items.length != 0 ? (<div>
+                    {console.log("มาแล้ว :", items)}
+                    <ModalUnit excel={items} /></div>) : (console.log("ยัง"))
+            }
         </div>
     )
 }
