@@ -224,6 +224,8 @@ const StudentRes = () => {
         },
     });
 
+
+
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
