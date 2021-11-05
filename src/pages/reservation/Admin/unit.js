@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import ModalUnit from './confirmModal/modalUnit';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import { BsSearch } from "react-icons/bs";
 const AdminUnit = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
@@ -98,9 +98,20 @@ const AdminUnit = () => {
 
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
+                    <Col sm={10}>
+                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="string"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ชื่อยูนิต/ชั้น/ประเภท"
+                    >
+                    </input>
+                    <button type="submit" class="searchButton">
+                        <BsSearch />
+                    </button></Col>
                     <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
-                        <Col></Col>
-                        <Col></Col>
                         <Col style={{ marginRight: '-70px' }}>
                         </Col>
                         <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">

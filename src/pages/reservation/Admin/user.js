@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import ModalUser from './confirmModal/modalUser';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import { BsSearch } from "react-icons/bs";
 const AdminUser = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
@@ -92,7 +92,20 @@ const AdminUser = () => {
                
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px',minWidth:'1500px'  }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-                <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
+                <Col sm={10}>
+                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาผู้ใช้งาน : </label>
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="string"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ID/ชื่อ-สกุล/ชั้นปี/ตำแหน่ง"
+                    >
+                    </input>
+                    <button type="submit" class="searchButton">
+                        <BsSearch />
+                    </button></Col>
+                <Row style={{ marginBottom: '30px', marginTop: '-30px' }}>
 
                     <Col></Col>
                     <Col></Col>
