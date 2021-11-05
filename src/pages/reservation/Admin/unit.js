@@ -95,51 +95,51 @@ const AdminUnit = () => {
 
             <div>
                 <br />
-                
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px',minWidth:'1500px' }}>
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-                <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
-                    <Col></Col>
-                    <Col></Col>
-                    <Col style={{ marginRight: '-70px' }}>
-                    </Col>
-                    <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
-                    <input type="file" onChange={(e) => {
-                        const file = e.target.files[0];
-                        readExcel(file);
-                    }} />
-                </Col>
-                </Row>
 
-                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                    <thead className='theadAdmin'>
-                        <tr>
-                            <th>ลำดับ</th>
-                            <th>ชื่อยูนิต</th>
-                            <th>ชั้น</th>
-                            <th>ประเภท</th>
-                            <th>วันเริ่มต้นการปิดใช้งาน</th>
-                            <th>วันสิ้นสุดการปิดใช้งาน</th>
-                            <th>แก้ไขรายละเอียด</th>
-                            <th>ลบ</th>
-                        </tr>
-                    </thead>
-                    {unit.map(item => {
-                        return <tbody key={item.unit_id}>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
+                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
+                    <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
+                        <Col></Col>
+                        <Col></Col>
+                        <Col style={{ marginRight: '-70px' }}>
+                        </Col>
+                        <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
+                            <input type="file" onChange={(e) => {
+                                const file = e.target.files[0];
+                                readExcel(file);
+                            }} />
+                        </Col>
+                    </Row>
+
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                        <thead className='theadAdmin'>
                             <tr>
-                                <td className='tdStudent'>{item.unit_id}</td>
-                                <td className='tdStudent'>{item.unit_code}</td>
-                                <td className='tdStudent'>{item.unit_floor}</td>
-                                <td className='tdStudent'>{item.unit_type}</td>
-                                <td className='tdStudent'>{item.unavailable_start_date}</td>
-                                <td className='tdStudent'>{item.unavailable_end_date}</td>
-                                <td className='tdStudent'><Button >แก้ไข</Button></td>
-                                <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                                <th>ลำดับ</th>
+                                <th>ชื่อยูนิต</th>
+                                <th>ชั้น</th>
+                                <th>ประเภท</th>
+                                <th>วันเริ่มต้นการปิดใช้งาน</th>
+                                <th>วันสิ้นสุดการปิดใช้งาน</th>
+                                <th>แก้ไขรายละเอียด</th>
+                                <th>ลบ</th>
                             </tr>
-                        </tbody>
-                    })}
+                        </thead>
+                        {unit.map(item => {
+                            return <tbody key={item.unit_id}>
+                                <tr>
+                                    <td className='tdStudent'>{item.unit_id}</td>
+                                    <td className='tdStudent'>{item.unit_code}</td>
+                                    <td className='tdStudent'>{item.unit_floor}</td>
+                                    <td className='tdStudent'>{item.unit_type}</td>
+                                    <td className='tdStudent'>{item.unavailable_start_date}</td>
+                                    <td className='tdStudent'>{item.unavailable_end_date}</td>
+                                    <td className='tdStudent'><Button >แก้ไข</Button></td>
+                                    <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                                </tr>
+                            </tbody>
+                        })}
 
-                </Table>
+                    </Table>
                 </Container>
             </div>
             {

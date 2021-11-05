@@ -5,16 +5,16 @@ import axios from "axios";
 import { Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import FormInput from './updateForm';
-import * as XLSX from "xlsx";
+
 import ConfirmLimit from './confirmModal/modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 
-const Limit = () => {
+const Limit = ({ setIsOpen }) => {
     const history = useHistory();
-    const { user } = useContext(AuthContext);
-    const [limit, setLimit] = useState([]);
+    const { user, limit, setLimit } = useContext(AuthContext);
+
     const [editingIndex, setEditingIndex] = useState([]);
     const [items, setItems] = useState([]);
 
@@ -22,9 +22,9 @@ const Limit = () => {
         getDetails();
         console.log("User :", user)
     }, [user])
-    useEffect(() => {
-        console.log("Excell File :", items)
-    }, [items])
+    // useEffect(() => {
+    //     console.log("Excell File :", items)
+    // }, [items])
 
     const getDetails = () => {
         // http://selab.mfu.ac.th:8318/limitcase/find/all
@@ -41,7 +41,6 @@ const Limit = () => {
             console.log(confirmBox)
             alert("ลบการจำกัดงานสำเร็จ")
             await axios.delete("http://localhost:3000/limitcase/delete/" + id);
-            // return history.push('/StudentAdminDashboard')
             return axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
                 console.log("new Limit ==> :", item.data)
                 return setLimit(item.data);
@@ -56,66 +55,39 @@ const Limit = () => {
         setEditingIndex([...editingIndex, ID])
     }
 
-    const readExcel = (file) => {
-        const promise = new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsArrayBuffer(file);
 
-            fileReader.onload = (e) => {
-                const bufferArray = e.target.result;
-                const wb = XLSX.read(bufferArray, { type: "buffer" });
-                const wsname = wb.SheetNames[0];
-                const ws = wb.Sheets[wsname];
-                const data = XLSX.utils.sheet_to_json(ws);
-                resolve(data);
-            };
 
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-
-        promise.then((d) => {
-            setItems(d);
-        });
+    function openModal() {
+        return setIsOpen(true);
     }
 
 
 
     return (
-        <div style={{ marginTop: '-30px' }}>
+        <div >
             <Row>
-                <Col md="auto"></Col>
-                <Col md="auto"></Col>
-                <Col md="auto"></Col>
-                <Col md="auto"></Col>
-                <Col md="auto"></Col>
-                <Col md="auto"></Col>
-
-                <Col><input
-                    style={{ fontSize: '18px' }}
-                    type="date"
-                    class="searchTerm"
-                    id="input_text"
-                    placeholder="ค้นหาวันที่"
-                >
-                </input>
+                <Col sm={10}>
+                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                    >
+                    </input>
                     <button type="submit" class="searchButton">
                         <BsSearch />
                     </button></Col>
-
-                <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
-                    <input type="file" onChange={(e) => {
-                        const file = e.target.files[0];
-                        readExcel(file);
-                    }} />
+                <Col sm={2}>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#4487E3', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จำกัดภาระงาน</Button>
                 </Col>
             </Row>
 
 
             <Table striped bordered hover variant="" style={{ marginTop: '30px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                 <thead className='theadAdmin'>
-                    <tr style={{ fontSize: '16px' }}>
+                    <tr style={{ fontSize: '18px' }}>
                         <th>วันที่</th>
                         <th>เวลา</th>
                         <th>OD</th>
@@ -158,10 +130,7 @@ const Limit = () => {
                         </tbody>)
                 })}
             </Table>
-            {
-                items.length != 0 ? (<div>
-                    <ConfirmLimit excel={items} setLimit={setLimit} /></div>) : (console.log("ยัง"))
-            }
+
         </div >
     )
 }

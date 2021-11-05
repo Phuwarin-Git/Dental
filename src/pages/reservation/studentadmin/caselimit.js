@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
 import { CloseButton, Nav } from 'react-bootstrap';
+import * as XLSX from "xlsx";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -15,11 +16,13 @@ import Input from './reservationCss/InputRes'
 import Button from './reservationCss/ButtonRes'
 import Limit from './limit';
 import StyledCreate from './reservationCss/ModalCreate';
+import ConfirmLimit from './confirmModal/modal';
 
 const StudentAdminLimitCase = () => {
-    const { user } = useContext(AuthContext);
+    const { user, limit, setLimit } = useContext(AuthContext);
     const history = useHistory();
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [items, setItems] = useState([]);
 
     function openModal() {
         setIsOpen(true);
@@ -40,12 +43,40 @@ const StudentAdminLimitCase = () => {
             await axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
                 return console.log("Res Limit :", res)
             })
+            await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setLimit(item.data);
+            });
             return closeModal();
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
 
+    }
+
+    const readExcel = (file) => {
+        const promise = new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+
+            fileReader.onload = (e) => {
+                const bufferArray = e.target.result;
+                const wb = XLSX.read(bufferArray, { type: "buffer" });
+                const wsname = wb.SheetNames[0];
+                const ws = wb.Sheets[wsname];
+                const data = XLSX.utils.sheet_to_json(ws);
+                resolve(data);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+
+        promise.then((d) => {
+            setItems(d);
+        });
     }
 
     const formik = useFormik({
@@ -115,12 +146,11 @@ const StudentAdminLimitCase = () => {
             </Navbar>
             <br />
 
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', }}>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
 
-                <Button onClick={() => openModal()} style={{ backgroundColor: '#4487E3', fontWeight: 'bold', marginLeft: '-80%', marginBottom: '-30px' }}>จำกัดภาระงาน</Button>
 
-                <Limit />
+                <Limit setIsOpen={setIsOpen} />
 
                 <StyledCreate
                     isOpen={modalIsOpen}
@@ -325,11 +355,20 @@ const StudentAdminLimitCase = () => {
                                 <div className="error">{formik.errors.ortho}</div>
                             ) : null} <br />
 
+                            <input type="file" onChange={(e) => {
+                                const file = e.target.files[0];
+                                readExcel(file);
+                            }} />
+
                             <br /><Button style={{ marginLeft: '80px', fontSize: '22px' }} className="But" type="submit">ยืนยัน</Button>
                         </form>
                     </div>
                 </StyledCreate>
             </Container>
+            {
+                items.length != 0 ? (<div>
+                    <ConfirmLimit excel={items} setLimit={setLimit} CloseReser={setIsOpen} /></div>) : (console.log("ยัง"))
+            }
 
 
         </div>

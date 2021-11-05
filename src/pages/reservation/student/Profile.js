@@ -54,7 +54,7 @@ const StudentProfile = () => {
                 </Container>
             </Navbar>
             <br />
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                 <h1>รายละเอียดบัญชี</h1>
                 {details.map((item) => {
                     return <div key={item.id}>

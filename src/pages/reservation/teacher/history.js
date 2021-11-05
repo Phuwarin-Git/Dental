@@ -55,7 +55,7 @@ const TeacherHistory = () => {
             <br />
 
             <div className="PaddingDiv">
-                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>

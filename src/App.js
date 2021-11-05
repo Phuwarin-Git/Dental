@@ -34,6 +34,7 @@ const AuthContext = createContext();
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [user, setUser] = useState([]);
+  const [limit, setLimit] = useState([]);
 
   useEffect(() => {
     console.log('User :', user, ' Status :', loginStatus);
@@ -41,7 +42,7 @@ function App() {
   return (
     <div className="App">
 
-      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus }}>
+      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
           <Route path="/StudentDashboard" render={() => loginStatus === true ? <StudentDashboard /> : (<Redirect to="/" />)}></Route>

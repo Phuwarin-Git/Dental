@@ -27,7 +27,7 @@ const TeacherDashboard = () => {
                 </Container>
             </Navbar>
             <br />
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                 <h1>Teacher Dashboard</h1>
             </Container>
 

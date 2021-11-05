@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ConfirmLimit = ({ excel, setLimit }) => {
+const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
     // const [listExcel, setList] = useState([]);
     const history = useHistory();
@@ -67,6 +67,7 @@ const ConfirmLimit = ({ excel, setLimit }) => {
                 console.log("new Limit ==> :", item.data)
                 return setLimit(item.data);
             });
+            CloseReser(false);
             return closeModal();
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
