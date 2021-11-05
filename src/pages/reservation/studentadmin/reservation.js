@@ -54,7 +54,7 @@ const StudentAdminReservation = () => {
         console.log('Seleted :', select)
     };
 
-    function submitApprove() {
+    async function submitApprove() {
         if (select.length === 0) {
             alert('กรุณาเลือก Unit')
         } else {
@@ -63,9 +63,21 @@ const StudentAdminReservation = () => {
             if (confirmBox == true) {
                 console.log(confirmBox)
                 alert("การเลือกยูนิตสำเร็จ")
-                axios.put("http://localhost:3000/details/updateUnitSet/", body)
+                await axios.put("http://localhost:3000/details/updateUnitSet/", body)
                 console.log('Body data :', body)
-                return history.push('/StudentAdminHistory')
+                return await axios.get("http://localhost:3000/details/find/null").then((item) => {
+                    console.log("Null Unit :", item.data)
+
+                    for (let i in item.data) {
+                        let obj = {
+                            ...item.data[i],
+                            select: null
+                        }
+                        item.data[i] = obj
+                    }
+                    console.log("Test ==>", item.data)
+                    return setDetails(item.data);
+                });
             } else {
                 alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)

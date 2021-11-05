@@ -148,7 +148,6 @@ const Limit = () => {
             </Table>
             {
                 items.length != 0 ? (<div>
-                    <h1>มาแล้ว</h1>
                     <ConfirmLimit excel={items} setLimit={setLimit} /></div>) : (console.log("ยัง"))
             }
         </div >
