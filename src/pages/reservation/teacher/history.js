@@ -33,7 +33,7 @@ const TeacherHistory = () => {
     }
 
     return (
-        <div >
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -55,35 +55,37 @@ const TeacherHistory = () => {
             <br />
 
             <div className="PaddingDiv">
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
-                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                    <thead className='theadAdmin'>
-                        <tr>
-                            <th>วันที่</th>
-                            <th>ช่วงเวลา</th>
-                            <th>Unit</th>
-                            <th>คลินิก</th>
-                            <th>ประเภทงาน</th>
-                            <th>คนไข้</th>
-                            <th>ชื่อนักศึกษา</th>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                        <thead className='theadAdmin'>
+                            <tr>
+                                <th>วันที่</th>
+                                <th>ช่วงเวลา</th>
+                                <th>Unit</th>
+                                <th>คลินิก</th>
+                                <th>ประเภทงาน</th>
+                                <th>คนไข้</th>
+                                <th>ชื่อนักศึกษา</th>
 
-                        </tr>
-                    </thead>
-
-                    {details.map(item => {
-                        return <tbody key={item.id} >
-                            <tr >
-                                <td className='tdStudent'>{item.date}</td>
-                                <td className='tdStudent'>{item.time}</td>
-                                <td className='tdStudent'>{item.unit}</td>
-                                <td className='tdStudent'>{item.clinic}</td>
-                                <td className='tdStudent'>{item.worktype}</td>
-                                <td className='tdStudent'>{item.patient}</td>
-                                <td className='tdStudent'>{item.name}</td>
                             </tr>
-                        </tbody>
-                    })}
-                </Table>
+                        </thead>
+
+                        {details.map(item => {
+                            return <tbody key={item.id} >
+                                <tr >
+                                    <td className='tdStudent'>{item.date}</td>
+                                    <td className='tdStudent'>{item.time}</td>
+                                    <td className='tdStudent'>{item.unit}</td>
+                                    <td className='tdStudent'>{item.clinic}</td>
+                                    <td className='tdStudent'>{item.worktype}</td>
+                                    <td className='tdStudent'>{item.patient}</td>
+                                    <td className='tdStudent'>{item.name}</td>
+                                </tr>
+                            </tbody>
+                        })}
+                    </Table>
+                </Container>
             </div>
         </div >
     )

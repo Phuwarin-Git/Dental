@@ -63,7 +63,7 @@ const TeacherSelectWork = () => {
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -84,61 +84,62 @@ const TeacherSelectWork = () => {
             <br />
 
             <div className="PaddingDiv">
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
+                    <div class="search">
+                        <input
+                            style={{ fontSize: '18px' }}
+                            type="date"
+                            class="searchTerm"
+                            id="input_text"
+                            placeholder="ค้นหาวันที่"
+                        >
+                        </input>
+                        <button type="submit" class="searchButton">
+                            <BsSearch />
+                        </button>
+                    </div>
 
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
-                <div class="search">
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="date"
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ค้นหาวันที่"
-                    >
-                    </input>
-                    <button type="submit" class="searchButton">
-                        <BsSearch />
-                    </button>
-                </div>
 
-
-                <Table striped bordered hover variant="" style={{ marginTop: '40px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                    <thead className='theadAdmin'>
-                        <tr>
-                            <th>เลือกตรวจงาน</th>
-                            <th>Unit</th>
-                            <th>วันที่</th>
-                            <th>ช่วงเวลา</th>
-                            <th>คลินิก</th>
-                            <th>ประเภทงาน</th>
-                            <th>ชั้นปี</th>
-                            <th>ชื่อนักศึกษา</th>
-                        </tr>
-                    </thead>
-                    {details.map(item => {
-                        return <tbody key={item.id}>
+                    <Table striped bordered hover variant="" style={{ marginTop: '40px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                        <thead className='theadAdmin'>
                             <tr>
-                                <td className='tdStudent'>
-                                    <label key={item.id} class="styleCheckBox">
-                                        <input
-                                            key={item.id}
-                                            value={item.id}
-                                            onChange={handleOnChange}
-                                            type="checkbox" />
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
-                                <td className='tdStudent'>{item.unit}</td>
-                                <td className='tdStudent'>{item.date}</td>
-                                <td className='tdStudent'>{item.time}</td>
-                                <td className='tdStudent'>{item.clinic}</td>
-                                <td className='tdStudent'>{item.worktype}</td>
-                                <td className='tdStudent'>{item.studentyear}</td>
-                                <td className='tdStudent'>{item.name}</td>
+                                <th>เลือกตรวจงาน</th>
+                                <th>Unit</th>
+                                <th>วันที่</th>
+                                <th>ช่วงเวลา</th>
+                                <th>คลินิก</th>
+                                <th>ประเภทงาน</th>
+                                <th>ชั้นปี</th>
+                                <th>ชื่อนักศึกษา</th>
                             </tr>
-                        </tbody>
-                    })}
-                </Table>
-                <Button style={{ fontWeight: 'bold', fontSize: '22px' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                        </thead>
+                        {details.map(item => {
+                            return <tbody key={item.id}>
+                                <tr>
+                                    <td className='tdStudent'>
+                                        <label key={item.id} class="styleCheckBox">
+                                            <input
+                                                key={item.id}
+                                                value={item.id}
+                                                onChange={handleOnChange}
+                                                type="checkbox" />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td className='tdStudent'>{item.unit}</td>
+                                    <td className='tdStudent'>{item.date}</td>
+                                    <td className='tdStudent'>{item.time}</td>
+                                    <td className='tdStudent'>{item.clinic}</td>
+                                    <td className='tdStudent'>{item.worktype}</td>
+                                    <td className='tdStudent'>{item.studentyear}</td>
+                                    <td className='tdStudent'>{item.name}</td>
+                                </tr>
+                            </tbody>
+                        })}
+                    </Table>
+                    <Button style={{ fontWeight: 'bold', fontSize: '22px' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                </Container>
             </div>
         </div >
     )
