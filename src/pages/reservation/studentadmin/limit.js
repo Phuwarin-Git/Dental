@@ -14,9 +14,9 @@ import { BsSearch } from "react-icons/bs";
 const Limit = ({ setIsOpen }) => {
     const history = useHistory();
     const { user, limit, setLimit } = useContext(AuthContext);
-
+    const [searchDate, setSearchDate] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
-    const [items, setItems] = useState([]);
+
 
     useEffect(() => {
         getDetails();
@@ -61,6 +61,24 @@ const Limit = ({ setIsOpen }) => {
         return setIsOpen(true);
     }
 
+    async function onChangeSearch(e) {
+        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setLimit(item.data);
+        });
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = limit.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setLimit(checking)
+    }
+
 
 
     return (
@@ -68,15 +86,17 @@ const Limit = ({ setIsOpen }) => {
             <Row>
                 <Col sm={10}>
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+
                     <input
                         style={{ fontSize: '18px' }}
                         type="date"
                         class="searchTerm"
                         id="input_text"
                         placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
                     >
                     </input>
-                    <button type="submit" class="searchButton">
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
