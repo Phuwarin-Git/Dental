@@ -115,7 +115,7 @@ const AdminUnit = () => {
                     <thead className='theadAdmin'>
                         <tr>
                             <th>ลำดับ</th>
-                            <th>Name</th>
+                            <th>ชื่อยูนิต</th>
                             <th>ชั้น</th>
                             <th>ประเภท</th>
                             <th>วันเริ่มต้นการปิดใช้งาน</th>
