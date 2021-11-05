@@ -87,7 +87,7 @@ const StudentAdminReservation = () => {
 
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -107,46 +107,47 @@ const StudentAdminReservation = () => {
             </Navbar>
 
             <br />
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
 
-            <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
-
-            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                <thead className='theadAdmin'>
-                    <tr>
-                        <th>วันที่</th>
-                        <th>ช่วงเวลา</th>
-                        <th>คลินิก</th>
-                        <th>ประเภทงาน</th>
-                        <th>ชื่อผู้ป่วย</th>
-                        <th>ชื่อนักศึกษา</th>
-                        <th>Unit</th>
-                    </tr>
-                </thead>
-                {details.map(item => {
-                    return <tbody key={item.id}>
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <thead className='theadAdmin'>
                         <tr>
-                            <td className='tdStudent'>{item.date}</td>
-                            <td className='tdStudent'>{item.time}</td>
-                            <td className='tdStudent'>{item.clinic}</td>
-                            <td className='tdStudent'>{item.worktype}</td>
-                            <td className='tdStudent'>{item.patient}</td>
-                            <td className='tdStudent'>{item.name}</td>
-                            <td className='tdStudent'>
-                                <select style={{ backgroundColor: '#1f5bcc', color: 'white' }} onChange={handleOnChange}>
-                                    <option value="selected" selected="selected">เลือก Unit</option>
-                                    {allUnit.map((items) => {
-                                        return <option
-                                            value={item.id + " " + items.unit_code}>
-                                            {items.unit_code}
-                                        </option>
-                                    })}
-                                </select>
-                            </td>
+                            <th>วันที่</th>
+                            <th>ช่วงเวลา</th>
+                            <th>คลินิก</th>
+                            <th>ประเภทงาน</th>
+                            <th>ชื่อผู้ป่วย</th>
+                            <th>ชื่อนักศึกษา</th>
+                            <th>Unit</th>
                         </tr>
-                    </tbody>
-                })}
-            </Table>
-            <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                    </thead>
+                    {details.map(item => {
+                        return <tbody key={item.id}>
+                            <tr>
+                                <td className='tdStudent'>{item.date}</td>
+                                <td className='tdStudent'>{item.time}</td>
+                                <td className='tdStudent'>{item.clinic}</td>
+                                <td className='tdStudent'>{item.worktype}</td>
+                                <td className='tdStudent'>{item.patient}</td>
+                                <td className='tdStudent'>{item.name}</td>
+                                <td className='tdStudent'>
+                                    <select style={{ backgroundColor: '#1f5bcc', color: 'white' }} onChange={handleOnChange}>
+                                        <option value="selected" selected="selected">เลือก Unit</option>
+                                        {allUnit.map((items) => {
+                                            return <option
+                                                value={item.id + " " + items.unit_code}>
+                                                {items.unit_code}
+                                            </option>
+                                        })}
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    })}
+                </Table>
+                <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+            </Container>
         </div>
     )
 }

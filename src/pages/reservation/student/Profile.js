@@ -35,7 +35,7 @@ const StudentProfile = () => {
 
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -54,25 +54,27 @@ const StudentProfile = () => {
                 </Container>
             </Navbar>
             <br />
-            <h1>Student Profile</h1>
-            {details.map((item) => {
-                return <div key={item.id}>
-                    <br />
-                    <Card
-                        style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
-                        className="mb-2"
-                    >
-                        <Card.Header style={{ backgroundColor: '#d60000', color: 'white' }}> วันที่ : {item.date}</Card.Header>
-                        <Card.Body style={{ backgroundColor: '#fa4141' }}>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
+                <h1>รายละเอียดบัญชี</h1>
+                {details.map((item) => {
+                    return <div key={item.id}>
+                        <br />
+                        <Card
+                            style={{ width: '21rem', marginLeft: 'auto', marginRight: 'auto' }}
+                            className="mb-2"
+                        >
+                            <Card.Header style={{ backgroundColor: '#d60000', color: 'white' }}> วันที่: {item.date}</Card.Header>
+                            <Card.Body style={{ backgroundColor: '#fa4141' }}>
 
-                            <Card.Text>
-                                <p style={{ color: 'yellow' }}>ต้องเปลี่ยน API เป็นของ name ของนี้ใช้ของ details </p>
-                                <Card.Title>Name : {item.name} &nbsp;&nbsp; Year : {item.studentyear} </Card.Title>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-            })}
+                                <Card.Text>
+                                    <p style={{ color: 'yellow' }}>ต้องเปลี่ยน API เป็นของ name ของนี้ใช้ของ details </p>
+                                    <Card.Title>Name: {item.name} &nbsp; &nbsp; Year: {item.studentyear} </Card.Title>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                })}
+            </Container>
         </div >
     )
 }

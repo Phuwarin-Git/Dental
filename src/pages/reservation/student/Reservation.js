@@ -225,7 +225,7 @@ const StudentRes = () => {
     });
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -245,7 +245,7 @@ const StudentRes = () => {
             </Navbar>
             <br />
 
-            <Container>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
 
                 <StudentLimt />
 
