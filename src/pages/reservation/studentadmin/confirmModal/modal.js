@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ConfirmLimit = ({ excel }) => {
+const ConfirmLimit = ({ excel, setLimit }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
     // const [listExcel, setList] = useState([]);
     const history = useHistory();
@@ -36,7 +36,7 @@ const ConfirmLimit = ({ excel }) => {
     useEffect(() => {
     }, [modalIsOpen])
 
-    function createLimit() {
+    async function createLimit() {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -58,11 +58,16 @@ const ConfirmLimit = ({ excel }) => {
                     ortho: excel[i].ORTHO
                 }]
                 console.log("Check A :", a)
-                axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {
+                await axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {
                     console.log("Res Limit :", res)
                 })
+
             }
-            return history.push('/StudentAdminDashboard')
+            await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setLimit(item.data);
+            });
+            return closeModal();
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
