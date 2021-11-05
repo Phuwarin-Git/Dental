@@ -355,7 +355,18 @@ const StudentAdminLimitCase = () => {
                                 <div className="error">{formik.errors.ortho}</div>
                             ) : null} <br />
 
-                            <input type="file" onChange={(e) => {
+                            <hr
+                                style={{
+                                    color: 'color',
+                                    backgroundColor: 'color',
+                                    height: '5',
+                                    width: '400px',
+                                    marginLeft: '-50px'
+
+                                }}
+                            />
+                            <label style={{ marginRight: '10px', marginLeft: '-10px' }}>อัพโหลดโดย Excel : {" "}</label>
+                            <input style={{ marginBottom: '10px' }} type="file" onChange={(e) => {
                                 const file = e.target.files[0];
                                 readExcel(file);
                             }} />
