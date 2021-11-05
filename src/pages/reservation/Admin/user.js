@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import ModalUser from './confirmModal/modalUser';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
 const AdminUser = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
@@ -66,7 +67,7 @@ const AdminUser = () => {
 
     return (
 
-        <div style={{ minHeight: '1080px' }}>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -88,6 +89,8 @@ const AdminUser = () => {
 
             <div>
                 <br />
+               
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
                 <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
 
@@ -95,13 +98,12 @@ const AdminUser = () => {
                     <Col></Col>
                     <Col style={{ marginRight: '-70px' }}>
                     </Col>
-                    <Col style={{ marginRight: '-250px', fontWeight: 'bold', fontSize: '18px' }}><label>Excel : </label></Col>
-                    <Col style={{ marginRight: '0px' }}>
-                        <input type="file" onChange={(e) => {
-                            const file = e.target.files[0];
-                            readExcel(file);
-                        }} />
-                    </Col>
+                    <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
+                    <input type="file" onChange={(e) => {
+                        const file = e.target.files[0];
+                        readExcel(file);
+                    }} />
+                </Col>
                 </Row>
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
@@ -132,6 +134,7 @@ const AdminUser = () => {
                     })}
 
                 </Table>
+                </Container>
             </div>
             {
                 userExcel.length != 0 ? (<div>
