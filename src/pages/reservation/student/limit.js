@@ -34,7 +34,7 @@ const StudentLimt = () => {
                         <th>OPER</th>
                         <th>PERIO</th>
                         <th>SUR</th>
-                        <th>RPOSTH</th>
+                        <th>PROSTH</th>
                         <th>ENDO</th>
                         <th>X-RAY</th>
                         <th>OM</th>

@@ -40,7 +40,7 @@ const TeacherSelectWork = () => {
     //     return console.log('id :', id, 'teacher :', teacher)
     // }
 
-    function submitApprove() {
+    async function submitApprove() {
         if (isChecked.length === 0) {
             alert('กรุณาเลือกงานที่ต้องการตรวจ');
         } else {
@@ -48,10 +48,13 @@ const TeacherSelectWork = () => {
             const confirmBox = window.confirm("ต้องการยืนยันการตรวจงานหรือไม่")
             if (confirmBox == true) {
                 console.log(confirmBox)
-                axios.put("http://localhost:3000/details/updateTeacher/", body)
+                await axios.put("http://localhost:3000/details/updateTeacher/", body)
                 console.log('Body data :', body)
                 alert('การเลือกตรวจงานสำเร็จ');
-                return history.push('/TeacherHistory')
+                return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+                    console.log("Limit :", item.data)
+                    return setDetails(item.data);
+                });
             } else {
                 alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)
