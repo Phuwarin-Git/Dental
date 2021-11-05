@@ -9,6 +9,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import ModalUnit from './confirmModal/modalUnit';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const AdminUnit = () => {
     const history = useHistory();
@@ -23,7 +25,6 @@ const AdminUnit = () => {
 
 
     const getDetails = () => {
-        // http://selab.mfu.ac.th:8320/limitcase/find/all
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
             console.log("Unit :", item.data)
             return setUnit(item.data);
@@ -93,12 +94,23 @@ const AdminUnit = () => {
             </Navbar>
 
             <div>
-                <h1>Manage Unit</h1>
+                <br />
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-                <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
-                    const file = e.target.files[0];
-                    readExcel(file);
-                }} />
+
+                <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col style={{ marginRight: '-70px' }}>
+                    </Col>
+                    <Col style={{ marginRight: '-250px', fontWeight: 'bold', fontSize: '18px' }}><label>Excel : </label></Col>
+                    <Col style={{ marginRight: '0px' }}>
+                        <input type="file" onChange={(e) => {
+                            const file = e.target.files[0];
+                            readExcel(file);
+                        }} />
+                    </Col>
+                </Row>
+
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
                         <tr>
@@ -121,8 +133,8 @@ const AdminUnit = () => {
                                 <td className='tdStudent'>{item.unit_type}</td>
                                 <td className='tdStudent'>{item.unavailable_start_date}</td>
                                 <td className='tdStudent'>{item.unavailable_end_date}</td>
-                                {/* <td className='tdStudent'><Button onClick={() => changeStatus(item.unit_id)}>แก้ไข</Button></td>
-                                <td className='tdStudent'><Button onClick={() => deleteUnit(item.unit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td> */}
+                                <td className='tdStudent'><Button >แก้ไข</Button></td>
+                                <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                             </tr>
                         </tbody>
                     })}
@@ -132,7 +144,7 @@ const AdminUnit = () => {
             {
                 items.length != 0 ? (<div>
                     {console.log("มาแล้ว :", items)}
-                    <ModalUnit excel={items} /></div>) : (console.log("ยัง"))
+                    <ModalUnit excel={items} setUnit={setUnit} /></div>) : (console.log("ยัง"))
             }
         </div>
     )

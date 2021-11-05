@@ -11,18 +11,10 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ModalUser = ({ excel }) => {
+const ModalUser = ({ excel, setUser }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
-    // const [listExcel, setList] = useState([]);
+
     const history = useHistory();
-
-    // useEffect(() => {
-    //     setList(excel)
-    // }, [excel])
-
-    // useEffect(() => {
-    //     console.log('list :', listExcel)
-    // }, [listExcel])
 
 
     function openModal() {
@@ -36,7 +28,7 @@ const ModalUser = ({ excel }) => {
     useEffect(() => {
     }, [modalIsOpen])
 
-    function createUser() {
+    async function createUser() {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -54,11 +46,15 @@ const ModalUser = ({ excel }) => {
 
                 }]
                 console.log("Check A :", a)
-                axios.post("http://localhost:3000/name/createMultiTable", a).then((res) => {
+                await axios.post("http://localhost:3000/name/createMultiTable", a).then((res) => {
                     console.log("Res Limit :", res)
                 })
             }
-            return history.push('/AdminDashboard')
+            await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                console.log("Name :", item.data)
+                return setUser(item.data);
+            });
+            return closeModal();
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)

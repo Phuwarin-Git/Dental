@@ -9,6 +9,7 @@ import * as XLSX from "xlsx";
 import ConfirmLimit from './confirmModal/modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { BsSearch } from "react-icons/bs";
 
 const Limit = () => {
     const history = useHistory();
@@ -82,15 +83,28 @@ const Limit = () => {
 
 
     return (
-        <div >
-            <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
+        <div style={{ marginTop: '-30px' }}>
+            <Row>
+                <Col md="auto"></Col>
+                <Col md="auto"></Col>
+                <Col md="auto"></Col>
+                <Col md="auto"></Col>
+                <Col md="auto"></Col>
+                <Col md="auto"></Col>
 
-                <Col></Col>
-                <Col></Col>
-                <Col style={{ marginRight: '-70px' }}>
-                </Col>
-                <Col style={{ marginRight: '-80px', fontWeight: 'bold', fontSize: '18px' }}><label>Excel : </label></Col>
-                <Col style={{ marginRight: '-50px' }}>
+                <Col><input
+                    style={{ fontSize: '18px' }}
+                    type="date"
+                    class="searchTerm"
+                    id="input_text"
+                    placeholder="ค้นหาวันที่"
+                >
+                </input>
+                    <button type="submit" class="searchButton">
+                        <BsSearch />
+                    </button></Col>
+
+                <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
                     <input type="file" onChange={(e) => {
                         const file = e.target.files[0];
                         readExcel(file);
@@ -99,9 +113,7 @@ const Limit = () => {
             </Row>
 
 
-
-
-            <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
+            <Table striped bordered hover variant="" style={{ marginTop: '30px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                 <thead className='theadAdmin'>
                     <tr style={{ fontSize: '16px' }}>
                         <th>วันที่</th>

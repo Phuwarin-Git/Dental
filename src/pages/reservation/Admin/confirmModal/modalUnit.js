@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ModalUnit = ({ excel }) => {
+const ModalUnit = ({ excel, setUnit }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
     const [listExcel, setList] = useState([]);
     const history = useHistory();
@@ -36,7 +36,7 @@ const ModalUnit = ({ excel }) => {
     useEffect(() => {
     }, [modalIsOpen])
 
-    function createUnit() {
+    async function createUnit() {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -54,11 +54,15 @@ const ModalUnit = ({ excel }) => {
 
                 }]
                 console.log("Check A :", a)
-                axios.post("http://localhost:3000/unit/createMultiTable", a).then((res) => {
+                await axios.post("http://localhost:3000/unit/createMultiTable", a).then((res) => {
                     console.log("Res Limit :", res)
                 })
             }
-            return history.push('/AdminDashboard')
+            await axios.get("http://localhost:3000/unit/find/all").then((item) => {
+                console.log("Unit :", item.data)
+                return setUnit(item.data);
+            });
+            return closeModal();
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)

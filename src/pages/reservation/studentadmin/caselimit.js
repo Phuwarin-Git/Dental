@@ -95,7 +95,7 @@ const StudentAdminLimitCase = () => {
     });
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#ededed' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -115,10 +115,10 @@ const StudentAdminLimitCase = () => {
             </Navbar>
             <br />
 
-            <Container>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
 
-                <Button onClick={() => openModal()} style={{ backgroundColor: '#4487E3', fontWeight: 'bold', marginLeft: '-80%' }}>จำกัดภาระงาน</Button>
+                <Button onClick={() => openModal()} style={{ backgroundColor: '#4487E3', fontWeight: 'bold', marginLeft: '-80%', marginBottom: '-30px' }}>จำกัดภาระงาน</Button>
 
                 <Limit />
 

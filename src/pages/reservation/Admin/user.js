@@ -9,37 +9,25 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import ModalUser from './confirmModal/modalUser';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 const AdminUser = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
-    const [unit, setUnit] = useState([]);
+    const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);
 
     useEffect(() => {
         getDetails();
-        console.log("UNIT :", unit)
+        console.log("userDetails :", userDetails)
     }, [user])
 
 
     const getDetails = () => {
-        // http://selab.mfu.ac.th:8320/limitcase/find/all
         axios.get("http://localhost:3000/name/find/all").then((item) => {
             console.log("Name :", item.data)
-            return setUnit(item.data);
+            return setUser(item.data);
         });
-    }
-
-    function deleteUnit(id) {
-        console.log("Delete ID :", id)
-        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            alert("ลบการจำกัดงานสำเร็จ")
-            axios.delete("http://localhost:3000/unit/delete/" + id);
-        } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
-            console.log(confirmBox)
-        }
     }
 
 
@@ -99,12 +87,22 @@ const AdminUser = () => {
             </Navbar>
 
             <div>
-                <h1>Manage User</h1>
+                <br />
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-                <label>Excel</label> <input style={{ marginLeft: '78%', marginBottom: '10px' }} type="file" onChange={(e) => {
-                    const file = e.target.files[0];
-                    readExcel(file);
-                }} />
+                <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
+
+                    <Col></Col>
+                    <Col></Col>
+                    <Col style={{ marginRight: '-70px' }}>
+                    </Col>
+                    <Col style={{ marginRight: '-250px', fontWeight: 'bold', fontSize: '18px' }}><label>Excel : </label></Col>
+                    <Col style={{ marginRight: '0px' }}>
+                        <input type="file" onChange={(e) => {
+                            const file = e.target.files[0];
+                            readExcel(file);
+                        }} />
+                    </Col>
+                </Row>
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
                         <tr>
@@ -118,7 +116,7 @@ const AdminUser = () => {
                             <th>ลบ</th>
                         </tr>
                     </thead>
-                    {unit.map(item => {
+                    {userDetails.map(item => {
                         return <tbody key={item.id}>
                             <tr>
                                 <td className='tdStudent'>{item.id}</td>
@@ -127,8 +125,8 @@ const AdminUser = () => {
                                 <td className='tdStudent'>{item.student_year}</td>
                                 <td className='tdStudent'>{item.email}</td>
                                 <td className='tdStudent'>{item.role}</td>
-                                {/* <td className='tdStudent'><Button onClick={() => changeStatus(item.unit_id)}>แก้ไข</Button></td>
-                                <td className='tdStudent'><Button onClick={() => deleteUnit(item.unit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td> */}
+                                <td className='tdStudent'><Button >แก้ไข</Button></td>
+                                <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                             </tr>
                         </tbody>
                     })}
@@ -138,7 +136,7 @@ const AdminUser = () => {
             {
                 userExcel.length != 0 ? (<div>
                     {console.log("มาแล้ว :", userExcel)}
-                    <ModalUser excel={userExcel} /></div>) : (console.log("ยัง"))
+                    <ModalUser excel={userExcel} setUser={setUser} /></div>) : (console.log("ยัง"))
             }
         </div>
     )
