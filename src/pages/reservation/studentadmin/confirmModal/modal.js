@@ -79,7 +79,6 @@ const ConfirmLimit = ({ excel }) => {
             >
                 <div>
                     <Card border="dark">
-
                         <Card.Header><h2>รายละเอียด</h2>
                             <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />
                         </Card.Header>
@@ -94,7 +93,7 @@ const ConfirmLimit = ({ excel }) => {
                                         <th>OPER</th>
                                         <th>PERIO</th>
                                         <th>SUR</th>
-                                        <th>RPOSTH</th>
+                                        <th>PROSTH</th>
                                         <th>ENDO</th>
                                         <th>X-RAY</th>
                                         <th>OM</th>

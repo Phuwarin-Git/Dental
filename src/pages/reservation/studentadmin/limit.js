@@ -33,17 +33,18 @@ const Limit = () => {
         });
     }
 
-    function deleteLimitCase(id) {
-        // let letmitid = { limit_id: id }
+    async function deleteLimitCase(id) {
         console.log("Delete ID :", id)
-        // axios.delete("http://localhost:3000/limitcase/delete/" + id);
-        // return history.push('/StudentAdminDashboard')
         const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
             alert("ลบการจำกัดงานสำเร็จ")
-            axios.delete("http://localhost:3000/limitcase/delete/" + id);
-            return history.push('/StudentAdminDashboard')
+            await axios.delete("http://localhost:3000/limitcase/delete/" + id);
+            // return history.push('/StudentAdminDashboard')
+            return axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setLimit(item.data);
+            });
         } else {
             alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
@@ -81,14 +82,9 @@ const Limit = () => {
 
 
     return (
-        <div>
+        <div >
+            <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
 
-            <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
-
-            <Row style={{ marginBottom: '10px' }}>
-                <Col>
-                    <Button style={{ backgroundColor: '#4487E3', fontWeight: 'bold' }}>จำกัดภาระงาน</Button>
-                </Col>
                 <Col></Col>
                 <Col></Col>
                 <Col style={{ marginRight: '-70px' }}>
@@ -130,6 +126,7 @@ const Limit = () => {
                             editingIndex={editingIndex}
                             setEditingIndex={setEditingIndex}
                         />) : (<tbody key={item.limit_id}>
+                            {console.log("-----rerender----")}
                             <tr>
                                 <td className='tdStudent'>{item.date}</td>
                                 <td className='tdStudent'>{item.time}</td>
