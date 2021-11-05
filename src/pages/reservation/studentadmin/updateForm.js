@@ -28,25 +28,55 @@ const FormInput = ({
         setEditingIndex(removeIndex)
     }
 
+    function submitForm() {
+        return console.log("form Submit ===>",)
+    }
+
     return (
+        // <form>
         <tbody>
-            <tr>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'>x</td>
-                <td className='tdStudent'><Button style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
+            <tr onSubmit={() => submitForm()}>
+                <td className='tdStudent'>
+                    <input type={'date'} style={{ width: '180px' }} defaultValue={item.date}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input style={{ width: '65px' }} defaultValue={item.time}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.od}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.tmd}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.oper}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.perio}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.sur}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.prosth}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.endo}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.xray}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.om}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.ortho}></input>
+                </td>
+                <td className='tdStudent'><Button type={'submit'} style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
                 <td className='tdStudent'><Button onClick={() => setFalse(item.limit_id)} style={{ backgroundColor: 'red' }}>ยกเลิก</Button></td>
             </tr>
         </tbody>
+        // </form>
     )
 }
 
