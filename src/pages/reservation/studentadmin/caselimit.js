@@ -95,7 +95,7 @@ const StudentAdminLimitCase = () => {
     });
 
     return (
-        <div style={{ backgroundColor: '#ededed' }}>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>

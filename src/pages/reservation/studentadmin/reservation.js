@@ -105,7 +105,9 @@ const StudentAdminReservation = () => {
                     </Nav>
                 </Container>
             </Navbar>
+
             <br />
+
             <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
 
             <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>

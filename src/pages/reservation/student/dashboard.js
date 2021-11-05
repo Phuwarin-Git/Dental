@@ -46,7 +46,7 @@ const StudentDashboard = () => {
 
 
     return (
-        <div style={{ minHeight: '1080px' }}>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0047AB' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -68,7 +68,7 @@ const StudentDashboard = () => {
 
             <div>
                 <br />
-                <Container>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การจองที่อยู่ระหว่างการดำเนินการ</h1>
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>
