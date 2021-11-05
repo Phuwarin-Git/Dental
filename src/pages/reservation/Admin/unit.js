@@ -96,7 +96,7 @@ const AdminUnit = () => {
             <div>
                 <br />
                 
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', }}>
+            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px',minWidth:'1500px' }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
                 <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
                     <Col></Col>
