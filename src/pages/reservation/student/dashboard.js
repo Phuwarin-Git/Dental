@@ -135,13 +135,7 @@ const StudentDashboard = () => {
                                     <td className='tdStudent'>{item.worktype}</td>
                                     <td className='tdStudent'>{item.patient}</td>
                                     <td className='tdStudent'><Button style={{ backgroundColor: '#ffb938', color: 'black' }} >
-                                        <Spinner
-                                            as="span"
-                                            animation="border"
-                                            size="sm"
-                                            role="status"
-                                            aria-hidden="true"
-                                        /> {" "}รอดำเนินการ...{" "}
+                                        {" "}รอดำเนินการ...{" "}
                                     </Button></td>
                                 </tr>
                             </tbody>
