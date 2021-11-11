@@ -10,6 +10,7 @@ import { BsSearch } from "react-icons/bs";
 const StudentAdminHistory = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -21,6 +22,24 @@ const StudentAdminHistory = () => {
             console.log("data :", item.data)
             return setDetials(item.data);
         });
+    }
+
+    async function onChangeSearch(e) {
+        await axios.get("http://localhost:3000/details/find/notnull").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetials(item.data);
+        });
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetials(checking)
     }
 
     return (
@@ -48,18 +67,19 @@ const StudentAdminHistory = () => {
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติ</h1>
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
-                        <input
-                            style={{ fontSize: '18px' }}
-                            type="date"
-                            class="searchTerm"
-                            id="input_text"
-                            placeholder="วว/ดด/ปป"
-                        >
-                        </input>
-                        <button type="submit" class="searchButton">
-                            <BsSearch />
-                        </button>
-                        <h1></h1>
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
+                    >
+                    </input>
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+                    <h1></h1>
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>
                             <tr>

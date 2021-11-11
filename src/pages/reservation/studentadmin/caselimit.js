@@ -144,7 +144,7 @@ const StudentAdminLimitCase = () => {
             </Navbar>
             <br />
 
-            <Container style={{ backgroundColor: '#0080ff', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
+            <Container style={{ backgroundColor: '#ffff', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
 
 
