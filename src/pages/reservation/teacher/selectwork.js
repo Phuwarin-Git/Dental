@@ -17,6 +17,7 @@ const TeacherSelectWork = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [isChecked, setIsChecked] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -60,13 +61,31 @@ const TeacherSelectWork = () => {
         }
     }
 
+    async function onChangeSearch(e) {
+        await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetails(item.data);
+        });
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetails(checking)
+    }
+
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
-          <nav style={{ background: '#0080ff' }}>
-            <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
-                <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
-            </div>
-          </nav>
+            <nav style={{ background: '#0080ff' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
+                </div>
+            </nav>
             <Navbar style={{ backgroundColor: 'white' }}>
                 <Container>
                     <Nav className="me-auto">
@@ -91,9 +110,10 @@ const TeacherSelectWork = () => {
                             class="searchTerm"
                             id="input_text"
                             placeholder="ค้นหาวันที่"
+                            onChange={onChangeSearch}
                         >
                         </input>
-                        <button type="submit" class="searchButton">
+                        <button onClick={() => Searching()} type="submit" class="searchButton">
                             <BsSearch />
                         </button>
                     </div>

@@ -6,11 +6,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import './whycss.css'
+import { BsSearch } from "react-icons/bs";
 
 
 const TeacherHistory = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
+    const [detailsFordate, setDetailsForDate] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -32,13 +35,39 @@ const TeacherHistory = () => {
         console.log("details :", res)
     }
 
+    async function onChangeSearch(e) {
+
+        await axios.get("http://localhost:3000/details/find/teachernotnull").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetailsForDate(item.data);
+        });
+
+        const res = detailsFordate.filter((item) => {
+            return (item.teacher === user.first_name)
+        })
+        setDetials(res);
+        console.log("details :", res)
+
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetials(checking)
+    }
+
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
-          <nav style={{ background: '#0080ff' }}>
-            <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
-                <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
-            </div>
-          </nav>
+            <nav style={{ background: '#0080ff' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
+                </div>
+            </nav>
             <Navbar style={{ backgroundColor: 'white' }}>
                 <Container>
                     <Nav className="me-auto">
@@ -57,7 +86,21 @@ const TeacherHistory = () => {
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
+                    >
+                    </input>
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%', marginTop: '20px' }}>
                         <thead className='theadAdmin'>
                             <tr>
                                 <th>วันที่</th>
