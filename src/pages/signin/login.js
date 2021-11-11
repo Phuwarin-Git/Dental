@@ -81,7 +81,7 @@ const Login = () => {
     return (
 
         <div style={{ background: '#ffff' }}>
-            <nav style={{ background: '#0047AB' }}>
+            <nav style={{ background: '#198CFF' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>

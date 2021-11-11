@@ -22,7 +22,7 @@ const StudentLimt = () => {
 
     return (
         <div>
-            <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
+            <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
             <Table
                 striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}
             > <thead className='theadAdmin'>

@@ -87,7 +87,7 @@ const StudentHistory = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
+                    <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
 
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
 

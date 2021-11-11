@@ -102,7 +102,7 @@ const TeacherSelectWork = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
+                    <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จองการตรวจงาน</h1>
                     <div class="search">
                         <input
                             style={{ fontSize: '18px' }}
@@ -156,7 +156,7 @@ const TeacherSelectWork = () => {
                             </tbody>
                         })}
                     </Table>
-                    <Button style={{ fontWeight: 'bold', fontSize: '22px' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                    <Button style={{ fontWeight: 'bold', fontSize: '22px',backgroundColor:'#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
                 </Container>
             </div>
         </div >

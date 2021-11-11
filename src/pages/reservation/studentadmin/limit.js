@@ -98,7 +98,7 @@ const Limit = ({ setIsOpen }) => {
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#4487E3', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จำกัดภาระงาน</Button>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จำกัดภาระงาน</Button>
                 </Col>
             </Row>
 

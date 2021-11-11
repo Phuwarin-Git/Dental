@@ -125,7 +125,7 @@ const StudentAdminReservation = () => {
 
             <br />
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
+                <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
                 <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
                 <input
                     style={{ fontSize: '18px' }}
@@ -162,7 +162,7 @@ const StudentAdminReservation = () => {
                                 <td className='tdStudent'>{item.patient}</td>
                                 <td className='tdStudent'>{item.name}</td>
                                 <td className='tdStudent'>
-                                    <select style={{ backgroundColor: '#1f5bcc', color: 'white' }} onChange={handleOnChange}>
+                                    <select style={{ backgroundColor: '#198CFF', color: 'white' }} onChange={handleOnChange}>
                                         <option value="selected" selected="selected">เลือก Unit</option>
                                         {allUnit.map((items) => {
                                             return <option
@@ -176,7 +176,7 @@ const StudentAdminReservation = () => {
                         </tbody>
                     })}
                 </Table>
-                <Button style={{ fontWeight: 'bold' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                <Button style={{ fontWeight: 'bold',backgroundColor:'#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
             </Container>
         </div>
     )

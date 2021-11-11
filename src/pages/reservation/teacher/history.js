@@ -85,7 +85,7 @@ const TeacherHistory = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
+                    <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>ประวัติการเลือกตรวจงาน</h1>
 
                     <input
                         style={{ fontSize: '18px' }}
