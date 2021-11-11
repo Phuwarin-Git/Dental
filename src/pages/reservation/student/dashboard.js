@@ -10,6 +10,7 @@ import Table from 'react-bootstrap/Table'
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import axios from "axios";
+import { BsSearch } from "react-icons/bs";
 // import DentalHospital from '../picture/DentalHospital.png'
 
 import { BsFillCalendarFill, BsReverseLayoutTextWindowReverse, BsPersonFill } from "react-icons/bs";
@@ -18,6 +19,8 @@ const StudentDashboard = () => {
 
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
+    const [detailsFordate, setDetailsForDate] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
@@ -42,6 +45,32 @@ const StudentDashboard = () => {
         console.log("details :", res)
     }
 
+    async function onChangeSearch(e) {
+
+        await axios.get("http://localhost:3000/details/find/null").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetailsForDate(item.data);
+        });
+
+        const res = detailsFordate.filter((item) => {
+            return (item.name === user.first_name)
+        })
+        setDetials(res);
+        console.log("details :", res)
+
+
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetials(checking)
+    }
 
 
 
@@ -70,7 +99,23 @@ const StudentDashboard = () => {
                 <br />
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การจองที่อยู่ระหว่างการดำเนินการ</h1>
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+
+                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
+                    >
+                    </input>
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%', marginTop: '20px' }}>
                         <thead className='theadAdmin'>
                             <tr>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>วันที่</th>
@@ -105,7 +150,7 @@ const StudentDashboard = () => {
                 </Container>
 
             </div >
-        </div>
+        </div >
     )
 }
 export default StudentDashboard;
