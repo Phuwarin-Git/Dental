@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import HistoryModal from './historyModal/modal';
 import axios from "axios";
+import { BsSearch } from "react-icons/bs";
 import './whycss.css'
 
 
 const StudentHistory = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
+    const [detailsFordate, setDetailsForDate] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -31,6 +34,33 @@ const StudentHistory = () => {
         })
         setDetials(res);
         console.log("details :", res)
+    }
+
+    async function onChangeSearch(e) {
+
+        await axios.get("http://localhost:3000/details/find/teachernotnull").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetailsForDate(item.data);
+        });
+
+        const res = detailsFordate.filter((item) => {
+            return (item.name === user.first_name)
+        })
+        setDetials(res);
+        console.log("details :", res)
+
+
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetials(checking)
     }
 
     return (
@@ -57,7 +87,23 @@ const StudentHistory = () => {
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+
+                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
+                    >
+                    </input>
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%', marginTop: '20px' }}>
                         <thead className='theadAdmin'>
                             <tr>
                                 <th>วันที่</th>
