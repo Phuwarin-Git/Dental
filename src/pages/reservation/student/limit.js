@@ -66,7 +66,7 @@ const StudentLimt = ({ setIsOpen }) => {
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จำกัดภาระงาน</Button>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จองการทำงาน</Button>
                 </Col>
             </Row>
             <Table
