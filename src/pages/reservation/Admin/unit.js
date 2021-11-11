@@ -34,13 +34,11 @@ const AdminUnit = () => {
 
     function deleteUnit(id) {
         console.log("Delete ID :", id)
-        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        const confirmBox = window.confirm("ต้องการลบข้อมูลยูนิตหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
-            alert("ลบการจำกัดงานสำเร็จ")
             axios.delete("http://localhost:3000/unit/delete/" + id);
         } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
     }
@@ -106,7 +104,7 @@ const AdminUnit = () => {
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
-                        <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#FFA000', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
