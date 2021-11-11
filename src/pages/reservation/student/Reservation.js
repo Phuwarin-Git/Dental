@@ -197,9 +197,9 @@ const StudentRes = () => {
 
             return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
-                setOpen(true);
-                closeModal();
-                return history.push('/StudentDashboard')
+                return setOpen(true);
+                // closeModal();
+                // return history.push('/StudentDashboard')
             })
 
         } else {
