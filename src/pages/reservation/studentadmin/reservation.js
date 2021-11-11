@@ -13,6 +13,7 @@ const StudentAdminReservation = () => {
     const [allUnit, setAllUnit] = useState([]);
     const [details, setDetails] = useState([]);
     const [select, setSelect] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
 
 
     useEffect(() => {
@@ -83,6 +84,24 @@ const StudentAdminReservation = () => {
         }
     }
 
+    async function onChangeSearch(e) {
+        await axios.get("http://localhost:3000/details/find/null").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetails(item.data);
+        });
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = details.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetails(checking)
+    }
+
 
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
@@ -108,19 +127,20 @@ const StudentAdminReservation = () => {
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
                 <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
-                        <input
-                            style={{ fontSize: '18px' }}
-                            type="date"
-                            class="searchTerm"
-                            id="input_text"
-                            placeholder="วว/ดด/ปป"
-                        >
-                        </input>
-                        <button type="submit" class="searchButton">
-                            <BsSearch />
-                        </button>
-                        <h1></h1>
-                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                <input
+                    style={{ fontSize: '18px' }}
+                    type="date"
+                    class="searchTerm"
+                    id="input_text"
+                    placeholder="ค้นหาวันที่"
+                    onChange={onChangeSearch}
+                >
+                </input>
+                <button onClick={() => Searching()} type="submit" class="searchButton">
+                    <BsSearch />
+                </button>
+
+                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%', marginTop: '20px' }}>
                     <thead className='theadAdmin'>
                         <tr>
                             <th>วันที่</th>
