@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useFormik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
-import { Nav } from 'react-bootstrap';
+import { Nav, CloseButton } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -14,14 +14,17 @@ import StudentLimt from './limit';
 import But from './reservationCss/ButtonRes';
 import Input from './reservationCss/InputRes'
 import Selected from './reservationCss/SelectRes';
+import StyledCreateStudent from './reservationCss/ModalCreateForStudent';
 
 const StudentRes = () => {
     const { user } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
     const [open, setOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [getUnique, setUnique] = useState([])
 
     const history = useHistory();
+
 
 
     useEffect(() => {
@@ -46,6 +49,14 @@ const StudentRes = () => {
             '-' + chr4() +
             '-' + chr4() +
             '-' + chr4() + chr4() + chr4();
+    }
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
     }
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
@@ -186,8 +197,11 @@ const StudentRes = () => {
 
             return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                 console.log("Res Create Details :", res)
-                return setOpen(true);
+                setOpen(true);
+                closeModal();
+                return history.push('/StudentDashboard')
             })
+
         } else {
             alert('ไม่มีรายละเอียดงานวันที่เลือก')
         }
@@ -250,171 +264,179 @@ const StudentRes = () => {
 
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
 
-                <StudentLimt />
+                <StudentLimt setIsOpen={setIsOpen} />
 
-                <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จองการทำงาน</h1>
-                <form style={{ textAlign: 'left' }} onSubmit={formik.handleSubmit}>
-                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่</label>
-                    <Input
-                        style={{ fontSize: '18px' }}
-                        id="date"
-                        name="date"
-                        type="date"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.date}
-                    />
-                    {formik.touched.date && formik.errors.date ? (
-                        <div className="error">{formik.errors.date}</div>
-                    ) : null} <br /><br />
-
-
-                    <lable style={{ marginRight: '2%', fontWeight: 'bold', fontSize: '20px' }}>เลือกช่วงเวลา : </lable>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        id="ช่วงเช้า"
-                        type="radio"
-                        value="ช่วงเช้า"
-                        name='time'
-                        onChange={formik.handleChange}
-                        defaultChecked={formik.values.time === "ช่วงเช้า"}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงเช้า</label>
+                <StyledCreateStudent
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="modal">
+                    <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
+                    <div style={{ padding: '30px' }}>
+                        <center>
+                            <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จองการทำงาน</h1>
+                        </center>
+                        <form style={{ textAlign: 'left' }} onSubmit={formik.handleSubmit}>
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="date"
+                                name="date"
+                                type="date"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.date}
+                            />
+                            {formik.touched.date && formik.errors.date ? (
+                                <div className="error">{formik.errors.date}</div>
+                            ) : null} <br /><br />
 
 
-                    <input
-                        style={{ fontSize: '18px' }}
-                        id="ช่วงบ่าย"
-                        type="radio"
-                        value="ช่วงบ่าย"
-                        name='time'
-                        onChange={formik.handleChange}
-                        defaultChecked={formik.values.time === "ช่วงบ่าย"}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงบ่าย</label>
-
-                    {formik.touched.time && formik.errors.time ? (
-                        <div className="error">{formik.errors.time}</div>
-                    ) : null}<br />
+                            <lable style={{ marginRight: '2%', fontWeight: 'bold', fontSize: '20px' }}>เลือกช่วงเวลา : </lable>
+                            <input
+                                style={{ fontSize: '18px' }}
+                                id="ช่วงเช้า"
+                                type="radio"
+                                value="ช่วงเช้า"
+                                name='time'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.time === "ช่วงเช้า"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงเช้า</label>
 
 
+                            <input
+                                style={{ fontSize: '18px' }}
+                                id="ช่วงบ่าย"
+                                type="radio"
+                                value="ช่วงบ่าย"
+                                name='time'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.time === "ช่วงบ่าย"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงบ่าย</label>
 
-                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="Clinic">คลินิก</label>
-                    <Selected
-                        style={{ fontSize: '18px' }}
-                        id="clinic"
-                        name="clinic"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.clinic}
-                    >
-                        <option value="" label="เลือกคลินิก" />
-                        <option value="od" label="OD" />
-                        <option value="tmd" label="TMD" />
-                        <option value="oper" label="OPER" />
-                        <option value="perio" label="PERIO" />
-                        <option value="sur" label="SUR" />
-                        <option value="prosth" label="PROSTH" />
-                        <option value="endo" label="ENDO" />
-                        <option value="pedo" label="PEDO" />
-                        <option value="xray" label="X-RAY" />
-                        <option value="om" label="OM" />
-                        <option value="ortho" label="Ortho" />
-                    </Selected>
-                    {formik.touched.clinic && formik.errors.clinic ? (
-                        <div className="error">{formik.errors.clinic}</div>
-                    ) : null}<br />
-
-                    <label style={{ marginRight: '3%', fontWeight: 'bold', fontSize: '20px' }} htmlFor="type">ประเภทงาน : </label>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        id="ฟุ้งกระจาย"
-                        type="radio"
-                        value="ฟุ้งกระจาย"
-                        name='type'
-                        onChange={formik.handleChange}
-                        defaultChecked={formik.values.type === "ฟุ้งกระจาย"}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '8%', fontSize: '18px' }}>ฟุ้งกระจาย</label>
+                            {formik.touched.time && formik.errors.time ? (
+                                <div className="error">{formik.errors.time}</div>
+                            ) : null}<br />
 
 
-                    <input
-                        style={{ fontSize: '18px' }}
-                        id="ไม่ฟุ้งกระจาย"
-                        type="radio"
-                        value="ไม่ฟุ้งกระจาย"
-                        name='type'
-                        onChange={formik.handleChange}
-                        defaultChecked={formik.values.type === "ไม่ฟุ้งกระจาย"}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    <label style={{ marginRight: '8%', fontSize: '18px' }}>ไม่ฟุ้งกระจาย</label>
 
-                    {formik.touched.type && formik.errors.type ? (
-                        <div className="error">{formik.errors.type}</div>
-                    ) : null}<br />
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="Clinic">คลินิก</label>
+                            <Selected
+                                style={{ fontSize: '18px' }}
+                                id="clinic"
+                                name="clinic"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.clinic}
+                            >
+                                <option value="" label="เลือกคลินิก" />
+                                <option value="od" label="OD" />
+                                <option value="tmd" label="TMD" />
+                                <option value="oper" label="OPER" />
+                                <option value="perio" label="PERIO" />
+                                <option value="sur" label="SUR" />
+                                <option value="prosth" label="PROSTH" />
+                                <option value="endo" label="ENDO" />
+                                <option value="pedo" label="PEDO" />
+                                <option value="xray" label="X-RAY" />
+                                <option value="om" label="OM" />
+                                <option value="ortho" label="Ortho" />
+                            </Selected>
+                            {formik.touched.clinic && formik.errors.clinic ? (
+                                <div className="error">{formik.errors.clinic}</div>
+                            ) : null}<br />
 
-                    {formik.touched.type && formik.errors.type ? (
-                        <div className="error">{formik.errors.type}</div>
-                    ) : null}<br />
+                            <label style={{ marginRight: '3%', fontWeight: 'bold', fontSize: '20px' }} htmlFor="type">ประเภทงาน : </label>
+                            <input
+                                style={{ fontSize: '18px' }}
+                                id="ฟุ้งกระจาย"
+                                type="radio"
+                                value="ฟุ้งกระจาย"
+                                name='type'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.type === "ฟุ้งกระจาย"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '8%', fontSize: '18px' }}>ฟุ้งกระจาย</label>
 
-                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="patient">ชื่อคนไข้</label>
-                    <Input
-                        style={{ fontSize: '18px' }}
-                        id="patient"
-                        name="patient"
-                        type="text"
-                        placeholder="ชื่อคนไข้"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.patient}
-                    />
-                    {formik.touched.patient && formik.errors.patient ? (
-                        <div className="error">{formik.errors.patient}</div>
-                    ) : null} <br />
 
-                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="dn">DN</label>
-                    <Input
-                        style={{ fontSize: '18px' }}
-                        id="dn"
-                        name="dn"
-                        type="number"
-                        placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.dn}
-                    />
-                    {formik.touched.dn && formik.errors.dn ? (
-                        <div className="error">{formik.errors.dn}</div>
-                    ) : null} <br />
+                            <input
+                                style={{ fontSize: '18px' }}
+                                id="ไม่ฟุ้งกระจาย"
+                                type="radio"
+                                value="ไม่ฟุ้งกระจาย"
+                                name='type'
+                                onChange={formik.handleChange}
+                                defaultChecked={formik.values.type === "ไม่ฟุ้งกระจาย"}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <label style={{ marginRight: '8%', fontSize: '18px' }}>ไม่ฟุ้งกระจาย</label>
 
-                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="hn">HN </label>
-                    <Input
-                        style={{ fontSize: '18px' }}
-                        id="hn"
-                        name="hn"
-                        type="number"
-                        placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.hn}
-                    />
-                    {formik.touched.hn && formik.errors.hn ? (
-                        <div className="error">{formik.errors.hn}</div>
-                    ) : null} <br />
+                            {formik.touched.type && formik.errors.type ? (
+                                <div className="error">{formik.errors.type}</div>
+                            ) : null}<br />
 
-                    <center>
-                        <br /><But style={{ fontWeight: 'bold', fontSize: '22px',backgroundColor:'#198CFF' }} type="submit">ยืนยัน</But>
-                    </center>
-                    {open === true ? <ToolModal unique={getUnique} /> : console.log("Modal it's not open")}
+                            {formik.touched.type && formik.errors.type ? (
+                                <div className="error">{formik.errors.type}</div>
+                            ) : null}<br />
 
-                </form>
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="patient">ชื่อคนไข้</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="patient"
+                                name="patient"
+                                type="text"
+                                placeholder="ชื่อคนไข้"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.patient}
+                            />
+                            {formik.touched.patient && formik.errors.patient ? (
+                                <div className="error">{formik.errors.patient}</div>
+                            ) : null} <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="dn">DN</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="dn"
+                                name="dn"
+                                type="number"
+                                placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.dn}
+                            />
+                            {formik.touched.dn && formik.errors.dn ? (
+                                <div className="error">{formik.errors.dn}</div>
+                            ) : null} <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="hn">HN </label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="hn"
+                                name="hn"
+                                type="number"
+                                placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.hn}
+                            />
+                            {formik.touched.hn && formik.errors.hn ? (
+                                <div className="error">{formik.errors.hn}</div>
+                            ) : null} <br />
+
+                            <center>
+                                <br /><But style={{ fontWeight: 'bold', fontSize: '22px', backgroundColor: '#198CFF' }} type="submit">ยืนยัน</But>
+                            </center>
+                            {open === true ? <ToolModal unique={getUnique} /> : console.log("Modal it's not open")}
+
+                        </form>
+                    </div>
+                </StyledCreateStudent>
             </Container>
-
-
         </div >
     )
 }
