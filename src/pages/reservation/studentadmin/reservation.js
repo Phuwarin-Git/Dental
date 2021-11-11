@@ -107,7 +107,19 @@ const StudentAdminReservation = () => {
             <br />
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>การเลือกที่นั่ง</h1>
-
+                <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+                        <input
+                            style={{ fontSize: '18px' }}
+                            type="date"
+                            class="searchTerm"
+                            id="input_text"
+                            placeholder="วว/ดด/ปป"
+                        >
+                        </input>
+                        <button type="submit" class="searchButton">
+                            <BsSearch />
+                        </button>
+                        <h1></h1>
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
                         <tr>
