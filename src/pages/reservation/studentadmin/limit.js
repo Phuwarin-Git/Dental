@@ -39,14 +39,12 @@ const Limit = ({ setIsOpen }) => {
         const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
-            alert("ลบการจำกัดงานสำเร็จ")
             await axios.delete("http://localhost:3000/limitcase/delete/" + id);
             return axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
                 console.log("new Limit ==> :", item.data)
                 return setLimit(item.data);
             });
         } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
     }

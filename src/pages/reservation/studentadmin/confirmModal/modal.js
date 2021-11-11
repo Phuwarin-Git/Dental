@@ -40,7 +40,6 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
-            alert("การจำกัดงานสำเร็จ")
             console.log("excel :", excel)
             for (let i = 0; i < excel.length; i++) {
                 let a = [{
@@ -70,7 +69,6 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
             CloseReser(false);
             return closeModal();
         } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
     }

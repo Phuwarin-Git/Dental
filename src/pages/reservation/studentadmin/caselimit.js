@@ -39,7 +39,6 @@ const StudentAdminLimitCase = () => {
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
-            alert("การจำกัดงานสำเร็จ")
             await axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
                 return console.log("Res Limit :", res)
             })
@@ -49,7 +48,6 @@ const StudentAdminLimitCase = () => {
             });
             return closeModal();
         } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
 

@@ -62,7 +62,6 @@ const StudentAdminReservation = () => {
             const confirmBox = window.confirm("ต้องการยืนยันการเลือกยูนิตหรือไม่")
             if (confirmBox == true) {
                 console.log(confirmBox)
-                alert("การเลือกยูนิตสำเร็จ")
                 await axios.put("http://localhost:3000/details/updateUnitSet/", body)
                 console.log('Body data :', body)
                 return await axios.get("http://localhost:3000/details/find/null").then((item) => {
@@ -79,7 +78,6 @@ const StudentAdminReservation = () => {
                     return setDetails(item.data);
                 });
             } else {
-                alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)
             }
         }

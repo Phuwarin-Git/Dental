@@ -50,13 +50,11 @@ const TeacherSelectWork = () => {
                 console.log(confirmBox)
                 await axios.put("http://localhost:3000/details/updateTeacher/", body)
                 console.log('Body data :', body)
-                alert('การเลือกตรวจงานสำเร็จ');
                 return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
                     console.log("Limit :", item.data)
                     return setDetails(item.data);
                 });
             } else {
-                alert("โปรตรวจสอบข้อมูลอีกครั้ง")
                 console.log(confirmBox)
             }
         }

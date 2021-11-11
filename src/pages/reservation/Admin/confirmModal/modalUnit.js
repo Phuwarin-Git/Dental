@@ -37,10 +37,9 @@ const ModalUnit = ({ excel, setUnit }) => {
     }, [modalIsOpen])
 
     async function createUnit() {
-        const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
+        const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อยูนิตหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
-            alert("การจำกัดงานสำเร็จ")
             console.log("excel :", excel)
             for (let i = 0; i < excel.length; i++) {
                 let a = [{
@@ -64,7 +63,6 @@ const ModalUnit = ({ excel, setUnit }) => {
             });
             return closeModal();
         } else {
-            alert("โปรตรวจสอบข้อมูลอีกครั้ง")
             console.log(confirmBox)
         }
     }
