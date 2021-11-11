@@ -17,6 +17,7 @@ const AdminUnit = () => {
     const { user } = useContext(AuthContext);
     const [unit, setUnit] = useState([]);
     const [items, setItems] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -70,6 +71,25 @@ const AdminUnit = () => {
         });
     }
 
+    // async function onChangeSearch(e) {
+    //     e.preventDefault();
+    //     await axios.getaxios.get("http://localhost:3000/unit/find/all").then((item) => {
+    //         console.log("new Unit ==> :", item.unit_code)
+    //         return setUnit(item.unit_code);
+    //     });
+    //     console.log("Change Unit :", e.target.value)
+    //     setSearchDate(e.target.value)
+    // }
+
+    // function Searching() {
+    //     console.log("Searching :", searchDate)
+    //     const checking = unit.filter((item) => {
+    //         return item.unit_code === searchDate
+    //     })
+    //     console.log("Filter Unit", checking)
+    //     setUnit(checking)
+    // }
+
 
 
     return (
@@ -101,10 +121,11 @@ const AdminUnit = () => {
                         <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
                         <input
                             style={{ fontSize: '18px' }}
-                            type="string"
+                            type="text"
                             class="searchTerm"
                             id="input_text"
-                            placeholder="ชื่อยูนิต/ชั้น/ประเภท"
+                            placeholder="ชื่อ Unit"
+                        // onChange={onChangeSearch}
                         >
                         </input>
                         <button type="submit" class="searchButton">
