@@ -74,21 +74,20 @@ const AdminUnit = () => {
 
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
-            <nav style={{ background: '#0047AB' }}>
+            <nav style={{ background: '#0080ff' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
-            <Navbar style={{ backgroundColor: 'rgba(21, 101, 192)' }}>
-                {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
+            <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                        <Nav.Link style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
-                        <Nav.Link style={{ color: '#ffb938', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: 'white', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
+                        <Nav.Link style={{ color: '#FFA000', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -99,18 +98,18 @@ const AdminUnit = () => {
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
                     <Col sm={10}>
-                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="string"
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ชื่อยูนิต/ชั้น/ประเภท"
-                    >
-                    </input>
-                    <button type="submit" class="searchButton">
-                        <BsSearch />
-                    </button></Col>
+                        <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
+                        <input
+                            style={{ fontSize: '18px' }}
+                            type="string"
+                            class="searchTerm"
+                            id="input_text"
+                            placeholder="ชื่อยูนิต/ชั้น/ประเภท"
+                        >
+                        </input>
+                        <button type="submit" class="searchButton">
+                            <BsSearch />
+                        </button></Col>
                     <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
                         <Col style={{ marginRight: '-70px' }}>
                         </Col>
