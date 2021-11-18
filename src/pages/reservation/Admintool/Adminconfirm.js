@@ -12,6 +12,8 @@ import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './adminmodal/TableAdminconfirm.css'
+import './AdminconfirmOD'
+
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
@@ -42,6 +44,8 @@ const Adminconfirm = () => {
         setod(res)
     }
 
+   
+  
     // const FilterDetails = () =>{
     //     constructor(props) 
     //       super(props);
@@ -101,24 +105,31 @@ const Adminconfirm = () => {
                 <br />
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
-                <div class="d-flex justify-content-end">
-                    <h4 style={{ paddingRight: '10px', paddingTop: '15px', fontWeight: 'bold', fontSize: '18px' }}>คลินิก:</h4>
-                    <select style={{ width: '110px' }} class="form-control form-control-sm">
-                        <option>เลือกคลินิก</option>
-                        <option>OD</option>
-                        <option>TMD</option>
-                        <option>OPER</option>
-                        <option>PERIO</option>
-                        <option>SUR</option>
-                        <option>PROSTH</option>
-                        <option>ENDO</option>
-                        <option>PEDO</option>
-                        <option>X-Ray</option>
-                        <option>OM</option>
-                        <option>Ortho</option>
-                    </select>
-                </div>
+                <div class="dropdown" style={{ color: '#ffff', paddingLeft: '1200px' }}>
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+  เลือกคลินิก
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">เลือกคลินิก</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmOD.js">OD</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmTMB.js">TMB</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmOPER.js">OPER</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmPERIO.js">PERIO</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmSUR.js">SUR</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmPROSTH.js">PROSTH</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmENDO.js">ENDO</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmPEDO.js">PEDO</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmXRay.js">X-Ray</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmOM.js">OM</a></li>
+    <li><a class="dropdown-item" href="./AdminconfirmOrtho.js">Ortho</a></li>
+  </ul>
+</div>
+            
+                
                 <br />
+                
+
 
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                     <thead className='theadAdmin'>
