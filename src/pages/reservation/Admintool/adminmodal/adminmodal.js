@@ -11,7 +11,7 @@ const Adminmodal = ({ unique }) => {
 
     useEffect(() => {
         getTool();
-    }, [])
+    }, [modalIsOpen])
 
     function openModal() {
         setIsOpen(true);
@@ -32,9 +32,10 @@ const Adminmodal = ({ unique }) => {
         const res = item.filter((item) => {
             return (item.uniqueID === unique)
         })
-        console.log("Details Tools:", res)
+        console.log("Details Tools ที่มาพร้อมกับชื่อ Object:", res)
+        const myJSON = JSON.stringify(res, null, 2);
 
-        setDetials(res);
+        setDetials(myJSON);
     }
 
     return (
@@ -56,7 +57,7 @@ const Adminmodal = ({ unique }) => {
                     </center>
                     <div style={{ marginLeft: "50px", overflowY: 'auto' }}>
                         <br />
-                        {Tool.map(tool=><p>{tool.Rounddimondbursetslow_toolcc1}</p>)}
+                        {Tool}
                         {/* <Table
                             striped
                             borderless
