@@ -1,24 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import axios from "axios";
+
 const FormInput = ({
     item,
-    editingIndex, setEditingIndex,
-    todos, setTodos
+    editingIndex, setEditingIndex
 }) => {
 
-    const [value, setValue] = useState(item.text);
+    const [UpdateCase, setUpdate] = useState([]);
 
-    function handelEditInputChange(e) {
-        setValue(e.target.value)
+    const [getOd, setOd] = useState(item.od);
+    const [getTmd, setTmd] = useState(item.tmd);
+    const [getOper, setOper] = useState(item.oper);
+    const [getPerio, setPerio] = useState(item.perio);
+    const [getSur, setSur] = useState(item.sur);
+    const [getProsth, setProsth] = useState(item.prosth);
+    const [getEndo, setEndo] = useState(item.endo);
+    const [getXray, setXray] = useState(item.xray);
+    const [getOm, setOm] = useState(item.om);
+    const [getOrtho, setOrtho] = useState(item.ortho);
+
+    useEffect(() => {
+        console.log("Update :", UpdateCase)
+    }, [UpdateCase])
+
+    function handelEditInputChangeOD(e) {
+        setOd({ od: parseInt(e.target.value) })
     }
 
-    function handelEditFormSubmit(e) {
+    function handelEditInputChangeTMD(e) {
+        setTmd({ tmd: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeOPER(e) {
+        setOper({ oper: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangePERIO(e) {
+        setPerio({ perio: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeSUR(e) {
+        setSur({ sur: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangePROSTH(e) {
+        setProsth({ prosth: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeENDO(e) {
+        setEndo({ endo: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeXRAY(e) {
+        setXray({ xray: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeOM(e) {
+        setOm({ om: parseInt(e.target.value) })
+    }
+
+    function handelEditInputChangeORTHO(e) {
+        setOrtho({ ortho: parseInt(e.target.value) })
+    }
+
+    async function handelEditFormSubmit(e) {
         e.preventDefault();
-        const updateItem = todos.map((up) => {
-            return up.id === item.id ? { id: item.id, text: value } : up;
-        });
-        setTodos(updateItem);
-        setFalse(item.id);
+        let limit_id = editingIndex[0];
+
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOd);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getTmd);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOper);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPerio);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getSur);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getProsth);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getEndo);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getXray);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOm);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOrtho);
+
     }
 
     function setFalse(revIndex) {
@@ -28,51 +88,48 @@ const FormInput = ({
         setEditingIndex(removeIndex)
     }
 
-    function submitForm() {
-        return console.log("form Submit ===>",)
-    }
 
     return (
         // <form>
         <tbody>
-            <tr onSubmit={() => submitForm()}>
+            <tr>
                 <td className='tdStudent'>
-                    <input type={'date'} style={{ width: '180px' }} defaultValue={item.date}></input>
+                    {item.date}
                 </td>
                 <td className='tdStudent'>
-                    <input style={{ width: '65px' }} defaultValue={item.time}></input>
+                    {item.time}
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.od}></input>
+                    <input onChange={handelEditInputChangeOD} type={'number'} style={{ width: '35px' }} defaultValue={item.od}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.tmd}></input>
+                    <input onChange={handelEditInputChangeTMD} type={'number'} style={{ width: '35px' }} defaultValue={item.tmd}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.oper}></input>
+                    <input onChange={handelEditInputChangeOPER} type={'number'} style={{ width: '35px' }} defaultValue={item.oper}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.perio}></input>
+                    <input onChange={handelEditInputChangePERIO} type={'number'} style={{ width: '35px' }} defaultValue={item.perio}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.sur}></input>
+                    <input onChange={handelEditInputChangeSUR} type={'number'} style={{ width: '35px' }} defaultValue={item.sur}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.prosth}></input>
+                    <input onChange={handelEditInputChangePROSTH} type={'number'} style={{ width: '35px' }} defaultValue={item.prosth}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.endo}></input>
+                    <input onChange={handelEditInputChangeENDO} type={'number'} style={{ width: '35px' }} defaultValue={item.endo}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.xray}></input>
+                    <input onChange={handelEditInputChangeXRAY} type={'number'} style={{ width: '35px' }} defaultValue={item.xray}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.om}></input>
+                    <input onChange={handelEditInputChangeOM} type={'number'} style={{ width: '35px' }} defaultValue={item.om}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input type={'number'} style={{ width: '35px' }} defaultValue={item.ortho}></input>
+                    <input onChange={handelEditInputChangeORTHO} type={'number'} style={{ width: '35px' }} defaultValue={item.ortho}></input>
                 </td>
-                <td className='tdStudent'><Button type={'submit'} style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
+                <td className='tdStudent'><Button onClick={handelEditFormSubmit} style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
                 <td className='tdStudent'><Button onClick={() => setFalse(item.limit_id)} style={{ backgroundColor: 'red' }}>ยกเลิก</Button></td>
             </tr>
         </tbody>
