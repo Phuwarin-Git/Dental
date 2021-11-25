@@ -6,9 +6,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { CloseButton, Nav } from 'react-bootstrap';
 import * as XLSX from "xlsx";
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import '../Yup.css'
@@ -20,7 +18,6 @@ import ConfirmLimit from './confirmModal/modal';
 
 const StudentAdminLimitCase = () => {
     const { user, limit, setLimit } = useContext(AuthContext);
-    const history = useHistory();
     const [modalIsOpen, setIsOpen] = useState(false);
     const [items, setItems] = useState([]);
 
@@ -35,7 +32,7 @@ const StudentAdminLimitCase = () => {
 
     async function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho) {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho);
-        const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, pedo: pedo, xray: xray, om: om, ortho: ortho })
+        const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, pedo: pedo, xray: xray, om: om, ortho: ortho, odyOd: 0, odyTmd: 0, odyOper: 0, odyPerio: 0, odySur: 0, odyProsth: 0, odyEndo: 0, odyPedo: 0, odyXray: 0, odyOm: 0, odyOrtho: 0 })
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -148,7 +145,7 @@ const StudentAdminLimitCase = () => {
             <br />
 
             <Container style={{ backgroundColor: '#ffff', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
-                <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
+                <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงานที่เหลือ</h1>
 
 
                 <Limit setIsOpen={setIsOpen} />

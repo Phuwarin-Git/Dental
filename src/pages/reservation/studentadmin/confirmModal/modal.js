@@ -55,7 +55,18 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
                     pedo: excel[i].PEDO,
                     xray: excel[i].XRAY,
                     om: excel[i].OM,
-                    ortho: excel[i].ORTHO
+                    ortho: excel[i].ORTHO,
+                    odyOd: 0,
+                    odyTmd: 0,
+                    odyOper: 0,
+                    odyPerio: 0,
+                    odySur: 0,
+                    odyProsth: 0,
+                    odyEndo: 0,
+                    odyPedo: 0,
+                    odyXray: 0,
+                    odyOm: 0,
+                    odyOrtho: 0
                 }]
                 console.log("Check A :", a)
                 await axios.post("http://localhost:3000/limitcase/createMultiTable", a).then((res) => {

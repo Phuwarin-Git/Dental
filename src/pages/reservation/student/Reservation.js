@@ -80,6 +80,8 @@ const StudentRes = () => {
                     console.log("OD = ", findDate[0].od)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyOd: findDate[0].odyOd + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "TMD") {
                 if (findDate[0].tmd === '0') {
@@ -92,6 +94,8 @@ const StudentRes = () => {
                     console.log("findDateTMD = ", findDate[0].tmd)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyTmd: findDate[0].odyTmd + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "OPER") {
                 if (findDate[0].oper === '0') {
@@ -104,6 +108,8 @@ const StudentRes = () => {
                     console.log("findDateOper = ", findDate[0].oper)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyOper: findDate[0].odyOper + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "PERIO") {
                 if (findDate[0].perio === '0') {
@@ -116,6 +122,8 @@ const StudentRes = () => {
                     console.log("findDatePerio = ", findDate[0].perio)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyPerio: findDate[0].odyPerio + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "SUR") {
                 if (findDate[0].sur === '0') {
@@ -128,6 +136,8 @@ const StudentRes = () => {
                     console.log("findDateSur = ", findDate[0].sur)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odySur: findDate[0].odySur + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "PROSTH") {
                 if (findDate[0].prosth === '0') {
@@ -140,6 +150,8 @@ const StudentRes = () => {
                     console.log("findDateProsth = ", findDate[0].prosth)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyProsth: findDate[0].odyProsth + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "ENDO") {
                 if (findDate[0].endo === '0') {
@@ -152,6 +164,8 @@ const StudentRes = () => {
                     console.log("findDateEndo = ", findDate[0].endo)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyEndo: findDate[0].odyEndo + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "PEDO") {
                 if (findDate[0].pedo === '0') {
@@ -164,6 +178,8 @@ const StudentRes = () => {
                     console.log("findDatePedo = ", findDate[0].pedo)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyPedo: findDate[0].odyPedo + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "X-RAY") {
                 if (findDate[0].xray === '0') {
@@ -176,6 +192,8 @@ const StudentRes = () => {
                     console.log("findDateXray = ", findDate[0].xray)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyXray: findDate[0].odyXray + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "OM") {
                 if (findDate[0].om === '0') {
@@ -188,6 +206,8 @@ const StudentRes = () => {
                     console.log("findDateOm = ", findDate[0].om)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyOm: findDate[0].odyOm + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             } else if (clinic === "ORTHO") {
                 if (findDate[0].ortho === '0') {
@@ -200,6 +220,8 @@ const StudentRes = () => {
                     console.log("findDateOrtho = ", findDate[0].ortho)
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                    let coutingLimit = { odyOrtho: findDate[0].odyOrtho + 1 }
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
                 }
             }
 
@@ -263,7 +285,7 @@ const StudentRes = () => {
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link> */}
                         <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
@@ -352,7 +374,7 @@ const StudentRes = () => {
                                 <option value="PEDO" label="PEDO" />
                                 <option value="X-RAY" label="X-RAY" />
                                 <option value="OM" label="OM" />
-                                <option value="Ortho" label="Ortho" />
+                                <option value="ORTHO" label="ORTHO" />
                             </Selected>
                             {formik.touched.clinic && formik.errors.clinic ? (
                                 <div className="error">{formik.errors.clinic}</div>
