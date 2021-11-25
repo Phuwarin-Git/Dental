@@ -176,7 +176,7 @@ const StudentAdminReservation = () => {
                         </tbody>
                     })}
                 </Table>
-                <Button style={{ fontWeight: 'bold',backgroundColor:'#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                <Button style={{ fontWeight: 'bold', backgroundColor: '#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
             </Container>
         </div>
     )

@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Table from 'react-bootstrap/Table'
 import { Nav, Container } from 'react-bootstrap';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import './whycss.css'
@@ -13,7 +13,6 @@ import { BsSearch } from "react-icons/bs";
 
 
 const TeacherSelectWork = () => {
-    const history = useHistory();
     const { user } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [isChecked, setIsChecked] = useState([]);
@@ -92,7 +91,7 @@ const TeacherSelectWork = () => {
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link> */}
                         <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
@@ -156,7 +155,7 @@ const TeacherSelectWork = () => {
                             </tbody>
                         })}
                     </Table>
-                    <Button style={{ fontWeight: 'bold', fontSize: '22px',backgroundColor:'#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
+                    <Button style={{ fontWeight: 'bold', fontSize: '22px', backgroundColor: '#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
                 </Container>
             </div>
         </div >
