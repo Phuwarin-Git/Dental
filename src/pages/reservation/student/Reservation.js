@@ -69,7 +69,7 @@ const StudentRes = () => {
             console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
             const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
 
-            if (clinic === "od") {
+            if (clinic === "OD") {
                 if (findDate[0].od === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -81,7 +81,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "tmd") {
+            } else if (clinic === "TMD") {
                 if (findDate[0].tmd === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -93,7 +93,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "oper") {
+            } else if (clinic === "OPER") {
                 if (findDate[0].oper === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -105,7 +105,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "perio") {
+            } else if (clinic === "PERIO") {
                 if (findDate[0].perio === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -117,7 +117,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "sur") {
+            } else if (clinic === "SUR") {
                 if (findDate[0].sur === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -129,7 +129,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "prosth") {
+            } else if (clinic === "PROSTH") {
                 if (findDate[0].prosth === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -141,7 +141,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "endo") {
+            } else if (clinic === "ENDO") {
                 if (findDate[0].endo === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -153,7 +153,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "pedo") {
+            } else if (clinic === "PEDO") {
                 if (findDate[0].pedo === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -165,7 +165,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "xray") {
+            } else if (clinic === "X-RAY") {
                 if (findDate[0].xray === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -177,7 +177,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "om") {
+            } else if (clinic === "OM") {
                 if (findDate[0].om === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
@@ -189,7 +189,7 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
-            } else if (clinic === "ortho") {
+            } else if (clinic === "ORTHO") {
                 if (findDate[0].ortho === '0') {
                     return alert("ภาระงานเต็ม")
                 } else {
