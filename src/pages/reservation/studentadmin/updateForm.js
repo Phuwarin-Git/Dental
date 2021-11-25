@@ -16,6 +16,7 @@ const FormInput = ({
     const [getSur, setSur] = useState(item.sur);
     const [getProsth, setProsth] = useState(item.prosth);
     const [getEndo, setEndo] = useState(item.endo);
+    const [getPedo, setPedo] = useState(item.pedo);
     const [getXray, setXray] = useState(item.xray);
     const [getOm, setOm] = useState(item.om);
     const [getOrtho, setOrtho] = useState(item.ortho);
@@ -52,6 +53,10 @@ const FormInput = ({
         setEndo({ endo: parseInt(e.target.value) })
     }
 
+    function handelEditInputChangePEDO(e) {
+        setPedo({ pedo: parseInt(e.target.value) })
+    }
+
     function handelEditInputChangeXRAY(e) {
         setXray({ xray: parseInt(e.target.value) })
     }
@@ -75,6 +80,7 @@ const FormInput = ({
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getSur);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getProsth);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getEndo);
+        await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPedo);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getXray);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOm);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOrtho);
@@ -126,6 +132,9 @@ const FormInput = ({
                 </td>
                 <td className='tdStudent'>
                     <input onChange={handelEditInputChangeENDO} type={'number'} style={{ width: '35px' }} defaultValue={item.endo}></input>
+                </td>
+                <td className='tdStudent'>
+                    <input onChange={handelEditInputChangePEDO} type={'number'} style={{ width: '35px' }} defaultValue={item.pedo}></input>
                 </td>
                 <td className='tdStudent'>
                     <input onChange={handelEditInputChangeXRAY} type={'number'} style={{ width: '35px' }} defaultValue={item.xray}></input>

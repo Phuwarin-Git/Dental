@@ -112,6 +112,7 @@ const Limit = ({ setIsOpen }) => {
                         <th>SUR</th>
                         <th>PROSTH</th>
                         <th>ENDO</th>
+                        <th>PEDO</th>
                         <th>X-RAY</th>
                         <th>OM</th>
                         <th>ORTHO</th>
@@ -137,6 +138,7 @@ const Limit = ({ setIsOpen }) => {
                                 <td className='tdStudent'>{item.sur}</td>
                                 <td className='tdStudent'>{item.prosth}</td>
                                 <td className='tdStudent'>{item.endo}</td>
+                                <td className='tdStudent'>{item.pedo}</td>
                                 <td className='tdStudent'>{item.xray}</td>
                                 <td className='tdStudent'>{item.om}</td>
                                 <td className='tdStudent'>{item.ortho}</td>

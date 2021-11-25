@@ -153,6 +153,18 @@ const StudentRes = () => {
                     console.log(" Case - 1 :", UpdateCase)
                     axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
                 }
+            } else if (clinic === "pedo") {
+                if (findDate[0].pedo === '0') {
+                    return alert("ภาระงานเต็ม")
+                } else {
+                    console.log("FindDate :", findDate)
+                    let limit_id = findDate[0].limit_id
+                    let UpdateCase = { pedo: findDate[0].pedo - 1 }
+                    console.log("limit ID :", limit_id)
+                    console.log("findDatePedo = ", findDate[0].pedo)
+                    console.log(" Case - 1 :", UpdateCase)
+                    axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                }
             } else if (clinic === "xray") {
                 if (findDate[0].xray === '0') {
                     return alert("ภาระงานเต็ม")
@@ -330,17 +342,17 @@ const StudentRes = () => {
                                 value={formik.values.clinic}
                             >
                                 <option value="" label="เลือกคลินิก" />
-                                <option value="od" label="OD" />
-                                <option value="tmd" label="TMD" />
-                                <option value="oper" label="OPER" />
-                                <option value="perio" label="PERIO" />
-                                <option value="sur" label="SUR" />
-                                <option value="prosth" label="PROSTH" />
-                                <option value="endo" label="ENDO" />
-                                <option value="pedo" label="PEDO" />
-                                <option value="xray" label="X-RAY" />
-                                <option value="om" label="OM" />
-                                <option value="ortho" label="Ortho" />
+                                <option value="OD" label="OD" />
+                                <option value="TMD" label="TMD" />
+                                <option value="OPER" label="OPER" />
+                                <option value="PERIO" label="PERIO" />
+                                <option value="SUR" label="SUR" />
+                                <option value="PROSTH" label="PROSTH" />
+                                <option value="ENDO" label="ENDO" />
+                                <option value="PEDO" label="PEDO" />
+                                <option value="X-RAY" label="X-RAY" />
+                                <option value="OM" label="OM" />
+                                <option value="Ortho" label="Ortho" />
                             </Selected>
                             {formik.touched.clinic && formik.errors.clinic ? (
                                 <div className="error">{formik.errors.clinic}</div>

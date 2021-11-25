@@ -33,9 +33,9 @@ const StudentAdminLimitCase = () => {
     }
 
 
-    async function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho) {
-        console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, xray, om, ortho);
-        const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, xray: xray, om: om, ortho: ortho })
+    async function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho) {
+        console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho);
+        const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, pedo: pedo, xray: xray, om: om, ortho: ortho })
         const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -88,6 +88,7 @@ const StudentAdminLimitCase = () => {
             sur: '',
             prosth: '',
             endo: '',
+            pedo: '',
             xray: '',
             om: '',
             ortho: '',
@@ -111,6 +112,8 @@ const StudentAdminLimitCase = () => {
                 .required('Required'),
             endo: Yup.string()
                 .required('Required'),
+            pedo: Yup.string()
+                .required('Required'),
             xray: Yup.string()
                 .required('Required'),
             om: Yup.string()
@@ -119,7 +122,7 @@ const StudentAdminLimitCase = () => {
                 .required('Required'),
         }),
         onSubmit: values => {
-            return submitForm(values.date, values.time, values.od, values.tmd, values.oper, values.perio, values.sur, values.prosth, values.endo, values.xray, values.om, values.ortho);
+            return submitForm(values.date, values.time, values.od, values.tmd, values.oper, values.perio, values.sur, values.prosth, values.endo, values.pedo, values.xray, values.om, values.ortho);
         },
     });
 
@@ -308,6 +311,20 @@ const StudentAdminLimitCase = () => {
                             />
                             {formik.touched.endo && formik.errors.endo ? (
                                 <div className="error">{formik.errors.endo}</div>
+                            ) : null} <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="pedo">PEDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="pedo"
+                                name="pedo"
+                                type="number"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.pedo}
+                            />
+                            {formik.touched.pedo && formik.errors.pedo ? (
+                                <div className="error">{formik.errors.pedo}</div>
                             ) : null} <br />
 
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>

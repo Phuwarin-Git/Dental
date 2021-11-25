@@ -29,7 +29,7 @@ const StudentDashboard = () => {
     }, [user])
 
     const getDetails = () => {
-        axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+        axios.get("http://localhost:3000/details/find/teacherOnlyNull").then((item) => {
             console.log("data :", item.data)
             return filterDetails(item.data);
         });
@@ -47,7 +47,7 @@ const StudentDashboard = () => {
 
     async function onChangeSearch(e) {
 
-        await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+        await axios.get("http://localhost:3000/details/find/teacherOnlyNull").then((item) => {
             console.log("new Limit ==> :", item.data)
             return setDetailsForDate(item.data);
         });

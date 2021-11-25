@@ -11,7 +11,7 @@ transform: translate(-50%, -50%);
 border-radius: 20px;
 border: solid 1px;
 min-height: 20%;
-max-height: 90vh; 
+max-height: 92vh; 
 width:40%;
 `;
 

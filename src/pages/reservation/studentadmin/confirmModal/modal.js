@@ -52,6 +52,7 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
                     sur: excel[i].SUR,
                     prosth: excel[i].RPOSTH,
                     endo: excel[i].ENDO,
+                    pedo: excel[i].PEDO,
                     xray: excel[i].XRAY,
                     om: excel[i].OM,
                     ortho: excel[i].ORTHO
@@ -99,6 +100,7 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
                                         <th>SUR</th>
                                         <th>PROSTH</th>
                                         <th>ENDO</th>
+                                        <th>PEDO</th>
                                         <th>X-RAY</th>
                                         <th>OM</th>
                                         <th>ORTHO</th>
@@ -116,6 +118,7 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
                                             <td className='tdStudent'>{item.SUR}</td>
                                             <td className='tdStudent'>{item.RPOSTH}</td>
                                             <td className='tdStudent'>{item.ENDO}</td>
+                                            <td className='tdStudent'>{item.PEDO}</td>
                                             <td className='tdStudent'>{item.XRAY}</td>
                                             <td className='tdStudent'>{item.OM}</td>
                                             <td className='tdStudent'>{item.ORTHO}</td>
