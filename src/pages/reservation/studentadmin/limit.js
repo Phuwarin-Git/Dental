@@ -22,9 +22,6 @@ const Limit = ({ setIsOpen }) => {
         getDetails();
         console.log("User :", user)
     }, [user])
-    // useEffect(() => {
-    //     console.log("Excell File :", items)
-    // }, [items])
 
     const getDetails = () => {
         // http://selab.mfu.ac.th:8318/limitcase/find/all
@@ -127,6 +124,7 @@ const Limit = ({ setIsOpen }) => {
                         <FormInput item={item}
                             editingIndex={editingIndex}
                             setEditingIndex={setEditingIndex}
+                            getDetails={getDetails()}
                         />) : (<tbody key={item.limit_id}>
                             {console.log("-----rerender----")}
                             <tr>

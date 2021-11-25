@@ -4,7 +4,7 @@ import axios from "axios";
 
 const FormInput = ({
     item,
-    editingIndex, setEditingIndex
+    editingIndex, setEditingIndex, getDetails
 }) => {
 
     const [UpdateCase, setUpdate] = useState([]);
@@ -78,6 +78,13 @@ const FormInput = ({
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getXray);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOm);
         await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOrtho);
+
+        const removeIndex = editingIndex.filter((item) => {
+            return item !== editingIndex[0];
+        })
+        setEditingIndex(removeIndex)
+
+        return getDetails;
 
     }
 

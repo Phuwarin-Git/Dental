@@ -23,9 +23,6 @@ const StudentRes = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [getUnique, setUnique] = useState([])
 
-    const history = useHistory();
-
-
 
     useEffect(() => {
         getDetails();
