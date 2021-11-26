@@ -85,8 +85,8 @@ const TeacherDashboard = () => {
             </Navbar>
             <br />
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1>
-                <div style={{ width: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
+                <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1><br />
+                <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                     <label>นักศึกษาชั้นปีที่ 2 จำนวน {year2} คน</label>
                     <ProgressBar animated variant="success" now={year2 * 10} label={year2} /><br />
                     <label>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
