@@ -12,8 +12,11 @@ import ModalUnit from './confirmModal/modalUnit';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import { icons } from 'react-icons';
+
 const AdminUnit = () => {
-    const history = useHistory();
+
     const { user } = useContext(AuthContext);
     const [unit, setUnit] = useState([]);
     const [items, setItems] = useState([]);
@@ -88,6 +91,26 @@ const AdminUnit = () => {
     //     setUnit(checking)
     // }
 
+    function checkActive(status) {
+        if (status === "active") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    async function ChangeStatus(unit_id, originalStatus) {
+        console.log("unit Change :", unit_id)
+        if (originalStatus === "active") {
+            let status = { unavailable_start_date: "inactive" }
+            await axios.put("http://localhost:3000/unit/updateUnitAvaidate/" + unit_id, status)
+            return getDetails();
+        } else {
+            let status = { unavailable_start_date: "active" }
+            await axios.put("http://localhost:3000/unit/updateUnitAvaidate/" + unit_id, status)
+            return getDetails();
+        }
+    }
 
 
     return (
@@ -100,11 +123,11 @@ const AdminUnit = () => {
             <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link> */}
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
-                        <Nav.Link style={{ color: '#FFA000', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link> */}
+                        <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
@@ -147,9 +170,8 @@ const AdminUnit = () => {
                                 <th>ชื่อยูนิต</th>
                                 <th>ชั้น</th>
                                 <th>ประเภท</th>
-                                <th>วันเริ่มต้นการปิดใช้งาน</th>
-                                <th>วันสิ้นสุดการปิดใช้งาน</th>
-                                <th>แก้ไขรายละเอียด</th>
+                                <th>สถานะ</th>
+                                <th>แก้ไข</th>
                                 <th>ลบ</th>
                             </tr>
                         </thead>
@@ -160,8 +182,18 @@ const AdminUnit = () => {
                                     <td className='tdStudent'>{item.unit_code}</td>
                                     <td className='tdStudent'>{item.unit_floor}</td>
                                     <td className='tdStudent'>{item.unit_type}</td>
-                                    <td className='tdStudent'>{item.unavailable_start_date}</td>
-                                    <td className='tdStudent'>{item.unavailable_end_date}</td>
+                                    <td className='tdStudent'>
+                                        <BootstrapSwitchButton
+                                            onlabel="ปกติ"
+                                            offlabel="ปิดใช้งาน"
+                                            onstyle="success"
+                                            width={120}
+                                            offstyle="outline-danger"
+                                            onChange={() => ChangeStatus(item.unit_id, item.unavailable_start_date)}
+                                            checked={checkActive(item.unavailable_start_date)}
+
+                                        />
+                                    </td>
                                     <td className='tdStudent'><Button >แก้ไข</Button></td>
                                     <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                                 </tr>

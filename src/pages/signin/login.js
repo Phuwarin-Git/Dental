@@ -71,7 +71,7 @@ const Login = () => {
             // console.log("Role :", details[0].role)
             return history.push('/StudentAdminDashboard')
         } if (details[0].role === "admin") {
-            return history.push('/AdminDashboard')
+            return history.push('/AdminUser')
         } if (details[0].role === "AdminTool") {
             return history.push('/Adminconfirm')
         }
@@ -107,10 +107,10 @@ const Login = () => {
                                     <h4 style={{ fontWeight: 'bold', fontSize: '25px' }}>Sign up in to Account</h4>
                                     <h6 style={{ fontSize: '20px' }}>Use your email or username</h6>
                                     <p style={{ fontSize: '23px' }}>Username</p>
-                                    <input style={{  fontSize: '20px' }} placeholder="username" onChange={usernameOnChange}></input><br />
+                                    <input style={{ fontSize: '20px' }} placeholder="username" onChange={usernameOnChange}></input><br />
                                     <p style={{ fontSize: '23px' }}>Password</p>
-                                    <input style={{  fontSize: '20px' }} type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
-                                    <button style={{  fontSize: '20px' }} type="submit">Login</button>
+                                    <input style={{ fontSize: '20px' }} type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
+                                    <button style={{ fontSize: '20px' }} type="submit">Login</button>
                                 </form>
                             </div>
                         </Col>

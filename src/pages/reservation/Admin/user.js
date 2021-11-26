@@ -76,10 +76,10 @@ const AdminUser = () => {
             <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link> */}
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link>
+                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link> */}
                         <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
@@ -88,64 +88,64 @@ const AdminUser = () => {
 
             <div>
                 <br />
-               
-                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px',minWidth:'1500px'  }}>
-                <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-                <Col sm={10}>
-                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาผู้ใช้งาน : </label>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="string"
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ID/ชื่อ-สกุล/ชั้นปี/ตำแหน่ง"
-                    >
-                    </input>
-                    <button type="submit" class="searchButton">
-                        <BsSearch />
-                    </button></Col>
-                <Row style={{ marginBottom: '30px', marginTop: '-30px' }}>
 
-                    <Col></Col>
-                    <Col></Col>
-                    <Col style={{ marginRight: '-70px' }}>
-                    </Col>
-                    <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
-                    <input type="file" onChange={(e) => {
-                        const file = e.target.files[0];
-                        readExcel(file);
-                    }} />
-                </Col>
-                </Row>
-                <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                    <thead className='theadAdmin'>
-                        <tr>
-                            <th>ลำดับ</th>
-                            <th>ID</th>
-                            <th>ชื่อ-สกุล</th>
-                            <th>ชั้นปี</th>
-                            <th>E-mail</th>
-                            <th>ตำแหน่ง</th>
-                            <th>แก้ไขรายละเอียด</th>
-                            <th>ลบ</th>
-                        </tr>
-                    </thead>
-                    {userDetails.map(item => {
-                        return <tbody key={item.id}>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
+                    <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
+                    <Col sm={10}>
+                        <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาผู้ใช้งาน : </label>
+                        <input
+                            style={{ fontSize: '18px' }}
+                            type="string"
+                            class="searchTerm"
+                            id="input_text"
+                            placeholder="ID/ชื่อ-สกุล/ชั้นปี/ตำแหน่ง"
+                        >
+                        </input>
+                        <button type="submit" class="searchButton">
+                            <BsSearch />
+                        </button></Col>
+                    <Row style={{ marginBottom: '30px', marginTop: '-30px' }}>
+
+                        <Col></Col>
+                        <Col></Col>
+                        <Col style={{ marginRight: '-70px' }}>
+                        </Col>
+                        <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
+                            <input type="file" onChange={(e) => {
+                                const file = e.target.files[0];
+                                readExcel(file);
+                            }} />
+                        </Col>
+                    </Row>
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                        <thead className='theadAdmin'>
                             <tr>
-                                <td className='tdStudent'>{item.id}</td>
-                                <td className='tdStudent'>{item.student_id}</td>
-                                <td className='tdStudent'>{item.first_name}</td>
-                                <td className='tdStudent'>{item.student_year}</td>
-                                <td className='tdStudent'>{item.email}</td>
-                                <td className='tdStudent'>{item.role}</td>
-                                <td className='tdStudent'><Button >แก้ไข</Button></td>
-                                <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                                <th>ลำดับ</th>
+                                <th>ID</th>
+                                <th>ชื่อ-สกุล</th>
+                                <th>ชั้นปี</th>
+                                <th>E-mail</th>
+                                <th>ตำแหน่ง</th>
+                                <th>แก้ไขรายละเอียด</th>
+                                <th>ลบ</th>
                             </tr>
-                        </tbody>
-                    })}
+                        </thead>
+                        {userDetails.map(item => {
+                            return <tbody key={item.id}>
+                                <tr>
+                                    <td className='tdStudent'>{item.id}</td>
+                                    <td className='tdStudent'>{item.student_id}</td>
+                                    <td className='tdStudent'>{item.first_name}</td>
+                                    <td className='tdStudent'>{item.student_year}</td>
+                                    <td className='tdStudent'>{item.email}</td>
+                                    <td className='tdStudent'>{item.role}</td>
+                                    <td className='tdStudent'><Button >แก้ไข</Button></td>
+                                    <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                                </tr>
+                            </tbody>
+                        })}
 
-                </Table>
+                    </Table>
                 </Container>
             </div>
             {
