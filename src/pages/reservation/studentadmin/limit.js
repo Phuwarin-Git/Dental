@@ -6,13 +6,11 @@ import { Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import FormInput from './updateForm';
 
-import ConfirmLimit from './confirmModal/modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 
 const Limit = ({ setIsOpen }) => {
-    const history = useHistory();
     const { user, limit, setLimit } = useContext(AuthContext);
     const [searchDate, setSearchDate] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);

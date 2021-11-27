@@ -14,6 +14,7 @@ const StudentAdminReservation = () => {
     const [details, setDetails] = useState([]);
     const [select, setSelect] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
+    const [dis, setDis] = useState([]);
 
 
     useEffect(() => {
@@ -102,6 +103,15 @@ const StudentAdminReservation = () => {
         setDetails(checking)
     }
 
+    function checkDisabled(id, status) {
+        console.log("Check Disabled")
+        if (status === "active") {
+            return setDis({ id: id, status: "" })
+        } else if (status === "inactive") {
+            return setDis({ id: id, status: "disabled" })
+        }
+    }
+
 
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
@@ -164,11 +174,18 @@ const StudentAdminReservation = () => {
                                 <td className='tdStudent'>
                                     <select style={{ backgroundColor: '#198CFF', color: 'white' }} onChange={handleOnChange}>
                                         <option value="selected" selected="selected">เลือก Unit</option>
-                                        {allUnit.map((items) => {
-                                            return <option
-                                                value={item.id + " " + items.unit_code}>
-                                                {items.unit_code}
-                                            </option>
+                                        {allUnit?.map(items => {
+                                            if (items.unavailable_start_date === 'active') {
+                                                return <option
+                                                    value={item.id + " " + items.unit_code} >
+                                                    {items.unit_code}
+                                                </option>
+                                            } else {
+                                                return <option
+                                                    value={item.id + " " + items.unit_code} disabled>
+                                                    {items.unit_code}
+                                                </option>
+                                            }
                                         })}
                                     </select>
                                 </td>

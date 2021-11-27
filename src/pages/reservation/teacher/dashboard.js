@@ -88,13 +88,13 @@ const TeacherDashboard = () => {
                 <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1><br />
                 <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                     <label>นักศึกษาชั้นปีที่ 2 จำนวน {year2} คน</label>
-                    <ProgressBar animated variant="success" now={year2 * 10} label={year2} /><br />
+                    <ProgressBar striped variant="success" now={year2 * 10} label={year2} /><br />
                     <label>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
-                    <ProgressBar animated variant="info" now={year3 * 10} label={year3} /><br />
+                    <ProgressBar striped variant="info" now={year3 * 10} label={year3} /><br />
                     <label>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
-                    <ProgressBar animated variant="warning" now={year4 * 10} label={year4} /><br />
+                    <ProgressBar striped variant="warning" now={year4 * 10} label={year4} /><br />
                     <label>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
-                    <ProgressBar animated variant="danger" now={year5 * 10} label={year5} />
+                    <ProgressBar striped variant="danger" now={year5 * 10} label={year5} />
                 </div>
             </Container>
 
