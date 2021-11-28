@@ -8,18 +8,20 @@ import axios from "axios";
 import Button from './reservationCss/ButtonRes'
 import { BsSearch } from "react-icons/bs";
 const StudentAdminReservation = () => {
-    const history = useHistory();
+
     const { user } = useContext(AuthContext);
     const [allUnit, setAllUnit] = useState([]);
     const [details, setDetails] = useState([]);
     const [select, setSelect] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
-    const [dis, setDis] = useState([]);
+    const [unitNotnull, setNotnull] = useState([]);
 
 
     useEffect(() => {
         getDetails();
         getUnit();
+        getUnitNotNull();
+        // console.log("Unit จองแล้ว :", unitNotnull)
     }, [user])
 
 
@@ -34,15 +36,22 @@ const StudentAdminReservation = () => {
                 }
                 item.data[i] = obj
             }
-            console.log("Test ==>", item.data)
+            // console.log("Test ==>", item.data)
             return setDetails(item.data);
         });
     }
 
     const getUnit = () => {
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
-            console.log("Unit lists:", item.data)
+            // console.log("Unit lists:", item.data)
             return setAllUnit(item.data);
+        });
+    }
+
+    function getUnitNotNull() {
+        axios.get("http://localhost:3000/details/find/notnull").then((item) => {
+            console.log("Unit not null ==>", item.data)
+            return setNotnull(item.data);
         });
     }
 
@@ -76,7 +85,7 @@ const StudentAdminReservation = () => {
                         }
                         item.data[i] = obj
                     }
-                    console.log("Test ==>", item.data)
+                    // console.log("Test ==>", item.data)
                     return setDetails(item.data);
                 });
             } else {
@@ -103,12 +112,27 @@ const StudentAdminReservation = () => {
         setDetails(checking)
     }
 
-    function checkDisabled(id, status) {
-        console.log("Check Disabled")
-        if (status === "active") {
-            return setDis({ id: id, status: "" })
-        } else if (status === "inactive") {
-            return setDis({ id: id, status: "disabled" })
+    function filterUnit(date, time, unit) {
+        // return console.log('Unit ==>', unit)
+        let finding = unitNotnull?.filter((item) => { return (item.date === date && item.time === time) })
+        let a = false;
+        if (finding?.length != 0) {
+            for (var i = 0; i < finding?.length; i++) {
+                if (unit === finding[i]?.unit) {
+                    console.log("true :", finding[i].date, " Round", i, finding[i]?.unit)
+                    a = true;
+
+                } else {
+                    console.log("false :", finding[i].date, " Round", i, finding[i]?.unit)
+                    a = false;
+
+                }
+                console.log("Round", i, " date :", date, " length", finding?.length, " details :", finding[i]?.unit)
+                return a;
+            }
+        } else {
+            // console.log("else :", date, " ", finding.length)
+            return a = false;
         }
     }
 
@@ -127,7 +151,7 @@ const StudentAdminReservation = () => {
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '300px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
@@ -163,6 +187,7 @@ const StudentAdminReservation = () => {
                         </tr>
                     </thead>
                     {details.map(item => {
+
                         return <tbody key={item.id}>
                             <tr>
                                 <td className='tdStudent'>{item.date}</td>
@@ -176,17 +201,29 @@ const StudentAdminReservation = () => {
                                         <option value="selected" selected="selected">เลือก Unit</option>
                                         {allUnit?.map(items => {
                                             if (items.unavailable_start_date === 'active') {
+                                                if (filterUnit(item.date, item.time, items.unit_code)) {
+                                                    return <option
+                                                        style={{ backgroundColor: '#c7c7c7', color: 'black' }}
+                                                        value={item.id + " " + items.unit_code} disabled>
+                                                        {items.unit_code}{" ถูกจองแล้ว"}
+                                                    </option>
+                                                } else {
+                                                    return <option
+                                                        style={{ backgroundColor: 'white', color: 'black' }}
+                                                        value={item.id + " " + items.unit_code} >
+                                                        {items.unit_code}
+                                                    </option>
+                                                }
+
+                                            } else if (items.unavailable_start_date === 'inactive') {
                                                 return <option
-                                                    value={item.id + " " + items.unit_code} >
-                                                    {items.unit_code}
-                                                </option>
-                                            } else {
-                                                return <option
+                                                    style={{ backgroundColor: '#c7c7c7', color: 'black' }}
                                                     value={item.id + " " + items.unit_code} disabled>
-                                                    {items.unit_code}
+                                                    {items.unit_code}{" ปิดใช้งาน"}
                                                 </option>
                                             }
-                                        })}
+                                        }
+                                        )}
                                     </select>
                                 </td>
                             </tr>
