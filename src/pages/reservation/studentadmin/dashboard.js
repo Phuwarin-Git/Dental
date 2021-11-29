@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
+import Pagination from 'react-bootstrap/Pagination'
 
 // หา Sumary ของแต่ละ case ใน details ของแต่ละวันก่อน
 //fillter details เพื่อใช้ดู date time แล้วก็ มาเทียบกับ limit case
@@ -17,6 +18,11 @@ const StudentAdminDashboard = () => {
 
     const { user, limit, setLimit } = useContext(AuthContext);
     const [searchDate, setSearchDate] = useState([]);
+    const [page, setPage] = useState([]);
+    const [firstPage, setFirstPage] = useState(true);
+    const [allPage, setAll] = useState([]);
+    const [listPage, setList] = useState([]);
+    const [current, setCurrent] = useState();
 
 
     useEffect(() => {
@@ -24,10 +30,34 @@ const StudentAdminDashboard = () => {
         console.log("User :", user)
     }, [user])
 
+    useEffect(() => {
+        console.log("Sum page :", allPage)
+        let a = [];
+        for (let i = 1; i < allPage + 1; i++) {
+            a.push(i)
+        }
+        return setList(a)
+    }, [allPage])
+
     const getDetails = () => {
         // http://selab.mfu.ac.th:8318/limitcase/find/all
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
+            setCurrent(1)
+            if (item.data.length < 10) {
+                setPage(item.data)
+            } else {
+                setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+            }
+            if ((item.data.length) % 10 !== 0) {
+                let test = ((item.data.length) / 10)
+                // console.log("test :", test)
+                let realLength = Math.trunc(test) + 1;
+                // console.log("test2 :", realLength)
+                setAll(realLength)
+            } else {
+                setAll((item.data.length) / 10)
+            }
             return setLimit(item.data);
         });
     }
@@ -36,7 +66,7 @@ const StudentAdminDashboard = () => {
     async function onChangeSearch(e) {
         await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("new Limit ==> :", item.data)
-            return setLimit(item.data);
+            return setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
         });
         console.log("Change Date :", e.target.value)
         setSearchDate(e.target.value)
@@ -48,7 +78,67 @@ const StudentAdminDashboard = () => {
             return item.date === searchDate
         })
         console.log("Filter Date", checking)
-        setLimit(checking)
+        setPage(checking)
+    }
+
+    async function gotoFirstPage() {
+        setFirstPage(true)
+        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+            console.log("First limit ==> :", item.data)
+            setCurrent(1)
+            return setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+        });
+    }
+
+    async function changePage(getpage) {
+        setCurrent(getpage)
+        console.log("Chage to :", getpage)
+        let changeTo = (getpage - 1) * 10;
+        setFirstPage(false)
+        if (getpage === allPage) {
+            await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+
+                if (item.data.length % 10 === 0) {
+                    return setPage([item.data[0 + changeTo], item.data[1 + changeTo], item.data[2 + changeTo], item.data[3 + changeTo], item.data[4 + changeTo], item.data[5 + changeTo], item.data[6 + changeTo], item.data[7 + changeTo], item.data[8 + changeTo], item.data[9 + changeTo]])
+                } else {
+                    let mod = item.data.length % 10
+                    console.log("mod :", mod)
+                    let a = [];
+                    for (let i = 1; i < mod + 1; i++) {
+                        a.push(i + changeTo)
+                    }
+                    setPage([]);
+                    let x = [];
+                    for (let i = 0; i < mod; i++) {
+                        x.push(item.data[a[i] - 1])
+                    }
+                    setPage(x)
+                }
+            });
+        } else {
+            axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setPage([item.data[0 + changeTo], item.data[1 + changeTo], item.data[2 + changeTo], item.data[3 + changeTo], item.data[4 + changeTo], item.data[5 + changeTo], item.data[6 + changeTo], item.data[7 + changeTo], item.data[8 + changeTo], item.data[9 + changeTo]])
+            });
+        }
+    }
+
+    function nextPage(page) {
+        if (page > allPage) {
+            console.log("This is last page")
+            return;
+        } else {
+            return changePage(page)
+        }
+    }
+
+    function previousPage(page) {
+        if (page === 0 || page === 1) {
+            console.log("This is first page")
+            return gotoFirstPage();
+        } else {
+            return changePage(page)
+        }
     }
 
     function sum(a, b) {
@@ -119,7 +209,7 @@ const StudentAdminDashboard = () => {
                             <th>ORTHO</th>
                         </tr>
                     </thead>
-                    {limit.map(item => {
+                    {page.map(item => {
                         return <tbody key={item.limit_id}>
                             {console.log("-----rerender----")}
                             <tr>
@@ -140,6 +230,41 @@ const StudentAdminDashboard = () => {
                         </tbody>
                     })}
                 </Table>
+                {firstPage === true ? <div style={{ marginLeft: '41%' }}>
+                    <Pagination>
+                        <Pagination.First disabled />
+                        <Pagination.Prev disabled />
+                        <Pagination.Item active>{1}</Pagination.Item>
+                        {listPage.map(item => {
+                            if (item !== 1) {
+                                return <Pagination.Item onClick={() => changePage(item)}>{item}</Pagination.Item>
+                            } else
+                                return
+                        })}
+                        <Pagination.Next onClick={() => nextPage(current + 1)} />
+                        <Pagination.Last onClick={() => changePage(allPage)} />
+                    </Pagination>
+                </div> : <div style={{ marginLeft: '41%' }}>
+                    <Pagination>
+                        <Pagination.First onClick={() => gotoFirstPage()} />
+                        <Pagination.Prev onClick={() => previousPage(current - 1)} />
+                        <Pagination.Item onClick={() => gotoFirstPage()}>{1}</Pagination.Item>
+                        {listPage.map(item => {
+                            if (item !== 1) {
+                                if (item === current) {
+                                    return <Pagination.Item onClick={() => changePage(item)} active>{item}</Pagination.Item>
+                                } else {
+                                    return <Pagination.Item onClick={() => changePage(item)}>{item}</Pagination.Item>
+                                }
+
+                            } else
+                                return
+                        })}
+                        {/* <Pagination.Ellipsis /> */}
+                        <Pagination.Next onClick={() => nextPage(current + 1)} />
+                        <Pagination.Last onClick={() => changePage(allPage)} />
+                    </Pagination>
+                </div>}
             </Container>
         </div >
     )
