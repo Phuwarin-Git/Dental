@@ -108,18 +108,23 @@ const StudentLimt = ({ setIsOpen }) => {
         setFirstPage(false)
         if (getpage === allPage) {
             await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                let mod = item.data.length % 10
-                console.log("mod :", mod)
-                let a = [];
-                for (let i = 1; i < mod + 1; i++) {
-                    a.push(i + changeTo)
+
+                if (item.data.length % 10 === 0) {
+                    return setPage([item.data[0 + changeTo], item.data[1 + changeTo], item.data[2 + changeTo], item.data[3 + changeTo], item.data[4 + changeTo], item.data[5 + changeTo], item.data[6 + changeTo], item.data[7 + changeTo], item.data[8 + changeTo], item.data[9 + changeTo]])
+                } else {
+                    let mod = item.data.length % 10
+                    console.log("mod :", mod)
+                    let a = [];
+                    for (let i = 1; i < mod + 1; i++) {
+                        a.push(i + changeTo)
+                    }
+                    setPage([]);
+                    let x = [];
+                    for (let i = 0; i < mod; i++) {
+                        x.push(item.data[a[i] - 1])
+                    }
+                    setPage(x)
                 }
-                setPage([]);
-                let x = [];
-                for (let i = 0; i < mod; i++) {
-                    x.push(item.data[a[i] - 1])
-                }
-                setPage(x)
             });
         } else {
             axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
