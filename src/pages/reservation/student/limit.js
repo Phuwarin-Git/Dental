@@ -35,6 +35,10 @@ const StudentLimt = ({ setIsOpen }) => {
     }, [allPage])
 
     useEffect(() => {
+        console.log('details in this page :', page)
+    }, [page])
+
+    useEffect(() => {
         console.log('List page :', listPage)
     }, [listPage])
 
@@ -47,11 +51,16 @@ const StudentLimt = ({ setIsOpen }) => {
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
             setCurrent(1)
-            setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
-
+            if (item.data.length < 10) {
+                setPage(item.data)
+            } else {
+                setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+            }
             if ((item.data.length) % 10 !== 0) {
                 let test = ((item.data.length) / 10)
+                // console.log("test :", test)
                 let realLength = Math.trunc(test) + 1;
+                // console.log("test2 :", realLength)
                 setAll(realLength)
             } else {
                 setAll((item.data.length) / 10)
@@ -92,12 +101,12 @@ const StudentLimt = ({ setIsOpen }) => {
         });
     }
 
-    async function changePage(page) {
-        setCurrent(page)
-        console.log("Chage to :", page)
-        let changeTo = (page - 1) * 10;
+    async function changePage(getpage) {
+        setCurrent(getpage)
+        console.log("Chage to :", getpage)
+        let changeTo = (getpage - 1) * 10;
         setFirstPage(false)
-        if (page === allPage) {
+        if (getpage === allPage) {
             await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
                 let mod = item.data.length % 10
                 console.log("mod :", mod)
@@ -105,10 +114,12 @@ const StudentLimt = ({ setIsOpen }) => {
                 for (let i = 1; i < mod + 1; i++) {
                     a.push(i + changeTo)
                 }
-                console.log("A :", a)
-                for (let i = 1; i < mod + 1; i++) {
-                    setPage([item.data[a[0]]])
+                setPage([]);
+                let x = [];
+                for (let i = 0; i < mod; i++) {
+                    x.push(item.data[a[i] - 1])
                 }
+                setPage(x)
             });
         } else {
             axios.get("http://localhost:3000/limitcase/find/all").then((item) => {

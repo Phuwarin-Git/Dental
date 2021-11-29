@@ -48,8 +48,6 @@ const Limit = ({ setIsOpen }) => {
         setEditingIndex([...editingIndex, ID])
     }
 
-
-
     function openModal() {
         return setIsOpen(true);
     }
