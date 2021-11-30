@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table'
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import { Button } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
 import * as XLSX from "xlsx";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
@@ -13,7 +12,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 const AdminUser = () => {
-    const history = useHistory();
     const { user } = useContext(AuthContext);
     const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);

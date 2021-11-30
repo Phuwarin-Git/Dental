@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table'
 import { AuthContext } from '../../../App';
 import axios from "axios";
 import { Button } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
 import FormInput from './updateForm';
 
 import Row from 'react-bootstrap/Row'

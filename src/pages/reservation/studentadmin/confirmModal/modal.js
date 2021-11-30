@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CloseButton from 'react-bootstrap/CloseButton'
 import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { useHistory } from "react-router-dom";
 import StyleModal from "./LimitCss";
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table'
@@ -13,17 +9,6 @@ import './modalCss.css'
 
 const ConfirmLimit = ({ excel, setLimit, CloseReser }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
-    // const [listExcel, setList] = useState([]);
-    const history = useHistory();
-
-    // useEffect(() => {
-    //     setList(excel)
-    // }, [excel])
-
-    // useEffect(() => {
-    //     console.log('list :', listExcel)
-    // }, [listExcel])
-
 
     function openModal() {
         setIsOpen(true);
