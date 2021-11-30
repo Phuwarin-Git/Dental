@@ -13,7 +13,6 @@ import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 // import DentalHospital from '../picture/DentalHospital.png'
 
-import { BsFillCalendarFill, BsReverseLayoutTextWindowReverse, BsPersonFill } from "react-icons/bs";
 
 const StudentDashboard = () => {
 
@@ -21,7 +20,6 @@ const StudentDashboard = () => {
     const [details, setDetials] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
-    const history = useHistory();
 
     useEffect(() => {
         getDetails();

@@ -14,11 +14,37 @@ const TeacherHistory = () => {
     const [details, setDetials] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
+    const [page, setPage] = useState([]);
+    const [firstPage, setFirstPage] = useState(true);
+    const [allPage, setAll] = useState([]);
+    const [listPage, setList] = useState([]);
+    const [current, setCurrent] = useState();
 
     useEffect(() => {
         getDetails();
         console.log("User :", user)
     }, [user])
+
+    useEffect(() => {
+        console.log('details in this page :', page)
+    }, [page])
+
+    useEffect(() => {
+        console.log('List page :', listPage)
+    }, [listPage])
+
+    useEffect(() => {
+        console.log('list details :', page)
+    }, [details])
+
+    useEffect(() => {
+        console.log("Sum page :", allPage)
+        let a = [];
+        for (let i = 1; i < allPage + 1; i++) {
+            a.push(i)
+        }
+        return setList(a)
+    }, [allPage])
 
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/teachernotnull").then((item) => {
@@ -31,8 +57,31 @@ const TeacherHistory = () => {
         const res = item.filter((item) => {
             return (item.teacher === user.first_name)
         })
-        setDetials(res);
         console.log("details :", res)
+        let pageList = [];
+        res.map((item) => {
+            if (res.length < 10) {
+                pageList.push(item)
+            }
+            // else {
+            //     setPage([item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9]])
+            // }
+            // if ((item.length) % 10 !== 0) {
+            //     let test = ((item.length) / 10)
+            //     // console.log("test :", test)
+            //     let realLength = Math.trunc(test) + 1;
+            //     // console.log("test2 :", realLength)
+            //     setAll(realLength)
+            // } else {
+            //     setAll((item.length) / 10)
+            // }
+        }
+        )
+        console.log(pageList)
+
+        setCurrent(1)
+
+        setDetials(res);
     }
 
     async function onChangeSearch(e) {
