@@ -5,19 +5,28 @@ import axios from "axios";
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../App';
+import { BsSearch } from "react-icons/bs";
 
 
 const TeacherDashboard = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
+    const [searchDate, setSearchDate] = useState([]);
+    const [detailsFordate, setDetailsForDate] = useState([]);
+    const [currentDate, setCurrentDate] = useState([]);
     const [year2, setYear2] = useState();
     const [year3, setYear3] = useState();
     const [year4, setYear4] = useState();
     const [year5, setYear5] = useState();
+    const [year2details, setYear2details] = useState();
+    const [year3details, setYear3details] = useState();
+    const [year4details, setYear4details] = useState();
+    const [year5details, setYear5details] = useState();
 
 
     useEffect(() => {
         getDetails();
+        checkCurrentDate();
         console.log("User :", user)
     }, [user])
 
@@ -26,6 +35,17 @@ const TeacherDashboard = () => {
         console.log("year 2 :", year2, " year 3 :", year3, " year 4 :", year4, " year 5 :", year5)
     }, [details])
 
+    function checkCurrentDate() {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        console.log("Today :", today)
+        setCurrentDate(today)
+    }
+
     async function getDetails() {
         return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             console.log("Limit :", item.data)
@@ -33,24 +53,84 @@ const TeacherDashboard = () => {
         });
     }
 
+    async function onChangeSearch(e) {
+
+        await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setDetailsForDate(item.data);
+        });
+
+        console.log("Change Date :", e.target.value)
+        setSearchDate(e.target.value)
+    }
+
+    function Searching() {
+        console.log("Searching :", searchDate)
+        const checking = detailsFordate.filter((item) => {
+            return item.date === searchDate
+        })
+        console.log("Filter Date", checking)
+        setDetails(checking)
+    }
+
+    function eliminateDuplicates(arr) {
+        console.log("Clinic List ==>", arr)
+        var i,
+            len = arr.length,
+            out = [],
+            obj = {};
+
+        for (i = 0; i < len; i++) {
+            obj[arr[i]] = 0;
+        }
+        for (i in obj) {
+            out.push(i);
+        }
+        console.log("After sort :", out)
+        return out;
+    }
+
+    function findClinic(data) {
+        let Arr = [];
+        for (let i = 0; i < data.length; i++) {
+            let set = data[i].clinic
+            Arr.push(set);
+        }
+        return Arr;
+    }
+
 
     function checkYear() {
         let a = details.filter((item) => {
             return (item.studentyear === "2")
         })
-        console.log("a :", a)
+        let arrA = findClinic(a)
+        // console.log(arrA)
+        setYear2details(eliminateDuplicates(arrA))
+
         let b = details.filter((item) => {
             return (item.studentyear === "3")
         })
-        console.log("b :", b)
+        let arrB = findClinic(b)
+        // console.log(arrB)
+        setYear3details(eliminateDuplicates(arrB))
+
+
         let c = details.filter((item) => {
             return (item.studentyear === "4")
         })
-        console.log("c :", c)
+        let arrC = findClinic(c)
+        // console.log(arrC)
+        setYear4details(eliminateDuplicates(arrC))
+
+
         let d = details.filter((item) => {
             return (item.studentyear === "5")
         })
-        console.log("d :", d)
+        let arrD = findClinic(d)
+        // console.log(arrD)
+        setYear5details(eliminateDuplicates(arrD))
+
 
         let aa = a.length;
         let bb = b.length;
@@ -85,18 +165,55 @@ const TeacherDashboard = () => {
             </Navbar>
             <br />
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1><br />
+                <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1>
+                <input
+                    style={{ fontSize: '18px' }}
+                    type="date"
+                    class="searchTerm"
+                    id="input_text"
+                    placeholder="ค้นหาวันที่"
+                    onChange={onChangeSearch}
+                >
+                </input>
+                <button onClick={() => Searching()} type="submit" class="searchButton">
+                    <BsSearch />
+                </button>
                 <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
-                    <label>นักศึกษาชั้นปีที่ 2 จำนวน {year2} คน</label>
-                    <ProgressBar striped variant="success" now={year2 * 10} label={year2} /><br />
-                    <label>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
-                    <ProgressBar striped variant="info" now={year3 * 10} label={year3} /><br />
-                    <label>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
-                    <ProgressBar striped variant="warning" now={year4 * 10} label={year4} /><br />
-                    <label>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
-                    <ProgressBar striped variant="danger" now={year5 * 10} label={year5} />
+                    <br />
+                    <label style={{ fontSize: '18px' }}>นักศึกษาชั้นปีที่ 2 จำนวน {year2} คน</label>
+                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        {year2details?.map((item, index) => {
+                            // return console.log("index :", item)
+                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                        })}
+                    </ProgressBar>
+                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
+                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        {year3details?.map((item, index) => {
+                            // return console.log("index :", item)
+                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                        })}
+                    </ProgressBar>
+                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
+                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        {year4details?.map((item, index) => {
+                            // return console.log("index :", item)
+                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                        })}
+                    </ProgressBar>
+                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
+                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        {year5details?.map((item, index) => {
+                            // return console.log("index :", item)
+                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                        })}
+                    </ProgressBar>
                 </div>
-            </Container>
+            </Container >
 
         </div >
     )
