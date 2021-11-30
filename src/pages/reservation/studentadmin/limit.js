@@ -45,7 +45,7 @@ const Limit = ({ setIsOpen }) => {
     }
 
     function changeStatus(ID) {
-        setEditingIndex([...editingIndex, ID])
+        setEditingIndex([ID])
     }
 
 
