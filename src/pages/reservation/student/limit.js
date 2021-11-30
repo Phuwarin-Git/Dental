@@ -218,8 +218,8 @@ const StudentLimt = ({ setIsOpen }) => {
                 })}
 
             </Table>
-            {firstPage === true ? <div style={{ marginLeft: '41%' }}>
-                <Pagination>
+            {firstPage === true ? <div>
+                <Pagination className="justify-content-center">
                     <Pagination.First disabled />
                     <Pagination.Prev disabled />
                     <Pagination.Item active>{1}</Pagination.Item>
@@ -232,8 +232,8 @@ const StudentLimt = ({ setIsOpen }) => {
                     <Pagination.Next onClick={() => nextPage(current + 1)} />
                     <Pagination.Last onClick={() => changePage(allPage)} />
                 </Pagination>
-            </div> : <div style={{ marginLeft: '41%' }}>
-                <Pagination>
+            </div> : <div>
+                <Pagination className="justify-content-center">
                     <Pagination.First onClick={() => gotoFirstPage()} />
                     <Pagination.Prev onClick={() => previousPage(current - 1)} />
                     <Pagination.Item onClick={() => gotoFirstPage()}>{1}</Pagination.Item>
