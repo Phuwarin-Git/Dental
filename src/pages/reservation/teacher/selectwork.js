@@ -23,17 +23,30 @@ const TeacherSelectWork = () => {
         console.log("User :", user)
     }, [user])
 
+    useEffect(() => {
+        getDetails();
+        console.log("isChecked :", isChecked)
+    }, [isChecked])
+
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
-            console.log("Limit :", item.data)
+            // console.log("Limit :", item.data)
             return setDetails(item.data);
         });
     }
 
     function handleOnChange(e) {
-        setIsChecked([...isChecked, { id: e.target.value, teacher: user.first_name }]);
-        console.log('Value :', e.target.value)
-        console.log('isChecked :', isChecked)
+        let unCheck = isChecked.filter(item => { return item.id === e.target.value })
+        if (unCheck.length !== 0) {
+            console.log("Uncheck :", unCheck[0].id)
+            let unCheckList = isChecked.filter(item => { return item.id !== unCheck[0].id })
+            setIsChecked(unCheckList);
+        } else {
+            setIsChecked([...isChecked, { id: e.target.value, teacher: user.first_name }]);
+            console.log('Value :', e.target.value)
+
+        }
+
     };
 
     // const getCheking = (id, teacher) => {
@@ -51,7 +64,7 @@ const TeacherSelectWork = () => {
                 await axios.put("http://localhost:3000/details/updateTeacher/", body)
                 console.log('Body data :', body)
                 return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
-                    console.log("Limit :", item.data)
+                    // console.log("Limit :", item.data)
                     return setDetails(item.data);
                 });
             } else {
@@ -92,7 +105,7 @@ const TeacherSelectWork = () => {
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
                         {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link> */}
-                        <Nav.Link style={{ color: '#E05701', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
