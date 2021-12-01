@@ -11,15 +11,21 @@ import ModalUser from './confirmModal/modalUser';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
+import FormInput from './updateUser'
 const AdminUser = () => {
     const { user } = useContext(AuthContext);
     const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);
+    const [editingIndex, setEditingIndex] = useState([]);
 
     useEffect(() => {
         getDetails();
         console.log("userDetails :", userDetails)
     }, [user])
+
+    useEffect(() => {
+        console.log("editingIndex :", editingIndex)
+    }, [editingIndex])
 
 
     const getDetails = () => {
@@ -29,6 +35,26 @@ const AdminUser = () => {
         });
     }
 
+
+    function changeStatus(ID) {
+        setEditingIndex([ID])
+    }
+
+
+    async function deleteLimitCase(id) {
+        console.log("Delete ID :", id)
+        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        if (confirmBox == true) {
+            console.log(confirmBox)
+            await axios.delete("http://localhost:3000/name/realdelete/" + id);
+            return axios.get("http://localhost:3000/name/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setUser(item.data);
+            });
+        } else {
+            console.log(confirmBox)
+        }
+    }
 
 
     const readExcel = (file) => {
@@ -57,7 +83,6 @@ const AdminUser = () => {
 
         promise.then((d) => {
             setUserExcel(d);
-
         });
     }
 
@@ -118,7 +143,6 @@ const AdminUser = () => {
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
                         <thead className='theadAdmin'>
                             <tr>
-                                <th>ลำดับ</th>
                                 <th>ID</th>
                                 <th>ชื่อ-สกุล</th>
                                 <th>ชั้นปี</th>
@@ -129,18 +153,23 @@ const AdminUser = () => {
                             </tr>
                         </thead>
                         {userDetails.map(item => {
-                            return <tbody key={item.id}>
-                                <tr>
-                                    <td className='tdStudent'>{item.id}</td>
-                                    <td className='tdStudent'>{item.student_id}</td>
-                                    <td className='tdStudent'>{item.first_name}</td>
-                                    <td className='tdStudent'>{item.student_year}</td>
-                                    <td className='tdStudent'>{item.email}</td>
-                                    <td className='tdStudent'>{item.role}</td>
-                                    <td className='tdStudent'><Button >แก้ไข</Button></td>
-                                    <td className='tdStudent'><Button style={{ backgroundColor: 'red' }}>ลบ</Button></td>
-                                </tr>
-                            </tbody>
+                            return editingIndex.includes(item.id) ? (
+                                <FormInput item={item}
+                                    editingIndex={editingIndex}
+                                    setEditingIndex={setEditingIndex}
+                                    getDetails={getDetails()}
+                                />) : (<tbody key={item.id}>
+                                    {console.log("-----rerender----")}
+                                    <tr>
+                                        <td className='tdStudent'>{item.student_id}</td>
+                                        <td className='tdStudent'>{item.first_name}</td>
+                                        <td className='tdStudent'>{item.student_year}</td>
+                                        <td className='tdStudent'>{item.email}</td>
+                                        <td className='tdStudent'>{item.role}</td>
+                                        <td className='tdStudent'><Button onClick={() => changeStatus(item.id)}>แก้ไข</Button></td>
+                                        <td className='tdStudent'><Button onClick={() => deleteLimitCase(item.id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td>
+                                    </tr>
+                                </tbody>)
                         })}
 
                     </Table>
