@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ModalUnit = ({ excel, setUnit }) => {
+const ModalUnit = ({ excel, setUnit, openModalPlase }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
     const [listExcel, setList] = useState([]);
     const history = useHistory();
@@ -37,6 +37,7 @@ const ModalUnit = ({ excel, setUnit }) => {
     }, [modalIsOpen])
 
     async function createUnit() {
+        openModalPlase(false)
         const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อยูนิตหรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -44,12 +45,11 @@ const ModalUnit = ({ excel, setUnit }) => {
             for (let i = 0; i < excel.length; i++) {
                 let a = [{
                     // date: listExcel[i].วันที่,
-                    unit_id: excel[i].ลำดับ,
                     unit_code: excel[i].Name,
                     unit_floor: excel[i].ชั้น,
                     unit_type: excel[i].ประเภท,
-                    unavailable_start_date: excel[i].วันเริ่มต้นการปิดใช้งาน,
-                    unavailable_end_date: excel[i].วันสิ้นสุดการปิดใช้งาน,
+                    unavailable_start_date: "active",
+                    unavailable_end_date: "non",
 
                 }]
                 console.log("Check A :", a)
@@ -85,24 +85,18 @@ const ModalUnit = ({ excel, setUnit }) => {
                             <Table striped bordered hover variant="">
                                 <thead className='theadAdmin'>
                                     <tr>
-                                        <th>ลำดับ</th>
                                         <th>Name</th>
                                         <th>ชั้น</th>
                                         <th>ประเภท</th>
-                                        <th>วันเริ่มต้นการปิดใช้งาน</th>
-                                        <th>วันสิ้นสุดการปิดใช้งาน</th>
 
                                     </tr>
                                 </thead>
                                 {excel.map(item => {
                                     return <tbody key={item.limit_id}>
                                         <tr>
-                                            <td className='tdStudent'>{item.ลำดับ}</td>
                                             <td className='tdStudent'>{item.Name}</td>
                                             <td className='tdStudent'>{item.ชั้น}</td>
                                             <td className='tdStudent'>{item.ประเภท}</td>
-                                            <td className='tdStudent'>{item.วันเริ่มต้นการปิดใช้งาน}</td>
-                                            <td className='tdStudent'>{item.วันสิ้นสุดการปิดใช้งาน}</td>
                                         </tr>
                                     </tbody>
                                 })}

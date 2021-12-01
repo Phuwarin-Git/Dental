@@ -36,7 +36,6 @@ const ModalUser = ({ excel, setUser }) => {
             for (let i = 0; i < excel.length; i++) {
                 let a = [{
                     // date: listExcel[i].วันที่,
-                    id: excel[i].ลำดับ,
                     student_id: excel[i].ID,
                     first_name: excel[i].ชื่อสกุล,
                     student_year: excel[i].ชั้นปี,

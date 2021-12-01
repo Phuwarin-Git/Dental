@@ -12,11 +12,19 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 import FormInput from './updateUser'
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { CloseButton } from 'react-bootstrap';
+import Input from './reservationCss/InputRes'
+import StyledCreate from './reservationCss/ModalCreate';
+
 const AdminUser = () => {
     const { user } = useContext(AuthContext);
     const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         getDetails();
@@ -55,6 +63,57 @@ const AdminUser = () => {
             console.log(confirmBox)
         }
     }
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    async function submitForm(student_id, first_name, student_year, email, role) {
+        const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
+        console.log("Api set :", ApiSet)
+        const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
+        if (confirmBox == true) {
+            console.log(confirmBox)
+            await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
+                return console.log("Res Limit :", res)
+            })
+            await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setUser(item.data);
+            });
+            return closeModal();
+        } else {
+            console.log(confirmBox)
+        }
+
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            student_id: '',
+            first_name: '',
+            student_year: '',
+            email: '',
+            role: '',
+        },
+        validationSchema: Yup.object({
+            first_name: Yup.string()
+                .required('Required'),
+            email: Yup.string().email('Invalid email address')
+                .required('Required'),
+            role: Yup.string()
+                .required('Required'),
+
+
+        }),
+        onSubmit: values => {
+            return submitForm(values.student_id, values.first_name, values.student_year, values.email, values.role);
+        },
+    });
 
 
     const readExcel = (file) => {
@@ -133,11 +192,8 @@ const AdminUser = () => {
                         <Col></Col>
                         <Col style={{ marginRight: '-70px' }}>
                         </Col>
-                        <Col style={{ marginTop: '20px', marginRight: '40px' }} xs lg="2">
-                            <input type="file" onChange={(e) => {
-                                const file = e.target.files[0];
-                                readExcel(file);
-                            }} />
+                        <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
+                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งาน</Button>
                         </Col>
                     </Row>
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
@@ -174,6 +230,108 @@ const AdminUser = () => {
 
                     </Table>
                 </Container>
+                <StyledCreate
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="modal">
+                    <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
+                    <center>
+                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px' }}>รายละเอียดผู้ใช้</h1>
+                    </center>
+                    <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
+
+                        <form onSubmit={formik.handleSubmit}>
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">ID :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                style={{ marginBottom: '10px' }}
+                                id="student_id"
+                                name="student_id"
+                                type="number"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.student_id}
+                            /><br />
+
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ชื่อผู้ใช้งาน :&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="first_name"
+                                name="first_name"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.first_name}
+                            />
+                            {formik.touched.first_name && formik.errors.first_name ? (
+                                <div className="error">{formik.errors.first_name}</div>
+                            ) : null} <br />
+
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">ชั้นปี :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="student_year"
+                                name="student_year"
+                                type="number"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.student_year}
+                            />
+                            <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">Email :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="email"
+                                name="email"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                            />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div className="error">{formik.errors.email}</div>
+                            ) : null} <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ตำแหน่ง :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="role"
+                                name="role"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.role}
+                            />
+                            {formik.touched.role && formik.errors.role ? (
+                                <div className="error">{formik.errors.role}</div>
+                            ) : null} <br />
+
+
+                            <hr
+                                style={{
+                                    color: 'color',
+                                    backgroundColor: 'color',
+                                    height: '5',
+                                    width: '400px',
+                                    marginLeft: '-50px'
+
+                                }}
+                            />
+                            <div style={{ marginLeft: '50px' }}>
+                                <label style={{ marginRight: '10px', marginLeft: '-100px' }}>อัพโหลดโดย Excel : {" "}</label>
+                                <input style={{ marginBottom: '0px' }} type="file" onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }} />
+                            </div>
+
+                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px', marginTop: '-10px' }} className="But" type="submit">ยืนยัน</Button>
+                        </form>
+                    </div>
+                </StyledCreate>
             </div>
             {
                 userExcel.length != 0 ? (<div>
