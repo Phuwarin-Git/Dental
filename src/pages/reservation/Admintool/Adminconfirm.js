@@ -230,7 +230,7 @@ const Adminconfirm = () => {
                                                                                     </button>
                                                                                         </td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
-
+                                <td><button type="button" class="btn btn-success">ยืนยัน</button></td>
                             </tr>
                         </tbody>
                     })}
