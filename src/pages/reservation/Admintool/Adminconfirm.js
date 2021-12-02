@@ -118,7 +118,12 @@ const Adminconfirm = () => {
         })
         setDetials(res);
     }
-
+    async function handelApprove(id) {
+        let toolStatus = {toolStatus:"จัดเตรียมแล้ว"}
+        console.log("Show ID",id)
+                await axios.put("http://localhost:3000/details/updateDetails/" + id, toolStatus);
+        // return getDetails();
+            } 
 
     // const FilterDetails = () =>{
     //     constructor(props) 
@@ -226,12 +231,12 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' >
                                             <button class="btn btn-primary" type="button" disabled>
                                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                                                                                     รอยืนยันอุปกรณ์
+                                                                                                     รอยืนยัน
                                                                                     </button>
                                                                                         </td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
-                                <td><button type="button" class="btn btn-success">ยืนยัน</button></td>
-                            </tr>
+                                <td className='tdAdmin'><button type="button" class="btn btn-success" onClick={() => handelApprove(item.id)} >ยืนยัน</button></td>
+                            </tr> 
                         </tbody>
                     })}
                 </Table>
