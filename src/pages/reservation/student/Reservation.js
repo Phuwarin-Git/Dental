@@ -414,10 +414,6 @@ const StudentRes = () => {
                                 <div className="error">{formik.errors.type}</div>
                             ) : null}<br />
 
-                            {formik.touched.type && formik.errors.type ? (
-                                <div className="error">{formik.errors.type}</div>
-                            ) : null}<br />
-
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="patient">ชื่อคนไข้</label>
                             <Input
                                 style={{ fontSize: '18px' }}
@@ -439,6 +435,7 @@ const StudentRes = () => {
                                 id="dn"
                                 name="dn"
                                 type="number"
+                                min="0"
                                 placeholder="DN ต้องเป็นตัวเลขเท่านั้น"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -454,6 +451,7 @@ const StudentRes = () => {
                                 id="hn"
                                 name="hn"
                                 type="number"
+                                min="0"
                                 placeholder="HN ต้องเป็นตัวเลขเท่านั้น"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}

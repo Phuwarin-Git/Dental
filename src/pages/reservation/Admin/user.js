@@ -204,7 +204,7 @@ const AdminUser = () => {
                                 <th>ชั้นปี</th>
                                 <th>E-mail</th>
                                 <th>ตำแหน่ง</th>
-                                <th>แก้ไขรายละเอียด</th>
+                                <th >แก้ไขรายละเอียด</th>
                                 <th>ลบ</th>
                             </tr>
                         </thead>
@@ -248,6 +248,7 @@ const AdminUser = () => {
                                 id="student_id"
                                 name="student_id"
                                 type="number"
+                                min="0"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.student_id}
@@ -275,6 +276,7 @@ const AdminUser = () => {
                                 id="student_year"
                                 name="student_year"
                                 type="number"
+                                min="0"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.student_year}

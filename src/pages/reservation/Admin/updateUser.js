@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import axios from "axios";
+import Form from 'react-bootstrap/Form'
 
 const FormInput = ({
     item,
@@ -78,13 +79,23 @@ const FormInput = ({
                     <input onChange={handelEditInputChangeName} type={'text'} defaultValue={item.first_name}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeYear} type={'number'} defaultValue={item.student_year}></input>
+                    <select style={{ marginTop: '-4px' }} onChange={handelEditInputChangeYear} type={'number'} defaultValue={item.student_year}>
+                        <option value="3" label="3" />
+                        <option value="4" label="4" />
+                        <option value="5" label="5" />
+                    </select>
                 </td>
                 <td className='tdStudent'>
                     <input onChange={handelEditInputChangeEmail} type={'email'} defaultValue={item.email}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeRole} type={'text'} defaultValue={item.role}></input>
+                    <select style={{ marginTop: '-4px' }} onChange={handelEditInputChangeRole} type={'text'} defaultValue={item.role}>
+                        <option value="student" label="student" />
+                        <option value="studentadmin" label="studentadmin" />
+                        <option value="teacher" label="teacher" />
+                        <option value="admin" label="admin" />
+                        <option value="AdminTool" label="AdminTool" />
+                    </select>
                 </td>
                 <td className='tdStudent'><Button onClick={handelEditFormSubmit} style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
                 <td className='tdStudent'><Button onClick={() => setFalse(item.id)} style={{ backgroundColor: 'red' }}>ยกเลิก</Button></td>

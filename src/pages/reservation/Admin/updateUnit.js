@@ -61,13 +61,14 @@ const FormInputUnit = ({
         <tbody>
             <tr>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeUnit} type={'text'} defaultValue={item.unit_code}></input>
+                    <input style={{ width: '145px' }} onChange={handelEditInputChangeUnit} type={'text'} defaultValue={item.unit_code}></input>
                 </td>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeFloor} type={'number'} defaultValue={item.unit_floor}></input>
-                </td>
-                <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeType} type={'text'} defaultValue={item.unit_type}></input>
+                    <select style={{ marginTop: '-4px' }} onChange={handelEditInputChangeFloor} type={'number'} defaultValue={item.unit_floor}>
+                        <option value="2" label="2" />
+                        <option value="3" label="3" />
+                        <option value="4" label="4" />
+                    </select>
                 </td>
                 <td className='tdStudent'>
                     {item.unavailable_start_date}

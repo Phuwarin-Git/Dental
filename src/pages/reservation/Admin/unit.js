@@ -232,12 +232,11 @@ const AdminUnit = () => {
                         </Col>
                     </Row>
 
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
+                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '80%' }}>
                         <thead className='theadAdmin'>
                             <tr>
                                 <th>ชื่อยูนิต</th>
                                 <th>ชั้น</th>
-                                <th>ประเภท</th>
                                 <th>สถานะ</th>
                                 <th>แก้ไข</th>
                                 <th>ลบ</th>
@@ -253,8 +252,7 @@ const AdminUnit = () => {
                                     <tr>
                                         <td className='tdStudent'>{item.unit_code}</td>
                                         <td className='tdStudent'>{item.unit_floor}</td>
-                                        <td className='tdStudent'>{item.unit_type}</td>
-                                        <td className='tdStudent'>
+                                        <td style={{ width: '240px' }} className='tdStudent'>
                                             <BootstrapSwitchButton
                                                 onlabel="ปกติ"
                                                 offlabel="ปิดใช้งาน"
@@ -307,6 +305,7 @@ const AdminUnit = () => {
                                 id="unit_floor"
                                 name="unit_floor"
                                 type="number"
+                                min="0"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.unit_floor}

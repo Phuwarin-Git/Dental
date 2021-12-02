@@ -15,6 +15,8 @@ import Button from './reservationCss/ButtonRes'
 import Limit from './limit';
 import StyledCreate from './reservationCss/ModalCreate';
 import ConfirmLimit from './confirmModal/modal';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const StudentAdminLimitCase = () => {
     const { user, limit, setLimit, currentDate } = useContext(AuthContext);
@@ -92,31 +94,31 @@ const StudentAdminLimitCase = () => {
         },
         validationSchema: Yup.object({
             date: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             time: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             od: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             tmd: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             oper: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             perio: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             sur: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             prosth: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             endo: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             pedo: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             xray: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             om: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
             ortho: Yup.string()
-                .required('Required'),
+                .required('* กรุณากรอกข้อมูล'),
         }),
         onSubmit: values => {
             return submitForm(values.date, values.time, values.od, values.tmd, values.oper, values.perio, values.sur, values.prosth, values.endo, values.pedo, values.xray, values.om, values.ortho);
@@ -161,212 +163,291 @@ const StudentAdminLimitCase = () => {
                     <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
 
                         <form onSubmit={formik.handleSubmit}>
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                style={{ marginBottom: '10px' }}
-                                id="date"
-                                name="date"
-                                type="date"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.date}
-                                min={currentDate}
-                            />
-                            {formik.touched.date && formik.errors.date ? (
-                                <div className="error">{formik.errors.date}</div>
-                            ) : null} <br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        style={{ marginBottom: '10px' }}
+                                        id="date"
+                                        name="date"
+                                        type="date"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.date}
+                                        min={currentDate}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.date && formik.errors.date ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.date}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col xl={11}>
+                                    <lable style={{ marginRight: '2%', fontWeight: 'bold', fontSize: '20px', marginLeft: '-30px' }}>เลือกช่วงเวลา : </lable>
+                                    <input
+                                        id="ช่วงเช้า"
+                                        type="radio"
+                                        value="ช่วงเช้า"
+                                        name='time'
+                                        onChange={formik.handleChange}
+                                        defaultChecked={formik.values.time === "ช่วงเช้า"}
+                                    />
+                                    &nbsp;&nbsp;&nbsp;
+                                    <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงเช้า</label>
 
 
-                            <lable style={{ marginRight: '2%', fontWeight: 'bold', fontSize: '20px', marginLeft: '-30px' }}>เลือกช่วงเวลา : </lable>
-                            <input
-                                id="ช่วงเช้า"
-                                type="radio"
-                                value="ช่วงเช้า"
-                                name='time'
-                                onChange={formik.handleChange}
-                                defaultChecked={formik.values.time === "ช่วงเช้า"}
-                            />
-                            &nbsp;&nbsp;&nbsp;
-                            <label style={{ marginRight: '10%', fontSize: '18px' }}>ช่วงเช้า</label>
+                                    <input
+                                        id="ช่วงบ่าย"
+                                        type="radio"
+                                        value="ช่วงบ่าย"
+                                        name='time'
+                                        onChange={formik.handleChange}
+                                        defaultChecked={formik.values.time === "ช่วงบ่าย"}
+                                    />
+                                    &nbsp;&nbsp;&nbsp;
+                                    <label style={{ fontSize: '18px' }}>ช่วงบ่าย</label>
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.time && formik.errors.time ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '5px' }} className="error">{formik.errors.time}</div>
+                                    ) : null}<br />
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="od"
+                                        name="od"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.od}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.od && formik.errors.od ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.od}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            <input
-                                id="ช่วงบ่าย"
-                                type="radio"
-                                value="ช่วงบ่าย"
-                                name='time'
-                                onChange={formik.handleChange}
-                                defaultChecked={formik.values.time === "ช่วงบ่าย"}
-                            />
-                            &nbsp;&nbsp;&nbsp;
-                            <label style={{ fontSize: '18px' }}>ช่วงบ่าย</label>
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="tmd"
+                                        name="tmd"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.tmd}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.tmd && formik.errors.tmd ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.tmd}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            {formik.touched.time && formik.errors.time ? (
-                                <div className="error">{formik.errors.time}</div>
-                            ) : null}<br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="oper"
+                                        name="oper"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.oper}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.oper && formik.errors.oper ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.oper}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="perio"
+                                        name="perio"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.perio}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.perio && formik.errors.perio ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.perio}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">OD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="od"
-                                name="od"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.od}
-                            />
-                            {formik.touched.od && formik.errors.od ? (
-                                <div className="error">{formik.errors.od}</div>
-                            ) : null} <br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="sur"
+                                        name="sur"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.sur}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.sur && formik.errors.sur ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.sur}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="prosth">PROSTH :{" "}</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="prosth"
+                                        name="prosth"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.prosth}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.prosth && formik.errors.prosth ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.prosth}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">TMD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="tmd"
-                                name="tmd"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.tmd}
-                            />
-                            {formik.touched.tmd && formik.errors.tmd ? (
-                                <div className="error">{formik.errors.tmd}</div>
-                            ) : null} <br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="endo"
+                                        name="endo"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.endo}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.endo && formik.errors.endo ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.endo}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="pedo">PEDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="pedo"
+                                        name="pedo"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.pedo}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.pedo && formik.errors.pedo ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.pedo}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="oper">OPER :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="oper"
-                                name="oper"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.oper}
-                            />
-                            {formik.touched.oper && formik.errors.oper ? (
-                                <div className="error">{formik.errors.oper}</div>
-                            ) : null} <br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="xray"
+                                        name="xray"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.xray}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.xray && formik.errors.xray ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.xray}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="om"
+                                        name="om"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.om}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.om && formik.errors.om ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.om}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="perio">PERIO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="perio"
-                                name="perio"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.perio}
-                            />
-                            {formik.touched.perio && formik.errors.perio ? (
-                                <div className="error">{formik.errors.perio}</div>
-                            ) : null} <br />
-
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="sur">SUR :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="sur"
-                                name="sur"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.sur}
-                            />
-                            {formik.touched.sur && formik.errors.sur ? (
-                                <div className="error">{formik.errors.sur}</div>
-                            ) : null} <br />
-
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="prosth">PROSTH :{" "}</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="prosth"
-                                name="prosth"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.prosth}
-                            />
-                            {formik.touched.prosth && formik.errors.prosth ? (
-                                <div className="error">{formik.errors.prosth}</div>
-                            ) : null} <br />
-
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="endo">ENDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="endo"
-                                name="endo"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.endo}
-                            />
-                            {formik.touched.endo && formik.errors.endo ? (
-                                <div className="error">{formik.errors.endo}</div>
-                            ) : null} <br />
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="pedo">PEDO :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="pedo"
-                                name="pedo"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.pedo}
-                            />
-                            {formik.touched.pedo && formik.errors.pedo ? (
-                                <div className="error">{formik.errors.pedo}</div>
-                            ) : null} <br />
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="xray">X-ray :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="xray"
-                                name="xray"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.xray}
-                            />
-                            {formik.touched.xray && formik.errors.xray ? (
-                                <div className="error">{formik.errors.xray}</div>
-                            ) : null} <br />
-
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="om">OM :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="om"
-                                name="om"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.om}
-                            />
-                            {formik.touched.om && formik.errors.om ? (
-                                <div className="error">{formik.errors.om}</div>
-                            ) : null} <br />
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="ortho"
-                                name="ortho"
-                                type="number"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.ortho}
-                            />
-                            {formik.touched.ortho && formik.errors.ortho ? (
-                                <div className="error">{formik.errors.ortho}</div>
-                            ) : null} <br />
+                            <Row>
+                                <Col xl={11}>
+                                    <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="ortho">ORTHO :&nbsp;&nbsp;</label>
+                                    <Input
+                                        style={{ fontSize: '18px' }}
+                                        id="ortho"
+                                        name="ortho"
+                                        type="number"
+                                        min="0"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.ortho}
+                                    />
+                                </Col>
+                                <Col xl={1}>
+                                    {formik.touched.ortho && formik.errors.ortho ? (
+                                        <div style={{ marginLeft: '-150px', marginTop: '20px' }} className="error">{formik.errors.ortho}</div>
+                                    ) : null} <br />
+                                </Col>
+                            </Row>
 
                             <hr
                                 style={{
@@ -384,7 +465,7 @@ const StudentAdminLimitCase = () => {
                                 readExcel(file);
                             }} />
 
-                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px' }} className="But" type="submit">ยืนยัน</Button>
+                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px', backgroundColor: '#198CFF' }} className="But" type="submit">ยืนยัน</Button>
                         </form>
                     </div>
                 </StyledCreate>
