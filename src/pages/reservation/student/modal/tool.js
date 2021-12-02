@@ -676,7 +676,7 @@ const ToolModal = ({ unique }) => {
                     </Col>
                     <Col>
                         {' '}
-                        <h1 style={{ color: '#0047AB' }}>เบิกอุปกรณ์</h1>
+                        <h1 style={{ color: '#0047AB', marginLeft:'130px',marginTop:'40px' }}>เบิกอุปกรณ์</h1>
                     </Col>
 
                     <Col>
@@ -687,15 +687,15 @@ const ToolModal = ({ unique }) => {
                 <br />
                 <Row>
                     <Col style={{ marginBottom: -40 }}>
-                        <label style={{ fontSize: 25, marginLeft: 100, color: '#0047AB' }}>
+                        <label style={{ fontSize: 25, marginLeft: 100, color: '#0047AB',marginBottom:'59px' }}>
                             เครื่องมือ
                         </label>
                     </Col>
                     <Col>
-                        <div style={{ marginLeft: '750px', marginBottom: 20 }}>
+                        {/* <div style={{ marginLeft: '750px', marginBottom: 20 }}>
                             Search
                             <input style={{ marginRight: 150 }} title='Search' type='search' />
-                        </div>
+                        </div> */}
                     </Col>
                 </Row>
                 <form onSubmit={formik.handleSubmit}>

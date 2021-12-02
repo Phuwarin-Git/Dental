@@ -195,7 +195,7 @@ const Adminconfirm = () => {
                 </Nav>
 
                 <br />
-                <h1 class="text-primary" style={{ fontWeight: 'bold' }}>อุปกรณ์รอการยืนยัน</h1>
+                <h1 class="text-primary" style={{ fontWeight: 'bold' }}>รอการยืนยัน</h1>
 
 
                 <DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{ marginLeft: "1200px" }}>
