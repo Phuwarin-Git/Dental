@@ -17,11 +17,11 @@ const Adminmodal = ({ unique }) => {
     getTool()
   }, [modalIsOpen])
 
-  function openModal () {
+  function openModal() {
     setIsOpen(true)
   }
 
-  function closeModal () {
+  function closeModal() {
     setIsOpen(false)
   }
 
@@ -56,7 +56,7 @@ const Adminmodal = ({ unique }) => {
         onRequestClose={closeModal}
         contentLabel='modal'
       >
-        <CloseButton style={{marginRight:20}} onClick={closeModal} />
+        <CloseButton style={{ marginRight: 20 }} onClick={closeModal} />
         <div style={{ mixHeight: '1000px', maxHeight: '1000px' }}>
           <center>
             <br />
@@ -81,8 +81,8 @@ const Adminmodal = ({ unique }) => {
               <Row>
                 <Col>
                   <thead className='theadAdmin1' style={{}}>
-                    <tr>
-                      <th style={{width:460}} class="text-primary">อุปกรณ์</th>
+                    <tr style={{ backgroundColor: 'white' }}>
+                      <th style={{ width: 460 }} class="text-primary">อุปกรณ์</th>
                       <th class="text-primary" >จำนวน</th>
                     </tr>
                   </thead>
@@ -90,7 +90,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.testkit_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดตรวจ</td>
                             <td>{item.testkit_toolcc1}</td>
                           </tr>
@@ -104,7 +104,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.glassofwater_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>แก้วน้ำ</td>
                             <td>{item.glassofwater_toolcc1}</td>
                           </tr>
@@ -118,7 +118,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Tripplesyring_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Tripple syring</td>
                             <td>{item.Tripplesyring_toolcc1}</td>
                           </tr>
@@ -132,7 +132,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.FabricMiddlepunch_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ผ้าเจาะกลาง</td>
                             <td>{item.FabricMiddlepunch_toolcc1}</td>
                           </tr>
@@ -146,7 +146,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.veil_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ผ้าคลุม</td>
                             <td>{item.veil_toolcc1}</td>
                           </tr>
@@ -160,7 +160,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.UNC15Probe_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>UNC 15 Probe</td>
                             <td>{item.UNC15Probe_toolcc1}</td>
                           </tr>
@@ -174,7 +174,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.medicinecup_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ถ้วยนํ้ายา</td>
                             <td>{item.medicinecup_toolcc1}</td>
                           </tr>
@@ -188,7 +188,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Dappendish_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Dappen dish</td>
                             <td>{item.Dappendish_toolcc1}</td>
                           </tr>
@@ -202,7 +202,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Mouthprop_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Mouth prop</td>
                             <td>{item.Mouthprop_toolcc1}</td>
                           </tr>
@@ -216,7 +216,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Glasslab_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Glass lab</td>
                             <td>{item.Glasslab_toolcc1}</td>
                           </tr>
@@ -230,7 +230,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Airotor_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Airotor</td>
                             <td>{item.Airotor_toolcc1}</td>
                           </tr>
@@ -244,7 +244,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Contra_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Contra</td>
                             <td>{item.Contra_toolcc1}</td>
                           </tr>
@@ -258,7 +258,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.cottonbud_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ไม้พันสำลี </td>
                             <td>{item.cottonbud_toolcc1}</td>
                           </tr>
@@ -272,7 +272,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Rubbercup_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Rubber cup/tip/Brush</td>
                             <td>{item.Rubbercup_toolcc1}</td>
                           </tr>
@@ -286,7 +286,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.AnestheticSyringe_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Syringe ยาชา</td>
                             <td>{item.AnestheticSyringe_toolcc1}</td>
                           </tr>
@@ -300,7 +300,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.BladeHolder_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Blade Holder</td>
                             <td>{item.BladeHolder_toolcc1}</td>
                           </tr>
@@ -314,7 +314,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Blade_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Blade No....</td>
                             <td>{item.Blade_toolcc1}</td>
                           </tr>
@@ -328,7 +328,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Compositstopperset_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดอุด Composit</td>
                             <td>{item.Compositstopperset_toolcc1}</td>
                           </tr>
@@ -342,7 +342,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Amalgamfillingset_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดอุด Amalgam</td>
                             <td>{item.Amalgamfillingset_toolcc1}</td>
                           </tr>
@@ -356,12 +356,12 @@ const Adminmodal = ({ unique }) => {
                     if (item.Compositsandingsetslowrewind_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดขัด Composit กรอช้า</td>
                             <td>{item.Compositsandingsetslowrewind_toolcc1}</td>
                           </tr>
                         </tbody>
-                        
+
                       )
                     } else {
                       return
@@ -370,8 +370,8 @@ const Adminmodal = ({ unique }) => {
                 </Col>
                 <Col>
                   <thead className='theadAdmin2'>
-                    <tr>
-                      <th style={{width:460}} class="text-primary">อุปกรณ์</th>
+                    <tr style={{ backgroundColor: 'white' }}>
+                      <th style={{ width: 460 }} class="text-primary">อุปกรณ์</th>
                       <th class="text-primary"  > จำนวน</th>
                     </tr>
                   </thead>
@@ -379,7 +379,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Compositsandingsetfastrewinding_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดขัด Composit กรอเร็ว</td>
                             <td>{item.Compositsandingsetfastrewinding_toolcc1}</td>
                           </tr>
@@ -393,7 +393,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.plasticcomposit_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>plastic composit</td>
                             <td>{item.plasticcomposit_toolcc1}</td>
                           </tr>
@@ -407,7 +407,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Spoonexcavatorlarge_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Spoon excavator ใหญ่</td>
                             <td>{item.Spoonexcavatorlarge_toolcc1}</td>
                           </tr>
@@ -421,7 +421,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.MatrixV3_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Matrix V3 Ring ...</td>
                             <td>{item.MatrixV3_toolcc1}</td>
                           </tr>
@@ -435,7 +435,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.MatrixV3Forcep_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Matrix V3 Forcep</td>
                             <td>{item.MatrixV3Forcep_toolcc1}</td>
                           </tr>
@@ -449,7 +449,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Rounddimondbursetslow_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Round dimond bur (กรอช้า)</td>
                             <td>{item.Rounddimondbursetslow_toolcc1}</td>
                           </tr>
@@ -463,7 +463,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Cylinderdimondbursetslow_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Cylinder dimond bur (กรอช้า)</td>
                             <td>{item.Cylinderdimondbursetslow_toolcc1}</td>
                           </tr>
@@ -477,7 +477,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Rounddimondbursetfast_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Tripple</td>
                             <td>{item.Rounddimondbursetfast_toolcc1}</td>
                           </tr>
@@ -491,7 +491,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Cylinderdimondbursetfast_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Cylinder dimond bur (กรอเร็ว)</td>
                             <td>{item.Cylinderdimondbursetfast_toolcc1}</td>
                           </tr>
@@ -505,7 +505,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Dycalcarrier_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Dycal carrier </td>
                             <td>{item.Dycalcarrier_toolcc1}</td>
                           </tr>
@@ -519,7 +519,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Spatulaplastic_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Spatula plastic</td>
                             <td>{item.Spatulaplastic_toolcc1}</td>
                           </tr>
@@ -533,7 +533,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Cementspatula_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Cement spatula</td>
                             <td>{item.Cementspatula_toolcc1}</td>
                           </tr>
@@ -547,7 +547,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Mendrelscrubset_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดขัด Mendrel</td>
                             <td>{item.Mendrelscrubset_toolcc1}</td>
                           </tr>
@@ -561,7 +561,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Poponsmall_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Pop on เล็ก/ใหญ่</td>
                             <td>{item.Poponsmall_toolcc1}</td>
                           </tr>
@@ -575,7 +575,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Rubberdamset_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุด Rubber dam</td>
                             <td>{item.Rubberdamset_toolcc1}</td>
                           </tr>
@@ -589,7 +589,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.clamp_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>clamp No.</td>
                             <td>{item.clamp_toolcc1}</td>
                           </tr>
@@ -603,7 +603,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Steelheadslowdown_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>หัว Steel กรอช้า</td>
                             <td>{item.Steelheadslowdown_toolcc1}</td>
                           </tr>
@@ -617,7 +617,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.Astropolpolishingset_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>ชุดขัด Astropol</td>
                             <td>{item.Astropolpolishingset_toolcc1}</td>
                           </tr>
@@ -631,7 +631,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.IvoryTofflemirematrix_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>Ivory / Tofflemire matrix</td>
                             <td>{item.IvoryTofflemirematrix_toolcc1}</td>
                           </tr>
@@ -645,7 +645,7 @@ const Adminmodal = ({ unique }) => {
                     if (item.hightpowersuction_toolcc1 != ' ') {
                       return (
                         <tbody>
-                          <tr>
+                          <tr style={{ backgroundColor: 'white' }}>
                             <td>hight power suction</td>
                             <td>{item.hightpowersuction_toolcc1}</td>
                           </tr>
