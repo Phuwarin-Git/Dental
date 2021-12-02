@@ -15,7 +15,7 @@ const StudentAdminReservation = () => {
     const [select, setSelect] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [unitNotnull, setNotnull] = useState([]);
-
+    const [unitByFloor, setUnitByFloor] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -44,6 +44,7 @@ const StudentAdminReservation = () => {
     const getUnit = () => {
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
             // console.log("Unit lists:", item.data)
+            setUnitByFloor(item.data);
             return setAllUnit(item.data);
         });
     }
@@ -59,8 +60,8 @@ const StudentAdminReservation = () => {
     function handleOnChange(e) {
         console.log('Value :', e.target.value.split(" "))
         let first = e.target.value.split(" ")
-        console.log('id :', first[0])
-        console.log('unit :', first[1])
+        // console.log('id :', first[0])
+        // console.log('unit :', first[1])
         setSelect([...select, { id: first[0], unit: first[1] }]);
         console.log('Seleted :', select)
     };
@@ -119,15 +120,15 @@ const StudentAdminReservation = () => {
         if (finding?.length != 0) {
             for (var i = 0; i < finding?.length; i++) {
                 if (unit === finding[i]?.unit) {
-                    console.log("true :", finding[i].date, " Round", i, finding[i]?.unit)
+                    // console.log("true :", finding[i].date, " Round", i, finding[i]?.unit)
                     a = true;
 
                 } else {
-                    console.log("false :", finding[i].date, " Round", i, finding[i]?.unit)
+                    // console.log("false :", finding[i].date, " Round", i, finding[i]?.unit)
                     a = false;
 
                 }
-                console.log("Round", i, " date :", date, " length", finding?.length, " details :", finding[i]?.unit)
+                // console.log("Round", i, " date :", date, " length", finding?.length, " details :", finding[i]?.unit)
                 return a;
             }
         } else {
@@ -135,6 +136,8 @@ const StudentAdminReservation = () => {
             return a = false;
         }
     }
+
+
 
 
     return (
@@ -183,51 +186,71 @@ const StudentAdminReservation = () => {
                             <th>ประเภทงาน</th>
                             <th>ชื่อผู้ป่วย</th>
                             <th>ชื่อนักศึกษา</th>
+                            <th>Unit ชั้นที่</th>
                             <th>Unit</th>
                         </tr>
                     </thead>
                     {details.map(item => {
+                        {
+                            let realFloor = allUnit;
+                            function filterFloor(e) {
+                                let floor = e.target.value;
+                                // console.log(typeof floor, " floor :", floor)
+                                let getFloor = allUnit?.filter((item) => { return (item.unit_floor === floor) })
+                                console.log(getFloor)
+                                setUnitByFloor(getFloor)
+                                return realFloor = getFloor;
+                            }
 
-                        return <tbody key={item.id}>
-                            <tr>
-                                <td className='tdStudent'>{item.date}</td>
-                                <td className='tdStudent'>{item.time}</td>
-                                <td className='tdStudent'>{item.clinic}</td>
-                                <td className='tdStudent'>{item.worktype}</td>
-                                <td className='tdStudent'>{item.patient}</td>
-                                <td className='tdStudent'>{item.name}</td>
-                                <td className='tdStudent'>
-                                    <select style={{ backgroundColor: '#198CFF', color: 'white' }} onChange={handleOnChange}>
-                                        <option value="selected" selected="selected">เลือก Unit</option>
-                                        {allUnit?.map(items => {
-                                            if (items.unavailable_start_date === 'active') {
-                                                if (filterUnit(item.date, item.time, items.unit_code)) {
+                            return <tbody key={item.id}>
+                                <tr>
+                                    <td className='tdStudent'>{item.date}</td>
+                                    <td className='tdStudent'>{item.time}</td>
+                                    <td className='tdStudent'>{item.clinic}</td>
+                                    <td className='tdStudent'>{item.worktype}</td>
+                                    <td className='tdStudent'>{item.patient}</td>
+                                    <td className='tdStudent'>{item.name}</td>
+                                    <td className='tdStudent' ><select style={{ backgroundColor: '#198CFF', color: 'white' }} onChange={filterFloor}>
+                                        <option value="selected" selected="selected">เลือกชั้น</option>
+                                        <option style={{ backgroundColor: 'white', color: 'black' }} value={"1"}>ชั้นที่ 1</option>
+                                        <option style={{ backgroundColor: 'white', color: 'black' }} value={"2"}>ชั้นที่ 2</option>
+                                        <option style={{ backgroundColor: 'white', color: 'black' }} value={"3"}>ชั้นที่ 3</option>
+                                        <option style={{ backgroundColor: 'white', color: 'black' }} value={"4"}>ชั้นที่ 4</option>
+                                    </select></td>
+                                    <td className='tdStudent'>
+                                        <select style={{ backgroundColor: '#198CFF', color: 'white' }} onChange={handleOnChange}>
+                                            <option value="selected" selected="selected">เลือก Unit</option>
+                                            {unitByFloor?.map(items => {
+                                                if (items.unavailable_start_date === 'active') {
+                                                    if (filterUnit(item.date, item.time, items.unit_code)) {
+                                                        return <option
+                                                            style={{ backgroundColor: '#c7c7c7', color: 'black' }}
+                                                            value={item.id + " " + items.unit_code} disabled>
+                                                            {items.unit_code}{" ถูกจองแล้ว"}
+                                                        </option>
+                                                    } else {
+                                                        return <option
+                                                            style={{ backgroundColor: 'white', color: 'black' }}
+                                                            value={item.id + " " + items.unit_code} >
+                                                            {items.unit_code}
+                                                        </option>
+                                                    }
+
+                                                } else if (items.unavailable_start_date === 'inactive') {
                                                     return <option
                                                         style={{ backgroundColor: '#c7c7c7', color: 'black' }}
                                                         value={item.id + " " + items.unit_code} disabled>
-                                                        {items.unit_code}{" ถูกจองแล้ว"}
-                                                    </option>
-                                                } else {
-                                                    return <option
-                                                        style={{ backgroundColor: 'white', color: 'black' }}
-                                                        value={item.id + " " + items.unit_code} >
-                                                        {items.unit_code}
+                                                        {items.unit_code}{" ปิดใช้งาน"}
                                                     </option>
                                                 }
-
-                                            } else if (items.unavailable_start_date === 'inactive') {
-                                                return <option
-                                                    style={{ backgroundColor: '#c7c7c7', color: 'black' }}
-                                                    value={item.id + " " + items.unit_code} disabled>
-                                                    {items.unit_code}{" ปิดใช้งาน"}
-                                                </option>
                                             }
-                                        }
-                                        )}
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
+                                            )
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
                     })}
                 </Table>
                 <Button style={{ fontWeight: 'bold', backgroundColor: '#198CFF' }} onClick={() => submitApprove()}>ยืนยัน</Button>
