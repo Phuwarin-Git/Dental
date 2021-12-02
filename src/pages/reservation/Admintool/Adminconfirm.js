@@ -208,7 +208,9 @@ const Adminconfirm = () => {
                             <th>คนไข้</th>
                             <th>ผู้เบิกอุปกรณ์</th>
                             <th>ชั้นปีการศีกษา</th>
+                            <th>สถานะการเบิก</th>
                             <th>อุปกรณ์ที่เบิก</th>
+                            <th>ยืนยัน</th>
                         </tr>
                     </thead>
                     {details.map(item => {
@@ -227,6 +229,7 @@ const Adminconfirm = () => {
                                                                                                      รอยืนยันอุปกรณ์
                                                                                     </button>
                                                                                         </td>
+                                <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
 
                             </tr>
                         </tbody>
