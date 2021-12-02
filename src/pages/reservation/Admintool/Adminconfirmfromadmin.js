@@ -210,7 +210,7 @@ const Adminconfirm = () => {
                             <th>ผู้เบิกอุปกรณ์</th>
                             <th>ชั้นปีการศีกษา</th>
                             <th>อุปกรณ์ที่เบิก</th>
-                          
+                            <th>สถานะ</th>
                         </tr>
                     </thead>
                     {details.map(item => {
@@ -224,6 +224,7 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
+                                <td className='tdAdmin' style={{ color: 'black' }}><button type="button" class="btn btn-success"disabled>{item.toolStatus}</button></td>
                             
 
                             </tr>
