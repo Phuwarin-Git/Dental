@@ -60,7 +60,7 @@ const Adminmodal = ({ unique }) => {
         <div style={{ mixHeight: '1000px', maxHeight: '1000px' }}>
           <center>
             <br />
-            <h3 style={{ color: '#0047AB', fontWeight: 'bold' }}>
+            <h3 class="text-primary" style={{ fontWeight: 'bold' }}>
               เครื่องมือเบิกงาน Endo
             </h3>
           </center>
@@ -80,13 +80,12 @@ const Adminmodal = ({ unique }) => {
             >
               <Row>
                 <Col>
-                  <thead className='theadAdmin1'>
+                  <thead className='theadAdmin1' style={{}}>
                     <tr>
-                      <th style={{width:460}}>อุปกรณ์</th>
-                      <th >จำนวน</th>
+                      <th style={{width:460}} class="text-primary">อุปกรณ์</th>
+                      <th class="text-primary" >จำนวน</th>
                     </tr>
                   </thead>
-
                   {Tool?.map(item => {
                     if (item.testkit_toolcc1 != ' ') {
                       return (
@@ -362,6 +361,7 @@ const Adminmodal = ({ unique }) => {
                             <td>{item.Compositsandingsetslowrewind_toolcc1}</td>
                           </tr>
                         </tbody>
+                        
                       )
                     } else {
                       return
@@ -371,8 +371,8 @@ const Adminmodal = ({ unique }) => {
                 <Col>
                   <thead className='theadAdmin2'>
                     <tr>
-                      <th style={{width:460}}>อุปกรณ์</th>
-                      <th>จำนวน</th>
+                      <th style={{width:460}} class="text-primary">อุปกรณ์</th>
+                      <th class="text-primary"  > จำนวน</th>
                     </tr>
                   </thead>
                   {Tool?.map(item => {
