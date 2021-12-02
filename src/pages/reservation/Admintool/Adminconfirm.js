@@ -18,6 +18,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
+    const [oriDetails, setOri] = useState([]);
     const [getod, setod] = useState([]);
     useEffect(() => {
         getDetails();
@@ -26,12 +27,13 @@ const Adminconfirm = () => {
     }, [user])
 
     useEffect(() => {
-        console.log("odtest", getod)
+        // console.log("odtest", getod)
     }, [getod])
 
-    const getDetails = () => {
-        axios.get("http://localhost:3000/details/find/notnull").then((item) => {
+    async function getDetails() {
+        await axios.get("http://localhost:3000/details/find/notnull").then((item) => {
             console.log("data :", item.data)
+            setOri(item.data)
             return setDetials(item.data);
         });
     }
@@ -45,77 +47,79 @@ const Adminconfirm = () => {
         setod(res)
     }
 
-    function checkOD(){
-        const res = details.filter((item) => {
-                    return (item.clinic=== "OD")
-                })
-                setDetials(res);
-        }
+    function checkOD() {
+        let res = oriDetails.filter((item) => {
+            return (item.clinic === "OD")
+        })
+        console.log("res :", res)
+        setDetials(res);
+    }
 
-    function checkTMD(){
-        const res = details.filter((item) => {
-                    return (item.clinic=== "TMD")
-                })
-                setDetials(res);
-        }
-   
-        function checkOPER(){
-            const res = details.filter((item) => {
-                        return (item.clinic=== "OPER")
-                    })
-                    setDetials(res);
-            }
+    function checkTMD() {
+        let res = oriDetails.filter((item) => {
+            return (item.clinic === "TMD")
+        })
+        console.log("res :", res)
+        setDetials(res);
+    }
 
-            function checkPERIO(){
-                const res = details.filter((item) => {
-                            return (item.clinic=== "PERIO")
-                        })
-                        setDetials(res);
-                }
-            
-                function checkSUR(){
-                    const res = details.filter((item) => {
-                                return (item.clinic=== "SUR")
-                            })
-                            setDetials(res);
-                    }
-                                
-                function checkPROSTH(){
-                    const res = details.filter((item) => {
-                                return (item.clinic=== "PROSTH")
-                            })
-                            setDetials(res);
-                    }
+    function checkOPER() {
+        let res = oriDetails.filter((item) => {
+            return (item.clinic === "OPER")
+        })
+        setDetials(res);
+    }
 
-                    function checkENDO(){
-                        const res = details.filter((item) => {
-                                    return (item.clinic=== "ENDO")
-                                })
-                                setDetials(res);
-                        }
+    function checkPERIO() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "PERIO")
+        })
+        setDetials(res);
+    }
 
-                        function checkXRAY(){
-                            const res = details.filter((item) => {
-                                        return (item.clinic=== "XRAY")
-                                    })
-                                    setDetials(res);
-                            }
+    function checkSUR() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "SUR")
+        })
+        setDetials(res);
+    }
 
-                            function checkOM(){
-                                const res = details.filter((item) => {
-                                            return (item.clinic=== "OM")
-                                        })
-                                        setDetials(res);
-                                }
+    function checkPROSTH() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "PROSTH")
+        })
+        setDetials(res);
+    }
 
-                                function checkORTHO(){
-                                    const res = details.filter((item) => {
-                                                return (item.clinic=== "ORTHO")
-                                            })
-                                            setDetials(res);
-                                    }
-    
-  
+    function checkENDO() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "ENDO")
+        })
+        setDetials(res);
+    }
+
+    function checkXRAY() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "XRAY")
+        })
+        setDetials(res);
+    }
+
+    function checkOM() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "OM")
+        })
+        setDetials(res);
+    }
+
+    function checkORTHO() {
+        const res = oriDetails.filter((item) => {
+            return (item.clinic === "ORTHO")
+        })
+        setDetials(res);
+    }
+
+
     // const FilterDetails = () =>{
     //     constructor(props) 
     //       super(props);
@@ -176,21 +180,21 @@ const Adminconfirm = () => {
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
 
-<DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{marginLeft:"1200px"}}>
-  <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
-  <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
-  <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
-  <Dropdown.Item onClick={checkPERIO} as="button">PERIO</Dropdown.Item>
-  <Dropdown.Item onClick={checkSUR} as="button">SUR</Dropdown.Item>
-  <Dropdown.Item onClick={checkPROSTH} as="button">PROSTH</Dropdown.Item>
-  <Dropdown.Item onClick={checkENDO} as="button">ENDO</Dropdown.Item>
-  <Dropdown.Item onClick={checkXRAY} as="button">X-Ray</Dropdown.Item>
-  <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
-  <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
-</DropdownButton>    
-                
+                <DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{ marginLeft: "1200px" }}>
+                    <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
+                    <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
+                    <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
+                    <Dropdown.Item onClick={checkPERIO} as="button">PERIO</Dropdown.Item>
+                    <Dropdown.Item onClick={checkSUR} as="button">SUR</Dropdown.Item>
+                    <Dropdown.Item onClick={checkPROSTH} as="button">PROSTH</Dropdown.Item>
+                    <Dropdown.Item onClick={checkENDO} as="button">ENDO</Dropdown.Item>
+                    <Dropdown.Item onClick={checkXRAY} as="button">X-Ray</Dropdown.Item>
+                    <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
+                    <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
+                </DropdownButton>
+
                 <br />
-                
+
 
 
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
