@@ -33,8 +33,12 @@ const Adminconfirm = () => {
     async function getDetails() {
         await axios.get("http://localhost:3000/details/find/notnull").then((item) => {
             console.log("data :", item.data)
-            setOri(item.data)
-            return setDetials(item.data);
+            let theData = item.data;
+            let a = theData.filter((item) => {
+                return (item.toolStatus === "รอการเบิก")
+            })
+            setOri(a)
+            return setDetials(a);
         });
     }
 
@@ -119,11 +123,19 @@ const Adminconfirm = () => {
         setDetials(res);
     }
     async function handelApprove(id) {
-        let toolStatus = {toolStatus:"จัดเตรียมแล้ว"}
-        console.log("Show ID",id)
-                await axios.put("http://localhost:3000/details/updateDetails/" + id, toolStatus);
-        // return getDetails();
-            } 
+        let toolStatus = { toolStatus: "จัดเตรียมแล้ว" }
+        console.log("Show ID", id)
+        await axios.put("http://localhost:3000/details/updateDetails/" + id, toolStatus);
+        await axios.get("http://localhost:3000/details/find/notnull").then((item) => {
+            console.log("data :", item.data)
+            let theData = item.data;
+            let a = theData.filter((item) => {
+                return (item.toolStatus === "รอการเบิก")
+            })
+            setOri(a)
+            return setDetials(a);
+        });
+    }
 
     // const FilterDetails = () =>{
     //     constructor(props) 
@@ -160,16 +172,16 @@ const Adminconfirm = () => {
                     </Container>
                 </Nav>
 
-                <Nav style={{ marginLeft: '-5%', marginTop:'7px' }}  >
+                <Nav style={{ marginLeft: '-5%', marginTop: '7px' }}  >
                     <Container>
-                        <Nav.Link class="text-primary" style={{color: '#0080ff',marginLeft:'220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
-                        <Nav.Link class="text-primary" style={{color: '#0080ff',marginLeft:'50px' , fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
+                        <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '50px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
                     </Container>
                 </Nav>
 
                 <Nav style={{ marginLeft: '15%' }}  >
                     <Container>
-                        <Nav.Link class="text-primary" style={{color: '#0080ff', marginLeft: '550px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '550px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Container>
                 </Nav>
             </Navbar>
@@ -229,14 +241,14 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
                                 <td className='tdAdmin' >
-                                            <button class="btn btn-primary" type="button" disabled>
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                                                                                     รอยืนยัน
-                                                                                    </button>
-                                                                                        </td>
+                                    <button class="btn btn-primary" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        รอยืนยัน
+                                    </button>
+                                </td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
                                 <td className='tdAdmin'><button type="button" class="btn btn-success" onClick={() => handelApprove(item.id)} >ยืนยัน</button></td>
-                            </tr> 
+                            </tr>
                         </tbody>
                     })}
                 </Table>

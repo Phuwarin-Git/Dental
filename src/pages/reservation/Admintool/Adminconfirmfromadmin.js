@@ -33,8 +33,12 @@ const Adminconfirm = () => {
     async function getDetails() {
         await axios.get("http://localhost:3000/details/find/notnull").then((item) => {
             console.log("data :", item.data)
-            setOri(item.data)
-            return setDetials(item.data);
+            let theData = item.data;
+            let a = theData.filter((item) => {
+                return (item.toolStatus === "จัดเตรียมแล้ว")
+            })
+            setOri(a)
+            return setDetials(a);
         });
     }
 
@@ -118,8 +122,8 @@ const Adminconfirm = () => {
         })
         setDetials(res);
     }
-    
-  
+
+
     // const FilterDetails = () =>{
     //     constructor(props) 
     //       super(props);
@@ -155,11 +159,11 @@ const Adminconfirm = () => {
                     </Container>
                 </Nav>
 
-               
-                <Nav style={{ marginLeft: '-5%', marginTop:'7px'  }}  >
+
+                <Nav style={{ marginLeft: '-5%', marginTop: '7px' }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#0080ff',marginLeft:'220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff',marginLeft:'50px' , fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', marginLeft: '220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', marginLeft: '50px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
                     </Container>
                 </Nav>
 
@@ -182,21 +186,21 @@ const Adminconfirm = () => {
                 <h1 class="text-primary" style={{ fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
 
-<DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{marginLeft:"1200px"}}>
-  <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
-  <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
-  <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
-  <Dropdown.Item onClick={checkPERIO} as="button">PERIO</Dropdown.Item>
-  <Dropdown.Item onClick={checkSUR} as="button">SUR</Dropdown.Item>
-  <Dropdown.Item onClick={checkPROSTH} as="button">PROSTH</Dropdown.Item>
-  <Dropdown.Item onClick={checkENDO} as="button">ENDO</Dropdown.Item>
-  <Dropdown.Item onClick={checkXRAY} as="button">X-Ray</Dropdown.Item>
-  <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
-  <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
-</DropdownButton>    
-                
+                <DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{ marginLeft: "1200px" }}>
+                    <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
+                    <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
+                    <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
+                    <Dropdown.Item onClick={checkPERIO} as="button">PERIO</Dropdown.Item>
+                    <Dropdown.Item onClick={checkSUR} as="button">SUR</Dropdown.Item>
+                    <Dropdown.Item onClick={checkPROSTH} as="button">PROSTH</Dropdown.Item>
+                    <Dropdown.Item onClick={checkENDO} as="button">ENDO</Dropdown.Item>
+                    <Dropdown.Item onClick={checkXRAY} as="button">X-Ray</Dropdown.Item>
+                    <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
+                    <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
+                </DropdownButton>
+
                 <br />
-                
+
 
 
                 <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
@@ -224,8 +228,8 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
-                                <td className='tdAdmin' style={{ color: 'black' }}><button type="button" class="btn btn-success"disabled>{item.toolStatus}</button></td>
-                            
+                                <td className='tdAdmin' style={{ color: 'black' }}><button type="button" class="btn btn-success" disabled>{item.toolStatus}</button></td>
+
 
                             </tr>
                         </tbody>
