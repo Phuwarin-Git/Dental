@@ -143,12 +143,12 @@ const Adminconfirm = () => {
         <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
             <nav style={{ background: '#0080ff' }}>
 
-                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
 
                 </div>
             </nav>
-            <Navbar style={{ background: '#1565C0', paddingBottom: '0.5%' }} >
+            <Navbar style={{ background: '#ffff', paddingBottom: '0.5%' }} >
                 <Nav style={{ marginLeft: '' }}  >
                     <Container>
                         <Nav.Link style={{ color: '#ffff', fontWeight: 'bold', fontSize: '18px' }} ></Nav.Link>
@@ -156,16 +156,16 @@ const Adminconfirm = () => {
                 </Nav>
 
                
-                <Nav style={{ marginLeft: '-5%' }}  >
+                <Nav style={{ marginLeft: '-5%', marginTop:'7px'  }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#ffff',marginLeft:'220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
-                        <Nav.Link style={{ color: '#ffff',marginLeft:'50px' , fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff',marginLeft:'220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff',marginLeft:'50px' , fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
                     </Container>
                 </Nav>
 
                 <Nav style={{ marginLeft: '15%' }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#ffff', marginLeft: '550px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', marginLeft: '550px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Container>
                 </Nav>
             </Navbar>
