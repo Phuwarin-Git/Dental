@@ -22,11 +22,11 @@ import TeacherDashboard from './pages/reservation/teacher/dashboard';
 import TeacherSelectWork from './pages/reservation/teacher/selectwork';
 import TeacherHistory from './pages/reservation/teacher/history';
 import TeacherProfile from './pages/reservation/teacher/profile';
-import Adminhistory from './pages/reservation/Admintool/Adminhistory';
 import AdminDashboard from './pages/reservation/Admin/dashboard';
 import AdminUser from './pages/reservation/Admin/user';
 import AdminUnit from './pages/reservation/Admin/unit';
 import AdminProfile from './pages/reservation/Admin/profile';
+import Adminconfirmfromadmin from './pages/reservation/Admintool/Adminconfirmfromadmin';
 
 
 const AuthContext = createContext();
@@ -55,7 +55,6 @@ function App() {
           <Route path="/StudentAdminHistory" render={() => loginStatus === true ? <StudentAdminHistory /> : (<Redirect to="/" />)}></Route>
           <Route path="/StudentAdminLimitCase" render={() => loginStatus === true ? <StudentAdminLimitCase /> : (<Redirect to="/" />)}></Route>
           <Route path="/Adminconfirm" render={() => loginStatus === true ? <Adminconfirm /> : (<Redirect to="/" />)}></Route>
-          <Route path="/Adminhistory" render={() => loginStatus === true ? <Adminhistory /> : (<Redirect to="/" />)}></Route>
           <Route path="/ToolModal" render={() => loginStatus === true ? <ToolModal /> : (<Redirect to="/" />)}></Route>
           <Route path="/TeacherDashboard" render={() => loginStatus === true ? <TeacherDashboard /> : (<Redirect to="/" />)}></Route>
           <Route path="/TeacherSelectWork" render={() => loginStatus === true ? <TeacherSelectWork /> : (<Redirect to="/" />)}></Route>
@@ -65,6 +64,7 @@ function App() {
           <Route path="/AdminUser" render={() => loginStatus === true ? <AdminUser /> : (<Redirect to="/" />)}></Route>
           <Route path="/AdminUnit" render={() => loginStatus === true ? <AdminUnit /> : (<Redirect to="/" />)}></Route>
           <Route path="/AdminProfile" render={() => loginStatus === true ? <AdminProfile /> : (<Redirect to="/" />)}></Route>
+          <Route path="/Adminconfirmfromadmin" render={() => loginStatus === true ? <Adminconfirmfromadmin /> : (<Redirect to="/" />)}></Route>
           <Route path="/:id">
             <h1 style={{ color: 'black' }}>Error 404 page not found</h1>
           </Route>
