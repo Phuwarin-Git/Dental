@@ -12,7 +12,8 @@ import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './adminmodal/TableAdminconfirm.css'
-import './AdminconfirmOD'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
@@ -44,7 +45,76 @@ const Adminconfirm = () => {
         setod(res)
     }
 
+    function checkOD(){
+        const res = details.filter((item) => {
+                    return (item.clinic=== "od")
+                })
+                setDetials(res);
+        }
+
+    function checkTMD(){
+        const res = details.filter((item) => {
+                    return (item.clinic=== "tmd")
+                })
+                setDetials(res);
+        }
    
+        function checkOPER(){
+            const res = details.filter((item) => {
+                        return (item.clinic=== "oper")
+                    })
+                    setDetials(res);
+            }
+
+            function checkPERIO(){
+                const res = details.filter((item) => {
+                            return (item.clinic=== "perio")
+                        })
+                        setDetials(res);
+                }
+            
+                function checkSUR(){
+                    const res = details.filter((item) => {
+                                return (item.clinic=== "sur")
+                            })
+                            setDetials(res);
+                    }
+                                
+                function checkPROSTH(){
+                    const res = details.filter((item) => {
+                                return (item.clinic=== "prosth")
+                            })
+                            setDetials(res);
+                    }
+
+                    function checkENDO(){
+                        const res = details.filter((item) => {
+                                    return (item.clinic=== "endo")
+                                })
+                                setDetials(res);
+                        }
+
+                        function checkXRAY(){
+                            const res = details.filter((item) => {
+                                        return (item.clinic=== "xray")
+                                    })
+                                    setDetials(res);
+                            }
+
+                            function checkOM(){
+                                const res = details.filter((item) => {
+                                            return (item.clinic=== "om")
+                                        })
+                                        setDetials(res);
+                                }
+
+                                function checkORTHO(){
+                                    const res = details.filter((item) => {
+                                                return (item.clinic=== "ortho")
+                                            })
+                                            setDetials(res);
+                                    }
+    
   
     // const FilterDetails = () =>{
     //     constructor(props) 
@@ -105,27 +175,19 @@ const Adminconfirm = () => {
                 <br />
                 <h1 style={{ color: '#0047AB', fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
-                <div class="dropdown" style={{ color: '#ffff', paddingLeft: '1200px' }}>
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-  เลือกคลินิก
-  </a>
 
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">เลือกคลินิก</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmOD.js">OD</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmTMB.js">TMB</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmOPER.js">OPER</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmPERIO.js">PERIO</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmSUR.js">SUR</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmPROSTH.js">PROSTH</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmENDO.js">ENDO</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmPEDO.js">PEDO</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmXRay.js">X-Ray</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmOM.js">OM</a></li>
-    <li><a class="dropdown-item" href="./AdminconfirmOrtho.js">Ortho</a></li>
-  </ul>
-</div>
-            
+<DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{marginLeft:"1200px"}}>
+  <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
+  <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
+  <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
+  <Dropdown.Item onClick={checkPERIO} as="button">PERIO</Dropdown.Item>
+  <Dropdown.Item onClick={checkSUR} as="button">SUR</Dropdown.Item>
+  <Dropdown.Item onClick={checkPROSTH} as="button">PROSTH</Dropdown.Item>
+  <Dropdown.Item onClick={checkENDO} as="button">ENDO</Dropdown.Item>
+  <Dropdown.Item onClick={checkXRAY} as="button">X-Ray</Dropdown.Item>
+  <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
+  <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
+</DropdownButton>    
                 
                 <br />
                 
