@@ -17,7 +17,7 @@ import StyledCreate from './reservationCss/ModalCreate';
 import ConfirmLimit from './confirmModal/modal';
 
 const StudentAdminLimitCase = () => {
-    const { user, limit, setLimit } = useContext(AuthContext);
+    const { user, limit, setLimit, currentDate } = useContext(AuthContext);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [items, setItems] = useState([]);
 
@@ -171,6 +171,7 @@ const StudentAdminLimitCase = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.date}
+                                min={currentDate}
                             />
                             {formik.touched.date && formik.errors.date ? (
                                 <div className="error">{formik.errors.date}</div>

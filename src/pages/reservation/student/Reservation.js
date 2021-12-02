@@ -17,11 +17,12 @@ import Selected from './reservationCss/SelectRes';
 import StyledCreateStudent from './reservationCss/ModalCreateForStudent';
 
 const StudentRes = () => {
-    const { user } = useContext(AuthContext);
+    const { user, currentDate } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
     const [open, setOpen] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [getUnique, setUnique] = useState([])
+
 
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const StudentRes = () => {
     function closeModal() {
         setIsOpen(false);
     }
+
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
 
@@ -308,6 +310,7 @@ const StudentRes = () => {
                         </center>
                         <form style={{ textAlign: 'left' }} onSubmit={formik.handleSubmit}>
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">วันที่</label>
+
                             <Input
                                 style={{ fontSize: '18px' }}
                                 id="date"
@@ -316,6 +319,7 @@ const StudentRes = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.date}
+                                min={currentDate}
                             />
                             {formik.touched.date && formik.errors.date ? (
                                 <div className="error">{formik.errors.date}</div>

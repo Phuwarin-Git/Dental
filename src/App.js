@@ -36,13 +36,28 @@ function App() {
   const [user, setUser] = useState([]);
   const [limit, setLimit] = useState([]);
 
+  const [currentDate, setCurrentDate] = useState([]);
+
   useEffect(() => {
+    checkCurrentDate();
     console.log('User :', user, ' Status :', loginStatus);
   }, [user])
+
+  function checkCurrentDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    console.log("Today :", today)
+    setCurrentDate(today)
+  }
+
   return (
     <div className="App">
 
-      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit }}>
+      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit, currentDate }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
           <Route path="/StudentDashboard" render={() => loginStatus === true ? <StudentDashboard /> : (<Redirect to="/" />)}></Route>
