@@ -16,20 +16,30 @@ import { BsSearch } from "react-icons/bs";
 
 const StudentDashboard = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, currentDate, currentMonth } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
 
     useEffect(() => {
         getDetails();
+        console.log("Current date :", currentDate)
         console.log("User :", user)
     }, [user])
 
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/teacherOnlyNull").then((item) => {
             console.log("data :", item.data)
-            return filterDetails(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return filterDetails(filterMonth);
         });
     }
 
@@ -47,7 +57,16 @@ const StudentDashboard = () => {
 
         await axios.get("http://localhost:3000/details/find/teacherOnlyNull").then((item) => {
             console.log("new Limit ==> :", item.data)
-            return setDetailsForDate(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setDetailsForDate(filterMonth);
         });
 
         const res = detailsFordate.filter((item) => {
@@ -103,6 +122,7 @@ const StudentDashboard = () => {
                     <input
                         style={{ fontSize: '18px' }}
                         type="date"
+                        min={currentDate}
                         class="searchTerm"
                         id="input_text"
                         placeholder="ค้นหาวันที่"

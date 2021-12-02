@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 
 const Limit = ({ setIsOpen }) => {
-    const { user, limit, setLimit } = useContext(AuthContext);
+    const { user, limit, setLimit, currentDate, currentMonth } = useContext(AuthContext);
     const [searchDate, setSearchDate] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
 
@@ -24,7 +24,19 @@ const Limit = ({ setIsOpen }) => {
         // http://selab.mfu.ac.th:8318/limitcase/find/all
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
-            return setLimit(item.data);
+
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            // && digitRealDate=>
+            return setLimit(filterMonth);
         });
     }
 
@@ -82,6 +94,7 @@ const Limit = ({ setIsOpen }) => {
                     <input
                         style={{ fontSize: '18px' }}
                         type="date"
+                        min={currentDate}
                         class="searchTerm"
                         id="input_text"
                         placeholder="ค้นหาวันที่"

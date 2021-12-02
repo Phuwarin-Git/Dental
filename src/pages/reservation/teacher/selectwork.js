@@ -13,7 +13,7 @@ import { BsSearch } from "react-icons/bs";
 
 
 const TeacherSelectWork = () => {
-    const { user } = useContext(AuthContext);
+    const { user, currentDate, currentMonth } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [isChecked, setIsChecked] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
@@ -31,7 +31,17 @@ const TeacherSelectWork = () => {
     const getDetails = () => {
         axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             // console.log("Limit :", item.data)
-            return setDetails(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setDetails(filterMonth);
         });
     }
 
@@ -65,7 +75,17 @@ const TeacherSelectWork = () => {
                 console.log('Body data :', body)
                 return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
                     // console.log("Limit :", item.data)
-                    return setDetails(item.data);
+                    let findMonth = item.data;
+                    let filterMonth = findMonth.filter((item) => {
+                        let a = item.date;
+                        let thisDate = currentDate.slice(8)
+                        let digitRealDate = (a).slice(8)
+                        // console.log("วันที่ทะไหย่ :", thisDatte)
+                        let digitData = (a).slice(5, 7)
+                        let parsed = parseInt(digitData)
+                        return (parsed >= currentMonth && digitRealDate >= thisDate)
+                    })
+                    return setDetails(filterMonth);
                 });
             } else {
                 console.log(confirmBox)
@@ -76,7 +96,17 @@ const TeacherSelectWork = () => {
     async function onChangeSearch(e) {
         await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             console.log("new Limit ==> :", item.data)
-            return setDetails(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setDetails(filterMonth);
         });
         console.log("Change Date :", e.target.value)
         setSearchDate(e.target.value)
@@ -119,6 +149,7 @@ const TeacherSelectWork = () => {
                         <input
                             style={{ fontSize: '18px' }}
                             type="date"
+                            min={currentDate}
                             class="searchTerm"
                             id="input_text"
                             placeholder="ค้นหาวันที่"

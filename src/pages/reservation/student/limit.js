@@ -11,7 +11,7 @@ import Pagination from 'react-bootstrap/Pagination'
 
 const StudentLimt = ({ setIsOpen }) => {
 
-    const { user } = useContext(AuthContext);
+    const { user, currentDate, currentMonth } = useContext(AuthContext);
     const [limit, setLimit] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [page, setPage] = useState([]);
@@ -23,6 +23,7 @@ const StudentLimt = ({ setIsOpen }) => {
     useEffect(() => {
         getDetails();
         console.log("User :", user)
+        console.log("Current Month :", current)
     }, [user])
 
     useEffect(() => {
@@ -34,38 +35,58 @@ const StudentLimt = ({ setIsOpen }) => {
         return setList(a)
     }, [allPage])
 
-    useEffect(() => {
-        console.log('details in this page :', page)
-    }, [page])
 
-    useEffect(() => {
-        console.log('List page :', listPage)
-    }, [listPage])
+    // useEffect(() => {
+    //     console.log('details in this page :', page)
+    // }, [page])
 
-    useEffect(() => {
-        console.log('list details :', page)
-    }, [limit])
+    // useEffect(() => {
+    //     console.log('List page :', listPage)
+    // }, [listPage])
+
+    // useEffect(() => {
+    //     console.log('list details :', page)
+    // }, [limit])
+
+    // function findthemonth(data) {
+    //     console.log("get Month :", data)
+    //     let digitData = (data).slice(5, 7)
+    //     console.log("digitData :", digitData)
+    // }
 
 
     const getDetails = () => {
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-            console.log("Limit :", item.data)
+            // console.log("Limit :", item.data)
             setCurrent(1)
-            if (item.data.length < 10) {
-                setPage(item.data)
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+
+            console.log("Filter Month :", filterMonth)
+
+
+            if (filterMonth.length < 10) {
+                setPage(filterMonth)
             } else {
-                setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+                setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
             }
-            if ((item.data.length) % 10 !== 0) {
-                let test = ((item.data.length) / 10)
+            if ((filterMonth.length) % 10 !== 0) {
+                let test = ((filterMonth.length) / 10)
                 // console.log("test :", test)
                 let realLength = Math.trunc(test) + 1;
                 // console.log("test2 :", realLength)
                 setAll(realLength)
             } else {
-                setAll((item.data.length) / 10)
+                setAll((filterMonth.length) / 10)
             }
-            return setLimit(item.data);
+            return setLimit(filterMonth);
         });
     }
 
@@ -73,7 +94,16 @@ const StudentLimt = ({ setIsOpen }) => {
     async function onChangeSearch(e) {
         await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("new Limit ==> :", item.data)
-            return setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
         });
         console.log("Change Date :", e.target.value)
         setSearchDate(e.target.value)
@@ -93,11 +123,20 @@ const StudentLimt = ({ setIsOpen }) => {
     }
 
     async function gotoFirstPage() {
+        setCurrent(1)
         setFirstPage(true)
         await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-            console.log("First limit ==> :", item.data)
-            setCurrent(1)
-            return setPage([item.data[0], item.data[1], item.data[2], item.data[3], item.data[4], item.data[5], item.data[6], item.data[7], item.data[8], item.data[9]])
+            console.log("new Limit ==> :", item.data)
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
         });
     }
 
@@ -108,12 +147,22 @@ const StudentLimt = ({ setIsOpen }) => {
         setFirstPage(false)
         if (getpage === allPage) {
             await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                // let theData = item.data;
+                let findMonth = item.data;
+                let filterMonth = findMonth.filter((item) => {
+                    let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
+                    let digitData = (a).slice(5, 7)
+                    let parsed = parseInt(digitData)
+                    return (parsed >= currentMonth && digitRealDate >= thisDate)
+                })
 
-                if (item.data.length % 10 === 0) {
-                    return setPage([item.data[0 + changeTo], item.data[1 + changeTo], item.data[2 + changeTo], item.data[3 + changeTo], item.data[4 + changeTo], item.data[5 + changeTo], item.data[6 + changeTo], item.data[7 + changeTo], item.data[8 + changeTo], item.data[9 + changeTo]])
+                if (filterMonth.length % 10 === 0) {
+                    return setPage([filterMonth[0 + changeTo], filterMonth[1 + changeTo], filterMonth[2 + changeTo], filterMonth[3 + changeTo], filterMonth[4 + changeTo], filterMonth[5 + changeTo], filterMonth[6 + changeTo], filterMonth[7 + changeTo], filterMonth[8 + changeTo], filterMonth[9 + changeTo]])
                 } else {
-                    let mod = item.data.length % 10
-                    console.log("mod :", mod)
+                    let mod = filterMonth.length % 10
+                    // console.log("mod :", mod)
                     let a = [];
                     for (let i = 1; i < mod + 1; i++) {
                         a.push(i + changeTo)
@@ -121,7 +170,7 @@ const StudentLimt = ({ setIsOpen }) => {
                     setPage([]);
                     let x = [];
                     for (let i = 0; i < mod; i++) {
-                        x.push(item.data[a[i] - 1])
+                        x.push(filterMonth[a[i] - 1])
                     }
                     setPage(x)
                 }
@@ -129,7 +178,16 @@ const StudentLimt = ({ setIsOpen }) => {
         } else {
             axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
                 console.log("new Limit ==> :", item.data)
-                return setPage([item.data[0 + changeTo], item.data[1 + changeTo], item.data[2 + changeTo], item.data[3 + changeTo], item.data[4 + changeTo], item.data[5 + changeTo], item.data[6 + changeTo], item.data[7 + changeTo], item.data[8 + changeTo], item.data[9 + changeTo]])
+                let findMonth = item.data;
+                let filterMonth = findMonth.filter((item) => {
+                    let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
+                    let digitData = (a).slice(5, 7)
+                    let parsed = parseInt(digitData)
+                    return (parsed >= currentMonth && digitRealDate >= thisDate)
+                })
+                return setPage([filterMonth[0 + changeTo], filterMonth[1 + changeTo], filterMonth[2 + changeTo], filterMonth[3 + changeTo], filterMonth[4 + changeTo], filterMonth[5 + changeTo], filterMonth[6 + changeTo], filterMonth[7 + changeTo], filterMonth[8 + changeTo], filterMonth[9 + changeTo]])
             });
         }
 
@@ -163,6 +221,7 @@ const StudentLimt = ({ setIsOpen }) => {
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '25%' }}>ค้นหาวันที่ : </label>
                     <input
                         style={{ fontSize: '18px' }}
+                        min={currentDate}
                         type="date"
                         class="searchTerm"
                         id="input_text"

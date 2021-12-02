@@ -9,11 +9,10 @@ import { BsSearch } from "react-icons/bs";
 
 
 const TeacherDashboard = () => {
-    const { user } = useContext(AuthContext);
+    const { user, currentDate, currentMonth } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
-    const [currentDate, setCurrentDate] = useState([]);
     const [year2, setYear2] = useState();
     const [year3, setYear3] = useState();
     const [year4, setYear4] = useState();
@@ -26,7 +25,6 @@ const TeacherDashboard = () => {
 
     useEffect(() => {
         getDetails();
-        checkCurrentDate();
         console.log("User :", user)
     }, [user])
 
@@ -35,21 +33,21 @@ const TeacherDashboard = () => {
         console.log("year 2 :", year2, " year 3 :", year3, " year 4 :", year4, " year 5 :", year5)
     }, [details])
 
-    function checkCurrentDate() {
-        let today = new Date();
-        let dd = String(today.getDate()).padStart(2, '0');
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        let yyyy = today.getFullYear();
-
-        today = yyyy + '-' + mm + '-' + dd;
-        console.log("Today :", today)
-        setCurrentDate(today)
-    }
 
     async function getDetails() {
         return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             console.log("Limit :", item.data)
-            return setDetails(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setDetails(filterMonth);
         });
     }
 
@@ -57,7 +55,17 @@ const TeacherDashboard = () => {
 
         await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
             console.log("new Limit ==> :", item.data)
-            return setDetailsForDate(item.data);
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            return setDetailsForDate(filterMonth);
         });
 
         console.log("Change Date :", e.target.value)
@@ -169,6 +177,7 @@ const TeacherDashboard = () => {
                 <input
                     style={{ fontSize: '18px' }}
                     type="date"
+                    min={currentDate}
                     class="searchTerm"
                     id="input_text"
                     placeholder="ค้นหาวันที่"

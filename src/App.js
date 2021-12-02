@@ -37,9 +37,11 @@ function App() {
   const [limit, setLimit] = useState([]);
 
   const [currentDate, setCurrentDate] = useState([]);
+  const [currentMonth, setMonth] = useState([]);
 
   useEffect(() => {
     checkCurrentDate();
+    getMounth();
     console.log('User :', user, ' Status :', loginStatus);
   }, [user])
 
@@ -54,10 +56,16 @@ function App() {
     setCurrentDate(today)
   }
 
+  async function getMounth() {
+    let a = new Date();
+    let d = a.getMonth();
+    return await setMonth(d + 1)
+  }
+
   return (
     <div className="App">
 
-      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit, currentDate }}>
+      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit, currentDate, currentMonth }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
           <Route path="/StudentDashboard" render={() => loginStatus === true ? <StudentDashboard /> : (<Redirect to="/" />)}></Route>
