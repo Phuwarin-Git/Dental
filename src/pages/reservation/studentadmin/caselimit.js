@@ -156,7 +156,7 @@ const StudentAdminLimitCase = () => {
                     contentLabel="modal">
                     <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
                     <center>
-                        <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำกัดภาระงาน</h1>
+                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px' }}>จำกัดภาระงาน</h1>
                     </center>
                     <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
 

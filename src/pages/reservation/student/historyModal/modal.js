@@ -46,8 +46,8 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
 
     return (
         <div>
-            <Button style={{ background: '#1565C0', color: 'white' }} onClick={openModal}>
-                Details
+            <Button style={{ background: '#0080ff', color: 'white' }} onClick={openModal}>
+                รายละเอียด
             </Button>
             <StyleModal
                 isOpen={modalIsOpen}
@@ -58,11 +58,11 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                 <div>
                     <Card border="dark" style={{ width: '400px' }}>
 
-                        <Card.Header><h2>รายละเอียด</h2>
+                        <Card.Header><h2 style={{ color: '#0080ff', textAlign: 'center', fontSize: '25px', fontWeight: 'bold' }}>ข้อมูลการจอง</h2>
                             <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />
                         </Card.Header>
                         <Card.Body>
-                            <Card.Title style={{ textAlign: 'center' }}>การจอง</Card.Title>
+                            <Card.Title style={{ color: '#0080ff', textAlign: 'center', fontSize: '25px', marginTop: '-10px' }}>รายละเอียด</Card.Title>
                             <Card.Text>
                                 <Container>
                                     <Row>
@@ -86,7 +86,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                         <Col><p>Patient : {patient}</p></Col>
                                     </Row>
                                 </Container>
-                                <Card.Title style={{ textAlign: 'center' }}>รายการอุปกรณ์</Card.Title>
+                                <Card.Title style={{ color: '#0080ff', textAlign: 'center', fontSize: '25px' }}>รายการอุปกรณ์</Card.Title>
                                 <Container>
                                     <Table
                                         striped
@@ -97,18 +97,18 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                             marginLeft: 'auto',
                                             marginRight: 'auto',
                                             maxWidth: '97%',
-                                            marginTop: '20px'
+                                            marginTop: '10px'
                                         }}
                                     >
                                         <thead className='theadAdmin'>
                                             <tr>
-                                                <th>อุปกรณ์</th>
-                                                <th>อุปกรณ์</th>
+                                                <th style={{ color: '#0080ff', fontWeight: 'normal' }}>อุปกรณ์</th>
+                                                <th style={{ color: '#0080ff', fontWeight: 'normal' }}>อุปกรณ์</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr style={{}}>
-                                                <td>
+                                                <td style={{ backgroundColor: 'white' }}>
                                                     {tools?.map(item => {
                                                         if (item.testkit_toolcc1 != ' ') {
                                                             return <p>ชุดตรวจ : {item.testkit_toolcc1}</p>
@@ -271,7 +271,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                                         }
                                                     })}
                                                 </td>
-                                                <td>
+                                                <td style={{ backgroundColor: 'white' }}>
                                                     {tools?.map(item => {
                                                         if (item.Compositsandingsetfastrewinding_toolcc1 != ' ') {
                                                             return (

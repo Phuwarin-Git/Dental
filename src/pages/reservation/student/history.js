@@ -114,7 +114,7 @@ const StudentHistory = () => {
                                 <th>ประเภทงาน</th>
                                 <th>คนไข้</th>
                                 <th>อาจารย์ผู้ตรวจ</th>
-                                <th>รายละเอียด</th>
+                                <th>ข้อมูลการจอง</th>
                             </tr>
                         </thead>
 

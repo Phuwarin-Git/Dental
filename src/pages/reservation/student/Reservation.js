@@ -69,7 +69,7 @@ const StudentRes = () => {
             let a = uniqueID()
             setUnique(a);
             console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
-            const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn })
+            const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn, toolStatus: "รอการเบิก" })
 
             if (clinic === "OD") {
                 if (findDate[0].od === '0') {

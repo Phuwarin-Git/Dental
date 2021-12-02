@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 
 const StyledCreate = styled(Modal)`
-margin-top: 24%;
+margin-top: 25%;
 margin-left: 50%;
 margin-bottom: auto;
 margin-right: auto;
@@ -11,7 +11,7 @@ transform: translate(-50%, -50%);
 border-radius: 20px;
 border: solid 1px;
 min-height: 20%;
-max-height: 92vh; 
+max-height: 95vh; 
 width:40%;
 `;
 
