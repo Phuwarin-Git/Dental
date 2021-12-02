@@ -47,70 +47,70 @@ const Adminconfirm = () => {
 
     function checkOD(){
         const res = details.filter((item) => {
-                    return (item.clinic=== "od")
+                    return (item.clinic=== "OD")
                 })
                 setDetials(res);
         }
 
     function checkTMD(){
         const res = details.filter((item) => {
-                    return (item.clinic=== "tmd")
+                    return (item.clinic=== "TMD")
                 })
                 setDetials(res);
         }
    
         function checkOPER(){
             const res = details.filter((item) => {
-                        return (item.clinic=== "oper")
+                        return (item.clinic=== "OPER")
                     })
                     setDetials(res);
             }
 
             function checkPERIO(){
                 const res = details.filter((item) => {
-                            return (item.clinic=== "perio")
+                            return (item.clinic=== "PERIO")
                         })
                         setDetials(res);
                 }
             
                 function checkSUR(){
                     const res = details.filter((item) => {
-                                return (item.clinic=== "sur")
+                                return (item.clinic=== "SUR")
                             })
                             setDetials(res);
                     }
                                 
                 function checkPROSTH(){
                     const res = details.filter((item) => {
-                                return (item.clinic=== "prosth")
+                                return (item.clinic=== "PROSTH")
                             })
                             setDetials(res);
                     }
 
                     function checkENDO(){
                         const res = details.filter((item) => {
-                                    return (item.clinic=== "endo")
+                                    return (item.clinic=== "ENDO")
                                 })
                                 setDetials(res);
                         }
 
                         function checkXRAY(){
                             const res = details.filter((item) => {
-                                        return (item.clinic=== "xray")
+                                        return (item.clinic=== "XRAY")
                                     })
                                     setDetials(res);
                             }
 
                             function checkOM(){
                                 const res = details.filter((item) => {
-                                            return (item.clinic=== "om")
+                                            return (item.clinic=== "OM")
                                         })
                                         setDetials(res);
                                 }
 
                                 function checkORTHO(){
                                     const res = details.filter((item) => {
-                                                return (item.clinic=== "ortho")
+                                                return (item.clinic=== "ORTHO")
                                             })
                                             setDetials(res);
                                     }
