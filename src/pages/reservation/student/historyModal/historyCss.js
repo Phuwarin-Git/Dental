@@ -10,7 +10,8 @@ const StyleModal = styled(Modal)`
   // transform: translate(-50%, -50%);
   border-radius: 10px;
   width: 400px;
-  min-height: 250px;
-`;
+  height: 800px;
+  overflow-y: auto;
+  `;
 
 export default StyleModal;

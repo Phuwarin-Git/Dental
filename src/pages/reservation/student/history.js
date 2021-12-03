@@ -139,6 +139,7 @@ const StudentHistory = () => {
                                         patient={item.patient}
                                         dn={item.dn}
                                         hn={item.hn}
+                                        status={item.toolStatus}
                                     /></td>
                                 </tr>
                             </tbody>

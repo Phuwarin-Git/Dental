@@ -10,7 +10,7 @@ import { Button } from 'react-bootstrap';
 import axios from "axios";
 import './modalCss.css'
 
-const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn }) => {
+const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn, status }) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [Tool, setTools] = useState([]);
 
@@ -87,6 +87,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                     </Row>
                                 </Container>
                                 <Card.Title style={{ color: '#0080ff', textAlign: 'center', fontSize: '25px' }}>รายการอุปกรณ์</Card.Title>
+                                <p>สถานะการจองอุปกรณ์ : <Button style={{ backgroundColor: '#ED9E0C', color: 'black' }}>{status}</Button></p>
                                 <Container>
                                     <Table
                                         striped
