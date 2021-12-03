@@ -39,7 +39,12 @@ const AdminUser = () => {
     const getDetails = () => {
         axios.get("http://localhost:3000/name/find/all").then((item) => {
             console.log("Name :", item.data)
-            return setUser(item.data);
+            let setTeacher = item.data;
+            let filterTeacher = setTeacher.filter((item) => {
+                return (item.role === "student")
+            })
+
+            return setUser(filterTeacher);
         });
     }
 
@@ -158,12 +163,12 @@ const AdminUser = () => {
             <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
                 <Container >
                     <Nav className="me-auto">
-                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminDashboard">หน้าหลัก</Nav.Link> */}
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUser">ผู้ใช้งานระบบ</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/AdminProfile">บัญชี</Nav.Link> */}
-                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUser">นักศึกษา</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminDashboard">แอดมิน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminProfile">อาจารย์</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -173,19 +178,6 @@ const AdminUser = () => {
 
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0080ff', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-                    <Col sm={10}>
-                        <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาผู้ใช้งาน : </label>
-                        <input
-                            style={{ fontSize: '18px' }}
-                            type="string"
-                            class="searchTerm"
-                            id="input_text"
-                            placeholder="ID/ชื่อ-สกุล/ชั้นปี/ตำแหน่ง"
-                        >
-                        </input>
-                        <button type="submit" class="searchButton">
-                            <BsSearch />
-                        </button></Col>
                     <Row style={{ marginBottom: '30px', marginTop: '-30px' }}>
 
                         <Col></Col>

@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import axios from "axios";
 import Form from 'react-bootstrap/Form'
 
-const FormInput = ({
+const UpdateTeacher = ({
     item,
     editingIndex, setEditingIndex, getDetails
 }) => {
@@ -73,29 +73,14 @@ const FormInput = ({
         <tbody>
             <tr>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeID}
-                        type={'number'}
-                        min="0"
-                        onkeyup="if(this.value<0)this.value=1"
-                        onblur="if(this.value<0)this.value=1"
-                        defaultValue={item.student_id}></input>
-                </td>
-                <td className='tdStudent'>
                     <input onChange={handelEditInputChangeName} type={'text'} defaultValue={item.first_name}></input>
-                </td>
-                <td className='tdStudent'>
-                    <select style={{ marginTop: '-4px' }} onChange={handelEditInputChangeYear} type={'number'} defaultValue={item.student_year}>
-                        <option value="3" label="3" />
-                        <option value="4" label="4" />
-                        <option value="5" label="5" />
-                    </select>
                 </td>
                 <td className='tdStudent'>
                     <input onChange={handelEditInputChangeEmail} type={'email'} defaultValue={item.email}></input>
                 </td>
                 <td className='tdStudent'>
                     <select style={{ marginTop: '-4px' }} onChange={handelEditInputChangeRole} type={'text'} defaultValue={item.role}>
-                        <option value="student" label="student" />
+                        <option value="teacher" label="teacher" />
                     </select>
                 </td>
                 <td className='tdStudent'><Button onClick={handelEditFormSubmit} style={{ backgroundColor: 'green' }}>อัพเดท</Button></td>
@@ -106,4 +91,4 @@ const FormInput = ({
     )
 }
 
-export default FormInput;
+export default UpdateTeacher;
