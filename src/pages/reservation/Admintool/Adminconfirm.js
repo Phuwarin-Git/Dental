@@ -188,9 +188,9 @@ const Adminconfirm = () => {
 
             <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%', paddingBottom: '6%' }}>
 
-                <Nav style={{ paddingRight: '80%', paddingTop: '1%' }}  >
+                <Nav style={{ paddingRight: '60%', paddingTop: '1%' }}  >
                     <Container>
-                        <Nav.Link style={{ color: '#000', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ color: '#000', fontWeight: 'bold', fontSize: '18px', marginRight:'' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Container>
                 </Nav>
 
