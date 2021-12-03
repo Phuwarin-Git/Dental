@@ -99,7 +99,7 @@ const Limit = ({ setIsOpen }) => {
     return (
         <div >
             <Row>
-                <Col sm={10}>
+                <Col style={{ marginLeft: '100px' }} sm={10}>
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
 
                     <input
@@ -116,12 +116,12 @@ const Limit = ({ setIsOpen }) => {
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '-30px', marginBottom: '-38px' }}>จำกัดภาระงาน</Button>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '130px' }}>จำกัดภาระงาน</Button>
                 </Col>
             </Row>
 
 
-            <Table striped bordered hover variant="" style={{ marginTop: '30px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
+            <Table striped bordered hover variant="" style={{ marginTop: '10px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                 <thead className='theadAdmin'>
                     <tr style={{ fontSize: '18px' }}>
                         <th>วันที่</th>
