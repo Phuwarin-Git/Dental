@@ -176,10 +176,11 @@ const Adminconfirm = () => {
                     <Container>
                         <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '220px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
                         <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '50px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="./Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#000', fontWeight: 'bold', fontSize: '18px', paddingLeft:'40px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Container>
                 </Nav>
 
-                <Nav style={{ marginLeft: '15%' }}  >
+                <Nav style={{ marginLeft: '0%' }}  >
                     <Container>
                         <Nav.Link class="text-primary" style={{ color: '#0080ff', marginLeft: '550px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Container>
@@ -188,11 +189,6 @@ const Adminconfirm = () => {
 
             <div style={{ background: '#ffff', minHeight: '450px', paddingLeft: '10%', paddingRight: '10%', marginLeft: '1.5%', marginRight: '1.5%', marginTop: '1.5%', paddingBottom: '6%' }}>
 
-                <Nav style={{ paddingRight: '60%', paddingTop: '1%' }}  >
-                    <Container>
-                        <Nav.Link style={{ color: '#000', fontWeight: 'bold', fontSize: '18px', marginRight:'' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                    </Container>
-                </Nav>
 
                 <br />
                 <h1 class="text-primary" style={{ fontWeight: 'bold' }}>รอการยืนยัน</h1>
