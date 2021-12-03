@@ -62,8 +62,13 @@ const AdminDashboard = () => {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/name/realdelete/" + id);
             return axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUser(item.data);
+
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                })
+
+                return setUser(filterTeacher);
             });
         } else {
             console.log(confirmBox)
@@ -79,7 +84,7 @@ const AdminDashboard = () => {
     }
 
     async function submitForm(student_id, first_name, student_year, email, role) {
-        const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
+        const ApiSet = ({ student_id: 12345678, first_name: first_name, student_year: null, email: email, role: role })
         console.log("Api set :", ApiSet)
         const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
         if (confirmBox == true) {
@@ -88,8 +93,13 @@ const AdminDashboard = () => {
                 return console.log("Res Limit :", res)
             })
             await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUser(item.data);
+                console.log("Name :", item.data)
+
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                })
+                return setUser(filterTeacher);
             });
             return closeModal();
         } else {
