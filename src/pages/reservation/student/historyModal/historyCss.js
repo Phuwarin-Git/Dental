@@ -9,8 +9,8 @@ const StyleModal = styled(Modal)`
   background-color: transparent;
   // transform: translate(-50%, -50%);
   border-radius: 10px;
-  width: 400px;
-  height: 800px;
+  width: 417px;
+  height: 600px;
   overflow-y: auto;
   `;
 
