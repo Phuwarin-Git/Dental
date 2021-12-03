@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
@@ -21,7 +21,12 @@ import Col from 'react-bootstrap/Col'
 const StudentAdminLimitCase = () => {
     const { user, limit, setLimit, currentDate } = useContext(AuthContext);
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [details, setDetials] = useState([]);
     const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        getDetails();
+    }, [user])
 
     function openModal() {
         setIsOpen(true);
@@ -31,25 +36,40 @@ const StudentAdminLimitCase = () => {
         setIsOpen(false);
     }
 
+    const getDetails = () => {
+        axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+            console.log("Limit :", item.data)
+            setDetials(item.data);
+        });
+    }
+
 
     async function submitForm(date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho) {
         console.log("Limit :", date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho);
         const ApiSet = ({ date: date, time: time, od: od, tmd: tmd, oper: oper, perio: perio, sur: sur, prosth: prosth, endo: endo, pedo: pedo, xray: xray, om: om, ortho: ortho, odyOd: 0, odyTmd: 0, odyOper: 0, odyPerio: 0, odySur: 0, odyProsth: 0, odyEndo: 0, odyPedo: 0, odyXray: 0, odyOm: 0, odyOrtho: 0 })
-        const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            await axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
-                return console.log("Res Limit :", res)
-            })
-            await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setLimit(item.data);
-            });
-            return closeModal();
-        } else {
-            console.log(confirmBox)
-        }
 
+        const findCaseReserved = details.filter((item) => {
+            return (item.date === date && item.time === time)
+        })
+
+        if (findCaseReserved.length !== 0) {
+            return alert("ไม่สามารถกำหนดภาระงานในช่วงเวลาเดียวกันได้")
+        } else {
+            const confirmBox = window.confirm("ต้องการยืนยันการกำหนดงานหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                await axios.post("http://localhost:3000/limitcase/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
+                })
+                await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+                    console.log("new Limit ==> :", item.data)
+                    return setLimit(item.data);
+                });
+                return closeModal();
+            } else {
+                console.log(confirmBox)
+            }
+        }
     }
 
     const readExcel = (file) => {
@@ -137,7 +157,7 @@ const StudentAdminLimitCase = () => {
                     <Nav className="me-auto">
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminDashboard">หน้าหลัก</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminReservation">เลือกที่นั่ง</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">การจำกัดงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminLimitCase">กำหนดภาระงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentAdminHistory">ประวัติ</Nav.Link>
                         <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '300px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
@@ -158,7 +178,7 @@ const StudentAdminLimitCase = () => {
                     contentLabel="modal">
                     <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
                     <center>
-                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px' }}>จำกัดภาระงาน</h1>
+                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px', marginLeft: '30px' }}>กำหนดภาระงาน</h1>
                     </center>
                     <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
 
@@ -465,7 +485,9 @@ const StudentAdminLimitCase = () => {
                                 readExcel(file);
                             }} />
 
-                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px', backgroundColor: '#198CFF' }} className="But" type="submit">ยืนยัน</Button>
+                            <br />
+
+                            <Button style={{ marginLeft: '100px', fontSize: '22px', backgroundColor: '#198CFF' }} className="But" type="submit">ยืนยัน</Button>
                         </form>
                     </div>
                 </StyledCreate>

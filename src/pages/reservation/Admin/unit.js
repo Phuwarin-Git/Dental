@@ -121,7 +121,7 @@ const AdminUnit = () => {
 
     async function deleteLimitCase(unit_id) {
         console.log("Delete ID :", unit_id)
-        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        const confirmBox = window.confirm("ต้องการลบ Unit นี้หรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/unit/realdelete/" + unit_id);

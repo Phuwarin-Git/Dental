@@ -51,7 +51,7 @@ const AdminUser = () => {
 
     async function deleteLimitCase(id) {
         console.log("Delete ID :", id)
-        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        const confirmBox = window.confirm("ต้องการลบผู้ใช้งานนี้หรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/name/realdelete/" + id);

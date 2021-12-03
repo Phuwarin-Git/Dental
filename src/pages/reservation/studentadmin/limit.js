@@ -42,7 +42,7 @@ const Limit = ({ setIsOpen }) => {
 
     async function deleteLimitCase(id) {
         console.log("Delete ID :", id)
-        const confirmBox = window.confirm("ต้องการลบการจำกัดงานหรือไม่")
+        const confirmBox = window.confirm("ต้องการลบภาระงานนี้หรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/limitcase/delete/" + id);
@@ -116,7 +116,7 @@ const Limit = ({ setIsOpen }) => {
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '130px' }}>จำกัดภาระงาน</Button>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '130px' }}>กำหนดภาระงาน</Button>
                 </Col>
             </Row>
 
