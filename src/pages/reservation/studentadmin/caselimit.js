@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { CloseButton, Nav } from 'react-bootstrap';
 import * as XLSX from "xlsx";
 import Container from 'react-bootstrap/Container'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import '../Yup.css'
@@ -19,10 +19,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const StudentAdminLimitCase = () => {
-    const { user, limit, setLimit, currentDate } = useContext(AuthContext);
+    const { user, limit, setLimit, currentDate, currentMonth } = useContext(AuthContext);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [details, setDetials] = useState([]);
     const [items, setItems] = useState([]);
+
+    let history = useHistory();
 
     useEffect(() => {
         getDetails();
@@ -62,10 +64,23 @@ const StudentAdminLimitCase = () => {
                     return console.log("Res Limit :", res)
                 })
                 await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                    console.log("new Limit ==> :", item.data)
-                    return setLimit(item.data);
+                    console.log("Limit :", item.data)
+
+                    let findMonth = item.data;
+                    let filterMonth = findMonth.filter((item) => {
+                        let a = item.date;
+                        let thisDate = currentDate.slice(8)
+                        let digitRealDate = (a).slice(8)
+                        // console.log("วันที่ทะไหย่ :", thisDatte)
+                        let digitData = (a).slice(5, 7)
+                        let parsed = parseInt(digitData)
+                        return (parsed >= currentMonth && digitRealDate >= thisDate)
+                    })
+                    // && digitRealDate=>
+                    return setLimit(filterMonth);
                 });
-                return closeModal();
+                closeModal();
+                return history.push('/StudentAdminDashboard')
             } else {
                 console.log(confirmBox)
             }
@@ -494,7 +509,7 @@ const StudentAdminLimitCase = () => {
             </Container>
             {
                 items.length != 0 ? (<div>
-                    <ConfirmLimit excel={items} setLimit={setLimit} CloseReser={setIsOpen} /></div>) : (console.log("ยัง"))
+                    <ConfirmLimit excel={items} setLimit={setLimit} details={details} CloseReser={setIsOpen} /></div>) : (console.log("ยัง"))
             }
 
 

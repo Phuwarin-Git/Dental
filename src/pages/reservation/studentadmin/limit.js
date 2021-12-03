@@ -47,8 +47,20 @@ const Limit = ({ setIsOpen }) => {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/limitcase/delete/" + id);
             return axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setLimit(item.data);
+                console.log("Limit :", item.data)
+
+                let findMonth = item.data;
+                let filterMonth = findMonth.filter((item) => {
+                    let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
+                    // console.log("วันที่ทะไหย่ :", thisDatte)
+                    let digitData = (a).slice(5, 7)
+                    let parsed = parseInt(digitData)
+                    return (parsed >= currentMonth && digitRealDate >= thisDate)
+                })
+                // && digitRealDate=>
+                return setLimit(filterMonth);
             });
         } else {
             console.log(confirmBox)
@@ -66,9 +78,21 @@ const Limit = ({ setIsOpen }) => {
     }
 
     async function onChangeSearch(e) {
-        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-            console.log("new Limit ==> :", item.data)
-            return setLimit(item.data);
+        axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+            console.log("Limit :", item.data)
+
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                // console.log("วันที่ทะไหย่ :", thisDatte)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+            // && digitRealDate=>
+            return setLimit(filterMonth);
         });
         console.log("Change Date :", e.target.value)
         setSearchDate(e.target.value)
@@ -116,7 +140,7 @@ const Limit = ({ setIsOpen }) => {
                         <BsSearch />
                     </button></Col>
                 <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '130px' }}>กำหนดภาระงาน</Button>
+                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '145px' }}>กำหนดภาระงาน</Button>
                 </Col>
             </Row>
 

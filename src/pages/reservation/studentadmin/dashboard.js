@@ -81,9 +81,11 @@ const StudentAdminDashboard = () => {
             let findMonth = item.data;
             let filterMonth = findMonth.filter((item) => {
                 let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
             })
             return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
         });
@@ -108,9 +110,11 @@ const StudentAdminDashboard = () => {
             let findMonth = item.data;
             let filterMonth = findMonth.filter((item) => {
                 let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
             })
             return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
         });
@@ -127,9 +131,11 @@ const StudentAdminDashboard = () => {
                 let findMonth = item.data;
                 let filterMonth = findMonth.filter((item) => {
                     let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
                     let digitData = (a).slice(5, 7)
                     let parsed = parseInt(digitData)
-                    return (parsed >= currentMonth)
+                    return (parsed >= currentMonth && digitRealDate >= thisDate)
                 })
 
                 if (filterMonth.length % 10 === 0) {
@@ -155,9 +161,11 @@ const StudentAdminDashboard = () => {
                 let findMonth = item.data;
                 let filterMonth = findMonth.filter((item) => {
                     let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
                     let digitData = (a).slice(5, 7)
                     let parsed = parseInt(digitData)
-                    return (parsed >= currentMonth)
+                    return (parsed >= currentMonth && digitRealDate >= thisDate)
                 })
                 return setPage([filterMonth[0 + changeTo], filterMonth[1 + changeTo], filterMonth[2 + changeTo], filterMonth[3 + changeTo], filterMonth[4 + changeTo], filterMonth[5 + changeTo], filterMonth[6 + changeTo], filterMonth[7 + changeTo], filterMonth[8 + changeTo], filterMonth[9 + changeTo]])
             });
@@ -182,6 +190,7 @@ const StudentAdminDashboard = () => {
             return changePage(page)
         }
     }
+
 
     function sum(a, b) {
         let c = parseInt(b)
