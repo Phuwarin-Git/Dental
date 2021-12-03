@@ -20,6 +20,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { CloseButton } from 'react-bootstrap';
 import Input from './reservationCss/InputRes'
+import Selected from './reservationCss/SelectRes'
 import StyledCreate from './reservationCss/ModalCreate';
 
 const AdminUnit = () => {
@@ -142,9 +143,9 @@ const AdminUnit = () => {
         setIsOpen(false);
     }
 
-    async function submitForm(unit_code, unit_floor, unit_type) {
-        console.log("Unit Form :", unit_code, unit_floor, unit_type);
-        const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unit_type: unit_type, unavailable_start_date: 'active' })
+    async function submitForm(unit_code, unit_floor) {
+        console.log("Unit Form :", unit_code, unit_floor);
+        const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: 'active' })
         const confirmBox = window.confirm("ต้องการยืนยันการเพิ่ม Unit หรือไม่")
         if (confirmBox == true) {
             console.log(confirmBox)
@@ -166,18 +167,16 @@ const AdminUnit = () => {
         initialValues: {
             unit_code: '',
             unit_floor: '',
-            unit_type: '',
         },
         validationSchema: Yup.object({
             unit_code: Yup.string()
                 .required('Required'),
             unit_floor: Yup.string()
                 .required('Required'),
-            unit_type: Yup.string()
-                .required('Required'),
+
         }),
         onSubmit: values => {
-            return submitForm(values.unit_code, values.unit_floor, values.unit_type);
+            return submitForm(values.unit_code, values.unit_floor);
         },
     });
 
@@ -207,7 +206,7 @@ const AdminUnit = () => {
 
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
                     <h1 style={{ color: '#0080ff', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-                    <Col sm={10}>
+                    {/* <Col sm={10}>
                         <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
                         <input
                             style={{ fontSize: '18px' }}
@@ -226,11 +225,10 @@ const AdminUnit = () => {
                     <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
                         <Col style={{ marginRight: '-70px' }}>
 
-                        </Col>
-                        <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
-                            <Button onClick={() => openModal()}>เพิ่ม Unit</Button>
-                        </Col>
-                    </Row>
+                        </Col> */}
+
+                    <Button style={{ marginTop: '-50px', marginLeft: '1000px', marginBottom: '10px' }} onClick={() => openModal()}>เพิ่ม Unit</Button>
+
 
                     <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '80%' }}>
                         <thead className='theadAdmin'>
@@ -300,7 +298,7 @@ const AdminUnit = () => {
 
 
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ชั้นที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
+                            <Selected
                                 style={{ fontSize: '18px' }}
                                 id="unit_floor"
                                 name="unit_floor"
@@ -309,13 +307,18 @@ const AdminUnit = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.unit_floor}
-                            />
+                            >
+                                <option value="" label="เลือกชั้น" />
+                                <option value="2" label="2" />
+                                <option value="3" label="3" />
+                                <option value="4" label="4" />
+                            </Selected>
                             {formik.touched.unit_floor && formik.errors.unit_floor ? (
                                 <div className="error">{formik.errors.unit_floor}</div>
                             ) : null} <br />
 
 
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">ประเภท :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            {/* <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">ประเภท :&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
                                 style={{ fontSize: '18px' }}
                                 id="unit_type"
@@ -327,7 +330,7 @@ const AdminUnit = () => {
                             />
                             {formik.touched.unit_type && formik.errors.unit_type ? (
                                 <div className="error">{formik.errors.unit_type}</div>
-                            ) : null} <br />
+                            ) : null} <br /> */}
 
 
                             <hr

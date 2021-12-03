@@ -189,14 +189,7 @@ const TeacherDashboard = () => {
                 </button>
                 <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                     <br />
-                    <label style={{ fontSize: '18px' }}>นักศึกษาชั้นปีที่ 2 จำนวน {year2} คน</label>
-                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
-                        {year2details?.map((item, index) => {
-                            // return console.log("index :", item)
-                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
-                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
-                        })}
-                    </ProgressBar>
+
                     <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
                     <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
                         {year3details?.map((item, index) => {
