@@ -52,8 +52,9 @@ const Login = () => {
             alert("เข้าสู่ระบบสำเร็จ")
             console.log("Check :", checkAu)
             onSubmitForm(checkAu)
-            // return console.log("Username :", username, " Password :", password)
+            return console.log("Username :", username, " Password :", password)
         } else {
+            console.log("Username :", username, " Password :", password)
             return alert("E-mail หรือ รหัสผ่านผิด, กรุณากรอกใหม่อีกครั้ง")
         }
 

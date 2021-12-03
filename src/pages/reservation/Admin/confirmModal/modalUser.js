@@ -50,7 +50,7 @@ const ModalUser = ({ excel, setUser }) => {
             }
             await axios.get("http://localhost:3000/name/find/all").then((item) => {
                 console.log("Name :", item.data)
-                return setUser(item.data);
+                setUser(item.data);
             });
             return closeModal();
         } else {
@@ -76,7 +76,6 @@ const ModalUser = ({ excel, setUser }) => {
                             <Table striped bordered hover variant="">
                                 <thead className='theadAdmin'>
                                     <tr>
-                                        <th>ลำดับ</th>
                                         <th>ID</th>
                                         <th>ชื่อ-สกุล</th>
                                         <th>ชั้นปี</th>
@@ -87,7 +86,6 @@ const ModalUser = ({ excel, setUser }) => {
                                 {excel.map(item => {
                                     return <tbody key={item.ลำดับ}>
                                         <tr>
-                                            <td className='tdStudent'>{item.ลำดับ}</td>
                                             <td className='tdStudent'>{item.ID}</td>
                                             <td className='tdStudent'>{item.ชื่อสกุล}</td>
                                             <td className='tdStudent'>{item.ชั้นปี}</td>

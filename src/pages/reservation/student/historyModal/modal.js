@@ -12,7 +12,7 @@ import './modalCss.css'
 
 const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn }) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [tools, setTools] = useState([]);
+    const [Tool, setTools] = useState([]);
 
     function openModal() {
         setIsOpen(true);
@@ -97,395 +97,581 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                             marginLeft: 'auto',
                                             marginRight: 'auto',
                                             maxWidth: '97%',
-                                            marginTop: '10px'
+                                            marginTop: '20px'
                                         }}
                                     >
-                                        <thead className='theadAdmin'>
-                                            <tr>
-                                                <th style={{ color: '#0080ff', fontWeight: 'normal' }}>อุปกรณ์</th>
-                                                <th style={{ color: '#0080ff', fontWeight: 'normal' }}>อุปกรณ์</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr style={{}}>
-                                                <td style={{ backgroundColor: 'white' }}>
-                                                    {tools?.map(item => {
-                                                        if (item.testkit_toolcc1 != ' ') {
-                                                            return <p>ชุดตรวจ : {item.testkit_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.glassofwater_toolcc1 != ' ') {
-                                                            return <p>แก้วนํ้า : {item.glassofwater_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Tripplesyring_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Tripple syring : {item.Tripplesyring_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.FabricMiddlepunch_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>ผ้าเจาะกลาง : {item.FabricMiddlepunch_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.veil_toolcc1 != ' ') {
-                                                            return <p>ผ้าคลุม : {item.veil_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.UNC15Probe_toolcc1 != ' ') {
-                                                            return <p>UNC 15 Probe : {item.UNC15Probe_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.medicinecup_toolcc1 != ' ') {
-                                                            return <p>ถ้วยนํ้ายา : {item.medicinecup_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Dappendish_toolcc1 != ' ') {
-                                                            return <p>Dappen dish : {item.Dappendish_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Mouthprop_toolcc1 != ' ') {
-                                                            return <p>Mouth prop : {item.Mouthprop_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Glasslab_toolcc1 != ' ') {
-                                                            return <p>Glass lab : {item.Glasslab_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Airotor_toolcc1 != ' ') {
-                                                            return <p>Airotor : {item.Airotor_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Contra_toolcc1 != ' ') {
-                                                            return <p>Contra : {item.Contra_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.cottonbud_toolcc1 != ' ') {
-                                                            return <p>ไม้พันสำลี : {item.cottonbud_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Rubbercup_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Rubber cup/tip/Brush : {item.Rubbercup_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.AnestheticSyringe_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Syringe ยาชา : {item.AnestheticSyringe_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.BladeHolder_toolcc1 != ' ') {
-                                                            return <p>Blade Holder : {item.BladeHolder_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Blade_toolcc1 != ' ') {
-                                                            return <p>Blade No.... : {item.Blade_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Compositstopperset_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    ชุดอุด Composit : {item.Compositstopperset_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Amalgamfillingset_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    ชุดอุด Amalgam : {item.Amalgamfillingset_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Compositsandingsetslowrewind_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    ชุดขัด Composit กรอช้า :{' '}
-                                                                    {item.Compositsandingsetslowrewind_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                </td>
-                                                <td style={{ backgroundColor: 'white' }}>
-                                                    {tools?.map(item => {
-                                                        if (item.Compositsandingsetfastrewinding_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    ชุดขัด Composit กรอเร็ว :{' '}
-                                                                    {item.Compositsandingsetfastrewinding_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.plasticcomposit_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    plastic composit : {item.plasticcomposit_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Spoonexcavatorlarge_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Spoon excavator ใหญ่ :{' '}
-                                                                    {item.Spoonexcavatorlarge_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.MatrixV3_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Matrix V3 Ring ... : {item.MatrixV3_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.MatrixV3Forcep_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Matrix V3 Forcep : {item.MatrixV3Forcep_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Rounddimondbursetslow_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Round dimond bur (กรอช้า) :{' '}
-                                                                    {item.Rounddimondbursetslow_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Cylinderdimondbursetslow_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Cylinder dimond bur (กรอช้า) :{' '}
-                                                                    {item.Cylinderdimondbursetslow_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Rounddimondbursetfast_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Round dimond bur (กรอเร็ว) :{' '}
-                                                                    {item.Rounddimondbursetfast_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Cylinderdimondbursetfast_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Cylinder dimond bur (กรอเร็ว) :{' '}
-                                                                    {item.Cylinderdimondbursetfast_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Dycalcarrier_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Dycal carrier : {item.Dycalcarrier_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Spatulaplastic_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Spatula plastic : {item.Spatulaplastic_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Cementspatula_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Cement spatula : {item.Cementspatula_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Mendrelscrubset_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>ชุดขัด Mendrel : {item.Mendrelscrubset_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Poponsmall_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>Pop on เล็ก/ใหญ่ : {item.Poponsmall_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Rubberdamset_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>ชุด Rubber dam : {item.Rubberdamset_toolcc1}</p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.clamp_toolcc1 != ' ') {
-                                                            return <p>clamp No. : {item.clamp_toolcc1}</p>
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Steelheadslowdown_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    หัว Steel กรอช้า : {item.Steelheadslowdown_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.Astropolpolishingset_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    ชุดขัด Astropol :{' '}
-                                                                    {item.Astropolpolishingset_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.IvoryTofflemirematrix_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    Ivory / Tofflemire matrix :{' '}
-                                                                    {item.IvoryTofflemirematrix_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                    {tools?.map(item => {
-                                                        if (item.hightpowersuction_toolcc1 != ' ') {
-                                                            return (
-                                                                <p>
-                                                                    hight power suction :{' '}
-                                                                    {item.hightpowersuction_toolcc1}
-                                                                </p>
-                                                            )
-                                                        } else {
-                                                            return
-                                                        }
-                                                    })}
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <Row>
+                                            <Col>
+                                                <thead className='theadAdmin1' style={{}}>
+                                                    <tr style={{ backgroundColor: 'white' }}>
+                                                        <th style={{ width: 460 }} class="text-primary">อุปกรณ์</th>
+                                                        <th class="text-primary" >จำนวน</th>
+                                                    </tr>
+                                                </thead>
+                                                {Tool?.map(item => {
+                                                    if (item.testkit_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดตรวจ</td>
+                                                                    <td>{item.testkit_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.glassofwater_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>แก้วน้ำ</td>
+                                                                    <td>{item.glassofwater_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Tripplesyring_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Tripple syring</td>
+                                                                    <td>{item.Tripplesyring_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.FabricMiddlepunch_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ผ้าเจาะกลาง</td>
+                                                                    <td>{item.FabricMiddlepunch_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.veil_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ผ้าคลุม</td>
+                                                                    <td>{item.veil_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.UNC15Probe_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>UNC 15 Probe</td>
+                                                                    <td>{item.UNC15Probe_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.medicinecup_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ถ้วยนํ้ายา</td>
+                                                                    <td>{item.medicinecup_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Dappendish_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Dappen dish</td>
+                                                                    <td>{item.Dappendish_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Mouthprop_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Mouth prop</td>
+                                                                    <td>{item.Mouthprop_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Glasslab_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Glass lab</td>
+                                                                    <td>{item.Glasslab_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Airotor_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Airotor</td>
+                                                                    <td>{item.Airotor_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Contra_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Contra</td>
+                                                                    <td>{item.Contra_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.cottonbud_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ไม้พันสำลี </td>
+                                                                    <td>{item.cottonbud_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Rubbercup_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Rubber cup/tip/Brush</td>
+                                                                    <td>{item.Rubbercup_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.AnestheticSyringe_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Syringe ยาชา</td>
+                                                                    <td>{item.AnestheticSyringe_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.BladeHolder_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Blade Holder</td>
+                                                                    <td>{item.BladeHolder_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Blade_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Blade No....</td>
+                                                                    <td>{item.Blade_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Compositstopperset_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดอุด Composit</td>
+                                                                    <td>{item.Compositstopperset_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Amalgamfillingset_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดอุด Amalgam</td>
+                                                                    <td>{item.Amalgamfillingset_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Compositsandingsetslowrewind_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดขัด Composit กรอช้า</td>
+                                                                    <td>{item.Compositsandingsetslowrewind_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+
+                                                {Tool?.map(item => {
+                                                    if (item.Compositsandingsetfastrewinding_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดขัด Composit กรอเร็ว</td>
+                                                                    <td>{item.Compositsandingsetfastrewinding_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.plasticcomposit_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>plastic composit</td>
+                                                                    <td>{item.plasticcomposit_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Spoonexcavatorlarge_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Spoon excavator ใหญ่</td>
+                                                                    <td>{item.Spoonexcavatorlarge_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.MatrixV3_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Matrix V3 Ring ...</td>
+                                                                    <td>{item.MatrixV3_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.MatrixV3Forcep_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Matrix V3 Forcep</td>
+                                                                    <td>{item.MatrixV3Forcep_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Rounddimondbursetslow_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Round dimond bur (กรอช้า)</td>
+                                                                    <td>{item.Rounddimondbursetslow_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Cylinderdimondbursetslow_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Cylinder dimond bur (กรอช้า)</td>
+                                                                    <td>{item.Cylinderdimondbursetslow_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Rounddimondbursetfast_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Tripple</td>
+                                                                    <td>{item.Rounddimondbursetfast_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Cylinderdimondbursetfast_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Cylinder dimond bur (กรอเร็ว)</td>
+                                                                    <td>{item.Cylinderdimondbursetfast_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Dycalcarrier_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Dycal carrier </td>
+                                                                    <td>{item.Dycalcarrier_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Spatulaplastic_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Spatula plastic</td>
+                                                                    <td>{item.Spatulaplastic_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Cementspatula_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Cement spatula</td>
+                                                                    <td>{item.Cementspatula_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Mendrelscrubset_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดขัด Mendrel</td>
+                                                                    <td>{item.Mendrelscrubset_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Poponsmall_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Pop on เล็ก/ใหญ่</td>
+                                                                    <td>{item.Poponsmall_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Rubberdamset_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุด Rubber dam</td>
+                                                                    <td>{item.Rubberdamset_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.clamp_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>clamp No.</td>
+                                                                    <td>{item.clamp_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Steelheadslowdown_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>หัว Steel กรอช้า</td>
+                                                                    <td>{item.Steelheadslowdown_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.Astropolpolishingset_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>ชุดขัด Astropol</td>
+                                                                    <td>{item.Astropolpolishingset_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.IvoryTofflemirematrix_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>Ivory / Tofflemire matrix</td>
+                                                                    <td>{item.IvoryTofflemirematrix_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                                {Tool?.map(item => {
+                                                    if (item.hightpowersuction_toolcc1 != ' ') {
+                                                        return (
+                                                            <tbody>
+                                                                <tr style={{ backgroundColor: 'white' }}>
+                                                                    <td>hight power suction</td>
+                                                                    <td>{item.hightpowersuction_toolcc1}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        )
+                                                    } else {
+                                                        return
+                                                    }
+                                                })}
+                                            </Col>
+                                        </Row>
                                     </Table>
                                 </Container>
                             </Card.Text>
