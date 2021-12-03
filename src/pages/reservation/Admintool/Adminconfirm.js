@@ -15,6 +15,7 @@ import './adminmodal/TableAdminconfirm.css'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { Spinner } from 'react-bootstrap';
+import Adminconcss from './Adminconcss.css';
 const Adminconfirm = () => {
     const { user } = useContext(AuthContext);
     const [details, setDetials] = useState([]);
@@ -160,7 +161,7 @@ const Adminconfirm = () => {
         <div style={{ background: '#F2F4F4', minHeight: '1080px' }}>
             <nav style={{ background: '#0080ff' }}>
 
-                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px', paddingBottom: '10px' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px', paddingBottom: '10px'}}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
 
                 </div>
@@ -221,7 +222,6 @@ const Adminconfirm = () => {
                             <th>คนไข้</th>
                             <th>ผู้เบิกอุปกรณ์</th>
                             <th>ชั้นปีการศีกษา</th>
-                            <th>สถานะการเบิก</th>
                             <th>อุปกรณ์ที่เบิก</th>
                             <th>ยืนยัน</th>
                         </tr>
@@ -234,14 +234,8 @@ const Adminconfirm = () => {
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.clinic}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.worktype}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.patient}</td>
-                                <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold' }}>{item.name}</td>
+                                <td className='tdAdmin' style={{ color: 'black', fontWeight: 'bold'  }}>{item.name}</td>
                                 <td className='tdAdmin' style={{ color: 'black' }}>{item.studentyear}</td>
-                                <td className='tdAdmin' >
-                                    <button class="btn btn-primary" type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        รอยืนยัน
-                                    </button>
-                                </td>
                                 <td className='tdAdmin' ><Adminmodal unique={item.uniqueID} /></td>
                                 <td className='tdAdmin'><button type="button" class="btn btn-success" onClick={() => handelApprove(item.id)} >ยืนยัน</button></td>
                             </tr>

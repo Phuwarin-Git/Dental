@@ -179,8 +179,8 @@ const Adminconfirm = () => {
              <br />
                 <h1 class="text-primary" style={{ fontWeight: 'bold' }}>อุปกรณ์ที่ยืนยันเเล้ว</h1>
 
-
-                <DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{ marginLeft: "1200px" }}>
+                <Navbar>
+                <DropdownButton id="dropdown-item-button" title="เลือกคลินิก" style={{ marginLeft: "1290px" }}>
                     <Dropdown.Item onClick={checkOD} as="button">OD</Dropdown.Item>
                     <Dropdown.Item onClick={checkTMD} as="button">TMD</Dropdown.Item>
                     <Dropdown.Item onClick={checkOPER} as="button">OPER</Dropdown.Item>
@@ -192,7 +192,7 @@ const Adminconfirm = () => {
                     <Dropdown.Item onClick={checkOM} as="button">OM</Dropdown.Item>
                     <Dropdown.Item onClick={checkORTHO} as="button">ORTHO</Dropdown.Item>
                 </DropdownButton>
-
+                </Navbar>
                 <br />
 
 

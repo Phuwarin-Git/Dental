@@ -688,7 +688,7 @@ const ToolModal = ({ unique }) => {
                 <Row>
                     <Col style={{ marginBottom: -40 }}>
                         <label style={{ fontSize: 25, marginLeft: 100, color: '#0047AB',marginBottom:'59px' }}>
-                            เครื่องมือ
+                           <h3> เครื่องมือ </h3>
                         </label>
                     </Col>
                     <Col>
@@ -703,7 +703,7 @@ const ToolModal = ({ unique }) => {
                         <div style={{ minHeight: 250 }}>
                             <Container style={{ fontSize: 15 }}>
                                 <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB' }}
+                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB',fontFamily:'Mitr' }}
                                 >
                                     รายการ
                                 </label>
@@ -711,7 +711,8 @@ const ToolModal = ({ unique }) => {
                                     style={{
                                         marginLeft: 475,
                                         marginBottom: 15,
-                                        color: '#0047AB'
+                                        color: '#0047AB',
+                                        fontFamily:'Mitr'
                                     }}
                                 >
                                     รายการ
@@ -726,7 +727,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='testkit_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดตรวจ{''}
                                                 </label>
@@ -758,7 +759,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='glassofwater_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     แก้วน้ำ{''}
                                                 </label>
@@ -790,7 +791,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Tripplesyring_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Tripple syring{''}
                                                 </label>
@@ -823,7 +824,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='FabricMiddlepunch_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ผ้าเจาะกลาง{''}
                                                 </label>
@@ -856,7 +857,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='veil_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ผ้าคลุม{''}
                                                 </label>
@@ -889,7 +890,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='UNC15Probe_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     UNC 15 Probe{''}
                                                 </label>
@@ -922,7 +923,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='medicinecup_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ถ้วยนํ้ายา{''}
                                                 </label>
@@ -955,7 +956,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Dappendish_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Dappen dish{''}
                                                 </label>
@@ -988,7 +989,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Mouthprop_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Mouth prop{''}
                                                 </label>
@@ -1021,7 +1022,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Glasslab_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Glass lab{''}
                                                 </label>
@@ -1054,7 +1055,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Airotor_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Airotor{''}
                                                 </label>
@@ -1087,7 +1088,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Contra_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Contra{''}
                                                 </label>
@@ -1120,7 +1121,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='cottonbud_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ไม้พันสำลี{''}
                                                 </label>
@@ -1153,7 +1154,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rubbercup_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Rubber cup/tip/Brush{''}
                                                 </label>
@@ -1186,7 +1187,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='AnestheticSyringe_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Syringe ยาชา{''}
                                                 </label>
@@ -1219,7 +1220,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='BladeHolder_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Blade Holder{''}
                                                 </label>
@@ -1252,7 +1253,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Blade_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Blade No....{''}
                                                 </label>
@@ -1285,7 +1286,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Compositstopperset_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดอุด Composit{''}
                                                 </label>
@@ -1318,7 +1319,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Amalgamfillingset_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดอุด Amalgam{''}
                                                 </label>
@@ -1351,7 +1352,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Compositsandingsetslowrewind_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดขัด Composit กรอช้า{''}
                                                 </label>
@@ -1388,7 +1389,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Compositsandingsetfastrewinding_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดขัด Composit กรอเร็ว{''}
                                                 </label>
@@ -1424,7 +1425,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='plasticcomposit_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     plastic composit{''}
                                                 </label>
@@ -1457,7 +1458,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Spoonexcavatorlarge_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Spoon excavator ใหญ่{''}
                                                 </label>
@@ -1490,7 +1491,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='MatrixV3_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Matrix V3 Ring ...{''}
                                                 </label>
@@ -1523,7 +1524,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='MatrixV3Forcep_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Matrix V3 Forcep{''}
                                                 </label>
@@ -1556,7 +1557,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rounddimondbursetslow_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Round dimond bur (กรอช้า){''}
                                                 </label>
@@ -1589,7 +1590,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Cylinderdimondbursetslow_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Cylinder dimond bur (กรอช้า){''}
                                                 </label>
@@ -1622,7 +1623,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rounddimondbursetfast_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Round dimond bur (กรอเร็ว){''}
                                                 </label>
@@ -1655,7 +1656,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Cylinderdimondbursetfast_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Cylinder dimond bur (กรอเร็ว){''}
                                                 </label>
@@ -1688,7 +1689,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Dycalcarrier_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Dycal carrier{''}
                                                 </label>
@@ -1721,7 +1722,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Spatulaplastic_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Spatula plastic{''}
                                                 </label>
@@ -1754,7 +1755,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Cementspatula_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Cement spatula{''}
                                                 </label>
@@ -1787,7 +1788,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Mendrelscrubset_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดขัด Mendrel{''}
                                                 </label>
@@ -1820,7 +1821,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Poponsmall_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Pop on เล็ก/ใหญ่{''}
                                                 </label>
@@ -1853,7 +1854,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rubberdamset_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุด Rubber dam{''}
                                                 </label>
@@ -1886,7 +1887,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='clamp_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     clamp No.{''}
                                                 </label>
@@ -1919,7 +1920,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Steelheadslowdown_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัว Steel กรอช้า{''}
                                                 </label>
@@ -1952,7 +1953,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Astropolpolishingset_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดขัด Astropol{''}
                                                 </label>
@@ -1985,7 +1986,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='IvoryTofflemirematrix_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Ivory / Tofflemire matrix{''}
                                                 </label>
@@ -2018,7 +2019,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='hightpowersuction_toolcc1'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     hight power suction{''}
                                                 </label>
@@ -2062,11 +2063,11 @@ const ToolModal = ({ unique }) => {
                                 ></div>
                                 <div>
                                     <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
-                                        เครื่องมืองาน Endo
+                                      <h3> เครื่องมืองาน Endo </h3>
                                     </label>
                                 </div>
                                 <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB' }}
+                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily:'Mitr' }}
                                 >
                                     รายการ
                                 </label>
@@ -2074,7 +2075,8 @@ const ToolModal = ({ unique }) => {
                                     style={{
                                         marginLeft: 475,
                                         marginBottom: 15,
-                                        color: '#0047AB'
+                                        color: '#0047AB',
+                                        fontFamily:'Mitr'
                                     }}
                                 >
                                     รายการ
@@ -2085,7 +2087,8 @@ const ToolModal = ({ unique }) => {
                                         height: 2,
                                         backgroundColor: '#D0D3D4',
                                         marginBottom: 30,
-                                        marginTop: 10
+                                        marginTop: 10,
+                                        fontFamily:'Mitr'
                                     }}
                                 />
                                 <Row>
@@ -2094,7 +2097,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='FabricMiddlepunch_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ผ้าเจาะกลาง{''}
                                                 </label>
@@ -2125,7 +2128,7 @@ const ToolModal = ({ unique }) => {
 
                                         <Row>
                                             <Col>
-                                                <label htmlFor='veil_endo' style={{ color: '#0047AB' }}>
+                                                <label htmlFor='veil_endo' style={{ color: '#0047AB', fontFamily:'Mitr' }}>
                                                     ผ้าคลุม{''}
                                                 </label>
                                             </Col>
@@ -2157,7 +2160,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='testkit_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดตรวจ{''}
                                                 </label>
@@ -2190,7 +2193,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Tripplesyringe_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Tripple syringe{''}
                                                 </label>
@@ -2223,7 +2226,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Twoouncesglass_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     เเก้วนํ้ายา 2 ออนซ์{''}
                                                 </label>
@@ -2256,7 +2259,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Mouthprop_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Mouth prop{''}
                                                 </label>
@@ -2289,7 +2292,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='AnestheticSyringe_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Syringe ยาชา{''}
                                                 </label>
@@ -2322,7 +2325,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='cottonbud_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ไม้พันสำลี{''}
                                                 </label>
@@ -2355,7 +2358,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Airotor_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Airotor{''}
                                                 </label>
@@ -2388,7 +2391,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Contra_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Contra{''}
                                                 </label>
@@ -2421,7 +2424,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='FileStand_endo '
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     File Stand {''}
                                                 </label>
@@ -2454,7 +2457,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='PlatePaperPoint_endo '
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Plate Paper Point No.{''}
                                                 </label>
@@ -2487,7 +2490,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='RubberdamFlame_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Rubber dam Flame{''}
                                                 </label>
@@ -2520,7 +2523,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='RubberdamSheet_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Rubber dam Sheet{''}
                                                 </label>
@@ -2553,7 +2556,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Clamp_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Clamp No....{''}
                                                 </label>
@@ -2586,7 +2589,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='EndoBursBoxHead_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัว Endo Burs Box{''}
                                                 </label>
@@ -2619,7 +2622,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Barbedbrodch_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Barbed brodch สี ...{''}
                                                 </label>
@@ -2652,7 +2655,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Lentulospiral_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Lentulo spiral สี ....{''}
                                                 </label>
@@ -2685,7 +2688,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='ProtaperHand21mm_endo '
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Protaper Hand 21 mm.{''}
                                                 </label>
@@ -2718,7 +2721,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='ProtaperHand25mm_endo '
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Protaper Hand 25 mm{''}
                                                 </label>
@@ -2751,7 +2754,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='GateDrillheadfrontteeth_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัว Gate Drill ฟันหน้า{''}
                                                 </label>
@@ -2784,7 +2787,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='GateDrillheadrearteeth_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัว Gate Drill ฟันหลัง{''}
                                                 </label>
@@ -2817,7 +2820,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Syringerinse5ml_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Syringe ล้าง 5 ml.{''}
                                                 </label>
@@ -2851,7 +2854,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='WashneedleNo2427_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     เข็มล้าง เบอร์ 24/27{''}
                                                 </label>
@@ -2884,7 +2887,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HooktheRootZx_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ขอเกี่ยวเครื่อง Root Zx{''}
                                                 </label>
@@ -2917,7 +2920,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Glasslab_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Glasslab{''}
                                                 </label>
@@ -2950,7 +2953,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HighPowerSuction_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     High Power Suction{''}
                                                 </label>
@@ -2983,7 +2986,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='OCBoxset_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุุดเครื่องมือ OC Box set {''}
                                                 </label>
@@ -3016,7 +3019,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='FRCBoxset_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดเครื่องมือ FRC Box set {''}
                                                 </label>
@@ -3049,7 +3052,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='CFile21_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     C - File 21 เบอร์ ...{''}
                                                 </label>
@@ -3082,7 +3085,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='CFile25_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     C - File 25 เบอร์ ...{''}
                                                 </label>
@@ -3115,7 +3118,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HFile21mm1540_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     H - File 21 mm.(15-40){''}
                                                 </label>
@@ -3148,7 +3151,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HFile21mm4580_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     H - File 21 mm.(45-80){''}
                                                 </label>
@@ -3181,7 +3184,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HFile25mm1540_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     H - File 25 mm.(15-40){''}
                                                 </label>
@@ -3214,7 +3217,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='HFile25mm4580_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     H - File 25 mm.(45-80){''}
                                                 </label>
@@ -3247,7 +3250,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='NitiFile21mm1540_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Niti - File 21 mm.(15-40){''}
                                                 </label>
@@ -3280,7 +3283,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='NitiFile21mm4560_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Niti - File 21 mm.(45-60){''}
                                                 </label>
@@ -3313,7 +3316,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='NitiFile25mm1540_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Niti - File 25 mm.(15-40){''}
                                                 </label>
@@ -3346,7 +3349,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='NitiFile25mm4560_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Niti - File 25 mm.(45-60){''}
                                                 </label>
@@ -3379,7 +3382,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile21mm840_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 21 mm.(8-40){''}
                                                 </label>
@@ -3412,7 +3415,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile21mm4580_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 21 mm.(45-80){''}
                                                 </label>
@@ -3445,7 +3448,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile25mm840_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 25 mm.(8-40){''}
                                                 </label>
@@ -3478,7 +3481,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile25mm4580_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 25 mm.(45-80){''}
                                                 </label>
@@ -3511,7 +3514,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile30mm840_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 30 mm.(8-40){''}
                                                 </label>
@@ -3544,7 +3547,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='KFile30mm4580_endo'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     K - File 30 mm.(45-80){''}
                                                 </label>
@@ -3588,22 +3591,23 @@ const ToolModal = ({ unique }) => {
                                 ></div>
                                 <div>
                                     <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
-                                        เครื่องมืองาน PERIO/OD
+                                       <h3> เครื่องมืองาน PERIO/OD </h3>
                                     </label>
                                 </div>
                                 <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB' }}
+                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily:'Mitr' }}
                                 >
-                                    รายการ
+                                  รายการ 
                                 </label>
                                 <label
                                     style={{
                                         marginLeft: 475,
                                         marginBottom: 15,
-                                        color: '#0047AB'
+                                        color: '#0047AB',
+                                        fontFamily:'Mitr'
                                     }}
                                 >
-                                    รายการ
+                                   รายการ 
                                 </label>
                                 <div
                                     style={{
@@ -3611,7 +3615,8 @@ const ToolModal = ({ unique }) => {
                                         height: 2,
                                         backgroundColor: '#D0D3D4',
                                         marginBottom: 30,
-                                        marginTop: 10
+                                        marginTop: 10,
+                                        fontFamily:'Mitr'
                                     }}
                                 />
                                 <Row>
@@ -3620,7 +3625,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='testkit_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดตรวจ{''}
                                                 </label>
@@ -3653,7 +3658,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='backteethscalingkit_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุุดขูดหินปูนฟันหลัง{''}
                                                 </label>
@@ -3686,7 +3691,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='sickelfrontteeth_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     sickel ฟันหน้า{''}
                                                 </label>
@@ -3719,7 +3724,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='sickelposteriorteethS204SD_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     sickel ฟันหลัง(S204SD){''}
                                                 </label>
@@ -3754,7 +3759,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='frontteethcuretteSG34_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     curette ฟันหน้า (SG3/4){''}
                                                 </label>
@@ -3787,7 +3792,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='AfterFive_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     After Five No....{''}
                                                 </label>
@@ -3820,7 +3825,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='MiniFive_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Mini Five No....{''}
                                                 </label>
@@ -3853,7 +3858,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='PeriodontalProbeUNC15_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Periodontal Probe (UNC15){''}
                                                 </label>
@@ -3886,7 +3891,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='WHOProbe_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     WHO Probe{''}
                                                 </label>
@@ -3919,7 +3924,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='NeberProbe_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Neber Probe{''}
                                                 </label>
@@ -3952,7 +3957,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='pourthemedicine_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ถ่วยนํ้ายา{''}
                                                 </label>
@@ -3985,7 +3990,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Dappendish_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Dappen dish{''}
                                                 </label>
@@ -4018,7 +4023,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Mouthprop_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Mouth prop{''}
                                                 </label>
@@ -4051,7 +4056,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='AnestheticSyringe_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Syring ยาชา{''}
                                                 </label>
@@ -4084,7 +4089,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='whetstone_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หินลับ{''}
                                                 </label>
@@ -4117,7 +4122,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='P5scraper_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัวขูด P5{''}
                                                 </label>
@@ -4151,7 +4156,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='P10scraper_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     หัวขูด P10{''}
                                                 </label>
@@ -4184,7 +4189,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rabbercup_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Rabber cup{''}
                                                 </label>
@@ -4217,7 +4222,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Rabberbrush_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Rabber brush{''}
                                                 </label>
@@ -4250,7 +4255,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='cottonbud_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ไม้พันสำลี{''}
                                                 </label>
@@ -4283,7 +4288,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Airotor_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Airotor{''}
                                                 </label>
@@ -4316,7 +4321,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Contra_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Contra{''}
                                                 </label>
@@ -4349,7 +4354,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Phophy_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Phophy{''}
                                                 </label>
@@ -4382,7 +4387,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Straight_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Straight{''}
                                                 </label>
@@ -4415,7 +4420,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Triplesyring_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Triple syring{''}
                                                 </label>
@@ -4448,7 +4453,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='ruler_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ไม้บรรทัด{''}
                                                 </label>
@@ -4481,7 +4486,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='Retractor_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     Retractor{''}
                                                 </label>
@@ -4514,7 +4519,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='FabricMiddlepunch_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ผ้าเจาะกลาง{''}
                                                 </label>
@@ -4547,7 +4552,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='veil_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ผ้าคลุม{''}
                                                 </label>
@@ -4580,7 +4585,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='unitcleaningkit_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดทำความสะอาดยูนิต{''}
                                                 </label>
@@ -4613,7 +4618,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='gumsurgerykit_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดผ่าตัดเหงือก{''}
                                                 </label>
@@ -4646,7 +4651,7 @@ const ToolModal = ({ unique }) => {
                                             <Col>
                                                 <label
                                                     htmlFor='gumsurgicalgown_periood'
-                                                    style={{ color: '#0047AB' }}
+                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
                                                 >
                                                     ชุดผ้าผ่าตัดเหงือก{''}
                                                 </label>
@@ -4682,7 +4687,7 @@ const ToolModal = ({ unique }) => {
                         <center>
                             <button
                                 className='But'
-                                style={{ backgroundColor: '#0047AB', marginBottom: 10 }}
+                                style={{ backgroundColor: '#0047AB', marginBottom: 10, fontFamily:'Mitr' }}
                                 type='submit'
                             >
                                 Submit
