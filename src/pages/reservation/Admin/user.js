@@ -60,9 +60,14 @@ const AdminUser = () => {
         if (confirmBox == true) {
             console.log(confirmBox)
             await axios.delete("http://localhost:3000/name/realdelete/" + id);
-            return axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUser(item.data);
+            await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                console.log("Name :", item.data)
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "student")
+                })
+
+                return setUser(filterTeacher);
             });
         } else {
             console.log(confirmBox)
@@ -87,8 +92,13 @@ const AdminUser = () => {
                 return console.log("Res Limit :", res)
             })
             await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUser(item.data);
+                console.log("Name :", item.data)
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "student")
+                })
+
+                return setUser(filterTeacher);
             });
             return closeModal();
         } else {

@@ -50,7 +50,11 @@ const ModalUser = ({ excel, setUser }) => {
             }
             await axios.get("http://localhost:3000/name/find/all").then((item) => {
                 console.log("Name :", item.data)
-                setUser(item.data);
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "student")
+                })
+                return setUser(filterTeacher);
             });
             return closeModal();
         } else {
