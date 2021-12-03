@@ -142,7 +142,7 @@ const StudentDashboard = () => {
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>ประเภทงาน</th>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>คนไข้</th>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะการจองเครื่องมือ</th>
-                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะ</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะการเลือกยูนิต</th>
                             </tr>
                         </thead>
                         {details.map(item => {
