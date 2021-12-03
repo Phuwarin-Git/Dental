@@ -211,11 +211,23 @@ const StudentLimt = ({ setIsOpen }) => {
         }
     }
 
+    function checkColor(caselimit) {
+        if (caselimit === "0") {
+            return "red"
+        }
+    }
+
+    function checkFont(caselimit) {
+        if (caselimit === "0") {
+            return "bold"
+        }
+    }
+
 
 
     return (
         <div>
-            <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงาน</h1>
+            <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงานที่สามารถจองได้</h1>
             <Row>
                 <Col sm={10}>
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '25%' }}>ค้นหาวันที่ : </label>
@@ -260,17 +272,17 @@ const StudentLimt = ({ setIsOpen }) => {
                         <tr>
                             <td className='tdStudent'>{item.date}</td>
                             <td className='tdStudent'>{item.time}</td>
-                            <td className='tdStudent'>{item.od}</td>
-                            <td className='tdStudent'>{item.tmd}</td>
-                            <td className='tdStudent'>{item.oper}</td>
-                            <td className='tdStudent'>{item.perio}</td>
-                            <td className='tdStudent'>{item.sur}</td>
-                            <td className='tdStudent'>{item.prosth}</td>
-                            <td className='tdStudent'>{item.endo}</td>
-                            <td className='tdStudent'>{item.pedo}</td>
-                            <td className='tdStudent'>{item.xray}</td>
-                            <td className='tdStudent'>{item.om}</td>
-                            <td className='tdStudent'>{item.ortho}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.od), fontWeight: checkFont(item.od) }}>{item.od}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.tmd), fontWeight: checkFont(item.tmd) }}>{item.tmd}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.oper), fontWeight: checkFont(item.oper) }}>{item.oper}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.perio), fontWeight: checkFont(item.perio) }}>{item.perio}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.sur), fontWeight: checkFont(item.sur) }}>{item.sur}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.prosth), fontWeight: checkFont(item.prosth) }}>{item.prosth}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.endo), fontWeight: checkFont(item.endo) }}>{item.endo}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.pedo), fontWeight: checkFont(item.pedo) }}>{item.pedo}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.xray), fontWeight: checkFont(item.xray) }}>{item.xray}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.om), fontWeight: checkFont(item.om) }}>{item.om}</td>
+                            <td className='tdStudent' style={{ color: checkColor(item.ortho), fontWeight: checkFont(item.ortho) }}>{item.ortho}</td>
                         </tr>
                     </tbody>
 

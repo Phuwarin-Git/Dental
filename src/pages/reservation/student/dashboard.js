@@ -141,6 +141,7 @@ const StudentDashboard = () => {
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>คลินิก</th>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>ประเภทงาน</th>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>คนไข้</th>
+                                <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะการจองเครื่องมือ</th>
                                 <th style={{ fontWeight: 'bold', fontSize: '23px' }}>สถานะ</th>
                             </tr>
                         </thead>
@@ -152,6 +153,7 @@ const StudentDashboard = () => {
                                     <td className='tdStudent'>{item.clinic}</td>
                                     <td className='tdStudent'>{item.worktype}</td>
                                     <td className='tdStudent'>{item.patient}</td>
+                                    <td style={{ width: '280px' }} className='tdStudent'>{item.toolStatus}</td>
                                     <td className='tdStudent'><Button style={{ backgroundColor: '#ED9E0C', color: 'black' }} >
                                         {" "}รอดำเนินการ...{" "}
                                     </Button></td>

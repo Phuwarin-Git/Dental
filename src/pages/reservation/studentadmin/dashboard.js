@@ -197,6 +197,12 @@ const StudentAdminDashboard = () => {
         }
     }
 
+    function checkFont(caselimit) {
+        if (caselimit === "0") {
+            return "bold"
+        }
+    }
+
     return (
         <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
             <nav style={{ background: '#0080ff' }}>
@@ -221,6 +227,7 @@ const StudentAdminDashboard = () => {
             <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
                 <Row>
                     <Col style={{ marginLeft: 'auto', marginRight: 'auto' }} sm={10}>
+                        <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงานทั้งหมด</h1>
                         <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', }}>ค้นหาวันที่ : </label>
 
                         <input
@@ -264,17 +271,17 @@ const StudentAdminDashboard = () => {
                             <tr>
                                 <td className='tdStudent'>{item.date}</td>
                                 <td className='tdStudent'>{item.time}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyOd, item.od) }}>{item.odyOd}/{sum(item.odyOd, item.od)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyTmd, item.tmd) }}>{item.odyTmd}/{sum(item.odyTmd, item.tmd)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyOper, item.oper) }}>{item.odyOper}/{sum(item.odyOper, item.oper)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyPerio, item.perio) }}>{item.odyPerio}/{sum(item.odyPerio, item.perio)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odySur, item.sur) }}>{item.odySur}/{sum(item.odySur, item.sur)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyProsth, item.prosth) }}>{item.odyProsth}/{sum(item.odyProsth, item.prosth)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyEndo, item.endo) }}>{item.odyEndo}/{sum(item.odyEndo, item.endo)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyPedo, item.pedo) }}>{item.odyPedo}/{sum(item.odyPedo, item.pedo)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyXray, item.xray) }}>{item.odyXray}/{sum(item.odyXray, item.xray)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyOm, item.om) }}>{item.odyOm}/{sum(item.odyOm, item.om)}</td>
-                                <td className='tdStudent' style={{ color: checkColor(item.odyOrtho, item.ortho) }}>{item.odyOrtho}/{sum(item.odyOrtho, item.ortho)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyOd, item.od), fontWeight: checkFont(item.od) }}>{item.odyOd}/{sum(item.odyOd, item.od)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyTmd, item.tmd), fontWeight: checkFont(item.tmd) }}>{item.odyTmd}/{sum(item.odyTmd, item.tmd)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyOper, item.oper), fontWeight: checkFont(item.oper) }}>{item.odyOper}/{sum(item.odyOper, item.oper)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyPerio, item.perio), fontWeight: checkFont(item.perio) }}>{item.odyPerio}/{sum(item.odyPerio, item.perio)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odySur, item.sur), fontWeight: checkFont(item.sur) }}>{item.odySur}/{sum(item.odySur, item.sur)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyProsth, item.prosth), fontWeight: checkFont(item.prosth) }}>{item.odyProsth}/{sum(item.odyProsth, item.prosth)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyEndo, item.endo), fontWeight: checkFont(item.endo) }}>{item.odyEndo}/{sum(item.odyEndo, item.endo)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyPedo, item.pedo), fontWeight: checkFont(item.pedo) }}>{item.odyPedo}/{sum(item.odyPedo, item.pedo)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyXray, item.xray), fontWeight: checkFont(item.xray) }}>{item.odyXray}/{sum(item.odyXray, item.xray)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyOm, item.om), fontWeight: checkFont(item.om) }}>{item.odyOm}/{sum(item.odyOm, item.om)}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.odyOrtho, item.ortho), fontWeight: checkFont(item.ortho) }}>{item.odyOrtho}/{sum(item.odyOrtho, item.ortho)}</td>
                             </tr>
                         </tbody>
                     })}

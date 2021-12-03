@@ -83,6 +83,17 @@ const Limit = ({ setIsOpen }) => {
         setLimit(checking)
     }
 
+    function checkColor(caselimit) {
+        if (caselimit === "0") {
+            return "red"
+        }
+    }
+
+    function checkFont(caselimit) {
+        if (caselimit === "0") {
+            return "bold"
+        }
+    }
 
 
     return (
@@ -141,17 +152,17 @@ const Limit = ({ setIsOpen }) => {
                             <tr>
                                 <td className='tdStudent'>{item.date}</td>
                                 <td className='tdStudent'>{item.time}</td>
-                                <td className='tdStudent'>{item.od}</td>
-                                <td className='tdStudent'>{item.tmd}</td>
-                                <td className='tdStudent'>{item.oper}</td>
-                                <td className='tdStudent'>{item.perio}</td>
-                                <td className='tdStudent'>{item.sur}</td>
-                                <td className='tdStudent'>{item.prosth}</td>
-                                <td className='tdStudent'>{item.endo}</td>
-                                <td className='tdStudent'>{item.pedo}</td>
-                                <td className='tdStudent'>{item.xray}</td>
-                                <td className='tdStudent'>{item.om}</td>
-                                <td className='tdStudent'>{item.ortho}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.od), fontWeight: checkFont(item.od) }}>{item.od}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.tmd), fontWeight: checkFont(item.tmd) }}>{item.tmd}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.oper), fontWeight: checkFont(item.oper) }}>{item.oper}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.perio), fontWeight: checkFont(item.perio) }}>{item.perio}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.sur), fontWeight: checkFont(item.sur) }}>{item.sur}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.prosth), fontWeight: checkFont(item.prosth) }}>{item.prosth}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.endo), fontWeight: checkFont(item.endo) }}>{item.endo}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.pedo), fontWeight: checkFont(item.pedo) }}>{item.pedo}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.xray), fontWeight: checkFont(item.xray) }}>{item.xray}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.om), fontWeight: checkFont(item.om) }}>{item.om}</td>
+                                <td className='tdStudent' style={{ color: checkColor(item.ortho), fontWeight: checkFont(item.ortho) }}>{item.ortho}</td>
                                 <td className='tdStudent'><Button onClick={() => changeStatus(item.limit_id)}>แก้ไข</Button></td>
                                 <td className='tdStudent'><Button onClick={() => deleteLimitCase(item.limit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td>
                             </tr>

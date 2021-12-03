@@ -73,7 +73,12 @@ const FormInput = ({
         <tbody>
             <tr>
                 <td className='tdStudent'>
-                    <input onChange={handelEditInputChangeID} type={'number'} defaultValue={item.student_id}></input>
+                    <input onChange={handelEditInputChangeID}
+                        type={'number'}
+                        min="0"
+                        onkeyup="if(this.value<0)this.value=1"
+                        onblur="if(this.value<0)this.value=1"
+                        defaultValue={item.student_id}></input>
                 </td>
                 <td className='tdStudent'>
                     <input onChange={handelEditInputChangeName} type={'text'} defaultValue={item.first_name}></input>
