@@ -56,7 +56,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
             >
 
                 <div>
-                    <Card border="dark" style={{ width: '400px' }}>
+                    <Card border="dark" style={{ width: '400px', fontFamily: "Mitr, sans-serif,Noto Sans Thai Looped,sans-serif" }}>
 
                         <Card.Header><h2 style={{ color: '#0080ff', textAlign: 'center', fontSize: '25px', fontWeight: 'bold' }}>ข้อมูลการจอง</h2>
                             <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />
@@ -98,7 +98,7 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
                                             marginLeft: 'auto',
                                             marginRight: 'auto',
                                             maxWidth: '97%',
-                                            marginTop: '20px'
+                                            marginTop: '20px',
                                         }}
                                     >
                                         <Row>

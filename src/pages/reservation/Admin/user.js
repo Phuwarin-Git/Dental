@@ -18,6 +18,7 @@ import * as Yup from 'yup';
 import { CloseButton } from 'react-bootstrap';
 import Input from './reservationCss/InputRes'
 import StyledCreate from './reservationCss/ModalCreate';
+import Selected from './reservationCss/SelectRes';
 
 const AdminUser = () => {
     const { user } = useContext(AuthContext);
@@ -273,7 +274,7 @@ const AdminUser = () => {
 
 
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">ชั้นปี :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
+                            {/* <Input
                                 style={{ fontSize: '18px' }}
                                 id="student_year"
                                 name="student_year"
@@ -282,12 +283,25 @@ const AdminUser = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.student_year}
-                            />
+                            /> */}
+                            <Selected
+                                style={{ marginTop: '15px' }}
+                                id="student_year"
+                                name="student_year"
+                                type="number"
+                                min="0"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.student_year}>
+                                <option value="3" label="3" />
+                                <option value="4" label="4" />
+                                <option value="5" label="5" />
+                            </Selected>
                             <br />
 
                             <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">Email :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <Input
-                                style={{ fontSize: '18px' }}
+                                style={{ fontSize: '18px', marginTop: '0px' }}
                                 id="email"
                                 name="email"
                                 type="text"

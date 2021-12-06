@@ -9,6 +9,11 @@
   */
 }
 
+/* p,label,h1,h2,h3,th,tr,td {
+  font-family: "Mitr", sans-serif;
+  font-family: "Noto Sans Thai Looped", sans-serif;
+} */
+
 p,h3,label{
   color: aliceblue;
 }
