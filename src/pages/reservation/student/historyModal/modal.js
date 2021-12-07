@@ -11,7 +11,7 @@ import axios from "axios";
 import './modalCss.css'
 
 const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, dn, hn, status }) => {
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = React.useState(true);
     const [Tool, setTools] = useState([]);
 
     function openModal() {
@@ -39,16 +39,11 @@ const HistoryModal = ({ unique, unit, name, year, date, clinic, type, patient, d
             return (item.uniqueID === unique)
         })
         console.log("Details Tools:", res)
-        // const myJSON = JSON.stringify(res, null, 2);
-
         setTools(res);
     }
 
     return (
         <div>
-            <Button style={{ background: '#0080ff', color: 'white' }} onClick={openModal}>
-                รายละเอียด
-            </Button>
             <StyleModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

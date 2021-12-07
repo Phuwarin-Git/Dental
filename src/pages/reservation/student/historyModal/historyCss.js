@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 
 const StyleModal = styled(Modal)`
-  margin-top: 10%;
+  margin-top: 8%;
   margin-left: auto;
   margin-bottom: auto;
   margin-right: auto;
