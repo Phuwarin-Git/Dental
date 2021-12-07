@@ -92,7 +92,7 @@ const StudentDashboard = () => {
 
 
     return (
-        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px', maxWidth: '100%' }}>
             <nav style={{ background: '#0080ff' }}>
                 <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
@@ -112,9 +112,9 @@ const StudentDashboard = () => {
                 </Container>
             </Navbar>
 
-            <div>
+            <div className="PaddingDiv">
                 <br />
-                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
                     <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>การจองที่อยู่ระหว่างการดำเนินการ</h1>
 
                     <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
