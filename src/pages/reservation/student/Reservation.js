@@ -3,21 +3,26 @@ import { useFormik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, CloseButton } from 'react-bootstrap';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { Button } from 'react-bootstrap';
 import axios from "axios";
 import { AuthContext } from '../../../App';
 import ToolModal from './modal/tool';
-import StudentLimt from './limit';
 import But from './reservationCss/ButtonRes';
 import Input from './reservationCss/InputRes'
 import Selected from './reservationCss/SelectRes';
 import StyledCreateStudent from './reservationCss/ModalCreateForStudent';
 
+import MaterialTable from "material-table";
+
+
 const StudentRes = () => {
-    const { user, currentDate } = useContext(AuthContext);
+    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const [data, setData] = useState([]);
+
     const [limit, setLimit] = useState([]);
     const [details, setDetials] = useState([]);
     const [open, setOpen] = useState(false);
@@ -34,8 +39,27 @@ const StudentRes = () => {
     const getDetails = () => {
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             console.log("Limit :", item.data)
-            setLimit(item.data);
+
+            let findMonth = item.data;
+            let filterMonth = findMonth.filter((item) => {
+                let a = item.date;
+                let thisDate = currentDate.slice(8)
+                let digitRealDate = (a).slice(8)
+                let digitData = (a).slice(5, 7)
+                let parsed = parseInt(digitData)
+                return (parsed >= currentMonth && digitRealDate >= thisDate)
+            })
+
+            console.log("Filter Month :", filterMonth)
+
+            setLimit(filterMonth);
+            let itemData = []
+            filterMonth.map(item => {
+                return itemData.push({ date: item.date, time: item.time, od: item.od, tmd: item.tmd, oper: item.oper, perio: item.perio, sur: item.sur, prosth: item.prosth, endo: item.endo, pedo: item.endo, xray: item.xray, om: item.om, ortho: item.ortho })
+            })
+            setData(itemData);
         });
+
         axios.get("http://localhost:3000/details/find/all").then((item) => {
             console.log("data :", item.data)
             filterDetails(item.data);
@@ -301,13 +325,11 @@ const StudentRes = () => {
                 </div>
             </nav>
             <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
-                {/* style={{ backgroundColor: 'rgba(21, 101, 192, 0.3)' }} */}
                 <Container >
                     <Nav className="me-auto">
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentDashboard">หน้าหลัก</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentRes">จองการทำงาน</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentHistory">ประวัติ</Nav.Link>
-                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/StudentProfile">บัญชี</Nav.Link> */}
                         <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
                     </Nav>
@@ -317,8 +339,111 @@ const StudentRes = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
-
-                    <StudentLimt setIsOpen={setIsOpen} />
+                    <h1 style={{ color: '#0080ff', fontWeight: 'bold', marginBottom: '10px' }}>จำนวนภาระงานที่สามารถจองได้</h1>
+                    <MaterialTable
+                        title="Mae Fah Luang University Dental Clinic"
+                        columns={[
+                            {
+                                title: 'วันที่', field: 'date', cellStyle: {
+                                    minWidth: 140,
+                                },
+                            },
+                            {
+                                title: 'เวลา', field: 'time', cellStyle: {
+                                    minWidth: 125,
+                                },
+                            },
+                            { title: 'OD', field: 'od' },
+                            { title: 'TMD', field: 'tmd' },
+                            { title: 'OPER', field: 'oper' },
+                            { title: 'PERIO', field: 'perio' },
+                            { title: 'SUR', field: 'sur' },
+                            { title: 'PROSTH', field: 'prosth' },
+                            { title: 'ENDO', field: 'endo' },
+                            { title: 'PEDO', field: 'pedo' },
+                            {
+                                title: 'X-RAY', field: 'xray', cellStyle: {
+                                    minWidth: 114,
+                                },
+                            },
+                            { title: 'OM', field: 'om' },
+                            { title: 'ORTHO', field: 'ortho' },
+                        ]}
+                        data={data}
+                        // actions={[
+                        //     {
+                        //         icon: 'add',
+                        //         tooltip: 'จองการทำงาน',
+                        //         iconProps: { color: "primary", width: '40px' },
+                        //         isFreeAction: true,
+                        //         onClick: (event) => openModal()
+                        //     }
+                        // ]}
+                        components={{
+                            Actions: props => (
+                                <Button
+                                    onClick={(event, rowData) => openModal()}
+                                    style={{ backgroundColor: '#0080ff', marginLeft: '10px' }}
+                                >
+                                    จองการทำงาน
+                                </Button>
+                            )
+                        }}
+                        options={{
+                            headerStyle: {
+                                fontFamily: "Mitr",
+                                fontWeight: 'bold',
+                                fontSize: '18px',
+                            }, tableLayout: 'auto'
+                        }}
+                        localization={{
+                            body: {
+                                emptyDataSourceMessage: 'Keine Einträge',
+                                addTooltip: 'Hinzufügen',
+                                deleteTooltip: 'Löschen',
+                                editTooltip: 'Bearbeiten',
+                                filterRow: {
+                                    filterTooltip: 'Filter'
+                                },
+                                editRow: {
+                                    deleteText: 'Diese Zeile wirklich löschen?',
+                                    cancelTooltip: 'Abbrechen',
+                                    saveTooltip: 'Speichern'
+                                }
+                            },
+                            grouping: {
+                                placeholder: 'Spalten ziehen ...',
+                                groupedBy: 'Gruppiert nach:'
+                            },
+                            header: {
+                                actions: 'รายละเอียดการจอง'
+                            },
+                            pagination: {
+                                labelDisplayedRows: '{from}-{to} จาก {count}',
+                                labelRowsSelect: 'แถว',
+                                labelRowsPerPage: 'Zeilen pro Seite:',
+                                firstAriaLabel: 'Erste Seite',
+                                firstTooltip: 'Erste Seite',
+                                previousAriaLabel: 'Vorherige Seite',
+                                previousTooltip: 'Vorherige Seite',
+                                nextAriaLabel: 'Nächste Seite',
+                                nextTooltip: 'Nächste Seite',
+                                lastAriaLabel: 'Letzte Seite',
+                                lastTooltip: 'Letzte Seite'
+                            },
+                            toolbar: {
+                                addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                nRowsSelected: '{0} Zeile(n) ausgewählt',
+                                showColumnsTitle: 'Zeige Spalten',
+                                showColumnsAriaLabel: 'Zeige Spalten',
+                                exportTitle: 'Export',
+                                exportAriaLabel: 'Export',
+                                exportName: 'Export als CSV',
+                                searchTooltip: 'ค้นหา',
+                                searchPlaceholder: 'ค้นหา'
+                            }
+                        }}
+                    />
 
                     <StyledCreateStudent
                         isOpen={modalIsOpen}

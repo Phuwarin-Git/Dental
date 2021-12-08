@@ -106,10 +106,9 @@ const StudentHistory = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
-                    <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>ประวัติการจองการทำงาน</h1>
-
+                    <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginBottom: '10px' }}>ประวัติการจองการทำงาน</h1>
                     <MaterialTable
-                        title="Simple Action Preview"
+                        title="Mae Fah Luang University Dental Clinic"
                         columns={[
                             {
                                 title: 'วันที่', field: 'date', cellStyle: {
