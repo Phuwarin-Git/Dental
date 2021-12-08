@@ -226,7 +226,7 @@ const StudentLimt = ({ setIsOpen }) => {
 
 
     return (
-        <div>
+        <div >
             <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จำนวนภาระงานที่สามารถจองได้</h1>
             <Row>
                 <Col sm={10}>
