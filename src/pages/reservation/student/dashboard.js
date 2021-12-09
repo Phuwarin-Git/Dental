@@ -171,7 +171,7 @@ const StudentDashboard = () => {
                         }}
                         localization={{
                             body: {
-                                emptyDataSourceMessage: 'Keine Einträge',
+                                emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
                                 addTooltip: 'Hinzufügen',
                                 deleteTooltip: 'Löschen',
                                 editTooltip: 'Bearbeiten',

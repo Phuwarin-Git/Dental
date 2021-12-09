@@ -100,7 +100,7 @@ const StudentLimt = ({ setIsOpen }) => {
                 }}
                 localization={{
                     body: {
-                        emptyDataSourceMessage: 'Keine Einträge',
+                        emptyDataSourceMessage: 'ภาระงานไม่ได้ถูกกำหนดไว้',
                         addTooltip: 'Hinzufügen',
                         deleteTooltip: 'Löschen',
                         editTooltip: 'Bearbeiten',

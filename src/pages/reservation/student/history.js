@@ -183,7 +183,7 @@ const StudentHistory = () => {
                         }}
                         localization={{
                             body: {
-                                emptyDataSourceMessage: 'Keine Einträge',
+                                emptyDataSourceMessage: 'ไม่มีประวัติการจองการทำงาน',
                                 addTooltip: 'Hinzufügen',
                                 deleteTooltip: 'Löschen',
                                 editTooltip: 'Bearbeiten',
