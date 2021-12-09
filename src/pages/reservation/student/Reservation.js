@@ -14,10 +14,9 @@ import ToolModal from './modal/tool';
 import But from './reservationCss/ButtonRes';
 import Input from './reservationCss/InputRes'
 import Selected from './reservationCss/SelectRes';
-import StyledCreateStudent from './reservationCss/ModalCreateForStudent';
 
 import MaterialTable from "material-table";
-
+import Modal from 'react-bootstrap/Modal'
 
 const StudentRes = () => {
     const { user, currentDate, currentMonth } = useContext(AuthContext);
@@ -25,9 +24,14 @@ const StudentRes = () => {
 
     const [limit, setLimit] = useState([]);
     const [details, setDetials] = useState([]);
+    const [getUnique, setUnique] = useState([]);
+
     const [open, setOpen] = useState(false);
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [getUnique, setUnique] = useState([])
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => { setShow(true) };
 
 
 
@@ -84,14 +88,6 @@ const StudentRes = () => {
             '-' + chr4() +
             '-' + chr4() +
             '-' + chr4() + chr4() + chr4();
-    }
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
     }
 
 
@@ -273,9 +269,8 @@ const StudentRes = () => {
 
                 return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                     console.log("Res Create Details :", res)
-                    return setOpen(true);
-                    // closeModal();
-                    // return history.push('/StudentDashboard')
+                    setOpen(true);
+                    handleClose();
                 })
 
             } else {
@@ -370,19 +365,10 @@ const StudentRes = () => {
                             { title: 'ORTHO', field: 'ortho' },
                         ]}
                         data={data}
-                        // actions={[
-                        //     {
-                        //         icon: 'add',
-                        //         tooltip: 'จองการทำงาน',
-                        //         iconProps: { color: "primary", width: '40px' },
-                        //         isFreeAction: true,
-                        //         onClick: (event) => openModal()
-                        //     }
-                        // ]}
                         components={{
                             Actions: props => (
                                 <Button
-                                    onClick={(event, rowData) => openModal()}
+                                    onClick={(event, rowData) => handleShow()}
                                     style={{ backgroundColor: '#0080ff', marginLeft: '10px' }}
                                 >
                                     จองการทำงาน
@@ -445,12 +431,11 @@ const StudentRes = () => {
                         }}
                     />
 
-                    <StyledCreateStudent
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        contentLabel="modal">
-                        <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
-                        <div style={{ padding: '30px' }}>
+                    <Modal style={{ fontFamily: 'Mitr' }} show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>รายละเอียดการจอง</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body ><Container>
                             <center>
                                 <h1 style={{ color: '#198CFF', fontWeight: 'bold' }}>จองการทำงาน</h1>
                             </center>
@@ -541,7 +526,7 @@ const StudentRes = () => {
                                     defaultChecked={formik.values.type === "ฟุ้งกระจาย"}
                                 />
                                 &nbsp;&nbsp;&nbsp;
-                                <label style={{ marginRight: '8%', fontSize: '18px' }}>ฟุ้งกระจาย</label>
+                                <label style={{ marginRight: '2%', fontSize: '18px' }}>ฟุ้งกระจาย</label>
 
 
                                 <input
@@ -554,7 +539,7 @@ const StudentRes = () => {
                                     defaultChecked={formik.values.type === "ไม่ฟุ้งกระจาย"}
                                 />
                                 &nbsp;&nbsp;&nbsp;
-                                <label style={{ marginRight: '8%', fontSize: '18px' }}>ไม่ฟุ้งกระจาย</label>
+                                <label style={{ marginRight: '0%', fontSize: '18px' }}>ไม่ฟุ้งกระจาย</label>
 
                                 {formik.touched.type && formik.errors.type ? (
                                     <div className="error">{formik.errors.type}</div>
@@ -613,8 +598,9 @@ const StudentRes = () => {
                                 {open === true ? <ToolModal unique={getUnique} /> : console.log("Modal it's not open")}
 
                             </form>
-                        </div>
-                    </StyledCreateStudent>
+                        </Container>
+                        </Modal.Body>
+                    </Modal>
                 </Container>
             </div>
         </div >
