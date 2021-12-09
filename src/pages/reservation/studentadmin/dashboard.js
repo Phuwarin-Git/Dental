@@ -17,14 +17,7 @@ import MaterialTable from "material-table";
 
 const StudentAdminDashboard = () => {
 
-    const { user, limit, setLimit, currentDate, currentMonth } = useContext(AuthContext);
-    const [searchDate, setSearchDate] = useState([]);
-    const [page, setPage] = useState([]);
-    const [firstPage, setFirstPage] = useState(true);
-    const [allPage, setAll] = useState([]);
-    const [listPage, setList] = useState([]);
-    const [current, setCurrent] = useState();
-
+    const { user, setLimit, currentDate, currentMonth } = useContext(AuthContext);
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -32,19 +25,10 @@ const StudentAdminDashboard = () => {
         console.log("User :", user)
     }, [user])
 
-    useEffect(() => {
-        console.log("Sum page :", allPage)
-        let a = [];
-        for (let i = 1; i < allPage + 1; i++) {
-            a.push(i)
-        }
-        return setList(a)
-    }, [allPage])
 
     const getDetails = () => {
         axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
             // console.log("Limit :", item.data)
-            setCurrent(1)
             let findMonth = item.data;
             let filterMonth = findMonth.filter((item) => {
                 let a = item.date;
@@ -63,122 +47,6 @@ const StudentAdminDashboard = () => {
         });
     }
 
-
-    async function onChangeSearch(e) {
-        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-            console.log("new Limit ==> :", item.data)
-            let findMonth = item.data;
-            let filterMonth = findMonth.filter((item) => {
-                let a = item.date;
-                let thisDate = currentDate.slice(8)
-                let digitRealDate = (a).slice(8)
-                let digitData = (a).slice(5, 7)
-                let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
-            })
-            return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
-        });
-        console.log("Change Date :", e.target.value)
-        setSearchDate(e.target.value)
-    }
-
-    function Searching() {
-        console.log("Searching :", searchDate)
-        const checking = limit.filter((item) => {
-            return item.date === searchDate
-        })
-        console.log("Filter Date", checking)
-        setPage(checking)
-    }
-
-    async function gotoFirstPage() {
-        setCurrent(1)
-        setFirstPage(true)
-        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-            console.log("new Limit ==> :", item.data)
-            let findMonth = item.data;
-            let filterMonth = findMonth.filter((item) => {
-                let a = item.date;
-                let thisDate = currentDate.slice(8)
-                let digitRealDate = (a).slice(8)
-                let digitData = (a).slice(5, 7)
-                let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
-            })
-            return setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
-        });
-    }
-
-    async function changePage(getpage) {
-        setCurrent(getpage)
-        console.log("Chage to :", getpage)
-        let changeTo = (getpage - 1) * 10;
-        setFirstPage(false)
-        if (getpage === allPage) {
-            await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                // let theData = item.data;
-                let findMonth = item.data;
-                let filterMonth = findMonth.filter((item) => {
-                    let a = item.date;
-                    let thisDate = currentDate.slice(8)
-                    let digitRealDate = (a).slice(8)
-                    let digitData = (a).slice(5, 7)
-                    let parsed = parseInt(digitData)
-                    return (parsed >= currentMonth && digitRealDate >= thisDate)
-                })
-
-                if (filterMonth.length % 10 === 0) {
-                    return setPage([filterMonth[0 + changeTo], filterMonth[1 + changeTo], filterMonth[2 + changeTo], filterMonth[3 + changeTo], filterMonth[4 + changeTo], filterMonth[5 + changeTo], filterMonth[6 + changeTo], filterMonth[7 + changeTo], filterMonth[8 + changeTo], filterMonth[9 + changeTo]])
-                } else {
-                    let mod = filterMonth.length % 10
-                    // console.log("mod :", mod)
-                    let a = [];
-                    for (let i = 1; i < mod + 1; i++) {
-                        a.push(i + changeTo)
-                    }
-                    setPage([]);
-                    let x = [];
-                    for (let i = 0; i < mod; i++) {
-                        x.push(filterMonth[a[i] - 1])
-                    }
-                    setPage(x)
-                }
-            });
-        } else {
-            axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                let findMonth = item.data;
-                let filterMonth = findMonth.filter((item) => {
-                    let a = item.date;
-                    let thisDate = currentDate.slice(8)
-                    let digitRealDate = (a).slice(8)
-                    let digitData = (a).slice(5, 7)
-                    let parsed = parseInt(digitData)
-                    return (parsed >= currentMonth && digitRealDate >= thisDate)
-                })
-                return setPage([filterMonth[0 + changeTo], filterMonth[1 + changeTo], filterMonth[2 + changeTo], filterMonth[3 + changeTo], filterMonth[4 + changeTo], filterMonth[5 + changeTo], filterMonth[6 + changeTo], filterMonth[7 + changeTo], filterMonth[8 + changeTo], filterMonth[9 + changeTo]])
-            });
-        }
-
-    }
-
-    function nextPage(page) {
-        if (page > allPage) {
-            console.log("This is last page")
-            return;
-        } else {
-            return changePage(page)
-        }
-    }
-
-    function previousPage(page) {
-        if (page === 0 || page === 1) {
-            console.log("This is first page")
-            return gotoFirstPage();
-        } else {
-            return changePage(page)
-        }
-    }
 
 
     function sum(a, b) {
