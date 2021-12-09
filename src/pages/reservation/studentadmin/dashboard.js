@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 import Pagination from 'react-bootstrap/Pagination'
+import MaterialTable from "material-table";
 
 // หา Sumary ของแต่ละ case ใน details ของแต่ละวันก่อน
 //fillter details เพื่อใช้ดู date time แล้วก็ มาเทียบกับ limit case
@@ -24,6 +25,7 @@ const StudentAdminDashboard = () => {
     const [listPage, setList] = useState([]);
     const [current, setCurrent] = useState();
 
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         getDetails();
@@ -55,22 +57,9 @@ const StudentAdminDashboard = () => {
 
             console.log("Filter Month :", filterMonth)
 
-
-            if (filterMonth.length < 10) {
-                setPage(filterMonth)
-            } else {
-                setPage([filterMonth[0], filterMonth[1], filterMonth[2], filterMonth[3], filterMonth[4], filterMonth[5], filterMonth[6], filterMonth[7], filterMonth[8], filterMonth[9]])
-            }
-            if ((filterMonth.length) % 10 !== 0) {
-                let test = ((filterMonth.length) / 10)
-                // console.log("test :", test)
-                let realLength = Math.trunc(test) + 1;
-                // console.log("test2 :", realLength)
-                setAll(realLength)
-            } else {
-                setAll((filterMonth.length) / 10)
-            }
+            setData(filterMonth);
             return setLimit(filterMonth);
+
         });
     }
 
@@ -255,6 +244,143 @@ const StudentAdminDashboard = () => {
                     </Col>
                 </Row>
 
+
+                <MaterialTable
+                    title="Mae Fah Luang University Dental Clinic"
+                    columns={[
+                        {
+                            title: 'วันที่', field: 'date', cellStyle: {
+                                minWidth: 140,
+                            },
+                        },
+                        {
+                            title: 'เวลา', field: 'time', cellStyle: {
+                                minWidth: 125,
+                            },
+                        },
+                        {
+                            title: 'OD', field: 'od', render: rowData => rowData.odyOd + "/" + sum(rowData.odyOd, rowData.od),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyOd, rowData.od), fontWeight: checkFont(rowData.od) }
+                            }
+                        },
+                        {
+                            title: 'TMD', field: 'tmd', render: rowData => rowData.odyTmd + "/" + sum(rowData.odyTmd, rowData.tmd),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyTmd, rowData.tmd), fontWeight: checkFont(rowData.tmd) }
+                            }
+                        },
+                        {
+                            title: 'OPER', field: 'oper', render: rowData => rowData.odyOper + "/" + sum(rowData.odyOper, rowData.oper),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyOper, rowData.oper), fontWeight: checkFont(rowData.oper) }
+                            }
+                        },
+                        {
+                            title: 'PERIO', field: 'perio', render: rowData => rowData.odyPerio + "/" + sum(rowData.odyPerio, rowData.perio),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyPerio, rowData.perio), fontWeight: checkFont(rowData.perio) }
+                            }
+                        },
+                        {
+                            title: 'SUR', field: 'sur', render: rowData => rowData.odySur + "/" + sum(rowData.odySur, rowData.sur),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odySur, rowData.sur), fontWeight: checkFont(rowData.sur) }
+                            }
+                        },
+                        {
+                            title: 'PROSTH', field: 'prosth', render: rowData => rowData.odyProsth + "/" + sum(rowData.odyProsth, rowData.prosth),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyProsth, rowData.prosth), fontWeight: checkFont(rowData.prosth) }
+                            }
+                        },
+                        {
+                            title: 'ENDO', field: 'endo', render: rowData => rowData.odyEndo + "/" + sum(rowData.odyEndo, rowData.endo),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyEndo, rowData.endo), fontWeight: checkFont(rowData.endo) }
+                            }
+                        },
+                        {
+                            title: 'PEDO', field: 'pedo', render: rowData => rowData.odyPedo + "/" + sum(rowData.odyPedo, rowData.pedo),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyPedo, rowData.pedo), fontWeight: checkFont(rowData.pedo) }
+                            }
+                        },
+                        {
+                            title: 'X-RAY', field: 'xray', render: rowData => rowData.odyXray + "/" + sum(rowData.odyXray, rowData.xray),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyXray, rowData.xray), fontWeight: checkFont(rowData.xray) }
+                            }
+                        },
+                        {
+                            title: 'OM', field: 'om', render: rowData => rowData.odyOm + "/" + sum(rowData.odyOm, rowData.om),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyOm, rowData.om), fontWeight: checkFont(rowData.om) }
+                            }
+                        },
+                        {
+                            title: 'ORTHO', field: 'ortho', render: rowData => rowData.odyOrtho + "/" + sum(rowData.odyOrtho, rowData.ortho),
+                            cellStyle: (cellValue, rowData) => {
+                                return { color: checkColor(rowData.odyOrtho, rowData.ortho), fontWeight: checkFont(rowData.ortho) }
+                            }
+                        },
+                    ]}
+                    data={data}
+                    options={{
+                        headerStyle: {
+                            fontFamily: "Mitr",
+                            fontWeight: 'bold',
+                            fontSize: '18px',
+                        }, tableLayout: 'auto'
+                    }}
+                    localization={{
+                        body: {
+                            emptyDataSourceMessage: 'Keine Einträge',
+                            addTooltip: 'Hinzufügen',
+                            deleteTooltip: 'Löschen',
+                            editTooltip: 'Bearbeiten',
+                            filterRow: {
+                                filterTooltip: 'Filter'
+                            },
+                            editRow: {
+                                deleteText: 'Diese Zeile wirklich löschen?',
+                                cancelTooltip: 'Abbrechen',
+                                saveTooltip: 'Speichern'
+                            }
+                        },
+                        grouping: {
+                            placeholder: 'Spalten ziehen ...',
+                            groupedBy: 'Gruppiert nach:'
+                        },
+                        header: {
+                            actions: 'รายละเอียดการจอง'
+                        },
+                        pagination: {
+                            labelDisplayedRows: '{from}-{to} จาก {count}',
+                            labelRowsSelect: 'แถว',
+                            labelRowsPerPage: 'Zeilen pro Seite:',
+                            firstAriaLabel: 'Erste Seite',
+                            firstTooltip: 'Erste Seite',
+                            previousAriaLabel: 'Vorherige Seite',
+                            previousTooltip: 'Vorherige Seite',
+                            nextAriaLabel: 'Nächste Seite',
+                            nextTooltip: 'Nächste Seite',
+                            lastAriaLabel: 'Letzte Seite',
+                            lastTooltip: 'Letzte Seite'
+                        },
+                        toolbar: {
+                            addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                            nRowsSelected: '{0} Zeile(n) ausgewählt',
+                            showColumnsTitle: 'Zeige Spalten',
+                            showColumnsAriaLabel: 'Zeige Spalten',
+                            exportTitle: 'Export',
+                            exportAriaLabel: 'Export',
+                            exportName: 'Export als CSV',
+                            searchTooltip: 'ค้นหา',
+                            searchPlaceholder: 'ค้นหา'
+                        }
+                    }}
+                />
 
                 <Table striped bordered hover variant="" style={{ marginTop: '30px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                     <thead className='theadAdmin'>
