@@ -6,27 +6,22 @@ import CloseButton from 'react-bootstrap/CloseButton'
 import axios from 'axios'
 import '../../Yup.css'
 import { Label } from 'semantic-ui-react'
-import Modal from 'react-modal'
 import Accordion from 'react-bootstrap/Accordion'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useHistory } from 'react-router-dom'
 import Toolcss from './Toolcss.css'
+import Modal from 'react-bootstrap/Modal'
+
 const ToolModal = ({ unique }) => {
-    const [modalIsOpen, setIsOpen] = React.useState(true)
+    // const [modalIsOpen, setIsOpen] = React.useState(true)
 
-    useEffect(() => {
-        console.log('Unique ? ===>', unique)
-    }, [modalIsOpen])
+    const [show, setShow] = useState(true);
 
-    function openModal() {
-        setIsOpen(true)
-    }
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-    function closeModal() {
-        setIsOpen(false)
-    }
 
     const [open, setOpen] = useState(false)
 
@@ -664,4039 +659,4009 @@ const ToolModal = ({ unique }) => {
     var callback = function (key) { }
 
     return (
-        <div style={{ background: '#FFFFFF', minHeight: '1080px' }}>
-            <StyleModal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel='modal'
-            >
-                <Row style={{ flex: 1, height: 55, backgroundColor: '#fff' }}>
-                    <Col>
-                        <CloseButton onClick={closeModal} style={{ marginRight: 300 }} />
-                    </Col>
-                    <Col>
-                        {' '}
-                        <h1 style={{ color: '#0047AB', marginLeft:'130px',marginTop:'40px' }}>เบิกอุปกรณ์</h1>
-                    </Col>
 
-                    <Col>
-                        <h1 style={{ marginLeft: 200, color: 'white' }}>CC1</h1>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <Row>
-                    <Col style={{ marginBottom: -40 }}>
-                        <label style={{ fontSize: 25, marginLeft: 100, color: '#0047AB',marginBottom:'59px' }}>
-                           <h3> เครื่องมือ </h3>
-                        </label>
-                    </Col>
-                    <Col>
-                        {/* <div style={{ marginLeft: '750px', marginBottom: 20 }}>
-                            Search
-                            <input style={{ marginRight: 150 }} title='Search' type='search' />
-                        </div> */}
-                    </Col>
-                </Row>
+        <Modal style={{ fontFamily: 'Mitr', minWidth: '800px' }} show={show} onHide={handleClose}>
+            <Modal.Header style={{ minWidth: '800px', background: 'white' }} closeButton>
+                <Modal.Title style={{ minWidth: '800px' }}>รายละเอียดการจอง</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{ minWidth: '800px', background: 'white' }} ><Container>
                 <form onSubmit={formik.handleSubmit}>
-                    <div>
-                        <div style={{ minHeight: 250 }}>
-                            <Container style={{ fontSize: 15 }}>
-                                <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB',fontFamily:'Mitr' }}
-                                >
-                                    รายการ
-                                </label>
-                                <label
-                                    style={{
-                                        marginLeft: 475,
-                                        marginBottom: 15,
-                                        color: '#0047AB',
-                                        fontFamily:'Mitr'
-                                    }}
-                                >
-                                    รายการ
-                                </label>
-                                <div
-                                    style={{ flex: 1, backgroundColor: '#D0D3D4', height: 1 }}
-                                />
-                                <br />
-                                <Row>
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='testkit_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดตรวจ{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF'}}
-                                                    id='testkit_toolcc1'
-                                                    name='testkit_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.testkit_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='glassofwater_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    แก้วน้ำ{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='glassofwater_toolcc1'
-                                                    name='glassofwater_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.glassofwater_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Tripplesyring_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Tripple syring{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Tripplesyring_toolcc1'
-                                                    name='Tripplesyring_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyring_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='FabricMiddlepunch_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ผ้าเจาะกลาง{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='FabricMiddlepunch_toolcc1'
-                                                    name='FabricMiddlepunch_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.FabricMiddlepunch_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='veil_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ผ้าคลุม{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='veil_toolcc1'
-                                                    name='veil_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.veil_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='UNC15Probe_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    UNC 15 Probe{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='UNC15Probe_toolcc1'
-                                                    name='UNC15Probe_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.UNC15Probe_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='medicinecup_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ถ้วยนํ้ายา{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='medicinecup_toolcc1'
-                                                    name='medicinecup_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.medicinecup_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Dappendish_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Dappen dish{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Dappendish_toolcc1'
-                                                    name='Dappendish_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Dappendish_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Mouthprop_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Mouth prop{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Mouthprop_toolcc1'
-                                                    name='Mouthprop_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Mouthprop_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Glasslab_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Glass lab{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Glasslab_toolcc1'
-                                                    name='Glasslab_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Glasslab_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Airotor_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Airotor{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Airotor_toolcc1'
-                                                    name='Airotor_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Airotor_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Contra_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Contra{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Contra_toolcc1'
-                                                    name='Contra_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Contra_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='cottonbud_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ไม้พันสำลี{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='cottonbud_toolcc1'
-                                                    name='cottonbud_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.cottonbud_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rubbercup_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Rubber cup/tip/Brush{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rubbercup_toolcc1'
-                                                    name='Rubbercup_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rubbercup_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='AnestheticSyringe_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Syringe ยาชา{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='AnestheticSyringe_toolcc1'
-                                                    name='AnestheticSyringe_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.AnestheticSyringe_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='BladeHolder_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Blade Holder{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='BladeHolder_toolcc1'
-                                                    name='BladeHolder_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.BladeHolder_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Blade_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Blade No....{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Blade_toolcc1'
-                                                    name='Blade_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Blade_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Compositstopperset_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดอุด Composit{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Compositstopperset_toolcc1'
-                                                    name='Compositstopperset_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Compositstopperset_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Amalgamfillingset_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดอุด Amalgam{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Amalgamfillingset_toolcc1'
-                                                    name='Amalgamfillingset_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Amalgamfillingset_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Compositsandingsetslowrewind_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดขัด Composit กรอช้า{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Compositsandingsetslowrewind_toolcc1'
-                                                    name='Compositsandingsetslowrewind_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={
-                                                        formik.values.Compositsandingsetslowrewind_toolcc1
-                                                    }
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    {/* Middleeeeeeeeeeeeeeeeeeeee                        */}
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Compositsandingsetfastrewinding_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดขัด Composit กรอเร็ว{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Compositsandingsetfastrewinding_toolcc1'
-                                                    name='Compositsandingsetfastrewinding_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={
-                                                        formik.values
-                                                            .Compositsandingsetfastrewinding_toolcc1
-                                                    }
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='plasticcomposit_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    plastic composit{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='plasticcomposit_toolcc1'
-                                                    name='plasticcomposit_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.plasticcomposit_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Spoonexcavatorlarge_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Spoon excavator ใหญ่{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Spoonexcavatorlarge_toolcc1'
-                                                    name='Spoonexcavatorlarge_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Spoonexcavatorlarge_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='MatrixV3_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Matrix V3 Ring ...{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='MatrixV3_toolcc1'
-                                                    name='MatrixV3_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.MatrixV3_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='MatrixV3Forcep_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Matrix V3 Forcep{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='MatrixV3Forcep_toolcc1'
-                                                    name='MatrixV3Forcep_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.MatrixV3Forcep_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rounddimondbursetslow_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Round dimond bur (กรอช้า){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rounddimondbursetslow_toolcc1'
-                                                    name='Rounddimondbursetslow_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rounddimondbursetslow_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Cylinderdimondbursetslow_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Cylinder dimond bur (กรอช้า){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Cylinderdimondbursetslow_toolcc1'
-                                                    name='Cylinderdimondbursetslow_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Cylinderdimondbursetslow_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rounddimondbursetfast_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Round dimond bur (กรอเร็ว){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rounddimondbursetfast_toolcc1'
-                                                    name='Rounddimondbursetfast_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rounddimondbursetfast_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Cylinderdimondbursetfast_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Cylinder dimond bur (กรอเร็ว){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Cylinderdimondbursetfast_toolcc1'
-                                                    name='Cylinderdimondbursetfast_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Cylinderdimondbursetfast_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Dycalcarrier_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Dycal carrier{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Dycalcarrier_toolcc1'
-                                                    name='Dycalcarrier_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Dycalcarrier_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Spatulaplastic_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Spatula plastic{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Spatulaplastic_toolcc1'
-                                                    name='Spatulaplastic_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Spatulaplastic_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Cementspatula_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Cement spatula{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Cementspatula_toolcc1'
-                                                    name='Cementspatula_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Cementspatula_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Mendrelscrubset_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดขัด Mendrel{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Mendrelscrubset_toolcc1'
-                                                    name='Mendrelscrubset_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Mendrelscrubset_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Poponsmall_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Pop on เล็ก/ใหญ่{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Poponsmall_toolcc1'
-                                                    name='Poponsmall_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Poponsmall_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rubberdamset_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุด Rubber dam{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rubberdamset_toolcc1'
-                                                    name='Rubberdamset_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rubberdamset_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='clamp_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    clamp No.{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='clamp_toolcc1'
-                                                    name='clamp_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.clamp_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Steelheadslowdown_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัว Steel กรอช้า{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Steelheadslowdown_toolcc1'
-                                                    name='Steelheadslowdown_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Steelheadslowdown_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Astropolpolishingset_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดขัด Astropol{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Astropolpolishingset_toolcc1'
-                                                    name='Astropolpolishingset_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Astropolpolishingset_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='IvoryTofflemirematrix_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Ivory / Tofflemire matrix{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='IvoryTofflemirematrix_toolcc1'
-                                                    name='IvoryTofflemirematrix_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.IvoryTofflemirematrix_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='hightpowersuction_toolcc1'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    hight power suction{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='hightpowersuction_toolcc1'
-                                                    name='hightpowersuction_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.hightpowersuction_toolcc1}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Container>
-
-                            <Container style={{ fontSize: 15 }}>
-                                <div
-                                    style={{
-                                        flex: 1,
-                                        height: 1,
-                                        backgroundColor: '#D0D3D4',
-                                        marginBottom: 10,
-                                        marginTop: 10
-                                    }}
-                                ></div>
-                                <div>
-                                    <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
-                                      <h3> เครื่องมืองาน Endo </h3>
-                                    </label>
-                                </div>
-                                <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily:'Mitr' }}
-                                >
-                                    รายการ
-                                </label>
-                                <label
-                                    style={{
-                                        marginLeft: 475,
-                                        marginBottom: 15,
-                                        color: '#0047AB',
-                                        fontFamily:'Mitr'
-                                    }}
-                                >
-                                    รายการ
-                                </label>
-                                <div
-                                    style={{
-                                        flex: 1,
-                                        height: 2,
-                                        backgroundColor: '#D0D3D4',
-                                        marginBottom: 30,
-                                        marginTop: 10,
-                                        fontFamily:'Mitr'
-                                    }}
-                                />
-                                <Row>
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='FabricMiddlepunch_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ผ้าเจาะกลาง{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='FabricMiddlepunch_endo'
-                                                    name='FabricMiddlepunch_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.FabricMiddlepunch_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label htmlFor='veil_endo' style={{ color: '#0047AB', fontFamily:'Mitr' }}>
-                                                    ผ้าคลุม{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='veil_endo'
-                                                    name='veil_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.veil_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='testkit_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดตรวจ{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='testkit_endo'
-                                                    name='testkit_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.testkit_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Tripplesyringe_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Tripple syringe{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Tripplesyringe_endo'
-                                                    name='Tripplesyringe_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Tripplesyringe_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Twoouncesglass_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    เเก้วนํ้ายา 2 ออนซ์{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Twoouncesglass_endo'
-                                                    name='Twoouncesglass_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Twoouncesglass_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Mouthprop_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Mouth prop{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Mouthprop_endo'
-                                                    name='Mouthprop_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Mouthprop_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='AnestheticSyringe_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Syringe ยาชา{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='AnestheticSyringe_endo'
-                                                    name='AnestheticSyringe_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.AnestheticSyringe_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='cottonbud_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ไม้พันสำลี{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='cottonbud_endo'
-                                                    name='cottonbud_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.cottonbud_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Airotor_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Airotor{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Airotor_endo'
-                                                    name='Airotor_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Airotor_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Contra_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Contra{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Contra_endo'
-                                                    name='Contra_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Contra_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='FileStand_endo '
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    File Stand {''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='FileStand_endo'
-                                                    name='FileStand_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.FileStand_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='PlatePaperPoint_endo '
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Plate Paper Point No.{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='PlatePaperPoint_endo'
-                                                    name='PlatePaperPoint_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.PlatePaperPoint_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='RubberdamFlame_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Rubber dam Flame{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='RubberdamFlame_endo'
-                                                    name='RubberdamFlame_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.RubberdamFlame_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='RubberdamSheet_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Rubber dam Sheet{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='RubberdamSheet_endo'
-                                                    name='RubberdamSheet_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.RubberdamSheet_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Clamp_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Clamp No....{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Clamp_endo'
-                                                    name='Clamp_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Clamp_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='EndoBursBoxHead_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัว Endo Burs Box{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='EndoBursBoxHead_endo'
-                                                    name='EndoBursBoxHead_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.EndoBursBoxHead_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Barbedbrodch_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Barbed brodch สี ...{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Barbedbrodch_endo'
-                                                    name='Barbedbrodch_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Barbedbrodch_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Lentulospiral_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Lentulo spiral สี ....{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Lentulospiral_endo'
-                                                    name='Lentulospiral_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Lentulospiral_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='ProtaperHand21mm_endo '
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Protaper Hand 21 mm.{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='ProtaperHand21mm_endo'
-                                                    name='ProtaperHand21mm_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.ProtaperHand21mm_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='ProtaperHand25mm_endo '
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Protaper Hand 25 mm{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='ProtaperHand25mm_endo'
-                                                    name='ProtaperHand25mm_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.ProtaperHand25mm_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='GateDrillheadfrontteeth_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัว Gate Drill ฟันหน้า{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='GateDrillheadfrontteeth_endo'
-                                                    name='GateDrillheadfrontteeth_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.GateDrillheadfrontteeth_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='GateDrillheadrearteeth_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัว Gate Drill ฟันหลัง{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='GateDrillheadrearteeth_endo'
-                                                    name='GateDrillheadrearteeth_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.GateDrillheadrearteeth_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Syringerinse5ml_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Syringe ล้าง 5 ml.{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Tripplesyring_toolcc1'
-                                                    name='Tripplesyring_toolcc1'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Syringerinse5ml_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='WashneedleNo2427_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    เข็มล้าง เบอร์ 24/27{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='WashneedleNo2427_endo'
-                                                    name='WashneedleNo2427_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.WashneedleNo2427_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HooktheRootZx_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ขอเกี่ยวเครื่อง Root Zx{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HooktheRootZx_endo'
-                                                    name='HooktheRootZx_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HooktheRootZx_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Glasslab_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Glasslab{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Glasslab_endo'
-                                                    name='Glasslab_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Glasslab_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HighPowerSuction_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    High Power Suction{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HighPowerSuction_endo'
-                                                    name='HighPowerSuction_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HighPowerSuction_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='OCBoxset_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุุดเครื่องมือ OC Box set {''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='OCBoxset_endo'
-                                                    name='OCBoxset_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.OCBoxset_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='FRCBoxset_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดเครื่องมือ FRC Box set {''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='FRCBoxset_endo'
-                                                    name='FRCBoxset_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.FRCBoxset_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='CFile21_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    C - File 21 เบอร์ ...{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='CFile21_endo'
-                                                    name='CFile21_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.CFile21_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='CFile25_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    C - File 25 เบอร์ ...{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='CFile25_endo'
-                                                    name='CFile25_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.CFile25_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HFile21mm1540_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    H - File 21 mm.(15-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HFile21mm1540_endo'
-                                                    name='HFile21mm1540_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HFile21mm1540_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HFile21mm4580_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    H - File 21 mm.(45-80){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HFile21mm4580_endo'
-                                                    name='HFile21mm4580_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HFile21mm4580_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HFile25mm1540_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    H - File 25 mm.(15-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HFile25mm1540_endo'
-                                                    name='HFile25mm1540_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HFile25mm1540_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='HFile25mm4580_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    H - File 25 mm.(45-80){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='HFile25mm4580_endo'
-                                                    name='HFile25mm4580_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.HFile25mm4580_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='NitiFile21mm1540_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Niti - File 21 mm.(15-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='NitiFile21mm1540_endo'
-                                                    name='NitiFile21mm1540_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.NitiFile21mm1540_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='NitiFile21mm4560_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Niti - File 21 mm.(45-60){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='NitiFile21mm4560_endo'
-                                                    name='NitiFile21mm4560_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.NitiFile21mm4560_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='NitiFile25mm1540_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Niti - File 25 mm.(15-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='NitiFile25mm1540_endo'
-                                                    name='NitiFile25mm1540_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.NitiFile25mm1540_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='NitiFile25mm4560_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Niti - File 25 mm.(45-60){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='NitiFile25mm4560_endo'
-                                                    name='NitiFile25mm4560_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.NitiFile25mm4560_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile21mm840_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 21 mm.(8-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile21mm840_endo'
-                                                    name='KFile21mm840_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile21mm840_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile21mm4580_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 21 mm.(45-80){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile21mm4580_endo'
-                                                    name='KFile21mm4580_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile21mm4580_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile25mm840_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 25 mm.(8-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile25mm840_endo'
-                                                    name='KFile25mm840_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile25mm840_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile25mm4580_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 25 mm.(45-80){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile25mm4580_endo'
-                                                    name='KFile25mm4580_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile25mm4580_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile30mm840_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 30 mm.(8-40){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile30mm840_endo'
-                                                    name='KFile30mm840_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile30mm840_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='KFile30mm4580_endo'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    K - File 30 mm.(45-80){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='KFile30mm4580_endo'
-                                                    name='KFile30mm4580_endo'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.KFile30mm4580_endo}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Container>
-
-                            <Container style={{ fontSize: 15 }}>
-                                <div
-                                    style={{
-                                        flex: 1,
-                                        height: 1,
-                                        backgroundColor: '#D0D3D4',
-                                        marginBottom: 10,
-                                        marginTop: 10
-                                    }}
-                                ></div>
-                                <div>
-                                    <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
-                                       <h3> เครื่องมืองาน PERIO/OD </h3>
-                                    </label>
-                                </div>
-                                <label
-                                    style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily:'Mitr' }}
-                                >
-                                  รายการ 
-                                </label>
-                                <label
-                                    style={{
-                                        marginLeft: 475,
-                                        marginBottom: 15,
-                                        color: '#0047AB',
-                                        fontFamily:'Mitr'
-                                    }}
-                                >
-                                   รายการ 
-                                </label>
-                                <div
-                                    style={{
-                                        flex: 1,
-                                        height: 2,
-                                        backgroundColor: '#D0D3D4',
-                                        marginBottom: 30,
-                                        marginTop: 10,
-                                        fontFamily:'Mitr'
-                                    }}
-                                />
-                                <Row>
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='testkit_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดตรวจ{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='testkit_periood'
-                                                    name='testkit_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.testkit_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='backteethscalingkit_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุุดขูดหินปูนฟันหลัง{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='backteethscalingkit_periood'
-                                                    name='backteethscalingkit_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.backteethscalingkit_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='sickelfrontteeth_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    sickel ฟันหน้า{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='sickelfrontteeth_periood'
-                                                    name='sickelfrontteeth_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.sickelfrontteeth_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='sickelposteriorteethS204SD_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    sickel ฟันหลัง(S204SD){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='sickelposteriorteethS204SD_periood'
-                                                    name='sickelposteriorteethS204SD_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={
-                                                        formik.values.sickelposteriorteethS204SD_periood
-                                                    }
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='frontteethcuretteSG34_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    curette ฟันหน้า (SG3/4){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='frontteethcuretteSG34_periood'
-                                                    name='frontteethcuretteSG34_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.frontteethcuretteSG34_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='AfterFive_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    After Five No....{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='AfterFive_periood'
-                                                    name='AfterFive_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.AfterFive_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='MiniFive_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Mini Five No....{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='MiniFive_periood'
-                                                    name='MiniFive_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.MiniFive_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='PeriodontalProbeUNC15_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Periodontal Probe (UNC15){''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='PeriodontalProbeUNC15_periood'
-                                                    name='PeriodontalProbeUNC15_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.PeriodontalProbeUNC15_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='WHOProbe_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    WHO Probe{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='WHOProbe_periood'
-                                                    name='WHOProbe_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.WHOProbe_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='NeberProbe_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Neber Probe{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='NeberProbe_periood'
-                                                    name='NeberProbe_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.NeberProbe_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='pourthemedicine_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ถ่วยนํ้ายา{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='pourthemedicine_periood'
-                                                    name='pourthemedicine_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.pourthemedicine_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Dappendish_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Dappen dish{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Dappendish_periood'
-                                                    name='Dappendish_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Dappendish_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Mouthprop_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Mouth prop{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Mouthprop_periood'
-                                                    name='Mouthprop_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Mouthprop_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='AnestheticSyringe_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Syring ยาชา{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='AnestheticSyringe_periood'
-                                                    name='AnestheticSyringe_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.AnestheticSyringe_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='whetstone_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หินลับ{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='whetstone_periood'
-                                                    name='whetstone_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.whetstone_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='P5scraper_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัวขูด P5{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='P5scraper_periood'
-                                                    name='P5scraper_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.P5scraper_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col>
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='P10scraper_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    หัวขูด P10{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='P10scraper_periood'
-                                                    name='P10scraper_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.P10scraper_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rabbercup_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Rabber cup{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rabbercup_periood'
-                                                    name='Rabbercup_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rabbercup_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Rabberbrush_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Rabber brush{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Rabberbrush_periood'
-                                                    name='Rabberbrush_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Rabberbrush_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='cottonbud_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ไม้พันสำลี{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='cottonbud_periood'
-                                                    name='cottonbud_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.cottonbud_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Airotor_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Airotor{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Airotor_periood'
-                                                    name='Airotor_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Airotor_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Contra_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Contra{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Contra_periood'
-                                                    name='Contra_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Contra_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Phophy_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Phophy{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Phophy_periood'
-                                                    name='Phophy_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Phophy_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Straight_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Straight{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Straight_periood'
-                                                    name='Straight_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Straight_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Triplesyring_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Triple syring{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Triplesyring_periood'
-                                                    name='Triplesyring_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Triplesyring_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='ruler_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ไม้บรรทัด{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='ruler_periood'
-                                                    name='ruler_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.ruler_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='Retractor_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    Retractor{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='Retractor_periood'
-                                                    name='Retractor_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.Retractor_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='FabricMiddlepunch_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ผ้าเจาะกลาง{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='FabricMiddlepunch_periood'
-                                                    name='FabricMiddlepunch_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.FabricMiddlepunch_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='veil_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ผ้าคลุม{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='veil_periood'
-                                                    name='veil_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.veil_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='unitcleaningkit_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดทำความสะอาดยูนิต{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='unitcleaningkit_periood'
-                                                    name='unitcleaningkit_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.unitcleaningkit_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='gumsurgerykit_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดผ่าตัดเหงือก{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='gumsurgerykit_periood'
-                                                    name='gumsurgerykit_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.gumsurgerykit_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
-                                                <label
-                                                    htmlFor='gumsurgicalgown_periood'
-                                                    style={{ color: '#0047AB', fontFamily:'Mitr' }}
-                                                >
-                                                    ชุดผ้าผ่าตัดเหงือก{''}
-                                                </label>
-                                            </Col>
-                                            <Col style={{ marginTop: -10 }}>
-                                                <select
-                                                    style={{ backgroundColor: '#FFFFFF' }}
-                                                    id='gumsurgicalgown_periood'
-                                                    name='gumsurgicalgown_periood'
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.gumsurgicalgown_periood}
-                                                >
-                                                    <option value='' label='เลือกจำนวน' />
-                                                    <option value='1' label='1' />
-                                                    <option value='2' label='2' />
-                                                    <option value='3' label='3' />
-                                                    <option value='4' label='4' />
-                                                    <option value='5' label='5' />
-                                                    <option value='6' label='6' />
-                                                    <option value='7' label='7' />
-                                                    <option value='8' label='8' />
-                                                    <option value='9' label='9' />
-                                                    <option value='10' label='10' />
-                                                </select>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </div>
+                    <Container style={{ fontSize: 15, minWidth: '800px' }}>
+                        <label
+                            style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily: 'Mitr' }}
+                        >
+                            รายการ
+                        </label>
+                        <label
+                            style={{
+                                marginLeft: 475,
+                                marginBottom: 15,
+                                color: '#0047AB',
+                                fontFamily: 'Mitr'
+                            }}
+                        >
+                            รายการ
+                        </label>
+                        <div
+                            style={{ flex: 1, backgroundColor: '#D0D3D4', height: 1 }}
+                        />
                         <br />
-                        <center>
-                            <button
-                                className='But'
-                                style={{ backgroundColor: '#0047AB', marginBottom: 10, fontFamily:'Mitr' }}
-                                type='submit'
-                            >
-                                Submit
-                            </button>
-                        </center>
-                    </div>
+                        <Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='testkit_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดตรวจ{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='testkit_toolcc1'
+                                            name='testkit_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.testkit_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='glassofwater_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            แก้วน้ำ{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='glassofwater_toolcc1'
+                                            name='glassofwater_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.glassofwater_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Tripplesyring_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Tripple syring{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Tripplesyring_toolcc1'
+                                            name='Tripplesyring_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Tripplesyring_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='FabricMiddlepunch_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ผ้าเจาะกลาง{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='FabricMiddlepunch_toolcc1'
+                                            name='FabricMiddlepunch_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.FabricMiddlepunch_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='veil_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ผ้าคลุม{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='veil_toolcc1'
+                                            name='veil_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.veil_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='UNC15Probe_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            UNC 15 Probe{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='UNC15Probe_toolcc1'
+                                            name='UNC15Probe_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.UNC15Probe_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='medicinecup_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ถ้วยนํ้ายา{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='medicinecup_toolcc1'
+                                            name='medicinecup_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.medicinecup_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Dappendish_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Dappen dish{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Dappendish_toolcc1'
+                                            name='Dappendish_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Dappendish_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Mouthprop_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Mouth prop{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Mouthprop_toolcc1'
+                                            name='Mouthprop_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Mouthprop_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Glasslab_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Glass lab{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Glasslab_toolcc1'
+                                            name='Glasslab_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Glasslab_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Airotor_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Airotor{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Airotor_toolcc1'
+                                            name='Airotor_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Airotor_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Contra_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Contra{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Contra_toolcc1'
+                                            name='Contra_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Contra_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='cottonbud_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ไม้พันสำลี{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='cottonbud_toolcc1'
+                                            name='cottonbud_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.cottonbud_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rubbercup_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Rubber cup/tip/Brush{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rubbercup_toolcc1'
+                                            name='Rubbercup_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rubbercup_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='AnestheticSyringe_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Syringe ยาชา{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='AnestheticSyringe_toolcc1'
+                                            name='AnestheticSyringe_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.AnestheticSyringe_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='BladeHolder_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Blade Holder{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='BladeHolder_toolcc1'
+                                            name='BladeHolder_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.BladeHolder_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Blade_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Blade No....{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Blade_toolcc1'
+                                            name='Blade_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Blade_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Compositstopperset_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดอุด Composit{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Compositstopperset_toolcc1'
+                                            name='Compositstopperset_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Compositstopperset_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Amalgamfillingset_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดอุด Amalgam{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Amalgamfillingset_toolcc1'
+                                            name='Amalgamfillingset_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Amalgamfillingset_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Compositsandingsetslowrewind_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดขัด Composit กรอช้า{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Compositsandingsetslowrewind_toolcc1'
+                                            name='Compositsandingsetslowrewind_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={
+                                                formik.values.Compositsandingsetslowrewind_toolcc1
+                                            }
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            {/* Middleeeeeeeeeeeeeeeeeeeee                        */}
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Compositsandingsetfastrewinding_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดขัด Composit กรอเร็ว{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Compositsandingsetfastrewinding_toolcc1'
+                                            name='Compositsandingsetfastrewinding_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={
+                                                formik.values
+                                                    .Compositsandingsetfastrewinding_toolcc1
+                                            }
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='plasticcomposit_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            plastic composit{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='plasticcomposit_toolcc1'
+                                            name='plasticcomposit_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.plasticcomposit_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Spoonexcavatorlarge_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Spoon excavator ใหญ่{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Spoonexcavatorlarge_toolcc1'
+                                            name='Spoonexcavatorlarge_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Spoonexcavatorlarge_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='MatrixV3_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Matrix V3 Ring ...{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='MatrixV3_toolcc1'
+                                            name='MatrixV3_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.MatrixV3_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='MatrixV3Forcep_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Matrix V3 Forcep{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='MatrixV3Forcep_toolcc1'
+                                            name='MatrixV3Forcep_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.MatrixV3Forcep_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rounddimondbursetslow_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Round dimond bur (กรอช้า){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rounddimondbursetslow_toolcc1'
+                                            name='Rounddimondbursetslow_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rounddimondbursetslow_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Cylinderdimondbursetslow_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Cylinder dimond bur (กรอช้า){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Cylinderdimondbursetslow_toolcc1'
+                                            name='Cylinderdimondbursetslow_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Cylinderdimondbursetslow_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rounddimondbursetfast_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Round dimond bur (กรอเร็ว){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rounddimondbursetfast_toolcc1'
+                                            name='Rounddimondbursetfast_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rounddimondbursetfast_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Cylinderdimondbursetfast_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Cylinder dimond bur (กรอเร็ว){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Cylinderdimondbursetfast_toolcc1'
+                                            name='Cylinderdimondbursetfast_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Cylinderdimondbursetfast_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Dycalcarrier_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Dycal carrier{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Dycalcarrier_toolcc1'
+                                            name='Dycalcarrier_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Dycalcarrier_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Spatulaplastic_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Spatula plastic{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Spatulaplastic_toolcc1'
+                                            name='Spatulaplastic_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Spatulaplastic_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Cementspatula_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Cement spatula{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Cementspatula_toolcc1'
+                                            name='Cementspatula_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Cementspatula_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Mendrelscrubset_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดขัด Mendrel{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Mendrelscrubset_toolcc1'
+                                            name='Mendrelscrubset_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Mendrelscrubset_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Poponsmall_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Pop on เล็ก/ใหญ่{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Poponsmall_toolcc1'
+                                            name='Poponsmall_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Poponsmall_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rubberdamset_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุด Rubber dam{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rubberdamset_toolcc1'
+                                            name='Rubberdamset_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rubberdamset_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='clamp_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            clamp No.{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='clamp_toolcc1'
+                                            name='clamp_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.clamp_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Steelheadslowdown_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัว Steel กรอช้า{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Steelheadslowdown_toolcc1'
+                                            name='Steelheadslowdown_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Steelheadslowdown_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Astropolpolishingset_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดขัด Astropol{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Astropolpolishingset_toolcc1'
+                                            name='Astropolpolishingset_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Astropolpolishingset_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='IvoryTofflemirematrix_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Ivory / Tofflemire matrix{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='IvoryTofflemirematrix_toolcc1'
+                                            name='IvoryTofflemirematrix_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.IvoryTofflemirematrix_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='hightpowersuction_toolcc1'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            hight power suction{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='hightpowersuction_toolcc1'
+                                            name='hightpowersuction_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.hightpowersuction_toolcc1}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+
+                    <Container style={{ fontSize: 15 }}>
+                        <div
+                            style={{
+                                flex: 1,
+                                height: 1,
+                                backgroundColor: '#D0D3D4',
+                                marginBottom: 10,
+                                marginTop: 10
+                            }}
+                        ></div>
+                        <div>
+                            <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
+                                <h3> เครื่องมืองาน Endo </h3>
+                            </label>
+                        </div>
+                        <label
+                            style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily: 'Mitr' }}
+                        >
+                            รายการ
+                        </label>
+                        <label
+                            style={{
+                                marginLeft: 475,
+                                marginBottom: 15,
+                                color: '#0047AB',
+                                fontFamily: 'Mitr'
+                            }}
+                        >
+                            รายการ
+                        </label>
+                        <div
+                            style={{
+                                flex: 1,
+                                height: 2,
+                                backgroundColor: '#D0D3D4',
+                                marginBottom: 30,
+                                marginTop: 10,
+                                fontFamily: 'Mitr'
+                            }}
+                        />
+                        <Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='FabricMiddlepunch_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ผ้าเจาะกลาง{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='FabricMiddlepunch_endo'
+                                            name='FabricMiddlepunch_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.FabricMiddlepunch_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label htmlFor='veil_endo' style={{ color: '#0047AB', fontFamily: 'Mitr' }}>
+                                            ผ้าคลุม{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='veil_endo'
+                                            name='veil_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.veil_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='testkit_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดตรวจ{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='testkit_endo'
+                                            name='testkit_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.testkit_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Tripplesyringe_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Tripple syringe{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Tripplesyringe_endo'
+                                            name='Tripplesyringe_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Tripplesyringe_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Twoouncesglass_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            เเก้วนํ้ายา 2 ออนซ์{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Twoouncesglass_endo'
+                                            name='Twoouncesglass_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Twoouncesglass_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Mouthprop_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Mouth prop{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Mouthprop_endo'
+                                            name='Mouthprop_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Mouthprop_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='AnestheticSyringe_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Syringe ยาชา{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='AnestheticSyringe_endo'
+                                            name='AnestheticSyringe_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.AnestheticSyringe_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='cottonbud_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ไม้พันสำลี{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='cottonbud_endo'
+                                            name='cottonbud_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.cottonbud_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Airotor_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Airotor{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Airotor_endo'
+                                            name='Airotor_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Airotor_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Contra_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Contra{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Contra_endo'
+                                            name='Contra_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Contra_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='FileStand_endo '
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            File Stand {''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='FileStand_endo'
+                                            name='FileStand_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.FileStand_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='PlatePaperPoint_endo '
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Plate Paper Point No.{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='PlatePaperPoint_endo'
+                                            name='PlatePaperPoint_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.PlatePaperPoint_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='RubberdamFlame_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Rubber dam Flame{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='RubberdamFlame_endo'
+                                            name='RubberdamFlame_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.RubberdamFlame_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='RubberdamSheet_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Rubber dam Sheet{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='RubberdamSheet_endo'
+                                            name='RubberdamSheet_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.RubberdamSheet_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Clamp_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Clamp No....{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Clamp_endo'
+                                            name='Clamp_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Clamp_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='EndoBursBoxHead_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัว Endo Burs Box{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='EndoBursBoxHead_endo'
+                                            name='EndoBursBoxHead_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.EndoBursBoxHead_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Barbedbrodch_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Barbed brodch สี ...{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Barbedbrodch_endo'
+                                            name='Barbedbrodch_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Barbedbrodch_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Lentulospiral_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Lentulo spiral สี ....{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Lentulospiral_endo'
+                                            name='Lentulospiral_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Lentulospiral_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='ProtaperHand21mm_endo '
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Protaper Hand 21 mm.{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='ProtaperHand21mm_endo'
+                                            name='ProtaperHand21mm_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.ProtaperHand21mm_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='ProtaperHand25mm_endo '
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Protaper Hand 25 mm{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='ProtaperHand25mm_endo'
+                                            name='ProtaperHand25mm_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.ProtaperHand25mm_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='GateDrillheadfrontteeth_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัว Gate Drill ฟันหน้า{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='GateDrillheadfrontteeth_endo'
+                                            name='GateDrillheadfrontteeth_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.GateDrillheadfrontteeth_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='GateDrillheadrearteeth_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัว Gate Drill ฟันหลัง{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='GateDrillheadrearteeth_endo'
+                                            name='GateDrillheadrearteeth_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.GateDrillheadrearteeth_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Syringerinse5ml_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Syringe ล้าง 5 ml.{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Tripplesyring_toolcc1'
+                                            name='Tripplesyring_toolcc1'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Syringerinse5ml_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='WashneedleNo2427_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            เข็มล้าง เบอร์ 24/27{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='WashneedleNo2427_endo'
+                                            name='WashneedleNo2427_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.WashneedleNo2427_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HooktheRootZx_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ขอเกี่ยวเครื่อง Root Zx{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HooktheRootZx_endo'
+                                            name='HooktheRootZx_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HooktheRootZx_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Glasslab_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Glasslab{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Glasslab_endo'
+                                            name='Glasslab_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Glasslab_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HighPowerSuction_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            High Power Suction{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HighPowerSuction_endo'
+                                            name='HighPowerSuction_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HighPowerSuction_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='OCBoxset_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุุดเครื่องมือ OC Box set {''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='OCBoxset_endo'
+                                            name='OCBoxset_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.OCBoxset_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='FRCBoxset_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดเครื่องมือ FRC Box set {''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='FRCBoxset_endo'
+                                            name='FRCBoxset_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.FRCBoxset_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='CFile21_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            C - File 21 เบอร์ ...{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='CFile21_endo'
+                                            name='CFile21_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.CFile21_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='CFile25_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            C - File 25 เบอร์ ...{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='CFile25_endo'
+                                            name='CFile25_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.CFile25_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HFile21mm1540_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            H - File 21 mm.(15-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HFile21mm1540_endo'
+                                            name='HFile21mm1540_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HFile21mm1540_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HFile21mm4580_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            H - File 21 mm.(45-80){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HFile21mm4580_endo'
+                                            name='HFile21mm4580_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HFile21mm4580_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HFile25mm1540_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            H - File 25 mm.(15-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HFile25mm1540_endo'
+                                            name='HFile25mm1540_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HFile25mm1540_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='HFile25mm4580_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            H - File 25 mm.(45-80){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='HFile25mm4580_endo'
+                                            name='HFile25mm4580_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.HFile25mm4580_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='NitiFile21mm1540_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Niti - File 21 mm.(15-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='NitiFile21mm1540_endo'
+                                            name='NitiFile21mm1540_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.NitiFile21mm1540_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='NitiFile21mm4560_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Niti - File 21 mm.(45-60){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='NitiFile21mm4560_endo'
+                                            name='NitiFile21mm4560_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.NitiFile21mm4560_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='NitiFile25mm1540_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Niti - File 25 mm.(15-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='NitiFile25mm1540_endo'
+                                            name='NitiFile25mm1540_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.NitiFile25mm1540_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='NitiFile25mm4560_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Niti - File 25 mm.(45-60){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='NitiFile25mm4560_endo'
+                                            name='NitiFile25mm4560_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.NitiFile25mm4560_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile21mm840_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 21 mm.(8-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile21mm840_endo'
+                                            name='KFile21mm840_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile21mm840_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile21mm4580_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 21 mm.(45-80){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile21mm4580_endo'
+                                            name='KFile21mm4580_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile21mm4580_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile25mm840_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 25 mm.(8-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile25mm840_endo'
+                                            name='KFile25mm840_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile25mm840_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile25mm4580_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 25 mm.(45-80){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile25mm4580_endo'
+                                            name='KFile25mm4580_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile25mm4580_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile30mm840_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 30 mm.(8-40){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile30mm840_endo'
+                                            name='KFile30mm840_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile30mm840_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='KFile30mm4580_endo'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            K - File 30 mm.(45-80){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='KFile30mm4580_endo'
+                                            name='KFile30mm4580_endo'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.KFile30mm4580_endo}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+
+                    <Container style={{ fontSize: 15 }}>
+                        <div
+                            style={{
+                                flex: 1,
+                                height: 1,
+                                backgroundColor: '#D0D3D4',
+                                marginBottom: 10,
+                                marginTop: 10
+                            }}
+                        ></div>
+                        <div>
+                            <label style={{ fontSize: 25, marginLeft: 10, color: '#0047AB' }}>
+                                <h3> เครื่องมืองาน PERIO/OD </h3>
+                            </label>
+                        </div>
+                        <label
+                            style={{ marginLeft: 15, marginBottom: 15, color: '#0047AB', fontFamily: 'Mitr' }}
+                        >
+                            รายการ
+                        </label>
+                        <label
+                            style={{
+                                marginLeft: 475,
+                                marginBottom: 15,
+                                color: '#0047AB',
+                                fontFamily: 'Mitr'
+                            }}
+                        >
+                            รายการ
+                        </label>
+                        <div
+                            style={{
+                                flex: 1,
+                                height: 2,
+                                backgroundColor: '#D0D3D4',
+                                marginBottom: 30,
+                                marginTop: 10,
+                                fontFamily: 'Mitr'
+                            }}
+                        />
+                        <Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='testkit_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดตรวจ{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='testkit_periood'
+                                            name='testkit_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.testkit_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='backteethscalingkit_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุุดขูดหินปูนฟันหลัง{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='backteethscalingkit_periood'
+                                            name='backteethscalingkit_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.backteethscalingkit_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='sickelfrontteeth_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            sickel ฟันหน้า{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='sickelfrontteeth_periood'
+                                            name='sickelfrontteeth_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.sickelfrontteeth_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='sickelposteriorteethS204SD_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            sickel ฟันหลัง(S204SD){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='sickelposteriorteethS204SD_periood'
+                                            name='sickelposteriorteethS204SD_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={
+                                                formik.values.sickelposteriorteethS204SD_periood
+                                            }
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='frontteethcuretteSG34_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            curette ฟันหน้า (SG3/4){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='frontteethcuretteSG34_periood'
+                                            name='frontteethcuretteSG34_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.frontteethcuretteSG34_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='AfterFive_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            After Five No....{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='AfterFive_periood'
+                                            name='AfterFive_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.AfterFive_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='MiniFive_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Mini Five No....{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='MiniFive_periood'
+                                            name='MiniFive_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.MiniFive_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='PeriodontalProbeUNC15_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Periodontal Probe (UNC15){''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='PeriodontalProbeUNC15_periood'
+                                            name='PeriodontalProbeUNC15_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.PeriodontalProbeUNC15_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='WHOProbe_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            WHO Probe{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='WHOProbe_periood'
+                                            name='WHOProbe_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.WHOProbe_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='NeberProbe_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Neber Probe{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='NeberProbe_periood'
+                                            name='NeberProbe_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.NeberProbe_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='pourthemedicine_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ถ่วยนํ้ายา{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='pourthemedicine_periood'
+                                            name='pourthemedicine_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.pourthemedicine_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Dappendish_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Dappen dish{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Dappendish_periood'
+                                            name='Dappendish_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Dappendish_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Mouthprop_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Mouth prop{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Mouthprop_periood'
+                                            name='Mouthprop_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Mouthprop_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='AnestheticSyringe_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Syring ยาชา{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='AnestheticSyringe_periood'
+                                            name='AnestheticSyringe_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.AnestheticSyringe_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='whetstone_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หินลับ{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='whetstone_periood'
+                                            name='whetstone_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.whetstone_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='P5scraper_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัวขูด P5{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='P5scraper_periood'
+                                            name='P5scraper_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.P5scraper_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='P10scraper_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            หัวขูด P10{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='P10scraper_periood'
+                                            name='P10scraper_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.P10scraper_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rabbercup_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Rabber cup{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rabbercup_periood'
+                                            name='Rabbercup_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rabbercup_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Rabberbrush_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Rabber brush{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Rabberbrush_periood'
+                                            name='Rabberbrush_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Rabberbrush_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='cottonbud_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ไม้พันสำลี{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='cottonbud_periood'
+                                            name='cottonbud_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.cottonbud_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Airotor_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Airotor{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Airotor_periood'
+                                            name='Airotor_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Airotor_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Contra_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Contra{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Contra_periood'
+                                            name='Contra_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Contra_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Phophy_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Phophy{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Phophy_periood'
+                                            name='Phophy_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Phophy_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Straight_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Straight{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Straight_periood'
+                                            name='Straight_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Straight_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Triplesyring_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Triple syring{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Triplesyring_periood'
+                                            name='Triplesyring_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Triplesyring_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='ruler_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ไม้บรรทัด{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='ruler_periood'
+                                            name='ruler_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.ruler_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='Retractor_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            Retractor{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='Retractor_periood'
+                                            name='Retractor_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.Retractor_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='FabricMiddlepunch_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ผ้าเจาะกลาง{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='FabricMiddlepunch_periood'
+                                            name='FabricMiddlepunch_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.FabricMiddlepunch_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='veil_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ผ้าคลุม{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='veil_periood'
+                                            name='veil_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.veil_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='unitcleaningkit_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดทำความสะอาดยูนิต{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='unitcleaningkit_periood'
+                                            name='unitcleaningkit_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.unitcleaningkit_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='gumsurgerykit_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดผ่าตัดเหงือก{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='gumsurgerykit_periood'
+                                            name='gumsurgerykit_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.gumsurgerykit_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <label
+                                            htmlFor='gumsurgicalgown_periood'
+                                            style={{ color: '#0047AB', fontFamily: 'Mitr' }}
+                                        >
+                                            ชุดผ้าผ่าตัดเหงือก{''}
+                                        </label>
+                                    </Col>
+                                    <Col style={{ marginTop: -10 }}>
+                                        <select
+                                            style={{ backgroundColor: '#FFFFFF' }}
+                                            id='gumsurgicalgown_periood'
+                                            name='gumsurgicalgown_periood'
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.gumsurgicalgown_periood}
+                                        >
+                                            <option value='' label='เลือกจำนวน' />
+                                            <option value='1' label='1' />
+                                            <option value='2' label='2' />
+                                            <option value='3' label='3' />
+                                            <option value='4' label='4' />
+                                            <option value='5' label='5' />
+                                            <option value='6' label='6' />
+                                            <option value='7' label='7' />
+                                            <option value='8' label='8' />
+                                            <option value='9' label='9' />
+                                            <option value='10' label='10' />
+                                        </select>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <br />
+                    <center>
+                        <button
+                            className='But'
+                            style={{ backgroundColor: '#0047AB', marginBottom: 10, fontFamily: 'Mitr' }}
+                            type='submit'
+                        >
+                            Submit
+                        </button>
+                    </center>
+
                 </form>
-            </StyleModal>
-        </div>
+            </Container>
+            </Modal.Body>
+        </Modal>
     )
 }
 

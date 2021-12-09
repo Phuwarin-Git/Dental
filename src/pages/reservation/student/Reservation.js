@@ -270,7 +270,7 @@ const StudentRes = () => {
                 return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
                     console.log("Res Create Details :", res)
                     setOpen(true);
-                    handleClose();
+                    // handleClose();
                 })
 
             } else {
