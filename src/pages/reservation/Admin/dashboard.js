@@ -19,12 +19,29 @@ import { CloseButton } from 'react-bootstrap';
 import Input from './reservationCss/InputRes'
 import StyledCreate from './reservationCss/ModalCreate';
 
+import MaterialTable from "material-table";
+
+
 const AdminDashboard = () => {
     const { user } = useContext(AuthContext);
     const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
     const [modalIsOpen, setIsOpen] = useState(false);
+
+    const [columns, setColumns] = useState([
+        { title: 'ชื่อ-สกุล', field: 'first_name' },
+        { title: 'E-mail', field: 'email', type: 'email' },
+        {
+            title: 'ตำแหน่ง',
+            field: 'role',
+            lookup: { studentadmin: 'studentadmin', admin: 'admin', AdminTool: 'AdminTool' },
+        },
+    ]);
+
+    const [data, setData] = useState([]);
+
+
 
     useEffect(() => {
         getDetails();
@@ -45,7 +62,14 @@ const AdminDashboard = () => {
                 return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
             })
 
-            return setUser(filterTeacher);
+            setUser(filterTeacher);
+
+            let filteredData = []
+            filterTeacher.map(item => {
+                return filteredData.push({ id: item.id, student_id: item.student_id, first_name: item.first_name, student_year: item.student_year, email: item.email, role: item.role })
+            })
+
+            setData(filteredData);
         });
     }
 
@@ -57,22 +81,17 @@ const AdminDashboard = () => {
 
     async function deleteLimitCase(id) {
         console.log("Delete ID :", id)
-        const confirmBox = window.confirm("ต้องการลบผู้ใช้งานนี้หรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            await axios.delete("http://localhost:3000/name/realdelete/" + id);
-            return axios.get("http://localhost:3000/name/find/all").then((item) => {
+        await axios.delete("http://localhost:3000/name/realdelete/" + id);
+        return axios.get("http://localhost:3000/name/find/all").then((item) => {
 
-                let setTeacher = item.data;
-                let filterTeacher = setTeacher.filter((item) => {
-                    return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
-                })
+            let setTeacher = item.data;
+            let filterTeacher = setTeacher.filter((item) => {
+                return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+            })
 
-                return setUser(filterTeacher);
-            });
-        } else {
-            console.log(confirmBox)
-        }
+            return setData(filterTeacher);
+        });
+
     }
 
     function openModal() {
@@ -99,6 +118,7 @@ const AdminDashboard = () => {
                 let filterTeacher = setTeacher.filter((item) => {
                     return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
                 })
+                setData(filterTeacher)
                 return setUser(filterTeacher);
             });
             return closeModal();
@@ -162,6 +182,22 @@ const AdminDashboard = () => {
     }
 
 
+    async function updatetheAdmin(id, name, email, role) {
+
+        let getName = { first_name: name }
+        let getEmail = { email: email }
+        let getRole = { role: role }
+
+        console.log("id :", id, " getName :", getName, " getEmail :", getEmail, " getRole :", getRole)
+
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getName);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getEmail);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getRole);
+
+        return getDetails();
+    }
+
+
 
     return (
 
@@ -184,50 +220,110 @@ const AdminDashboard = () => {
                 </Container>
             </Navbar>
 
-            <div>
-                <br />
+            <div className="PaddingDiv">
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
+                    <h1 style={{ color: '#0080ff', fontWeight: 'bold', marginBottom: '10px' }}>รายชื่อผู้ใช้งาน</h1>
 
-                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
-                    <h1 style={{ color: '#0080ff', fontWeight: 'bold' }}>รายชื่อผู้ใช้งาน</h1>
-                    <Row style={{ marginBottom: '30px', marginTop: '-30px' }}>
+                    <MaterialTable
+                        title="Mae Fah Luang University Dental Clinic"
+                        columns={columns}
+                        data={data}
+                        options={{
+                            actionsColumnIndex: -1,
+                            headerStyle: {
+                                fontFamily: "Mitr",
+                                fontWeight: 'bold',
+                                fontSize: '18px',
+                            }, tableLayout: 'auto'
+                        }}
+                        localization={{
+                            body: {
+                                emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
+                                addTooltip: 'เพิ่มรายชื่อผู้ใช้งาน',
+                                deleteTooltip: 'Löschen',
+                                editTooltip: 'Bearbeiten',
+                                filterRow: {
+                                    filterTooltip: 'Filter'
+                                },
+                                editRow: {
+                                    deleteText: 'ต้องการลบรายชื่อนี้หรือไม่ ?',
+                                    cancelTooltip: 'Abbrechen',
+                                    saveTooltip: 'Speichern'
+                                }
+                            },
+                            grouping: {
+                                placeholder: 'Spalten ziehen ...',
+                                groupedBy: 'Gruppiert nach:'
+                            },
+                            header: {
+                                actions: 'แก้ไข'
+                            },
+                            pagination: {
+                                labelDisplayedRows: '{from}-{to} จาก {count}',
+                                labelRowsSelect: 'แถว',
+                                labelRowsPerPage: 'Zeilen pro Seite:',
+                                firstAriaLabel: 'Erste Seite',
+                                firstTooltip: 'Erste Seite',
+                                previousAriaLabel: 'Vorherige Seite',
+                                previousTooltip: 'Vorherige Seite',
+                                nextAriaLabel: 'Nächste Seite',
+                                nextTooltip: 'Nächste Seite',
+                                lastAriaLabel: 'Letzte Seite',
+                                lastTooltip: 'Letzte Seite'
+                            },
+                            toolbar: {
+                                addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                nRowsSelected: '{0} Zeile(n) ausgewählt',
+                                showColumnsTitle: 'Zeige Spalten',
+                                showColumnsAriaLabel: 'Zeige Spalten',
+                                exportTitle: 'Export',
+                                exportAriaLabel: 'Export',
+                                exportName: 'Export als CSV',
+                                searchTooltip: 'ค้นหา',
+                                searchPlaceholder: 'ค้นหา'
+                            }
+                        }}
+                        editable={{
+                            onRowAdd: newData =>
+                                new Promise((resolve, reject) => {
+                                    console.log("newData :", newData)
+                                    let student_id = { student_id: 12345678 }
+                                    let first_name = newData.first_name;
+                                    let email = newData.email;
+                                    let student_year = null;
+                                    let role = newData.role;
+                                    submitForm(student_id, first_name, student_year, email, role)
+                                    resolve();
+                                }),
+                            onRowUpdate: (newData, oldData) =>
+                                new Promise((resolve, reject) => {
+                                    console.log("newData :", newData)
+                                    updatetheAdmin(oldData.id, newData.first_name, newData.email, newData.role)
+                                    resolve();
+
+                                }),
+                            onRowDelete: oldData =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        deleteLimitCase(oldData.id)
+
+                                        resolve()
+                                    }, 1000)
+                                }),
+                        }}
+                    />
+
+                    <Row style={{ marginBottom: '30px', }}>
 
                         <Col></Col>
                         <Col></Col>
-                        <Col style={{ marginRight: '-70px' }}>
+                        <Col style={{}}>
                         </Col>
                         <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
-                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งาน</Button>
+                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งานด้วย Excel</Button>
                         </Col>
                     </Row>
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                        <thead className='theadAdmin'>
-                            <tr>
-                                <th>ชื่อ-สกุล</th>
-                                <th>E-mail</th>
-                                <th>ตำแหน่ง</th>
-                                <th >แก้ไขรายละเอียด</th>
-                                <th>ลบ</th>
-                            </tr>
-                        </thead>
-                        {userDetails.map(item => {
-                            return editingIndex.includes(item.id) ? (
-                                <UpdateAdmin item={item}
-                                    editingIndex={editingIndex}
-                                    setEditingIndex={setEditingIndex}
-                                    getDetails={getDetails()}
-                                />) : (<tbody key={item.id}>
-                                    {console.log("-----rerender----")}
-                                    <tr>
-                                        <td className='tdStudent'>{item.first_name}</td>
-                                        <td className='tdStudent'>{item.email}</td>
-                                        <td className='tdStudent'>{item.role}</td>
-                                        <td className='tdStudent'><Button onClick={() => changeStatus(item.id)}>แก้ไข</Button></td>
-                                        <td className='tdStudent'><Button onClick={() => deleteLimitCase(item.id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td>
-                                    </tr>
-                                </tbody>)
-                        })}
 
-                    </Table>
                 </Container>
                 <StyledCreate
                     isOpen={modalIsOpen}
