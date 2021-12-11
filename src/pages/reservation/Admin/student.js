@@ -22,7 +22,7 @@ import StyledCreate from './reservationCss/ModalCreate';
 import MaterialTable from "material-table";
 
 
-const AdminDashboard = () => {
+const AdminStudent = () => {
     const { user } = useContext(AuthContext);
     const [userDetails, setUser] = useState([]);
     const [userExcel, setUserExcel] = useState([]);
@@ -30,12 +30,19 @@ const AdminDashboard = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const [columns, setColumns] = useState([
+        { title: 'รหัสนักศึกษา', field: 'student_id' },
         { title: 'ชื่อ-สกุล', field: 'first_name' },
+        {
+            title: 'ชั้นปี',
+            field: 'student_year',
+            lookup: { 3: '3', 4: '4', 5: '5' },
+        },
         { title: 'E-mail', field: 'email', type: 'email' },
         {
             title: 'ตำแหน่ง',
             field: 'role',
-            lookup: { studentadmin: 'studentadmin', admin: 'admin', AdminTool: 'AdminTool' },
+            editable: 'never',
+            lookup: { student: 'Student' },
         },
     ]);
 
@@ -59,7 +66,7 @@ const AdminDashboard = () => {
 
             let setTeacher = item.data;
             let filterTeacher = setTeacher.filter((item) => {
-                return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                return (item.role === "student")
             })
 
             setUser(filterTeacher);
@@ -86,7 +93,7 @@ const AdminDashboard = () => {
 
             let setTeacher = item.data;
             let filterTeacher = setTeacher.filter((item) => {
-                return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                return (item.role === "student")
             })
 
             return setData(filterTeacher);
@@ -103,28 +110,33 @@ const AdminDashboard = () => {
     }
 
     async function submitForm(student_id, first_name, student_year, email, role) {
-        const ApiSet = ({ student_id: 12345678, first_name: first_name, student_year: null, email: email, role: role })
+        const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
         console.log("Api set :", ApiSet)
-        const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
-                return console.log("Res Limit :", res)
-            })
-            await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("Name :", item.data)
-
-                let setTeacher = item.data;
-                let filterTeacher = setTeacher.filter((item) => {
-                    return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
-                })
-                setData(filterTeacher)
-                return setUser(filterTeacher);
-            });
-            return closeModal();
+        if (student_id === undefined || first_name === undefined || student_year === undefined || email === undefined) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
         } else {
-            console.log(confirmBox)
+            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
+                })
+                await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                    console.log("Name :", item.data)
+
+                    let setTeacher = item.data;
+                    let filterTeacher = setTeacher.filter((item) => {
+                        return (item.role === "student")
+                    })
+                    setData(filterTeacher)
+                    return setUser(filterTeacher);
+                });
+                return closeModal();
+            } else {
+                console.log(confirmBox)
+            }
         }
+
 
     }
 
@@ -182,15 +194,17 @@ const AdminDashboard = () => {
     }
 
 
-    async function updatetheAdmin(id, name, email, role) {
-
+    async function updatetheStudent(id, studentId, name, studentYear, email, role) {
+        let getStudentID = { student_id: studentId }
         let getName = { first_name: name }
+        let getStudentYear = { student_year: studentYear }
         let getEmail = { email: email }
         let getRole = { role: role }
 
         console.log("id :", id, " getName :", getName, " getEmail :", getEmail, " getRole :", getRole)
-
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getStudentID);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getName);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getStudentYear);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getEmail);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getRole);
 
@@ -210,9 +224,9 @@ const AdminDashboard = () => {
             <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
                 <Container >
                     <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUser">นักศึกษา</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminDashboard">แอดมิน</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminProfile">อาจารย์</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudent">นักศึกษา</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudentAdmin">แอดมิน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminTeacher">อาจารย์</Nav.Link>
                         <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
                         <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
@@ -286,21 +300,24 @@ const AdminDashboard = () => {
                         editable={{
                             onRowAdd: newData =>
                                 new Promise((resolve, reject) => {
-                                    console.log("newData :", newData)
-                                    let student_id = { student_id: 12345678 }
-                                    let first_name = newData.first_name;
-                                    let email = newData.email;
-                                    let student_year = null;
-                                    let role = newData.role;
-                                    submitForm(student_id, first_name, student_year, email, role)
-                                    resolve();
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        let student_id = newData.student_id;
+                                        let first_name = newData.first_name;
+                                        let student_year = newData.student_year;
+                                        let email = newData.email;
+                                        let role = newData.role;
+                                        submitForm(student_id, first_name, student_year, email, role)
+                                        resolve();
+                                    }, 1000)
                                 }),
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
-                                    console.log("newData :", newData)
-                                    updatetheAdmin(oldData.id, newData.first_name, newData.email, newData.role)
-                                    resolve();
-
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        updatetheStudent(oldData.id, newData.student_id, newData.first_name, newData.student_year, newData.email, newData.role)
+                                        resolve();
+                                    }, 1000)
                                 }),
                             onRowDelete: oldData =>
                                 new Promise((resolve, reject) => {
@@ -412,4 +429,4 @@ const AdminDashboard = () => {
         </div>
     )
 }
-export default AdminDashboard;
+export default AdminStudent;

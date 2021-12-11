@@ -1,0 +1,423 @@
+import React, { useContext, useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table'
+import { AuthContext } from '../../../App';
+import axios from "axios";
+import { Button } from 'react-bootstrap';
+import * as XLSX from "xlsx";
+import Navbar from 'react-bootstrap/Navbar'
+import { Nav, Container } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import ModalUser from './confirmModal/modalUser';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { BsSearch } from "react-icons/bs";
+import UpdateAdmin from './updateAdmin'
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { CloseButton } from 'react-bootstrap';
+import Input from './reservationCss/InputRes'
+import StyledCreate from './reservationCss/ModalCreate';
+
+import MaterialTable from "material-table";
+
+
+const AdminStudentAdmin = () => {
+    const { user } = useContext(AuthContext);
+    const [userDetails, setUser] = useState([]);
+    const [userExcel, setUserExcel] = useState([]);
+    const [editingIndex, setEditingIndex] = useState([]);
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const [columns, setColumns] = useState([
+        { title: 'ชื่อ-สกุล', field: 'first_name' },
+        { title: 'E-mail', field: 'email', type: 'email' },
+        {
+            title: 'ตำแหน่ง',
+            field: 'role',
+            lookup: { studentadmin: 'Student Admin', admin: 'Admin', AdminTool: 'Admin Tool' },
+        },
+    ]);
+
+    const [data, setData] = useState([]);
+
+
+
+    useEffect(() => {
+        getDetails();
+        console.log("userDetails :", userDetails)
+    }, [user])
+
+    useEffect(() => {
+        console.log("editingIndex :", editingIndex)
+    }, [editingIndex])
+
+
+    const getDetails = () => {
+        axios.get("http://localhost:3000/name/find/all").then((item) => {
+            console.log("Name :", item.data)
+
+            let setTeacher = item.data;
+            let filterTeacher = setTeacher.filter((item) => {
+                return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+            })
+
+            setUser(filterTeacher);
+
+            let filteredData = []
+            filterTeacher.map(item => {
+                return filteredData.push({ id: item.id, student_id: item.student_id, first_name: item.first_name, student_year: item.student_year, email: item.email, role: item.role })
+            })
+
+            setData(filteredData);
+        });
+    }
+
+
+    function changeStatus(ID) {
+        setEditingIndex([ID])
+    }
+
+
+    async function deleteLimitCase(id) {
+        console.log("Delete ID :", id)
+        await axios.delete("http://localhost:3000/name/realdelete/" + id);
+        return axios.get("http://localhost:3000/name/find/all").then((item) => {
+
+            let setTeacher = item.data;
+            let filterTeacher = setTeacher.filter((item) => {
+                return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+            })
+
+            return setData(filterTeacher);
+        });
+
+    }
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    async function submitForm(student_id, first_name, student_year, email, role) {
+        if (first_name === undefined || email === undefined || role === undefined) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+        } else {
+            const ApiSet = ({ student_id: 12345678, first_name: first_name, student_year: null, email: email, role: role })
+            console.log("Api set :", ApiSet)
+            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
+                })
+                await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                    console.log("Name :", item.data)
+
+                    let setTeacher = item.data;
+                    let filterTeacher = setTeacher.filter((item) => {
+                        return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                    })
+                    setData(filterTeacher)
+                    return setUser(filterTeacher);
+                });
+                return closeModal();
+            } else {
+                console.log(confirmBox)
+            }
+        }
+
+
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            student_id: '',
+            first_name: '',
+            student_year: '',
+            email: '',
+            role: '',
+        },
+        validationSchema: Yup.object({
+            first_name: Yup.string()
+                .required('Required'),
+            email: Yup.string().email('Invalid email address')
+                .required('Required'),
+            role: Yup.string()
+                .required('Required'),
+
+
+        }),
+        onSubmit: values => {
+            return submitForm(values.student_id, values.first_name, values.student_year, values.email, values.role);
+        },
+    });
+
+
+    const readExcel = (file) => {
+        const promise = new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+
+            fileReader.onload = (e) => {
+                const bufferArray = e.target.result;
+
+                const wb = XLSX.read(bufferArray, { type: "buffer" });
+
+                const wsname = wb.SheetNames[0];
+
+                const ws = wb.Sheets[wsname];
+
+                const data = XLSX.utils.sheet_to_json(ws);
+
+                resolve(data);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+
+        promise.then((d) => {
+            setUserExcel(d);
+        });
+    }
+
+
+    async function updatetheAdmin(id, name, email, role) {
+
+        let getName = { first_name: name }
+        let getEmail = { email: email }
+        let getRole = { role: role }
+
+        console.log("id :", id, " getName :", getName, " getEmail :", getEmail, " getRole :", getRole)
+
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getName);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getEmail);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getRole);
+
+        return getDetails();
+    }
+
+
+
+    return (
+
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px' }}>
+            <nav style={{ background: '#0080ff' }}>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
+                </div>
+            </nav>
+            <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
+                <Container >
+                    <Nav className="me-auto">
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudent">นักศึกษา</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudentAdmin">แอดมิน</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminTeacher">อาจารย์</Nav.Link>
+                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
+
+            <div className="PaddingDiv">
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
+                    <h1 style={{ color: '#0080ff', fontWeight: 'bold', marginBottom: '10px' }}>รายชื่อผู้ใช้งาน</h1>
+
+                    <MaterialTable
+                        title="Mae Fah Luang University Dental Clinic"
+                        columns={columns}
+                        data={data}
+                        options={{
+                            actionsColumnIndex: -1,
+                            headerStyle: {
+                                fontFamily: "Mitr",
+                                fontWeight: 'bold',
+                                fontSize: '18px',
+                            }, tableLayout: 'auto'
+                        }}
+                        localization={{
+                            body: {
+                                emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
+                                addTooltip: 'เพิ่มรายชื่อผู้ใช้งาน',
+                                deleteTooltip: 'Löschen',
+                                editTooltip: 'Bearbeiten',
+                                filterRow: {
+                                    filterTooltip: 'Filter'
+                                },
+                                editRow: {
+                                    deleteText: 'ต้องการลบรายชื่อนี้หรือไม่ ?',
+                                    cancelTooltip: 'Abbrechen',
+                                    saveTooltip: 'Speichern'
+                                }
+                            },
+                            grouping: {
+                                placeholder: 'Spalten ziehen ...',
+                                groupedBy: 'Gruppiert nach:'
+                            },
+                            header: {
+                                actions: 'แก้ไข'
+                            },
+                            pagination: {
+                                labelDisplayedRows: '{from}-{to} จาก {count}',
+                                labelRowsSelect: 'แถว',
+                                labelRowsPerPage: 'Zeilen pro Seite:',
+                                firstAriaLabel: 'Erste Seite',
+                                firstTooltip: 'Erste Seite',
+                                previousAriaLabel: 'Vorherige Seite',
+                                previousTooltip: 'Vorherige Seite',
+                                nextAriaLabel: 'Nächste Seite',
+                                nextTooltip: 'Nächste Seite',
+                                lastAriaLabel: 'Letzte Seite',
+                                lastTooltip: 'Letzte Seite'
+                            },
+                            toolbar: {
+                                addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                nRowsSelected: '{0} Zeile(n) ausgewählt',
+                                showColumnsTitle: 'Zeige Spalten',
+                                showColumnsAriaLabel: 'Zeige Spalten',
+                                exportTitle: 'Export',
+                                exportAriaLabel: 'Export',
+                                exportName: 'Export als CSV',
+                                searchTooltip: 'ค้นหา',
+                                searchPlaceholder: 'ค้นหา'
+                            }
+                        }}
+                        editable={{
+                            onRowAdd: newData =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        let student_id = { student_id: 12345678 }
+                                        let first_name = newData.first_name;
+                                        let email = newData.email;
+                                        let student_year = null;
+                                        let role = newData.role;
+                                        submitForm(student_id, first_name, student_year, email, role)
+                                        resolve();
+                                    }, 1000)
+                                }),
+                            onRowUpdate: (newData, oldData) =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        updatetheAdmin(oldData.id, newData.first_name, newData.email, newData.role)
+                                        resolve();
+                                    }, 1000)
+                                }),
+                            onRowDelete: oldData =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        deleteLimitCase(oldData.id)
+
+                                        resolve()
+                                    }, 1000)
+                                }),
+                        }}
+                    />
+
+                    <Row style={{ marginBottom: '30px', }}>
+
+                        <Col></Col>
+                        <Col></Col>
+                        <Col style={{}}>
+                        </Col>
+                        <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
+                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งานด้วย Excel</Button>
+                        </Col>
+                    </Row>
+
+                </Container>
+                <StyledCreate
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="modal">
+                    <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
+                    <center>
+                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px' }}>รายละเอียดผู้ใช้</h1>
+                    </center>
+                    <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
+
+                        <form onSubmit={formik.handleSubmit}>
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ชื่อผู้ใช้งาน :&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="first_name"
+                                name="first_name"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.first_name}
+                            />
+                            {formik.touched.first_name && formik.errors.first_name ? (
+                                <div className="error">{formik.errors.first_name}</div>
+                            ) : null} <br />
+
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">Email :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="email"
+                                name="email"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                            />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div className="error">{formik.errors.email}</div>
+                            ) : null} <br />
+
+                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ตำแหน่ง :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <Input
+                                style={{ fontSize: '18px' }}
+                                id="role"
+                                name="role"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.role}
+                            />
+                            {formik.touched.role && formik.errors.role ? (
+                                <div className="error">{formik.errors.role}</div>
+                            ) : null} <br />
+
+
+                            <hr
+                                style={{
+                                    color: 'color',
+                                    backgroundColor: 'color',
+                                    height: '5',
+                                    width: '400px',
+                                    marginLeft: '-50px'
+
+                                }}
+                            />
+                            <div style={{ marginLeft: '50px' }}>
+                                <label style={{ marginRight: '10px', marginLeft: '-100px' }}>อัพโหลดโดย Excel : {" "}</label>
+                                <input style={{ marginBottom: '0px' }} type="file" onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }} />
+                            </div>
+
+                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px', marginTop: '-10px' }} className="But" type="submit">ยืนยัน</Button>
+                        </form>
+                    </div>
+                </StyledCreate>
+            </div>
+            {
+                userExcel.length != 0 ? (<div>
+                    {console.log("มาแล้ว :", userExcel)}
+                    <ModalUser excel={userExcel} setUser={setUser} /></div>) : (console.log("ยัง"))
+            }
+        </div>
+    )
+}
+export default AdminStudentAdmin;

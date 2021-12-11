@@ -74,7 +74,7 @@ const Login = () => {
             // console.log("Role :", details[0].role)
             return history.push('/StudentAdminDashboard')
         } if (details[0].role === "admin") {
-            return history.push('/AdminUser')
+            return history.push('/AdminStudent')
         } if (details[0].role === "AdminTool") {
             return history.push('/Adminconfirm')
         }
@@ -95,7 +95,7 @@ const Login = () => {
             <Navbar style={{ background: '#198CFF', paddingBottom: '5%' }} >
             </Navbar>
             <Container>
-                <h1 class="text-light" style={{ paddingLeft: '50px', fontFamily:'Mitr' }}> MFU Dental Unit Reservation</h1>
+                <h1 class="text-light" style={{ paddingLeft: '50px', fontFamily: 'Mitr' }}> MFU Dental Unit Reservation</h1>
                 <Row>
                     <Col xs={8} md={4} xl={6} style={{ maxWidth: '30%' }} >
 
@@ -111,12 +111,12 @@ const Login = () => {
                     <Col xs={6} md={4} style={{ marginLeft: '6%', marginTop: '10%' }}>
                         <div class="content" style={{ backgroundColor: 'white' }} >
                             <form onSubmit={checkAuth}>
-                                <h4 style={{ fontWeight: 'bold', fontSize: '25px', marginBottom: '20px', marginRight: '210px', fontFamily:'Mitr' }}>Sign in</h4>
-                                <p style={{ fontSize: '15px', marginLeft: '-100px', fontFamily:'Mitr' }}>Sign in to continue to our</p>
-                                <p style={{ fontSize: '15px', marginLeft: '-175px', marginBottom: '30px',marginTop:'-15px', fontFamily:'Mitr' }}>web application</p>
-                                <input style={{ fontSize: '20px', borderColor: '#198CFF', marginBottom: '30px', width: '300px', borderRadius: '5px', fontFamily:'Mitr' }} placeholder="username" onChange={usernameOnChange}></input><br />
-                                <input style={{ fontSize: '20px', borderColor: '#198CFF', width: '300px', borderRadius: '5px', fontFamily:'Mitr' }} type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
-                                <button style={{ fontSize: '20px', width: '300px', marginTop: '20px', backgroundColor: '#198CFF', paddingTop: '10px', paddingBlock: '10px', borderColor: 'white', borderRadius: '10px', fontFamily:'Mitr' }} type="submit" class="text-light">Login</button>
+                                <h4 style={{ fontWeight: 'bold', fontSize: '25px', marginBottom: '20px', marginRight: '210px', fontFamily: 'Mitr' }}>Sign in</h4>
+                                <p style={{ fontSize: '15px', marginLeft: '-100px', fontFamily: 'Mitr' }}>Sign in to continue to our</p>
+                                <p style={{ fontSize: '15px', marginLeft: '-175px', marginBottom: '30px', marginTop: '-15px', fontFamily: 'Mitr' }}>web application</p>
+                                <input style={{ fontSize: '20px', borderColor: '#198CFF', marginBottom: '30px', width: '300px', borderRadius: '5px', fontFamily: 'Mitr' }} placeholder="username" onChange={usernameOnChange}></input><br />
+                                <input style={{ fontSize: '20px', borderColor: '#198CFF', width: '300px', borderRadius: '5px', fontFamily: 'Mitr' }} type="password" placeholder="password" onChange={passwordOnChange}></input><br /><br />
+                                <button style={{ fontSize: '20px', width: '300px', marginTop: '20px', backgroundColor: '#198CFF', paddingTop: '10px', paddingBlock: '10px', borderColor: 'white', borderRadius: '10px', fontFamily: 'Mitr' }} type="submit" class="text-light">Login</button>
                             </form>
                         </div>
 
