@@ -23,6 +23,8 @@ import Input from './reservationCss/InputRes'
 import Selected from './reservationCss/SelectRes'
 import StyledCreate from './reservationCss/ModalCreate';
 
+import MaterialTable from "material-table";
+
 const AdminUnit = () => {
 
     const { user } = useContext(AuthContext);
@@ -31,6 +33,24 @@ const AdminUnit = () => {
     const [searchDate, setSearchDate] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
     const [modalIsOpen, setIsOpen] = useState(false);
+
+    const [data, setData] = useState([]);
+
+    const [columns, setColumns] = useState([
+        { title: 'ชื่อยูนิต', field: 'unit_code' },
+        {
+            title: 'ชั้น',
+            field: 'unit_floor',
+            lookup: { 1: '1', 2: '2', 3: '3', 4: '4' },
+        },
+        {
+            title: 'สถานะ',
+            field: 'unavailable_start_date',
+            lookup: { active: 'ปกติ', inactive: 'ปิดใช้งาน' },
+        },
+    ]);
+
+
 
     useEffect(() => {
         getDetails();
@@ -41,6 +61,14 @@ const AdminUnit = () => {
     const getDetails = () => {
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
             console.log("Unit :", item.data)
+
+            let res = item.data;
+            let filteredData = []
+            res.map(item => {
+                return filteredData.push({ unit_id: item.unit_id, unit_code: item.unit_code, unit_floor: item.unit_floor, unavailable_start_date: item.unavailable_start_date })
+            })
+
+            setData(filteredData);
             return setUnit(item.data);
         });
     }
@@ -75,31 +103,25 @@ const AdminUnit = () => {
         });
     }
 
-    // async function onChangeSearch(e) {
-    //     e.preventDefault();
-    //     await axios.getaxios.get("http://localhost:3000/unit/find/all").then((item) => {
-    //         console.log("new Unit ==> :", item.unit_code)
-    //         return setUnit(item.unit_code);
-    //     });
-    //     console.log("Change Unit :", e.target.value)
-    //     setSearchDate(e.target.value)
-    // }
-
-    // function Searching() {
-    //     console.log("Searching :", searchDate)
-    //     const checking = unit.filter((item) => {
-    //         return item.unit_code === searchDate
-    //     })
-    //     console.log("Filter Unit", checking)
-    //     setUnit(checking)
-    // }
-
     function checkActive(status) {
         if (status === "active") {
             return true;
         } else {
             return false;
         }
+    }
+
+    async function updatetheUnit(unit_id, unitCode, unitFloor, active) {
+        let Code = { unit_code: unitCode }
+        let Floor = { unit_floor: unitFloor }
+        let Active = { unavailable_start_date: active }
+
+        console.log("id :", unit_id, " code :", Code, " floor :", Floor, " status :", Active)
+        await axios.put("http://localhost:3000/unit/updateUnit/" + unit_id, Code);
+        await axios.put("http://localhost:3000/unit/updateUnit/" + unit_id, Floor);
+        await axios.put("http://localhost:3000/unit/updateUnit/" + unit_id, Active);
+
+        return getDetails();
     }
 
     async function ChangeStatus(unit_id, originalStatus) {
@@ -120,19 +142,14 @@ const AdminUnit = () => {
     }
 
 
-    async function deleteLimitCase(unit_id) {
+    async function deleteUnit(unit_id) {
         console.log("Delete ID :", unit_id)
-        const confirmBox = window.confirm("ต้องการลบ Unit นี้หรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            await axios.delete("http://localhost:3000/unit/realdelete/" + unit_id);
-            return axios.get("http://localhost:3000/unit/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUnit(item.data);
-            });
-        } else {
-            console.log(confirmBox)
-        }
+        await axios.delete("http://localhost:3000/unit/realdelete/" + unit_id);
+        await axios.get("http://localhost:3000/unit/find/all").then((item) => {
+            console.log("new Limit ==> :", item.data)
+            return setUnit(item.data);
+        });
+        getDetails();
     }
 
     function openModal() {
@@ -143,24 +160,27 @@ const AdminUnit = () => {
         setIsOpen(false);
     }
 
-    async function submitForm(unit_code, unit_floor) {
-        console.log("Unit Form :", unit_code, unit_floor);
-        const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: 'active' })
-        const confirmBox = window.confirm("ต้องการยืนยันการเพิ่ม Unit หรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
-                return console.log("Res Limit :", res)
-            })
-            await axios.get("http://localhost:3000/unit/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUnit(item.data);
-            });
-            return closeModal();
+    async function submitForm(unit_code, unit_floor, unavailable_start_date) {
+        if (unit_code === undefined || unit_floor === undefined || unavailable_start_date === undefined) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
         } else {
-            console.log(confirmBox)
+            console.log("Unit Form :", unit_code, unit_floor);
+            const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: unavailable_start_date })
+            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่ม Unit หรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
+                })
+                await axios.get("http://localhost:3000/unit/find/all").then((item) => {
+                    console.log("new Limit ==> :", item.data)
+                    return setUnit(item.data);
+                });
+                getDetails();
+            } else {
+                console.log(confirmBox)
+            }
         }
-
     }
 
     const formik = useFormik({
@@ -200,37 +220,102 @@ const AdminUnit = () => {
                     </Nav>
                 </Container>
             </Navbar>
+            <br />
 
-            <div>
-                <br />
-
-                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minWidth: '1500px' }}>
+            <div className="PaddingDiv">
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
                     <h1 style={{ color: '#0080ff', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-                    {/* <Col sm={10}>
-                        <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหายูนิต : </label>
-                        <input
-                            style={{ fontSize: '18px' }}
-                            type="text"
-                            class="searchTerm"
-                            id="input_text"
-                            placeholder="ชื่อ Unit"
-                        // onChange={onChangeSearch}
-                        >
-                        </input>
-                        <button type="submit" class="searchButton">
-                            <BsSearch />
-                        </button>
 
-                    </Col>
-                    <Row style={{ marginBottom: '20px', marginTop: '-30px' }}>
-                        <Col style={{ marginRight: '-70px' }}>
+                    <Button style={{ marginBottom: '10px' }} onClick={() => openModal()}>เพิ่ม Unit</Button>
 
-                        </Col> */}
+                    <MaterialTable
+                        title="Mae Fah Luang University Dental Clinic"
+                        columns={columns}
+                        data={data}
+                        options={{
+                            actionsColumnIndex: -1,
+                            headerStyle: {
+                                fontFamily: "Mitr",
+                                fontWeight: 'bold',
+                                fontSize: '18px',
+                            }, tableLayout: 'auto'
+                        }}
+                        localization={{
+                            body: {
+                                emptyDataSourceMessage: 'ไม่มีรายชื่อเก้าอี้',
+                                addTooltip: 'เพิ่มเก้าอี้ทันตกรรม',
+                                deleteTooltip: 'Löschen',
+                                editTooltip: 'Bearbeiten',
+                                filterRow: {
+                                    filterTooltip: 'Filter'
+                                },
+                                editRow: {
+                                    deleteText: 'ต้องการลบเก้าอี้ทันตกรรมนี้หรือไม่ ?',
+                                    cancelTooltip: 'Abbrechen',
+                                    saveTooltip: 'Speichern'
+                                }
+                            },
+                            grouping: {
+                                placeholder: 'Spalten ziehen ...',
+                                groupedBy: 'Gruppiert nach:'
+                            },
+                            header: {
+                                actions: 'แก้ไข'
+                            },
+                            pagination: {
+                                labelDisplayedRows: '{from}-{to} จาก {count}',
+                                labelRowsSelect: 'แถว',
+                                labelRowsPerPage: 'Zeilen pro Seite:',
+                                firstAriaLabel: 'Erste Seite',
+                                firstTooltip: 'Erste Seite',
+                                previousAriaLabel: 'Vorherige Seite',
+                                previousTooltip: 'Vorherige Seite',
+                                nextAriaLabel: 'Nächste Seite',
+                                nextTooltip: 'Nächste Seite',
+                                lastAriaLabel: 'Letzte Seite',
+                                lastTooltip: 'Letzte Seite'
+                            },
+                            toolbar: {
+                                addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                nRowsSelected: '{0} Zeile(n) ausgewählt',
+                                showColumnsTitle: 'Zeige Spalten',
+                                showColumnsAriaLabel: 'Zeige Spalten',
+                                exportTitle: 'Export',
+                                exportAriaLabel: 'Export',
+                                exportName: 'Export als CSV',
+                                searchTooltip: 'ค้นหา',
+                                searchPlaceholder: 'ค้นหา'
+                            }
+                        }}
+                        editable={{
+                            onRowAdd: newData =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        submitForm(newData.unit_code, newData.unit_floor, newData.unavailable_start_date)
+                                        resolve();
+                                    }, 1000)
+                                }),
+                            onRowUpdate: (newData, oldData) =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        console.log("newData :", newData)
+                                        updatetheUnit(oldData.unit_id, newData.unit_code, newData.unit_floor, newData.unavailable_start_date)
+                                        resolve();
+                                    }, 1000)
+                                }),
+                            onRowDelete: oldData =>
+                                new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        deleteUnit(oldData.unit_id)
+                                        resolve()
+                                    }, 1000)
+                                }),
+                        }}
+                    />
 
-                    <Button style={{ marginTop: '-50px', marginLeft: '1000px', marginBottom: '10px' }} onClick={() => openModal()}>เพิ่ม Unit</Button>
 
-
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '80%' }}>
+                    {/* <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '80%' }}>
                         <thead className='theadAdmin'>
                             <tr>
                                 <th>ชื่อยูนิต</th>
@@ -268,7 +353,7 @@ const AdminUnit = () => {
                                 </tbody>)
                         })}
 
-                    </Table>
+                    </Table> */}
                 </Container>
                 <StyledCreate
                     isOpen={modalIsOpen}

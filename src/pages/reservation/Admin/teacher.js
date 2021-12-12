@@ -225,6 +225,7 @@ const AdminTeacher = () => {
                     </Nav>
                 </Container>
             </Navbar>
+            <br />
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
