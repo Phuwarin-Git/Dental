@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 import Pagination from 'react-bootstrap/Pagination'
+
 import MaterialTable from "material-table";
 
 // หา Sumary ของแต่ละ case ใน details ของแต่ละวันก่อน

@@ -9,10 +9,39 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
 
+import MaterialTable from "material-table";
+
 const Limit = ({ setIsOpen }) => {
     const { user, limit, setLimit, currentDate, currentMonth } = useContext(AuthContext);
     const [searchDate, setSearchDate] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
+
+    const [columns, setColumns] = useState([
+        {
+            title: 'วันที่', field: 'date', cellStyle: {
+                minWidth: 140,
+            },
+        },
+        {
+            title: 'เวลา', field: 'time', cellStyle: {
+                minWidth: 125,
+            },
+        },
+        { title: 'OD', field: 'od', type: 'number' },
+        { title: 'TMD', field: 'tmd', type: 'number' },
+        { title: 'OPER', field: 'oper', type: 'number' },
+        { title: 'PERIO', field: 'perio', type: 'number' },
+        { title: 'SUR', field: 'sur', type: 'number' },
+        { title: 'PROSTH', field: 'prosth', type: 'number' },
+        { title: 'ENDO', field: 'endo', type: 'number' },
+        { title: 'PEDO', field: 'pedo', type: 'number' },
+        { title: 'X-RAY', field: 'xray', type: 'number' },
+        { title: 'OM', field: 'om', type: 'number' },
+        { title: 'ORTHO', field: 'ortho', type: 'number' },
+
+    ]);
+
+    const [data, setData] = useState([]);
 
 
     useEffect(() => {
@@ -35,7 +64,14 @@ const Limit = ({ setIsOpen }) => {
                 let parsed = parseInt(digitData)
                 return (parsed >= currentMonth && digitRealDate >= thisDate)
             })
-            // && digitRealDate=>
+
+            // let filteredData = []
+            // filterMonth.map(item => {
+            //     return filteredData.push({ id: item.id, student_id: item.student_id, first_name: item.first_name, student_year: item.student_year, email: item.email, role: item.role })
+            // })
+
+            setData(filterMonth);
+
             return setLimit(filterMonth);
         });
     }
@@ -122,30 +158,102 @@ const Limit = ({ setIsOpen }) => {
 
     return (
         <div >
-            <Row>
-                <Col style={{ marginLeft: '100px' }} sm={10}>
-                    <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
+            <MaterialTable
+                title="Mae Fah Luang University Dental Clinic"
+                columns={columns}
+                data={data}
+                options={{
+                    actionsColumnIndex: -1,
+                    headerStyle: {
+                        fontFamily: "Mitr",
+                        fontWeight: 'bold',
+                        fontSize: '18px',
+                    }, tableLayout: 'auto'
+                }}
+                localization={{
+                    body: {
+                        emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
+                        addTooltip: 'เพิ่มรายชื่อผู้ใช้งาน',
+                        deleteTooltip: 'Löschen',
+                        editTooltip: 'Bearbeiten',
+                        filterRow: {
+                            filterTooltip: 'Filter'
+                        },
+                        editRow: {
+                            deleteText: 'ต้องการลบรายชื่อนี้หรือไม่ ?',
+                            cancelTooltip: 'Abbrechen',
+                            saveTooltip: 'Speichern'
+                        }
+                    },
+                    grouping: {
+                        placeholder: 'Spalten ziehen ...',
+                        groupedBy: 'Gruppiert nach:'
+                    },
+                    header: {
+                        actions: 'แก้ไข'
+                    },
+                    pagination: {
+                        labelDisplayedRows: '{from}-{to} จาก {count}',
+                        labelRowsSelect: 'แถว',
+                        labelRowsPerPage: 'Zeilen pro Seite:',
+                        firstAriaLabel: 'Erste Seite',
+                        firstTooltip: 'Erste Seite',
+                        previousAriaLabel: 'Vorherige Seite',
+                        previousTooltip: 'Vorherige Seite',
+                        nextAriaLabel: 'Nächste Seite',
+                        nextTooltip: 'Nächste Seite',
+                        lastAriaLabel: 'Letzte Seite',
+                        lastTooltip: 'Letzte Seite'
+                    },
+                    toolbar: {
+                        addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                        nRowsSelected: '{0} Zeile(n) ausgewählt',
+                        showColumnsTitle: 'Zeige Spalten',
+                        showColumnsAriaLabel: 'Zeige Spalten',
+                        exportTitle: 'Export',
+                        exportAriaLabel: 'Export',
+                        exportName: 'Export als CSV',
+                        searchTooltip: 'ค้นหา',
+                        searchPlaceholder: 'ค้นหา'
+                    }
+                }}
+                editable={{
+                    onRowAdd: newData =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                console.log("newData :", newData)
+                                let student_id = newData.student_id;
+                                let first_name = newData.first_name;
+                                let student_year = newData.student_year;
+                                let email = newData.email;
+                                let role = newData.role;
+                                // submitForm(student_id, first_name, student_year, email, role)
+                                resolve();
+                            }, 1000)
+                        }),
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                console.log("newData :", newData)
+                                // updatetheStudent(oldData.id, newData.student_id, newData.first_name, newData.student_year, newData.email, newData.role)
+                                resolve();
+                            }, 1000)
+                        }),
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                deleteLimitCase(oldData.id)
 
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="date"
-                        min={currentDate}
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ค้นหาวันที่"
-                        onChange={onChangeSearch}
-                    >
-                    </input>
-                    <button onClick={() => Searching()} type="submit" class="searchButton">
-                        <BsSearch />
-                    </button></Col>
-                <Col sm={2}>
-                    <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '145px' }}>กำหนดภาระงาน</Button>
-                </Col>
-            </Row>
+                                resolve()
+                            }, 1000)
+                        }),
+                }}
+            />
+            <Button onClick={() => openModal()} style={{ backgroundColor: '#198CFF', fontWeight: 'bold', marginLeft: '1200px', marginTop: '-60px', width: '145px' }}>กำหนดภาระงาน</Button>
 
 
-            <Table striped bordered hover variant="" style={{ marginTop: '10px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
+
+            {/* <Table striped bordered hover variant="" style={{ marginTop: '10px', marginLeft: 'auto', marginRight: 'auto', maxWidth: '100%' }}>
                 <thead className='theadAdmin'>
                     <tr style={{ fontSize: '18px' }}>
                         <th>วันที่</th>
@@ -192,7 +300,7 @@ const Limit = ({ setIsOpen }) => {
                             </tr>
                         </tbody>)
                 })}
-            </Table>
+            </Table> */}
 
         </div >
     )
