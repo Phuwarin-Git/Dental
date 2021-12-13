@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import CloseButton from 'react-bootstrap/CloseButton'
 import Card from 'react-bootstrap/Card'
 import StyleModal from "./LimitCss";
@@ -7,33 +7,57 @@ import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
+import Container from 'react-bootstrap/Container'
+import Modal from 'react-bootstrap/Modal'
+import MaterialTable from "material-table";
 import { AuthContext } from '../../../../App';
 
-const ConfirmLimit = ({ excel, setLimit, CloseReser, details }) => {
-    const [modalIsOpen, setIsOpen] = React.useState(true);
+const ConfirmLimit = ({ excel, setLimit, setExcel, CloseReser, details }) => {
     const { currentDate, currentMonth } = useContext(AuthContext);
+
+    const [allDate, setAllDate] = useState([]);
+
+    const [duplicateLenght, setDuplicate] = useState(0)
+
+    const [show, setShow] = useState(true);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => { setShow(true) };
+
+
     let history = useHistory();
 
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
     useEffect(() => {
-    }, [modalIsOpen])
+        getDetails();
+        console.log("getExcel :", excel);
+    }, [excel])
+
+    async function getDetails() {
+        await axios.get("http://localhost:3000/limitcase/find/all").then((item) => {
+            setAllDate(item.data)
+            let testFindDup = item.data;
+
+            let DupLenght = 0;
+            testFindDup.map((items) => {
+                let theLenght = excel.filter((item) => {
+                    return (item.วันที่ === items.date && item.เวลา === items.time)
+                })
+                if (theLenght.length === 0) {
+                    return console.log("ไม่มีซ้ำ :")
+                } else {
+                    DupLenght = DupLenght + 1;
+                    return console.log("ซ้ำ")
+                }
+            })
+
+            console.log("ซ้ำทั้งหมด :", DupLenght)
+            setDuplicate(DupLenght)
+        });
+    }
 
     async function createLimit() {
-        const findCaseReserved = details.filter((item) => {
-
-            return (item.date === excel.วันที่ && item.time === excel.เวลา)
-        })
-        console.log("findCase duplicate :", findCaseReserved)
-
-        if (findCaseReserved.length !== 0) {
-            return alert("ไม่สามารถกำหนดภาระงานในช่วงเวลาเดียวกันได้")
+        if (duplicateLenght !== 0) {
+            return alert("กรุณาลบข้อมูลที่ซ้ำออกก่อนทำการอัพโหลดข้อมูล")
         } else {
             const confirmBox = window.confirm("ต้องการยืนยันการจำกัดงานหรือไม่")
             if (confirmBox == true) {
@@ -89,7 +113,7 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser, details }) => {
                     return setLimit(filterMonth);
                 });
                 CloseReser(false);
-                closeModal();
+                handleClose();
                 return history.push('/StudentAdminDashboard')
             } else {
                 console.log(confirmBox)
@@ -97,67 +121,170 @@ const ConfirmLimit = ({ excel, setLimit, CloseReser, details }) => {
         }
     }
 
+    function checkColor(date, time) {
+        let color = "black"
+
+        allDate?.map((item) => {
+            if (item.date === date && item.time === time) {
+                // console.log(" ตรง item.date :", item.date, " item.time :", item.time, " date :", date, " time :", time)
+                return color = "red";
+            } else {
+                // console.log(" ไม่ item.date :", item.date, " item.time :", item.time, " date :", date, " time :", time)
+            }
+        })
+        return color;
+    }
+
+    function deleteDuplicate(data) {
+        console.log("data delete :", data)
+        const checkDup = excel.filter((item) => {
+            return (item.tableData.checked !== true)
+        })
+        console.log("new Data :", checkDup)
+        setExcel(checkDup);
+    }
+
 
     return (
         <div>
-            <StyleModal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="modal"
-            >
-                <div>
-                    <Card border="dark">
-                        <Card.Header><h2>รายละเอียด</h2>
-                            <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />
-                        </Card.Header>
-                        <Card.Body>
-                            <Table striped bordered hover variant="">
-                                <thead className='theadAdmin'>
-                                    <tr>
-                                        <th>วันที่</th>
-                                        <th>เวลา</th>
-                                        <th>OD</th>
-                                        <th>TMD</th>
-                                        <th>OPER</th>
-                                        <th>PERIO</th>
-                                        <th>SUR</th>
-                                        <th>PROSTH</th>
-                                        <th>ENDO</th>
-                                        <th>PEDO</th>
-                                        <th>X-RAY</th>
-                                        <th>OM</th>
-                                        <th>ORTHO</th>
-                                    </tr>
-                                </thead>
-                                {excel.map(item => {
-                                    return <tbody key={item.limit_id}>
-                                        <tr>
-                                            <td className='tdStudent'>{item.วันที่}</td>
-                                            <td className='tdStudent'>{item.เวลา}</td>
-                                            <td className='tdStudent'>{item.OD}</td>
-                                            <td className='tdStudent'>{item.TMD}</td>
-                                            <td className='tdStudent'>{item.OPER}</td>
-                                            <td className='tdStudent'>{item.PERIO}</td>
-                                            <td className='tdStudent'>{item.SUR}</td>
-                                            <td className='tdStudent'>{item.RPOSTH}</td>
-                                            <td className='tdStudent'>{item.ENDO}</td>
-                                            <td className='tdStudent'>{item.PEDO}</td>
-                                            <td className='tdStudent'>{item.XRAY}</td>
-                                            <td className='tdStudent'>{item.OM}</td>
-                                            <td className='tdStudent'>{item.ORTHO}</td>
-                                        </tr>
-                                    </tbody>
-                                })}
-                            </Table>
-                            <center>
-                                <Button onClick={() => createLimit()}>ยืนยัน</Button>
-                                <Button onClick={() => closeModal()} style={{ marginLeft: '10px', backgroundColor: 'red' }}>ยกเลิก</Button>
-                            </center>
-                        </Card.Body>
-                    </Card>
-                </div>
-            </StyleModal>
-        </div>
+
+            <Modal size='xl' style={{ fontFamily: 'Mitr' }} show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>รายละเอียดการจอง</Modal.Title>
+                </Modal.Header>
+                <Modal.Body >
+                    <Container>
+                        <MaterialTable
+                            title={duplicateLenght === 0 ? "Mae Fah Luang University Dental Clinic" : "ข้อมูลที่อัพโหลดซ้ำกับข้อมูลที่มีอยู่ " + duplicateLenght + " แถว ,กรุณาลบข้อมูลที่ซ้ำออก"}
+
+                            columns={[
+                                {
+                                    title: 'วันที่', field: 'วันที่',
+                                    cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา), minWidth: 140 }
+                                    }
+                                },
+                                {
+                                    title: 'เวลา', field: 'เวลา'
+                                    , lookup: { ช่วงเช้า: 'ช่วงเช้า', ช่วงบ่าย: 'ช่วงบ่าย' }
+                                    , cellStyle: {
+                                        minWidth: 40
+                                    },
+                                },
+                                {
+                                    title: 'OD', field: 'OD', type: "numeric"
+                                },
+                                {
+                                    title: 'TMD', field: 'TMD', type: "numeric"
+                                },
+                                {
+                                    title: 'OPER', field: 'OPER', type: "numeric"
+                                },
+                                {
+                                    title: 'PERIO', field: 'PERIO', type: "numeric"
+                                },
+                                {
+                                    title: 'SUR', field: 'SUR', type: "numeric"
+                                },
+                                {
+                                    title: 'PROSTH', field: 'RPOSTH', type: "numeric"
+                                },
+                                {
+                                    title: 'ENDO', field: 'ENDO', type: "numeric"
+                                },
+                                {
+                                    title: 'PEDO', field: 'PEDO', type: "numeric"
+                                },
+                                {
+                                    title: 'X-RAY', field: 'XRAY', type: "numeric", cellStyle: {
+                                        minWidth: 114,
+                                    },
+                                },
+                                {
+                                    title: 'OM', field: 'OM', type: "numeric"
+                                },
+                                {
+                                    title: 'ORTHO', field: 'ORTHO', type: "numeric"
+                                },
+                            ]}
+                            data={excel}
+                            options={{
+                                selection: true,
+                                pageSize: excel.length,
+                                pageSizeOptions: [excel.length],
+                                headerStyle: {
+                                    fontFamily: "Mitr",
+                                    fontWeight: 'bold',
+                                    fontSize: '18px',
+                                }, tableLayout: 'auto'
+                            }}
+                            actions={[
+                                {
+                                    tooltip: 'ลบ',
+                                    icon: 'delete',
+                                    onClick: (evt, data) => deleteDuplicate(data)
+                                }
+                            ]}
+                            localization={{
+                                body: {
+                                    emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
+                                    addTooltip: 'เพิ่มรายชื่อผู้ใช้งาน',
+                                    deleteTooltip: 'Löschen',
+                                    editTooltip: 'Bearbeiten',
+                                    filterRow: {
+                                        filterTooltip: 'Filter'
+                                    },
+                                    editRow: {
+                                        deleteText: 'ต้องการลบรายชื่อนี้หรือไม่ ?',
+                                        cancelTooltip: 'Abbrechen',
+                                        saveTooltip: 'Speichern'
+                                    }
+                                },
+                                grouping: {
+                                    placeholder: 'Spalten ziehen ...',
+                                    groupedBy: 'Gruppiert nach:'
+                                },
+                                pagination: {
+                                    labelDisplayedRows: '{from}-{to} จาก {count}',
+                                    labelRowsSelect: 'แถว',
+                                    labelRowsPerPage: 'Zeilen pro Seite:',
+                                    firstAriaLabel: 'Erste Seite',
+                                    firstTooltip: 'Erste Seite',
+                                    previousAriaLabel: 'Vorherige Seite',
+                                    previousTooltip: 'Vorherige Seite',
+                                    nextAriaLabel: 'Nächste Seite',
+                                    nextTooltip: 'Nächste Seite',
+                                    lastAriaLabel: 'Letzte Seite',
+                                    lastTooltip: 'Letzte Seite'
+                                },
+                                toolbar: {
+                                    addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                    nRowsSelected: 'ถูกเลือก {0} รายการ',
+                                    showColumnsTitle: 'Zeige Spalten',
+                                    showColumnsAriaLabel: 'Zeige Spalten',
+                                    exportTitle: 'Export',
+                                    exportAriaLabel: 'Export',
+                                    exportName: 'Export als CSV',
+                                    searchTooltip: 'ค้นหา',
+                                    searchPlaceholder: 'ค้นหา'
+                                }
+                            }}
+
+                        />
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={() => createLimit()}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+        </div >
     );
 };
 
