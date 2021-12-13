@@ -135,7 +135,7 @@ const TeacherHistory = () => {
                             },
                             {
                                 title: 'ผู้ป่วย', field: 'patient', cellStyle: {
-                                    minWidth: 100,
+                                    minWidth: 120,
                                 },
                             },
                             {
@@ -163,14 +163,6 @@ const TeacherHistory = () => {
                             }
                         ]}
                         data={data}
-                        // actions={[
-                        //     {
-                        //         icon: 'info',
-                        //         iconProps: { color: "primary", width: '20px' },
-                        //         tooltip: 'รายละเอียดการจอง',
-                        //         onClick: (event, rowData) => handleShow(rowData.uniqueID)
-                        //     }
-                        // ]}
                         options={{
                             exportButton: true,
                             pageSizeOptions: [5, 10, 20, 50, 100],
@@ -183,7 +175,7 @@ const TeacherHistory = () => {
                         }}
                         localization={{
                             body: {
-                                emptyDataSourceMessage: 'ไม่มีประวัติการจองการทำงาน',
+                                emptyDataSourceMessage: 'ไม่มีประวัติการตรวจการทำงาน',
                                 addTooltip: 'Hinzufügen',
                                 deleteTooltip: 'Löschen',
                                 editTooltip: 'Bearbeiten',
