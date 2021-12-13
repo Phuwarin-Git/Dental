@@ -166,20 +166,15 @@ const AdminUnit = () => {
         } else {
             console.log("Unit Form :", unit_code, unit_floor);
             const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: unavailable_start_date })
-            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่ม Unit หรือไม่")
-            if (confirmBox == true) {
-                console.log(confirmBox)
-                await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
-                    return console.log("Res Limit :", res)
-                })
-                await axios.get("http://localhost:3000/unit/find/all").then((item) => {
-                    console.log("new Limit ==> :", item.data)
-                    return setUnit(item.data);
-                });
-                getDetails();
-            } else {
-                console.log(confirmBox)
-            }
+
+            await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
+                return console.log("Res Limit :", res)
+            })
+            await axios.get("http://localhost:3000/unit/find/all").then((item) => {
+                console.log("new Limit ==> :", item.data)
+                return setUnit(item.data);
+            });
+            getDetails();
         }
     }
 

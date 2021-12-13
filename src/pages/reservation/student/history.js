@@ -111,9 +111,10 @@ const StudentHistory = () => {
                     <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginBottom: '10px' }}>ประวัติการจองการทำงาน</h1>
                     <MaterialTable
                         title="Mae Fah Luang University Dental Clinic"
+                        data={data}
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', cellStyle: {
+                                title: 'วันที่', field: 'date', sort: 'asc', cellStyle: {
                                     minWidth: 140,
                                 },
                             },
@@ -166,7 +167,7 @@ const StudentHistory = () => {
                                     )
                             }
                         ]}
-                        data={data}
+
                         // actions={[
                         //     {
                         //         icon: 'info',
@@ -176,6 +177,7 @@ const StudentHistory = () => {
                         //     }
                         // ]}
                         options={{
+                            sorting: true,
                             exportButton: true,
                             pageSizeOptions: [5, 10, 20, 50, 100],
                             actionsColumnIndex: -1,

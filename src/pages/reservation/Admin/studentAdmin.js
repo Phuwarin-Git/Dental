@@ -108,26 +108,22 @@ const AdminStudentAdmin = () => {
         } else {
             const ApiSet = ({ student_id: 12345678, first_name: first_name, student_year: null, email: email, role: role })
             console.log("Api set :", ApiSet)
-            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อหรือไม่")
-            if (confirmBox == true) {
-                console.log(confirmBox)
-                await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
-                    return console.log("Res Limit :", res)
-                })
-                await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                    console.log("Name :", item.data)
 
-                    let setTeacher = item.data;
-                    let filterTeacher = setTeacher.filter((item) => {
-                        return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
-                    })
-                    setData(filterTeacher)
-                    return setUser(filterTeacher);
-                });
-                return closeModal();
-            } else {
-                console.log(confirmBox)
-            }
+            await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
+                return console.log("Res Limit :", res)
+            })
+            await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                console.log("Name :", item.data)
+
+                let setTeacher = item.data;
+                let filterTeacher = setTeacher.filter((item) => {
+                    return (item.role === "studentadmin" || item.role === "admin" || item.role === "AdminTool")
+                })
+                setData(filterTeacher)
+                return setUser(filterTeacher);
+            });
+            return closeModal();
+
         }
 
 
