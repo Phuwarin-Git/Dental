@@ -114,7 +114,7 @@ const StudentHistory = () => {
                         data={data}
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', sort: 'asc', cellStyle: {
+                                title: 'วันที่', field: 'date', sort: 'asc', type: 'date', cellStyle: {
                                     minWidth: 140,
                                 },
                             },

@@ -62,7 +62,7 @@ const StudentAdminHistory = () => {
                         title="Mae Fah Luang University Dental Clinic"
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', cellStyle: {
+                                title: 'วันที่', field: 'date', type: 'date', cellStyle: {
                                     minWidth: 140,
                                 },
                             },
@@ -155,49 +155,6 @@ const StudentAdminHistory = () => {
                             }
                         }}
                     />
-
-                    {/* <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="date"
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ค้นหาวันที่"
-                        onChange={onChangeSearch}
-                    >
-                    </input>
-                    <button onClick={() => Searching()} type="submit" class="searchButton">
-                        <BsSearch />
-                    </button>
-                    <h1></h1>
-                    <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '97%' }}>
-                        <thead className='theadAdmin'>
-                            <tr>
-                                <th>ชื่อนักศึกษา</th>
-                                <th>วันที่</th>
-                                <th>ช่วงเวลา</th>
-                                <th>Unit</th>
-                                <th>คลินิก</th>
-                                <th>ประเภทงาน</th>
-                                <th>คนไข้</th>
-                            </tr>
-                        </thead>
-
-                        {details.map(item => {
-                            return <tbody key={item.id} >
-                                <tr >
-                                    <td className='tdStudent'>{item.name}</td>
-                                    <td className='tdStudent'>{item.date}</td>
-                                    <td className='tdStudent'>{item.time}</td>
-                                    <td className='tdStudent'>{item.unit}</td>
-                                    <td className='tdStudent'>{item.clinic}</td>
-                                    <td className='tdStudent'>{item.worktype}</td>
-                                    <td className='tdStudent'>{item.patient}</td>
-                                </tr>
-                            </tbody>
-                        })}
-
-                    </Table> */}
                 </Container>
             </div>
         </div >

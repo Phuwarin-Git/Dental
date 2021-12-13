@@ -99,10 +99,6 @@ const TeacherSelectWork = () => {
 
     };
 
-    // const getCheking = (id, teacher) => {
-    //     return console.log('id :', id, 'teacher :', teacher)
-    // }
-
     async function submitApprove(id) {
         let body = []
         id.map((item) => {
@@ -111,33 +107,6 @@ const TeacherSelectWork = () => {
         console.log("Select ID :", body)
         await axios.put("http://localhost:3000/details/updateTeacher/", body)
         getDetails();
-        // if (isChecked.length === 0) {
-        //     alert('กรุณาเลือกงานที่ต้องการตรวจ');
-        // } else {
-        //     let body = isChecked;
-        //     const confirmBox = window.confirm("ต้องการยืนยันการตรวจงานหรือไม่")
-        //     if (confirmBox == true) {
-        //         console.log(confirmBox)
-        //         await axios.put("http://localhost:3000/details/updateTeacher/", body)
-        //         console.log('Body data :', body)
-        //         return await axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
-        //             // console.log("Limit :", item.data)
-        //             let findMonth = item.data;
-        //             let filterMonth = findMonth.filter((item) => {
-        //                 let a = item.date;
-        //                 let thisDate = currentDate.slice(8)
-        //                 let digitRealDate = (a).slice(8)
-        //                 // console.log("วันที่ทะไหย่ :", thisDatte)
-        //                 let digitData = (a).slice(5, 7)
-        //                 let parsed = parseInt(digitData)
-        //                 return (parsed >= currentMonth && digitRealDate >= thisDate)
-        //             })
-        //             return setDetails(filterMonth);
-        //         });
-        //     } else {
-        //         console.log(confirmBox)
-        //     }
-        // }
     }
 
 
@@ -172,7 +141,7 @@ const TeacherSelectWork = () => {
                         title="Mae Fah Luang University Dental Clinic"
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', cellStyle: {
+                                title: 'วันที่', field: 'date', type: 'date', cellStyle: {
                                     minWidth: 140,
                                 },
                             },

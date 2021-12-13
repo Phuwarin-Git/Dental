@@ -178,7 +178,7 @@ const StudentAdminReservation = () => {
                         title="Mae Fah Luang University Dental Clinic"
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', cellStyle: {
+                                title: 'วันที่', field: 'date', type: 'date', cellStyle: {
                                     minWidth: 140,
                                 },
                             },
