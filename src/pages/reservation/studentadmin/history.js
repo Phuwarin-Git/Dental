@@ -99,6 +99,7 @@ const StudentAdminHistory = () => {
                         ]}
                         data={data}
                         options={{
+                            exportButton: true,
                             actionsColumnIndex: -1,
                             headerStyle: {
                                 fontFamily: "Mitr",
