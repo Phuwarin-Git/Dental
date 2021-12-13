@@ -19,7 +19,7 @@ import MaterialTable from "material-table";
 import Modal from 'react-bootstrap/Modal'
 
 const StudentRes = () => {
-    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [data, setData] = useState([]);
 
     const [limit, setLimit] = useState([]);
@@ -51,7 +51,9 @@ const StudentRes = () => {
                 let digitRealDate = (a).slice(8)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
 
             console.log("Filter Month :", filterMonth)

@@ -18,7 +18,7 @@ import MaterialTable from "material-table";
 
 
 const TeacherSelectWork = () => {
-    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [isChecked, setIsChecked] = useState([]);
     const [Tool, setTools] = useState([]);
@@ -51,7 +51,9 @@ const TeacherSelectWork = () => {
                 // console.log("วันที่ทะไหย่ :", thisDatte)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
             let filteredData = []
             filterMonth.map(item => {

@@ -9,7 +9,7 @@ import { BsSearch } from "react-icons/bs";
 
 
 const TeacherDashboard = () => {
-    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
@@ -63,7 +63,9 @@ const TeacherDashboard = () => {
                 // console.log("วันที่ทะไหย่ :", thisDatte)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
             return setDetailsForDate(filterMonth);
         });
