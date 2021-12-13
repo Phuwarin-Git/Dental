@@ -196,7 +196,15 @@ const TeacherSelectWork = () => {
                             },
                             {
                                 title: 'ผู้ป่วย', field: 'patient', cellStyle: {
-                                    minWidth: 100,
+                                    minWidth: 215,
+                                },
+                            }, {
+                                title: 'ชั้นปี', field: 'year', cellStyle: {
+                                    minWidth: 30,
+                                },
+                            }, {
+                                title: 'ชื่อนักศึกษา', field: 'name', cellStyle: {
+                                    minWidth: 215,
                                 },
                             },
                             {

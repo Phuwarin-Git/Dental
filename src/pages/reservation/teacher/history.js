@@ -135,14 +135,18 @@ const TeacherHistory = () => {
                             },
                             {
                                 title: 'ผู้ป่วย', field: 'patient', cellStyle: {
-                                    minWidth: 120,
+                                    minWidth: 215,
+                                },
+                            }, {
+                                title: 'ชั้นปี', field: 'year', cellStyle: {
+                                    minWidth: 30,
+                                },
+                            }, {
+                                title: 'ชื่อนักศึกษา', field: 'name', cellStyle: {
+                                    minWidth: 215,
                                 },
                             },
-                            {
-                                title: 'อาจารย์ผู้ตรวจ', field: 'teacher', cellStyle: {
-                                    minWidth: 170,
-                                },
-                            },
+
                             {
                                 title: "รายละเอียดการจอง",
                                 field: "internal_action",
