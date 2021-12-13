@@ -11,7 +11,7 @@ import MaterialTable from "material-table";
 
 const StudentAdminReservation = () => {
 
-    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [allUnit, setAllUnit] = useState([]);
     const [details, setDetails] = useState([]);
     const [select, setSelect] = useState([]);
@@ -20,6 +20,8 @@ const StudentAdminReservation = () => {
     const [unitByFloor, setUnitByFloor] = useState([]);
 
     const [data, setData] = useState([]);
+
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -38,23 +40,18 @@ const StudentAdminReservation = () => {
         axios.get("http://localhost:3000/details/find/null").then((item) => {
             console.log("Null Unit :", item.data)
 
-            for (let i in item.data) {
-                let obj = {
-                    ...item.data[i],
-                    select: null
-                }
-                item.data[i] = obj
-            }
-            // console.log("Test ==>", item.data)
-
             let findMonth = item.data;
             let filterMonth = findMonth.filter((item) => {
                 let a = item.date;
                 let thisDate = currentDate.slice(8)
-                let digitRealDate = (a).slice(8)
+                let digitRealDate = (a).slice(8) //date
+
+
                 let digitData = (a).slice(5, 7)
-                let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+                let parsed = parseInt(digitData) //month
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
 
             let filteredData = []
@@ -69,35 +66,15 @@ const StudentAdminReservation = () => {
 
     const getUnit = () => {
         axios.get("http://localhost:3000/unit/find/all").then((item) => {
-            // console.log("Unit lists:", item.data)
-            // setUnitByFloor(item.data);
             return setAllUnit(item.data);
         });
     }
-
-    // function getUnitNotNull() {
-    //     axios.get("http://localhost:3000/details/find/notnull").then((item) => {
-    //         console.log("Unit not null ==>", item.data)
-    //         let findMonth = item.data;
-    //         let filterMonth = findMonth.filter((item) => {
-    //             let a = item.date;
-    //             let thisDate = currentDate.slice(8)
-    //             let digitRealDate = (a).slice(8)
-    //             let digitData = (a).slice(5, 7)
-    //             let parsed = parseInt(digitData)
-    //             return (parsed >= currentMonth && digitRealDate >= thisDate)
-    //         })
-    //         return setNotnull(filterMonth);
-    //     });
-    // }
 
 
     //unit
     function handleOnChange(e) {
         console.log('Value :', e.target.value.split(" "))
         let first = e.target.value.split(" ")
-        // console.log('id :', first[0])
-        // console.log('unit :', first[1])
         setSelect([...select, { id: first[0], unit: first[1] }]);
     };
 
@@ -133,7 +110,8 @@ const StudentAdminReservation = () => {
                         return (parsed >= currentMonth && digitRealDate >= thisDate)
                     })
                     setData(filterMonth)
-                    return setDetails(filterMonth);
+                    setDetails(filterMonth);
+                    return history.push("/StudentAdminHistory")
                 });
             } else {
                 console.log(confirmBox)

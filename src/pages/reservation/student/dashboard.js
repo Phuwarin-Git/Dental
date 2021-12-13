@@ -16,7 +16,7 @@ import MaterialTable from "material-table";
 
 const StudentDashboard = () => {
 
-    const { user, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [detailsFordate, setDetailsForDate] = useState([]);
     const [realColor, setColor] = useState([]);
 
@@ -38,7 +38,9 @@ const StudentDashboard = () => {
                 let digitRealDate = (a).slice(8)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
             return filterDetails(filterMonth);
         });

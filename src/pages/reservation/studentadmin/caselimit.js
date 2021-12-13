@@ -21,7 +21,7 @@ import Col from 'react-bootstrap/Col'
 import MaterialTable from "material-table";
 
 const StudentAdminLimitCase = () => {
-    const { user, limit, setLimit, currentDate, currentMonth } = useContext(AuthContext);
+    const { user, limit, setLimit, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [details, setDetials] = useState([]);
     const [items, setItems] = useState([]);
@@ -52,7 +52,9 @@ const StudentAdminLimitCase = () => {
                 let digitRealDate = (a).slice(8)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
 
             console.log("Filter Month :", filterMonth)
@@ -286,7 +288,7 @@ const StudentAdminLimitCase = () => {
                         title="Mae Fah Luang University Dental Clinic"
                         columns={[
                             {
-                                title: 'วันที่', field: 'date', type: 'date', cellStyle: {
+                                title: 'วันที่', field: 'date', cellStyle: {
                                     minWidth: 140,
                                 },
                             },
