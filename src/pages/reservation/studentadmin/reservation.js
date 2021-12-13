@@ -141,32 +141,6 @@ const StudentAdminReservation = () => {
         }
     }
 
-    // async function onChangeSearch(e) {
-    //     await axios.get("http://localhost:3000/details/find/null").then((item) => {
-    //         console.log("new Limit ==> :", item.data)
-    //         let findMonth = item.data;
-    //         let filterMonth = findMonth.filter((item) => {
-    //             let a = item.date;
-    //             let thisDate = currentDate.slice(8)
-    //             let digitRealDate = (a).slice(8)
-    //             let digitData = (a).slice(5, 7)
-    //             let parsed = parseInt(digitData)
-    //             return (parsed >= currentMonth && digitRealDate >= thisDate)
-    //         })
-    //         return setDetails(filterMonth);
-    //     });
-    //     console.log("Change Date :", e.target.value)
-    //     setSearchDate(e.target.value)
-    // }
-
-    // function Searching() {
-    //     console.log("Searching :", searchDate)
-    //     const checking = details.filter((item) => {
-    //         return item.date === searchDate
-    //     })
-    //     console.log("Filter Date", checking)
-    //     setDetails(checking)
-    // }
 
     function filterUnit(date, time, unit) {
         // return console.log('Unit ==>', unit)
@@ -222,21 +196,6 @@ const StudentAdminReservation = () => {
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
                     <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginBottom: '10px' }}>การเลือกที่นั่ง</h1>
-                    {/* <label style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px', marginLeft: '20px' }}>ค้นหาวันที่ : </label>
-                    <input
-                        style={{ fontSize: '18px' }}
-                        type="date"
-                        min={currentDate}
-                        class="searchTerm"
-                        id="input_text"
-                        placeholder="ค้นหาวันที่"
-                        onChange={onChangeSearch}
-                    >
-                    </input>
-                    <button onClick={() => Searching()} type="submit" class="searchButton">
-                        <BsSearch />
-                    </button> */}
-
                     <MaterialTable
                         title="Mae Fah Luang University Dental Clinic"
                         columns={[
