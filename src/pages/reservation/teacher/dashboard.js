@@ -159,64 +159,71 @@ const TeacherDashboard = () => {
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
-            <Navbar style={{ backgroundColor: 'white' }}>
-                <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
-                        {/* <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '20px' }} as={Link} to="/TeacherProfile">บัญชี</Nav.Link> */}
-                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '20px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+
+            <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'white' }}>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav style={{ marginLeft: '80px' }} className="mr-auto">
+                        <Nav.Link style={{ color: '#0080ff', fontSize: '23px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Nav>
-                </Container>
+                    <Nav>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', fontSize: '23px', marginRight: '80px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
+
+
+
             <br />
-            <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', minWidth: '1500px' }}>
-                <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1>
-                <input
-                    style={{ fontSize: '18px' }}
-                    type="date"
-                    min={currentDate}
-                    class="searchTerm"
-                    id="input_text"
-                    placeholder="ค้นหาวันที่"
-                    onChange={onChangeSearch}
-                >
-                </input>
-                <button onClick={() => Searching()} type="submit" class="searchButton">
-                    <BsSearch />
-                </button>
-                <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
-                    <br />
+            <div className="PaddingDiv">
+                <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
+                    <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1>
+                    <input
+                        style={{ fontSize: '18px' }}
+                        type="date"
+                        min={currentDate}
+                        class="searchTerm"
+                        id="input_text"
+                        placeholder="ค้นหาวันที่"
+                        onChange={onChangeSearch}
+                    >
+                    </input>
+                    <button onClick={() => Searching()} type="submit" class="searchButton">
+                        <BsSearch />
+                    </button>
+                    <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+                        <br />
 
-                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
-                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
-                        {year3details?.map((item, index) => {
-                            // return console.log("index :", item)
-                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
-                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
-                        })}
-                    </ProgressBar>
-                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
-                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
-                        {year4details?.map((item, index) => {
-                            // return console.log("index :", item)
-                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
-                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
-                        })}
-                    </ProgressBar>
-                    <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
-                    <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
-                        {year5details?.map((item, index) => {
-                            // return console.log("index :", item)
-                            let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
-                            return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
-                        })}
-                    </ProgressBar>
-                </div>
-            </Container >
-
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
+                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                            {year3details?.map((item, index) => {
+                                // return console.log("index :", item)
+                                let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                                return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                            })}
+                        </ProgressBar>
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
+                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                            {year4details?.map((item, index) => {
+                                // return console.log("index :", item)
+                                let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                                return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                            })}
+                        </ProgressBar>
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
+                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                            {year5details?.map((item, index) => {
+                                // return console.log("index :", item)
+                                let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+                                return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
+                            })}
+                        </ProgressBar>
+                    </div>
+                </Container >
+            </div>
         </div >
     )
 }

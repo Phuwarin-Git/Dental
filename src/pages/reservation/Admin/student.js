@@ -221,17 +221,21 @@ const AdminStudent = () => {
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
-            <Navbar style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}>
-                <Container >
-                    <Nav className="me-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudent">นักศึกษา</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminStudentAdmin">แอดมิน</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminTeacher">อาจารย์</Nav.Link>
-                        <Nav.Link style={{ color: '#0080ff', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
-                        <Nav.Link style={{ color: '#424242', fontWeight: 'bold', fontSize: '18px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
-                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', marginLeft: '350px', fontWeight: 'bold', fontSize: '18px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+
+            <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'white' }}>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav style={{ marginLeft: '80px' }} className="mr-auto">
+                        <Nav.Link style={{ color: '#0080ff', fontSize: '23px' }} as={Link} to="/AdminStudent">นักศึกษา</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/AdminStudentAdmin">แอดมิน</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/AdminTeacher">อาจารย์</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/AdminUnit">เก้าอี้ทันตกรรม</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Nav>
-                </Container>
+                    <Nav>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', fontSize: '23px', marginRight: '80px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
             <br />
 
