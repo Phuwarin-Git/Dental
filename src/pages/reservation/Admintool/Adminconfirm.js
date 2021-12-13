@@ -131,65 +131,18 @@ const AdminConfirm = () => {
                     <h1 class='text-justify'>Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
-            <Navbar
-                style={{ backgroundColor: 'white', boxShadow: '1px 1px 10px #d6d6d6' }}
-            >
-                <Nav style={{ marginLeft: '-5%', marginTop: '7px' }}>
-                    <Container>
-                        <Nav.Link
-                            style={{
-                                color: '#0080ff',
-                                marginLeft: '220px',
-                                fontWeight: 'bold',
-                                fontSize: '18px'
-                            }}
-                            as={Link}
-                            to='./Adminconfirm'
-                        >
-                            อุปกรณ์รอการยืนยัน
-                        </Nav.Link>
-                        <Nav.Link
-                            style={{
-                                color: '#0080ff',
-                                marginLeft: '50px',
-                                fontWeight: 'bold',
-                                fontSize: '18px'
-                            }}
-                            as={Link}
-                            to='./Adminconfirmfromadmin'
-                        >
-                            อุปกรณ์ที่ยืนยันเเล้ว
-                        </Nav.Link>
-                        <Nav.Link
-                            style={{
-                                color: '#000',
-                                fontWeight: 'bold',
-                                fontSize: '18px',
-                                paddingLeft: '40px'
-                            }}
-                            as={Link}
-                        >
-                            ชื่อผู้ใช้งาน : {user.first_name}
-                        </Nav.Link>
-                    </Container>
-                </Nav>
-
-                <Nav style={{ marginLeft: '0%' }}>
-                    <Container>
-                        <Nav.Link
-                            style={{
-                                color: '#0080ff',
-                                marginLeft: '550px',
-                                fontWeight: 'bold',
-                                fontSize: '18px'
-                            }}
-                            as={Link}
-                            to='/'
-                        >
-                            ออกจากระบบ
-                        </Nav.Link>
-                    </Container>
-                </Nav>
+            <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'white' }}>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav style={{ marginLeft: '80px' }} className="mr-auto">
+                        <Nav.Link style={{ color: '#0080ff', fontSize: '23px' }} as={Link} to="/Adminconfirm">อุปกรณ์รอการยืนยัน</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/Adminconfirmfromadmin">อุปกรณ์ที่ยืนยันเเล้ว</Nav.Link>
+                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', fontSize: '23px', marginRight: '80px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
             <br />
 
