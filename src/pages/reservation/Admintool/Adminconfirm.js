@@ -63,11 +63,13 @@ const AdminConfirm = () => {
     }
 
     async function handelApprove(id) {
-        let toolStatus = { toolStatus: 'จัดเตรียมแล้ว' }
-        console.log('Show ID', id)
+        let body = []
+        id.map((item) => {
+            return body.push({ id: item.id, toolStatus: 'จัดเตรียมแล้ว' })
+        })
+        console.log('Show ID', body)
         await axios.put(
-            'http://localhost:3000/details/updateDetails/' + id,
-            toolStatus
+            'http://localhost:3000/details/updatetoolStatus/', body
         )
         await axios.get('http://localhost:3000/details/find/notnull').then(item => {
             console.log('data :', item.data)
@@ -111,26 +113,25 @@ const AdminConfirm = () => {
             })
     }
 
+    // async function submitApprove(id) {
+    //     let body = []
+    //     id.map((item) => {
+    //         return body.push({ id: item.id, toolStatus: "" })
+    //     })
+    //     console.log("Select ID :", body)
+    //     await axios.put("http://localhost:3000/details/updateTeacher/", body)
+    //     getDetails();
+    // }
+
+
     return (
-        <div
-            style={{
-                backgroundColor: '#ededed',
-                minHeight: '1080px',
-                maxWidth: '100%'
-            }}
-        >
+        <div style={{ backgroundColor: '#ededed', minHeight: '1080px', maxWidth: '100%' }}>
             <nav style={{ background: '#0080ff' }}>
-                <div
-                    style={{
-                        color: '#ffff',
-                        paddingLeft: '50px',
-                        paddingTop: '10px',
-                        paddingBottom: '10px'
-                    }}
-                >
-                    <h1 class='text-justify'>Mae Fah Luang University Dental Clinic</h1>
+                <div style={{ color: '#ffff', paddingLeft: '50px', paddingTop: '10px', paddingBottom: '10px' }}>
+                    <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
+
             <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'white' }}>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -235,43 +236,44 @@ const AdminConfirm = () => {
                                         >อุปกรณ์</Button>
                                     )
                             },
-                            {
-                                title: 'ยืนยัน',
-                                field: 'toolStatus',
-                                align: 'center',
-                                cellStyle: {
-                                    minWidth: 213
-                                },
-                                render: rowData =>
-                                    rowData && (
-                                        <button
-                                            type='button'
-                                            class='btn btn-success'
-                                            onClick={() => handelApprove(rowData.id)}
-                                        >
-                                            ยืนยัน
-                                        </button>
-                                    )
-                            }
+                            // {
+                            //     title: 'ยืนยัน',
+                            //     field: 'toolStatus',
+                            //     align: 'center',
+                            //     cellStyle: {
+                            //         minWidth: 213
+                            //     },
+                            //     render: rowData =>
+                            //         rowData && (
+                            //             <button
+                            //                 type='button'
+                            //                 class='btn btn-success'
+                            //                 onClick={() => handelApprove(rowData.id)}
+                            //             >
+                            //                 ยืนยัน
+                            //             </button>
+                            //         )
+                            // }
                         ]}
                         data={data}
-                        // actions={[
-                        //     {
-                        //         icon: 'info',
-                        //         iconProps: { color: "primary", width: '20px' },
-                        //         tooltip: 'รายละเอียดการจอง',
-                        //         onClick: (event, rowData) => handleShow(rowData.uniqueID)
-                        //     }
-                        // ]}
                         options={{
+                            selection: true,
+                            exportButton: true,
+                            pageSizeOptions: [5, 10, 20, 50, 100],
                             actionsColumnIndex: -1,
                             headerStyle: {
-                                fontFamily: 'Mitr',
+                                fontFamily: "Mitr",
                                 fontWeight: 'bold',
-                                fontSize: '18px'
-                            },
-                            tableLayout: 'auto'
+                                fontSize: '18px',
+                            }, tableLayout: 'auto'
                         }}
+                        actions={[
+                            {
+                                tooltip: 'ยืนยัน',
+                                icon: 'check',
+                                onClick: (evt, data) => handelApprove(data)
+                            }
+                        ]}
                         localization={{
                             body: {
                                 emptyDataSourceMessage: 'Keine Einträge',
@@ -309,7 +311,7 @@ const AdminConfirm = () => {
                             },
                             toolbar: {
                                 addRemoveColumns: 'Spalten hinzufügen oder löschen',
-                                nRowsSelected: '{0} Zeile(n) ausgewählt',
+                                nRowsSelected: 'ต้องการยืนยัน {0} รายการ',
                                 showColumnsTitle: 'Zeige Spalten',
                                 showColumnsAriaLabel: 'Zeige Spalten',
                                 exportTitle: 'Export',
