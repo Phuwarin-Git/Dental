@@ -164,10 +164,10 @@ const TeacherDashboard = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav style={{ marginLeft: '80px' }} className="mr-auto">
-                        <Nav.Link style={{ color: '#0080ff', fontSize: '23px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
-                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
-                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
-                        <Nav.Link style={{ color: '#424242', fontSize: '23px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
+                        <Nav.Link onClick={() => setStudentYear(0)} style={{ color: '#0080ff', fontSize: '23px' }} as={Link} to="/TeacherDashboard">หน้าหลัก</Nav.Link>
+                        <Nav.Link onClick={() => setStudentYear(0)} style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherSelectWork">การเลือกตรวจงาน</Nav.Link>
+                        <Nav.Link onClick={() => setStudentYear(0)} style={{ color: '#424242', fontSize: '23px' }} as={Link} to="/TeacherHistory">ประวัติ</Nav.Link>
+                        <Nav.Link onClick={() => setStudentYear(0)} style={{ color: '#424242', fontSize: '23px' }} as={Link}>ชื่อผู้ใช้งาน : {user.first_name}</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link style={{ borderRadius: '10px', color: '#0080ff', fontSize: '23px', marginRight: '80px' }} as={Link} to="/">ออกจากระบบ</Nav.Link>
