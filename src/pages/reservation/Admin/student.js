@@ -28,12 +28,13 @@ const AdminStudent = () => {
     const [userExcel, setUserExcel] = useState([]);
     const [editingIndex, setEditingIndex] = useState([]);
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [allRole, setAllrole] = useState([]);
 
     const [columns, setColumns] = useState([
         { title: 'รหัสนักศึกษา', field: 'student_id' },
         { title: 'ชื่อ-สกุล', field: 'first_name' },
         {
-            title: 'ชั้นปี',
+            title: 'ชั้นปี', minWidth: 100,
             field: 'student_year',
             lookup: { 3: '3', 4: '4', 5: '5' },
         },
@@ -63,7 +64,7 @@ const AdminStudent = () => {
     const getDetails = () => {
         axios.get("http://localhost:3000/name/find/all").then((item) => {
             console.log("Name :", item.data)
-
+            setAllrole(item.data)
             let setTeacher = item.data;
             let filterTeacher = setTeacher.filter((item) => {
                 return (item.role === "student")
@@ -110,30 +111,37 @@ const AdminStudent = () => {
     }
 
     async function submitForm(student_id, first_name, student_year, email, role) {
-        const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
-        console.log("Api set :", ApiSet)
-        if (student_id === undefined || first_name === undefined || student_year === undefined || email === undefined) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
-        } else {
 
-            await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
-                return console.log("Res Limit :", res)
-            })
-            await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("Name :", item.data)
+        const filterFindID = allRole.filter((item) => {
+            return (item.student_id === student_id || item.email === email)
+        })
 
-                let setTeacher = item.data;
-                let filterTeacher = setTeacher.filter((item) => {
-                    return (item.role === "student")
+        if (filterFindID.length === 0) {
+            const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
+            console.log("Api set :", ApiSet)
+            if (student_id === undefined || first_name === undefined || student_year === undefined || email === undefined) {
+                alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+            } else {
+
+                await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
                 })
-                setData(filterTeacher)
-                return setUser(filterTeacher);
-            });
-            return closeModal();
+                await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                    console.log("Name :", item.data)
 
+                    let setTeacher = item.data;
+                    let filterTeacher = setTeacher.filter((item) => {
+                        return (item.role === "student")
+                    })
+                    setData(filterTeacher)
+                    return setUser(filterTeacher);
+                });
+                return closeModal();
+
+            }
+        } else {
+            alert("มีรหัสนักศึกษาหรือ Email นี้อยู่แล้ว")
         }
-
-
     }
 
     const formik = useFormik({
@@ -191,6 +199,7 @@ const AdminStudent = () => {
 
 
     async function updatetheStudent(id, studentId, name, studentYear, email, role) {
+
         let getStudentID = { student_id: studentId }
         let getName = { first_name: name }
         let getStudentYear = { student_year: studentYear }
