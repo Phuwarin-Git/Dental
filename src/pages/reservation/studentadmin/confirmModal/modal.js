@@ -167,44 +167,64 @@ const ConfirmLimit = ({ excel, setLimit, setExcel, CloseReser, details }) => {
                                 {
                                     title: 'เวลา', field: 'เวลา'
                                     , lookup: { ช่วงเช้า: 'ช่วงเช้า', ช่วงบ่าย: 'ช่วงบ่าย' }
-                                    , cellStyle: {
-                                        minWidth: 40
-                                    },
+                                    , cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา), minWidth: 40 }
+                                    }
                                 },
                                 {
-                                    title: 'OD', field: 'OD', type: "numeric"
+                                    title: 'OD', field: 'OD', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'TMD', field: 'TMD', type: "numeric"
+                                    title: 'TMD', field: 'TMD', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'OPER', field: 'OPER', type: "numeric"
+                                    title: 'OPER', field: 'OPER', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'PERIO', field: 'PERIO', type: "numeric"
+                                    title: 'PERIO', field: 'PERIO', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'SUR', field: 'SUR', type: "numeric"
+                                    title: 'SUR', field: 'SUR', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'PROSTH', field: 'RPOSTH', type: "numeric"
+                                    title: 'PROSTH', field: 'RPOSTH', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'ENDO', field: 'ENDO', type: "numeric"
+                                    title: 'ENDO', field: 'ENDO', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'PEDO', field: 'PEDO', type: "numeric"
+                                    title: 'PEDO', field: 'PEDO', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'X-RAY', field: 'XRAY', type: "numeric", cellStyle: {
-                                        minWidth: 114,
-                                    },
+                                    title: 'X-RAY', field: 'XRAY', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา), minWidth: 114 }
+                                    }
                                 },
                                 {
-                                    title: 'OM', field: 'OM', type: "numeric"
+                                    title: 'OM', field: 'OM', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                                 {
-                                    title: 'ORTHO', field: 'ORTHO', type: "numeric"
+                                    title: 'ORTHO', field: 'ORTHO', type: "numeric", cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.วันที่, rowData?.เวลา) }
+                                    }
                                 },
                             ]}
                             data={excel}

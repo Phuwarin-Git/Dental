@@ -105,34 +105,42 @@ const StudentAdminLimitCase = () => {
         }
     }
 
-    async function updateLimitCase(limit_id, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho) {
+    async function updateLimitCase(limit_id, date, time, od, tmd, oper, perio, sur, prosth, endo, pedo, xray, om, ortho) {
         if (od === NaN || tmd === NaN || oper === NaN || perio === NaN || sur === NaN || prosth === NaN || endo === NaN || pedo === NaN || xray === NaN || om === NaN || ortho === NaN) {
             alert("กรุณากรอกจำนวนภาระงาน");
         } else {
-            let getOd = { od: od }
-            let getTmd = { tmd: tmd }
-            let getOper = { oper: oper }
-            let getPerio = { perio: perio }
-            let getProsth = { sur: sur }
-            let getEndo = { prosth: prosth }
-            let getPedo = { endo: endo }
-            let getXray = { pedo: pedo }
-            let getOm = { xray: xray }
-            let getOrtho = { om: om }
-            let getSur = { ortho: ortho }
+            const findCaseReserved = data.filter((item) => {
+                return (item.date === date && item.time === time)
+            })
 
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOd);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getTmd);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOper);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPerio);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getSur);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getProsth);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getEndo);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPedo);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getXray);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOm);
-            await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOrtho);
-            getDetails();
+            if (findCaseReserved.length !== 0) {
+                return alert("ไม่สามารถกำหนดภาระงานในช่วงเวลาเดียวกันได้")
+            } else {
+                let getOd = { od: od }
+                let getTmd = { tmd: tmd }
+                let getOper = { oper: oper }
+                let getPerio = { perio: perio }
+                let getProsth = { sur: sur }
+                let getEndo = { prosth: prosth }
+                let getPedo = { endo: endo }
+                let getXray = { pedo: pedo }
+                let getOm = { xray: xray }
+                let getOrtho = { om: om }
+                let getSur = { ortho: ortho }
+
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOd);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getTmd);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOper);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPerio);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getSur);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getProsth);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getEndo);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getPedo);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getXray);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOm);
+                await axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, getOrtho);
+                getDetails();
+            }
         }
     }
 
@@ -454,8 +462,14 @@ const StudentAdminLimitCase = () => {
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
                                     setTimeout(() => {
-                                        console.log("Update :", oldData.limit_id, newData.od, newData.tmd, newData.oper, newData.perio, newData.sur, newData.prosth, newData.endo, newData.pedo, newData.xray, newData.om, newData.ortho)
-                                        updateLimitCase(oldData.limit_id, newData.od, newData.tmd, newData.oper, newData.perio, newData.sur, newData.prosth, newData.endo, newData.pedo, newData.xray, newData.om, newData.ortho)
+                                        var dd = String(newData.date.getDate()).padStart(2, '0');
+                                        var mm = String(newData.date.getMonth() + 1).padStart(2, '0');
+                                        var yyyy = newData.date.getFullYear();
+
+                                        let date = yyyy + '-' + mm + '-' + dd;
+                                        let time = newData.time;
+                                        console.log("Update :", oldData.limit_id, date, time, newData.od, newData.tmd, newData.oper, newData.perio, newData.sur, newData.prosth, newData.endo, newData.pedo, newData.xray, newData.om, newData.ortho)
+                                        updateLimitCase(oldData.limit_id, date, time, newData.od, newData.tmd, newData.oper, newData.perio, newData.sur, newData.prosth, newData.endo, newData.pedo, newData.xray, newData.om, newData.ortho)
                                         resolve();
                                     }, 1000)
                                 }),
