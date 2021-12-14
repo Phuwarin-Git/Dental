@@ -30,9 +30,6 @@ const AdminUnit = () => {
     const { user } = useContext(AuthContext);
     const [unit, setUnit] = useState([]);
     const [items, setItems] = useState([]);
-    const [searchDate, setSearchDate] = useState([]);
-    const [editingIndex, setEditingIndex] = useState([]);
-    const [modalIsOpen, setIsOpen] = useState(false);
 
     const [data, setData] = useState([]);
 
@@ -73,9 +70,7 @@ const AdminUnit = () => {
         });
     }
 
-    useEffect(() => {
-        console.log("editingIndex :", editingIndex)
-    }, [editingIndex])
+
 
 
 
@@ -103,13 +98,6 @@ const AdminUnit = () => {
         });
     }
 
-    function checkActive(status) {
-        if (status === "active") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     async function updatetheUnit(unit_id, unitCode, unitFloor, active) {
         let Code = { unit_code: unitCode }
@@ -124,22 +112,6 @@ const AdminUnit = () => {
         return getDetails();
     }
 
-    async function ChangeStatus(unit_id, originalStatus) {
-        console.log("unit Change :", unit_id)
-        if (originalStatus === "active") {
-            let status = { unavailable_start_date: "inactive" }
-            await axios.put("http://localhost:3000/unit/updateUnitAvaidate/" + unit_id, status)
-            return getDetails();
-        } else {
-            let status = { unavailable_start_date: "active" }
-            await axios.put("http://localhost:3000/unit/updateUnitAvaidate/" + unit_id, status)
-            return getDetails();
-        }
-    }
-
-    function changeEditStatus(ID) {
-        setEditingIndex([ID])
-    }
 
 
     async function deleteUnit(unit_id) {
@@ -152,13 +124,6 @@ const AdminUnit = () => {
         getDetails();
     }
 
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
 
     async function submitForm(unit_code, unit_floor, unavailable_start_date) {
         if (unit_code === undefined || unit_floor === undefined || unavailable_start_date === undefined) {
@@ -222,9 +187,20 @@ const AdminUnit = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
-                    <h1 style={{ color: '#0080ff', fontWeight: 'bold' }}>รายชื่อยูนิต</h1>
-
-                    <Button style={{ marginBottom: '10px' }} onClick={() => openModal()}>เพิ่ม Unit</Button>
+                    <Row>
+                        <Col md={7} xl={7} lg={7}>
+                            <h1 style={{ color: '#198CFF', fontWeight: 'bold', float: 'right' }}>รายชื่อยูนิต</h1>
+                        </Col>
+                        <Col style={{ marginTop: '10px' }} md={5} xl={5} lg={5}>
+                            <div style={{ textAlign: 'end' }}>
+                                <label style={{ marginRight: '10px', marginLeft: '-10px' }}>อัพโหลดโดย Excel : {" "}</label>
+                                <input type="file" onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }} />
+                            </div>
+                        </Col>
+                    </Row>
 
                     <MaterialTable
                         title="Mae Fah Luang University Dental Clinic"
@@ -315,136 +291,12 @@ const AdminUnit = () => {
                     />
 
 
-                    {/* <Table striped bordered hover variant="" style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '80%' }}>
-                        <thead className='theadAdmin'>
-                            <tr>
-                                <th>ชื่อยูนิต</th>
-                                <th>ชั้น</th>
-                                <th>สถานะ</th>
-                                <th>แก้ไข</th>
-                                <th>ลบ</th>
-                            </tr>
-                        </thead>
-                        {unit.map(item => {
-                            return editingIndex.includes(item.unit_id) ? (
-                                <FormInputUnit item={item}
-                                    editingIndex={editingIndex}
-                                    setEditingIndex={setEditingIndex}
-                                    getDetails={getDetails()}
-                                />) : (<tbody key={item.unit_id}>
-                                    <tr>
-                                        <td className='tdStudent'>{item.unit_code}</td>
-                                        <td className='tdStudent'>{item.unit_floor}</td>
-                                        <td style={{ width: '240px' }} className='tdStudent'>
-                                            <BootstrapSwitchButton
-                                                onlabel="ปกติ"
-                                                offlabel="ปิดใช้งาน"
-                                                onstyle="success"
-                                                width={120}
-                                                offstyle="outline-danger"
-                                                onChange={() => ChangeStatus(item.unit_id, item.unavailable_start_date)}
-                                                checked={checkActive(item.unavailable_start_date)}
-
-                                            />
-                                        </td>
-                                        <td className='tdStudent'><Button onClick={() => changeEditStatus(item.unit_id)}>แก้ไข</Button></td>
-                                        <td className='tdStudent'><Button onClick={() => deleteLimitCase(item.unit_id)} style={{ backgroundColor: 'red' }}>ลบ</Button></td>
-                                    </tr>
-                                </tbody>)
-                        })}
-
-                    </Table> */}
                 </Container>
-                <StyledCreate
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="modal">
-                    <CloseButton onClick={() => closeModal()} style={{ marginRight: '10px', marginTop: '5px' }} />
-                    <center>
-                        <h1 style={{ color: '#198CFF', fontWeight: 'bold', marginTop: '10px' }}>รายละเอียด Unit</h1>
-                    </center>
-                    <div style={{ marginLeft: '30%', marginBottom: '20px' }}>
-
-                        <form onSubmit={formik.handleSubmit}>
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="date">ชื่อ Unit :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                style={{ marginBottom: '10px' }}
-                                id="unit_code"
-                                name="unit_code"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.unit_code}
-                            />
-                            {formik.touched.unit_code && formik.errors.unit_code ? (
-                                <div className="error">{formik.errors.unit_code}</div>
-                            ) : null} <br />
-
-
-                            <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="od">ชั้นที่ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Selected
-                                style={{ fontSize: '18px' }}
-                                id="unit_floor"
-                                name="unit_floor"
-                                type="number"
-                                min="0"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.unit_floor}
-                            >
-                                <option value="" label="เลือกชั้น" />
-                                <option value="2" label="2" />
-                                <option value="3" label="3" />
-                                <option value="4" label="4" />
-                            </Selected>
-                            {formik.touched.unit_floor && formik.errors.unit_floor ? (
-                                <div className="error">{formik.errors.unit_floor}</div>
-                            ) : null} <br />
-
-
-                            {/* <label style={{ fontWeight: 'bold', fontSize: '20px' }} htmlFor="tmd">ประเภท :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <Input
-                                style={{ fontSize: '18px' }}
-                                id="unit_type"
-                                name="unit_type"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.unit_type}
-                            />
-                            {formik.touched.unit_type && formik.errors.unit_type ? (
-                                <div className="error">{formik.errors.unit_type}</div>
-                            ) : null} <br /> */}
-
-
-                            <hr
-                                style={{
-                                    color: 'color',
-                                    backgroundColor: 'color',
-                                    height: '5',
-                                    width: '400px',
-                                    marginLeft: '-50px'
-
-                                }}
-                            />
-                            <div style={{ marginLeft: '50px' }}>
-                                <label style={{ marginRight: '10px', marginLeft: '-100px' }}>อัพโหลดโดย Excel : {" "}</label>
-                                <input style={{ marginBottom: '0px' }} type="file" onChange={(e) => {
-                                    const file = e.target.files[0];
-                                    readExcel(file);
-                                }} />
-                            </div>
-
-                            <br /><Button style={{ marginLeft: '80px', fontSize: '22px', marginTop: '-10px' }} className="But" type="submit">ยืนยัน</Button>
-                        </form>
-                    </div>
-                </StyledCreate>
             </div>
             {
                 items.length != 0 ? (<div>
                     {console.log("มาแล้ว :", items)}
-                    <ModalUnit excel={items} setUnit={setUnit} openModalPlase={setIsOpen} /></div>) : (console.log("ยัง"))
+                    <ModalUnit excel={items} setItems={setItems} unit={unit} setData={setData} /></div>) : (console.log("ยัง"))
             }
         </div>
     )
