@@ -19,6 +19,7 @@ const StudentAdminReservation = () => {
     const [unitNotnull, setNotnull] = useState([]);
     const [unitByFloor, setUnitByFloor] = useState([]);
 
+
     const [data, setData] = useState([]);
 
     const history = useHistory();
@@ -60,7 +61,7 @@ const StudentAdminReservation = () => {
             })
             setData(filteredData);
 
-            return setDetails(filterMonth);
+            return setDetails(filteredData);
         });
     }
 
@@ -107,7 +108,9 @@ const StudentAdminReservation = () => {
                         let digitRealDate = (a).slice(8)
                         let digitData = (a).slice(5, 7)
                         let parsed = parseInt(digitData)
-                        return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                        let getYear = (a).slice(0, 4)
+                        return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
                     })
                     setData(filterMonth)
                     setDetails(filterMonth);

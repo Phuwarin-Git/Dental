@@ -26,6 +26,8 @@ const StudentRes = () => {
     const [details, setDetials] = useState([]);
     const [getUnique, setUnique] = useState([]);
 
+    const [Tool, setTools] = useState([]);
+
     const [open, setOpen] = useState(false);
 
     const [show, setShow] = useState(false);
@@ -37,6 +39,7 @@ const StudentRes = () => {
 
     useEffect(() => {
         getDetails();
+        getTools();
     }, [user])
 
 
@@ -92,6 +95,12 @@ const StudentRes = () => {
             '-' + chr4() + chr4() + chr4();
     }
 
+    const getTools = () => {
+        axios.get('http://localhost:3000/Tool/find/all').then((item) => {
+            console.log("Tools data :", item.data)
+            return setTools(item.data);
+        });
+    }
 
     function submitForm(date, time, clinic, type, patient, dn, hn) {
 
@@ -106,7 +115,7 @@ const StudentRes = () => {
             return alert("ไม่สามารถจองภาระงานในช่วงเวลาเดียวกันได้, กรุณาเปลี่ยนวันที่หรือช่วงเวลา")
         } else {
             if (findDate.length === 1) {
-                // alert("Success")
+
                 let a = uniqueID()
                 setUnique(a);
                 console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
