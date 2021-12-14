@@ -7,7 +7,7 @@ import * as XLSX from "xlsx";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import ModalUser from './confirmModal/modalUser';
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from "react-icons/bs";
@@ -18,6 +18,8 @@ import * as Yup from 'yup';
 import { CloseButton } from 'react-bootstrap';
 import Input from './reservationCss/InputRes'
 import StyledCreate from './reservationCss/ModalCreate';
+
+import ModalAdmin from './confirmModal/modalAdmin';
 
 import MaterialTable from "material-table";
 
@@ -30,11 +32,14 @@ const AdminStudentAdmin = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const [columns, setColumns] = useState([
+
         { title: 'ชื่อ-สกุล', field: 'first_name' },
+
         { title: 'E-mail', field: 'email', type: 'email' },
         {
             title: 'ตำแหน่ง',
             field: 'role',
+            editable: 'never',
             lookup: { studentadmin: 'Student Admin', admin: 'Admin', AdminTool: 'Admin Tool' },
         },
     ]);
@@ -103,11 +108,11 @@ const AdminStudentAdmin = () => {
     }
 
     async function submitForm(student_id, first_name, student_year, email, role) {
-        if (first_name === undefined || email === undefined || role === undefined) {
+        const ApiSet = ({ student_id: student_id, first_name: first_name, student_year: student_year, email: email, role: role })
+        console.log("Api set :", ApiSet)
+        if (student_id === undefined || first_name === undefined || student_year === undefined || email === undefined) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน")
         } else {
-            const ApiSet = ({ student_id: 12345678, first_name: first_name, student_year: null, email: email, role: role })
-            console.log("Api set :", ApiSet)
 
             await axios.post("http://localhost:3000/name/create", ApiSet).then((res) => {
                 return console.log("Res Limit :", res)
@@ -183,15 +188,17 @@ const AdminStudentAdmin = () => {
     }
 
 
-    async function updatetheAdmin(id, name, email, role) {
-
+    async function updatetheStudent(id, studentId, name, studentYear, email, role) {
+        let getStudentID = { student_id: studentId }
         let getName = { first_name: name }
+        let getStudentYear = { student_year: studentYear }
         let getEmail = { email: email }
         let getRole = { role: role }
 
         console.log("id :", id, " getName :", getName, " getEmail :", getEmail, " getRole :", getRole)
-
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getStudentID);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getName);
+        await axios.put("http://localhost:3000/name/updateUser/" + id, getStudentYear);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getEmail);
         await axios.put("http://localhost:3000/name/updateUser/" + id, getRole);
 
@@ -208,6 +215,7 @@ const AdminStudentAdmin = () => {
                     <h1 class="text-justify">Mae Fah Luang University Dental Clinic</h1>
                 </div>
             </nav>
+
             <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'white' }}>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -227,8 +235,20 @@ const AdminStudentAdmin = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
-                    <h1 style={{ color: '#0080ff', fontWeight: 'bold', marginBottom: '10px' }}>รายชื่อผู้ใช้งาน</h1>
-
+                    <Row>
+                        <Col md={7} xl={7} lg={7}>
+                            <h1 style={{ color: '#198CFF', fontWeight: 'bold', float: 'right' }}>รายชื่อผู้ใช้งาน</h1>
+                        </Col>
+                        <Col style={{ marginTop: '10px' }} md={5} xl={5} lg={5}>
+                            <div style={{ textAlign: 'end' }}>
+                                <label style={{ marginRight: '10px', marginLeft: '-10px' }}>อัพโหลดโดย Excel : {" "}</label>
+                                <input type="file" onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }} />
+                            </div>
+                        </Col>
+                    </Row>
                     <MaterialTable
                         title="Mae Fah Luang University Dental Clinic"
                         columns={columns}
@@ -295,10 +315,10 @@ const AdminStudentAdmin = () => {
                                 new Promise((resolve, reject) => {
                                     setTimeout(() => {
                                         console.log("newData :", newData)
-                                        let student_id = { student_id: 12345678 }
+                                        let student_id = newData.student_id;
                                         let first_name = newData.first_name;
+                                        let student_year = newData.student_year;
                                         let email = newData.email;
-                                        let student_year = null;
                                         let role = newData.role;
                                         submitForm(student_id, first_name, student_year, email, role)
                                         resolve();
@@ -308,7 +328,7 @@ const AdminStudentAdmin = () => {
                                 new Promise((resolve, reject) => {
                                     setTimeout(() => {
                                         console.log("newData :", newData)
-                                        updatetheAdmin(oldData.id, newData.first_name, newData.email, newData.role)
+                                        updatetheStudent(oldData.id, newData.student_id, newData.first_name, newData.student_year, newData.email, newData.role)
                                         resolve();
                                     }, 1000)
                                 }),
@@ -323,16 +343,7 @@ const AdminStudentAdmin = () => {
                         }}
                     />
 
-                    <Row style={{ marginBottom: '30px', }}>
 
-                        <Col></Col>
-                        <Col></Col>
-                        <Col style={{}}>
-                        </Col>
-                        <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
-                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งานด้วย Excel</Button>
-                        </Col>
-                    </Row>
 
                 </Container>
                 <StyledCreate
@@ -417,7 +428,7 @@ const AdminStudentAdmin = () => {
             {
                 userExcel.length != 0 ? (<div>
                     {console.log("มาแล้ว :", userExcel)}
-                    <ModalUser excel={userExcel} setUser={setUser} /></div>) : (console.log("ยัง"))
+                    <ModalAdmin excel={userExcel} setUserExcel={setUserExcel} setData={setData} /></div>) : (console.log("ยัง"))
             }
         </div>
     )

@@ -91,7 +91,7 @@ const AdminTeacher = () => {
 
             let setTeacher = item.data;
             let filterTeacher = setTeacher.filter((item) => {
-                return (item.role === "student")
+                return (item.role === "teacher")
             })
 
             return setData(filterTeacher);
@@ -122,7 +122,7 @@ const AdminTeacher = () => {
 
                 let setTeacher = item.data;
                 let filterTeacher = setTeacher.filter((item) => {
-                    return (item.role === "student")
+                    return (item.role === "teacher")
                 })
                 setData(filterTeacher)
                 return setUser(filterTeacher);
