@@ -126,21 +126,32 @@ const AdminUnit = () => {
 
 
     async function submitForm(unit_code, unit_floor, unavailable_start_date) {
-        if (unit_code === undefined || unit_floor === undefined || unavailable_start_date === undefined) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
-        } else {
-            console.log("Unit Form :", unit_code, unit_floor);
-            const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: unavailable_start_date })
 
-            await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
-                return console.log("Res Limit :", res)
-            })
-            await axios.get("http://localhost:3000/unit/find/all").then((item) => {
-                console.log("new Limit ==> :", item.data)
-                return setUnit(item.data);
-            });
-            getDetails();
+        const FindUnitName = data.filter((item) => {
+            return (item.unit_code === unit_code)
+        })
+
+        if (FindUnitName.length === 0) {
+            if (unit_code === undefined || unit_floor === undefined || unavailable_start_date === undefined) {
+                alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+            } else {
+                console.log("Unit Form :", unit_code, unit_floor);
+                const ApiSet = ({ unit_code: unit_code, unit_floor: unit_floor, unavailable_start_date: unavailable_start_date })
+
+                await axios.post("http://localhost:3000/unit/create", ApiSet).then((res) => {
+                    return console.log("Res Limit :", res)
+                })
+                await axios.get("http://localhost:3000/unit/find/all").then((item) => {
+                    console.log("new Limit ==> :", item.data)
+                    return setUnit(item.data);
+                });
+                getDetails();
+            }
+        } else {
+            alert("Unit นี้มีอยู่แล้ว")
         }
+
+
     }
 
     const formik = useFormik({
