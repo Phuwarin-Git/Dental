@@ -18,9 +18,9 @@ import MaterialTable from "material-table";
 
 
 const TeacherSelectWork = () => {
-    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
+    const { user, studentYear, currentDate, currentMonth, currentYear } = useContext(AuthContext);
     const [details, setDetails] = useState([]);
-    const [isChecked, setIsChecked] = useState([]);
+
     const [Tool, setTools] = useState([]);
 
     const [data, setData] = useState([]);
@@ -35,34 +35,65 @@ const TeacherSelectWork = () => {
         console.log("User :", user)
     }, [user])
 
-    useEffect(() => {
-        getDetails();
-        console.log("isChecked :", isChecked)
-    }, [isChecked])
+
 
     const getDetails = () => {
-        axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
-            // console.log("Limit :", item.data)
-            let findMonth = item.data;
-            let filterMonth = findMonth.filter((item) => {
-                let a = item.date;
-                let thisDate = currentDate.slice(8)
-                let digitRealDate = (a).slice(8)
-                // console.log("วันที่ทะไหย่ :", thisDatte)
-                let digitData = (a).slice(5, 7)
-                let parsed = parseInt(digitData)
+        if (studentYear === 0) {
+            axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+                // console.log("Limit :", item.data)
+                let findMonth = item.data;
+                let filterMonth = findMonth.filter((item) => {
+                    let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
+                    // console.log("วันที่ทะไหย่ :", thisDatte)
+                    let digitData = (a).slice(5, 7)
+                    let parsed = parseInt(digitData)
 
-                let getYear = (a).slice(0, 4)
-                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
+                    let getYear = (a).slice(0, 4)
+                    return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
+                })
+                let filteredData = []
+                filterMonth.map(item => {
+                    return filteredData.push({ id: item.id, uniqueID: item.uniqueID, name: item.name, year: item.studentyear, date: item.date, time: item.time, unit: item.unit, clinic: item.clinic, worktype: item.worktype, patient: item.patient, teacher: item.teacher, dn: item.dn, hn: item.hn, toolStatus: item.toolStatus })
+                })
+                setData(filteredData);
+                return setDetails(filterMonth);
             })
-            let filteredData = []
-            filterMonth.map(item => {
-                return filteredData.push({ id: item.id, uniqueID: item.uniqueID, name: item.name, year: item.studentyear, date: item.date, time: item.time, unit: item.unit, clinic: item.clinic, worktype: item.worktype, patient: item.patient, teacher: item.teacher, dn: item.dn, hn: item.hn, toolStatus: item.toolStatus })
+        } else {
+            console.log("student Year :", studentYear)
+            axios.get("http://localhost:3000/details/find/teachernull").then((item) => {
+
+                let findStudentYear = item.data;
+                let getByStudentYear = findStudentYear.filter((item) => {
+                    return (item.studentyear === studentYear.toString())
+                })
+                console.log("getByStudentYear ==>", getByStudentYear)
+
+                let findMonth = getByStudentYear;
+                let filterMonth = findMonth.filter((item) => {
+                    let a = item.date;
+                    let thisDate = currentDate.slice(8)
+                    let digitRealDate = (a).slice(8)
+                    let digitData = (a).slice(5, 7)
+                    let parsed = parseInt(digitData)
+
+                    let getYear = (a).slice(0, 4)
+                    return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
+                })
+                let filteredData = []
+                filterMonth.map(item => {
+                    return filteredData.push({ id: item.id, uniqueID: item.uniqueID, name: item.name, year: item.studentyear, date: item.date, time: item.time, unit: item.unit, clinic: item.clinic, worktype: item.worktype, patient: item.patient, teacher: item.teacher, dn: item.dn, hn: item.hn, toolStatus: item.toolStatus })
+                })
+                setData(filteredData);
+                return setDetails(filterMonth);
             })
-            setData(filteredData);
-            return setDetails(filterMonth);
-        });
+        }
     }
+
+
+
+
 
     const getTools = (dataUniqueID) => {
         axios.get('http://localhost:3000/Tool/find/all').then((item) => {
@@ -85,19 +116,6 @@ const TeacherSelectWork = () => {
         setTools(res);
     }
 
-    function handleOnChange(e) {
-        let unCheck = isChecked.filter(item => { return item.id === e.target.value })
-        if (unCheck.length !== 0) {
-            console.log("Uncheck :", unCheck[0].id)
-            let unCheckList = isChecked.filter(item => { return item.id !== unCheck[0].id })
-            setIsChecked(unCheckList);
-        } else {
-            setIsChecked([...isChecked, { id: e.target.value, teacher: user.first_name }]);
-            console.log('Value :', e.target.value)
-
-        }
-
-    };
 
     async function submitApprove(id) {
         let body = []

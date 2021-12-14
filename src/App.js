@@ -36,6 +36,8 @@ function App() {
   const [user, setUser] = useState([]);
   const [limit, setLimit] = useState([]);
 
+  const [studentYear, setStudentYear] = useState(0)
+
   const [currentDate, setCurrentDate] = useState([]);
   const [currentMonth, setMonth] = useState([]);
   const [currentYear, setYear] = useState([]);
@@ -73,7 +75,7 @@ function App() {
   return (
     <div className="App">
 
-      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit, currentDate, currentMonth, currentYear }}>
+      <AuthContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, limit, setLimit, studentYear, setStudentYear, currentDate, currentMonth, currentYear }}>
         <Switch>
           <Route exact path="/" component={Login}></Route>
           <Route path="/StudentDashboard" render={() => loginStatus === true ? <StudentDashboard /> : (<Redirect to="/" />)}></Route>

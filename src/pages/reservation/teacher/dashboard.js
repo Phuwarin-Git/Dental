@@ -3,13 +3,16 @@ import Navbar from 'react-bootstrap/Navbar'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import axios from "axios";
 import { Nav, Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../../App';
 import { BsSearch } from "react-icons/bs";
+import TeacherSelectWork from './selectwork';
 
 
 const TeacherDashboard = () => {
-    const { user, currentDate, currentMonth, currentYear } = useContext(AuthContext);
+    const { user, setStudentYear, currentDate, currentMonth, currentYear } = useContext(AuthContext);
+    let history = useHistory();
+
     const [details, setDetails] = useState([]);
     const [searchDate, setSearchDate] = useState([]);
     const [detailsFordate, setDetailsForDate] = useState([]);
@@ -17,7 +20,7 @@ const TeacherDashboard = () => {
     const [year3, setYear3] = useState();
     const [year4, setYear4] = useState();
     const [year5, setYear5] = useState();
-    const [year2details, setYear2details] = useState();
+
     const [year3details, setYear3details] = useState();
     const [year4details, setYear4details] = useState();
     const [year5details, setYear5details] = useState();
@@ -45,7 +48,9 @@ const TeacherDashboard = () => {
                 // console.log("วันที่ทะไหย่ :", thisDatte)
                 let digitData = (a).slice(5, 7)
                 let parsed = parseInt(digitData)
-                return (parsed >= currentMonth && digitRealDate >= thisDate)
+
+                let getYear = (a).slice(0, 4)
+                return ((parsed >= currentMonth && digitRealDate >= thisDate) || getYear > currentYear)
             })
             return setDetails(filterMonth);
         });
@@ -111,12 +116,6 @@ const TeacherDashboard = () => {
 
 
     function checkYear() {
-        let a = details.filter((item) => {
-            return (item.studentyear === "2")
-        })
-        let arrA = findClinic(a)
-        // console.log(arrA)
-        setYear2details(eliminateDuplicates(arrA))
 
         let b = details.filter((item) => {
             return (item.studentyear === "3")
@@ -142,12 +141,11 @@ const TeacherDashboard = () => {
         setYear5details(eliminateDuplicates(arrD))
 
 
-        let aa = a.length;
+
         let bb = b.length;
         let cc = c.length;
         let dd = d.length;
 
-        setYear2(aa);
         setYear3(bb);
         setYear4(cc);
         setYear5(dd);
@@ -196,27 +194,33 @@ const TeacherDashboard = () => {
                     <button onClick={() => Searching()} type="submit" class="searchButton">
                         <BsSearch />
                     </button>
-                    <div style={{ width: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+                    <div style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                         <br />
 
-                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} คน</label>
-                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} รายการ</label>
+                        <ProgressBar
+                            onClick={() => { setStudentYear(3); history.push('/TeacherSelectWork') }}
+                            style={{ height: '30px', fontSize: '18px', cursor: 'pointer' }}>
                             {year3details?.map((item, index) => {
                                 // return console.log("index :", item)
                                 let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
                                 return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
                             })}
                         </ProgressBar>
-                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 4 จำนวน {year4} คน</label>
-                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 4 จำนวน {year4} รายการ</label>
+                        <ProgressBar
+                            onClick={() => { setStudentYear(4); history.push('/TeacherSelectWork') }}
+                            style={{ height: '30px', fontSize: '18px', cursor: 'pointer' }}>
                             {year4details?.map((item, index) => {
                                 // return console.log("index :", item)
                                 let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
                                 return <ProgressBar variant={a[index]} now={10} max={100} label={item} key={index} />
                             })}
                         </ProgressBar>
-                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 5 จำนวน {year5} คน</label>
-                        <ProgressBar style={{ height: '30px', fontSize: '18px' }}>
+                        <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 5 จำนวน {year5} รายการ</label>
+                        <ProgressBar
+                            onClick={() => { setStudentYear(5); history.push('/TeacherSelectWork') }}
+                            style={{ height: '30px', fontSize: '18px', cursor: 'pointer' }}>
                             {year5details?.map((item, index) => {
                                 // return console.log("index :", item)
                                 let a = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
