@@ -181,7 +181,10 @@ const TeacherDashboard = () => {
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', minHeight: '700px', maxWidth: '1500px' }}>
                     <h1 style={{ color: '#198CFF' }}>จำนวนนักศึกษาที่รออนุมัติ</h1>
-                    <input
+                    {/* <center>
+                        <label style={{ fontSize: '18px' }}>ทั้งหมด {year3 + year4 + year5} รายการ</label>
+                    </center> */}
+                    {/* <input
                         style={{ fontSize: '18px' }}
                         type="date"
                         min={currentDate}
@@ -193,9 +196,9 @@ const TeacherDashboard = () => {
                     </input>
                     <button onClick={() => Searching()} type="submit" class="searchButton">
                         <BsSearch />
-                    </button>
+                    </button> */}
                     <div style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
-                        <br />
+
 
                         <label style={{ marginTop: '10px', fontSize: '18px' }}>นักศึกษาชั้นปีที่ 3 จำนวน {year3} รายการ</label>
                         <ProgressBar
