@@ -237,8 +237,20 @@ const AdminStudent = () => {
 
             <div className="PaddingDiv">
                 <Container style={{ backgroundColor: 'white', padding: '15px', borderRadius: '10px', maxWidth: '1500px' }}>
-                    <h1 style={{ color: '#0080ff', fontWeight: 'bold', marginBottom: '10px' }}>รายชื่อผู้ใช้งาน</h1>
-
+                    <Row>
+                        <Col md={7} xl={7} lg={7}>
+                            <h1 style={{ color: '#198CFF', fontWeight: 'bold', float: 'right' }}>รายชื่อผู้ใช้งาน</h1>
+                        </Col>
+                        <Col style={{ marginTop: '10px' }} md={5} xl={5} lg={5}>
+                            <div style={{ textAlign: 'end' }}>
+                                <label style={{ marginRight: '10px', marginLeft: '-10px' }}>อัพโหลดโดย Excel : {" "}</label>
+                                <input type="file" onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    readExcel(file);
+                                }} />
+                            </div>
+                        </Col>
+                    </Row>
                     <MaterialTable
                         title="Mae Fah Luang University Dental Clinic"
                         columns={columns}
@@ -333,16 +345,7 @@ const AdminStudent = () => {
                         }}
                     />
 
-                    <Row style={{ marginBottom: '30px', }}>
 
-                        <Col></Col>
-                        <Col></Col>
-                        <Col style={{}}>
-                        </Col>
-                        <Col style={{ marginTop: '0px', marginRight: '40px' }} xs lg="2">
-                            <Button onClick={() => openModal()}>เพิ่มผู้ใช้งานด้วย Excel</Button>
-                        </Col>
-                    </Row>
 
                 </Container>
                 <StyledCreate
@@ -427,7 +430,7 @@ const AdminStudent = () => {
             {
                 userExcel.length != 0 ? (<div>
                     {console.log("มาแล้ว :", userExcel)}
-                    <ModalUser excel={userExcel} setUser={setUser} /></div>) : (console.log("ยัง"))
+                    <ModalUser excel={userExcel} setUserExcel={setUserExcel} setData={setData} /></div>) : (console.log("ยัง"))
             }
         </div>
     )

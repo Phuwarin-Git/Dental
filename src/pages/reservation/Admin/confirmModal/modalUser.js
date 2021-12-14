@@ -11,102 +11,237 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import './modalCss.css'
 
-const ModalUser = ({ excel, setUser }) => {
+import Modal from 'react-bootstrap/Modal'
+import MaterialTable from "material-table";
+
+const ModalUser = ({ excel, setUserExcel, setData }) => {
     const [modalIsOpen, setIsOpen] = React.useState(true);
 
     const history = useHistory();
 
+    const [allDate, setAllDate] = useState([]);
 
-    function openModal() {
-        setIsOpen(true);
-    }
+    const [duplicateLenght, setDuplicate] = useState(0)
+    const [studentRole, setRole] = useState([])
 
-    function closeModal() {
-        setIsOpen(false);
-    }
+    const [show, setShow] = useState(true);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => { setShow(true) };
 
     useEffect(() => {
-    }, [modalIsOpen])
+        filterStudentRole();
+        console.log("getExcel :", excel);
+    }, [excel])
+
+    function filterStudentRole() {
+        let realRole = excel.filter((item) => {
+            return (item.ตำแหน่ง === "student")
+        })
+        setRole(realRole)
+
+        return getDetails(realRole)
+    }
+
+    const getDetails = (realRole) => {
+        axios.get("http://localhost:3000/name/find/all").then((item) => {
+            let testFindDup = item.data;
+            setAllDate(item.data)
+            let DupLenght = 0;
+            testFindDup.map((items) => {
+                let theLenght = realRole.filter((item) => {
+                    return (item.ID.toString() === items.student_id || item.Email === items.email)
+                })
+                if (theLenght.length === 0) {
+                    return console.log("ไม่มีซ้ำ :")
+                } else {
+                    DupLenght = DupLenght + 1;
+                    return console.log("ซ้ำ")
+                }
+            })
+
+            console.log("ซ้ำทั้งหมด :", DupLenght)
+            setDuplicate(DupLenght)
+        });
+    }
 
     async function createUser() {
-        const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อผู้ใช้งานหรือไม่")
-        if (confirmBox == true) {
-            console.log(confirmBox)
-            console.log("excel :", excel)
-            for (let i = 0; i < excel.length; i++) {
-                let a = [{
-                    // date: listExcel[i].วันที่,
-                    student_id: excel[i].ID,
-                    first_name: excel[i].ชื่อสกุล,
-                    student_year: excel[i].ชั้นปี,
-                    email: excel[i].Email,
-                    role: excel[i].ตำแหน่ง,
-
-                }]
-                console.log("Check A :", a)
-                await axios.post("http://localhost:3000/name/createMultiTable", a).then((res) => {
-                    console.log("Res Limit :", res)
-                })
-            }
-            await axios.get("http://localhost:3000/name/find/all").then((item) => {
-                console.log("Name :", item.data)
-                let setTeacher = item.data;
-                let filterTeacher = setTeacher.filter((item) => {
-                    return (item.role === "student")
-                })
-                return setUser(filterTeacher);
-            });
-            return closeModal();
+        if (duplicateLenght !== 0) {
+            return alert("กรุณาลบข้อมูลที่ซ้ำออกก่อนทำการอัพโหลดข้อมูล")
         } else {
-            console.log(confirmBox)
+            const confirmBox = window.confirm("ต้องการยืนยันการเพิ่มรายชื่อผู้ใช้งานหรือไม่")
+            if (confirmBox == true) {
+                console.log(confirmBox)
+                console.log("excel :", excel)
+                for (let i = 0; i < excel.length; i++) {
+                    let a = [{
+                        student_id: excel[i].ID,
+                        first_name: excel[i].ชื่อสกุล,
+                        student_year: excel[i].ชั้นปี,
+                        email: excel[i].Email,
+                        role: excel[i].ตำแหน่ง,
+
+                    }]
+                    console.log("Check A :", a)
+                    await axios.post("http://localhost:3000/name/createMultiTable", a).then((res) => {
+                        console.log("Res Limit :", res)
+                    })
+                }
+                await axios.get("http://localhost:3000/name/find/all").then((item) => {
+                    console.log("Name :", item.data)
+                    let setTeacher = item.data;
+                    let filterTeacher = setTeacher.filter((item) => {
+                        return (item.role === "student")
+                    })
+                    return setData(filterTeacher);
+                });
+                return handleClose();
+            } else {
+                console.log(confirmBox)
+            }
         }
+    }
+
+    function checkColor(email, id) {
+        let color = "black"
+
+        console.log("allDate", allDate)
+        allDate?.map((item) => {
+            if (item.email === email || item.student_id === id) {
+                console.log(" ตรง item.email :", item.email, " item.ID :", item.student_id, " email :", email, " id :", id)
+                return color = "red";
+            } else {
+                console.log(" ไม่ item.email :", item.email, " item.ID :", item.student_id, " email :", email, " id :", id)
+            }
+        })
+        return color;
+    }
+
+    function deleteDuplicate(data) {
+        console.log("data delete :", data)
+        const checkDup = excel.filter((item) => {
+            return (item.tableData.checked !== true)
+        })
+        console.log("new Data :", checkDup)
+        setUserExcel(checkDup);
     }
 
 
     return (
         <div>
-            <StyleModal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="modal"
-            >
-                <div>
-                    <Card border="dark">
 
-                        <Card.Header><h2>รายละเอียด</h2>
-                            <CloseButton style={{ marginLeft: '85%', marginTop: '-50px' }} onClick={closeModal} />
-                        </Card.Header>
-                        <Card.Body>
-                            <Table striped bordered hover variant="">
-                                <thead className='theadAdmin'>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th>ชั้นปี</th>
-                                        <th>E-mail</th>
-                                        <th>ตำแหน่ง</th>
-                                    </tr>
-                                </thead>
-                                {excel.map(item => {
-                                    return <tbody key={item.ลำดับ}>
-                                        <tr>
-                                            <td className='tdStudent'>{item.ID}</td>
-                                            <td className='tdStudent'>{item.ชื่อสกุล}</td>
-                                            <td className='tdStudent'>{item.ชั้นปี}</td>
-                                            <td className='tdStudent'>{item.Email}</td>
-                                            <td className='tdStudent'>{item.ตำแหน่ง}</td>
-                                        </tr>
-                                    </tbody>
-                                })}
-                            </Table>
-                            <center>
-                                <Button onClick={() => createUser()}>ยืนยัน</Button>
-                                <Button onClick={() => closeModal()} style={{ marginLeft: '10px', backgroundColor: 'red' }}>ยกเลิก</Button>
-                            </center>
-                        </Card.Body>
-                    </Card>
-                </div>
-            </StyleModal>
+            <Modal size='xl' style={{ fontFamily: 'Mitr' }} show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>รายละเอียดการจอง</Modal.Title>
+                </Modal.Header>
+                <Modal.Body >
+                    <Container>
+                        <MaterialTable
+                            title={duplicateLenght === 0 ? "Mae Fah Luang University Dental Clinic" : "ข้อมูลที่อัพโหลดซ้ำกับข้อมูลที่มีอยู่ ,กรุณาลบข้อมูลที่ซ้ำออก"}
+
+                            columns={[
+                                {
+                                    title: 'รหัสนักศึกษา', field: 'ID', cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.Email, rowData?.ID.toString()), minWidth: 180 }
+                                    }
+                                },
+                                {
+                                    title: 'ชื่อ-สกุล', field: 'ชื่อสกุล', cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.Email, rowData?.ID.toString()), minWidth: 210 }
+                                    }
+
+                                },
+                                {
+                                    title: 'ชั้นปี', field: 'ชั้นปี', cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.Email, rowData?.ID.toString()), minWidth: 115 }
+                                    }
+                                },
+                                {
+                                    title: 'Email', field: 'Email', cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.Email, rowData?.ID.toString()) }
+                                    }
+                                },
+                                {
+                                    title: 'ตำแหน่ง', field: 'ตำแหน่ง', cellStyle: (cellValue, rowData) => {
+                                        return { color: checkColor(rowData?.Email, rowData?.ID.toString()) }
+                                    }
+                                },
+                            ]}
+                            data={studentRole}
+                            options={{
+                                selection: true,
+                                pageSize: excel.length,
+                                pageSizeOptions: [excel.length],
+                                headerStyle: {
+                                    fontFamily: "Mitr",
+                                    fontWeight: 'bold',
+                                    fontSize: '18px',
+                                }, tableLayout: 'auto'
+                            }}
+                            actions={[
+                                {
+                                    tooltip: 'ลบ',
+                                    icon: 'delete',
+                                    onClick: (evt, data) => deleteDuplicate(data)
+                                }
+                            ]}
+                            localization={{
+                                body: {
+                                    emptyDataSourceMessage: 'ไม่มีการจองที่อยู่ระหว่างการดำเนินการ',
+                                    addTooltip: 'เพิ่มรายชื่อผู้ใช้งาน',
+                                    deleteTooltip: 'Löschen',
+                                    editTooltip: 'Bearbeiten',
+                                    filterRow: {
+                                        filterTooltip: 'Filter'
+                                    },
+                                    editRow: {
+                                        deleteText: 'ต้องการลบรายชื่อนี้หรือไม่ ?',
+                                        cancelTooltip: 'Abbrechen',
+                                        saveTooltip: 'Speichern'
+                                    }
+                                },
+                                grouping: {
+                                    placeholder: 'Spalten ziehen ...',
+                                    groupedBy: 'Gruppiert nach:'
+                                },
+                                pagination: {
+                                    labelDisplayedRows: '{from}-{to} จาก {count}',
+                                    labelRowsSelect: 'แถว',
+                                    labelRowsPerPage: 'Zeilen pro Seite:',
+                                    firstAriaLabel: 'Erste Seite',
+                                    firstTooltip: 'Erste Seite',
+                                    previousAriaLabel: 'Vorherige Seite',
+                                    previousTooltip: 'Vorherige Seite',
+                                    nextAriaLabel: 'Nächste Seite',
+                                    nextTooltip: 'Nächste Seite',
+                                    lastAriaLabel: 'Letzte Seite',
+                                    lastTooltip: 'Letzte Seite'
+                                },
+                                toolbar: {
+                                    addRemoveColumns: 'Spalten hinzufügen oder löschen',
+                                    nRowsSelected: 'ถูกเลือก {0} รายการ',
+                                    showColumnsTitle: 'Zeige Spalten',
+                                    showColumnsAriaLabel: 'Zeige Spalten',
+                                    exportTitle: 'Export',
+                                    exportAriaLabel: 'Export',
+                                    exportName: 'Export als CSV',
+                                    searchTooltip: 'ค้นหา',
+                                    searchPlaceholder: 'ค้นหา'
+                                }
+                            }}
+
+                        />
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={() => createUser()}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };
