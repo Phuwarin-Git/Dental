@@ -15,12 +15,13 @@ import Toolcss from './Toolcss.css'
 import Modal from 'react-bootstrap/Modal'
 import { Button } from 'react-bootstrap'
 import Table from 'react-bootstrap/Table'
+import { AuthContext } from '../../../../App'
 
-const ToolModal = ({ unique }) => {
+const ToolModal = ({ dataSetBeforeCofirm, details, limit }) => {
     // const [modalIsOpen, setIsOpen] = React.useState(true)
-
+    const { user } = useContext(AuthContext);
     const [confirmtool, setconfirmtool] = useState([])
-
+    const [getUnique, setUnique] = useState([]);
     const [show, setShow] = useState(true)
 
     const handleClose = () => setShow(false)
@@ -29,9 +30,23 @@ const ToolModal = ({ unique }) => {
     const history = useHistory()
 
     const [api, setApi0] = useState([])
+
+
     useEffect(() => {
         console.log('getApifrompage1 ? ===>', api)
     }, [api])
+
+    function uniqueID() {
+        console.log("Called")
+        function chr4() {
+            return Math.random().toString(16).slice(-4);
+        }
+        return chr4() + chr4() +
+            '-' + chr4() +
+            '-' + chr4() +
+            '-' + chr4() +
+            '-' + chr4() + chr4() + chr4();
+    }
 
     function submitForm(
         testkit_toolcc1,
@@ -75,8 +90,11 @@ const ToolModal = ({ unique }) => {
         IvoryTofflemirematrix_toolcc1,
         hightpowersuction_toolcc1
     ) {
+        let a = uniqueID()
+        setUnique(a);
         const ApiSet1 = {
-            uniqueID: unique,
+
+            uniqueID: a,
             testkit_toolcc1: testkit_toolcc1,
             glassofwater_toolcc1: glassofwater_toolcc1,
             Tripplesyring_toolcc1: Tripplesyring_toolcc1,
@@ -127,13 +145,219 @@ const ToolModal = ({ unique }) => {
     function submitConfirmTools() {
         const confirmBox = window.confirm('ต้องการยืนยันการจองหรือไม่')
         if (confirmBox == true) {
-            console.log(confirmBox)
-            let ApiSet1 = confirmtool[0];
-            axios.post('http://localhost:3000/Tool/create', ApiSet1).then(res => {
-                console.log('Res API 1 SET :', res)
-                history.push('/StudentDashboard')
+
+            let date = dataSetBeforeCofirm.date;
+            let time = dataSetBeforeCofirm.time;
+            let clinic = dataSetBeforeCofirm.clinic;
+            let type = dataSetBeforeCofirm.type;
+            let patient = dataSetBeforeCofirm.patient;
+            let dn = dataSetBeforeCofirm.dn;
+            let hn = dataSetBeforeCofirm.hn;
+
+            const findCaseReserved = details.filter((item) => {
+                return (item.date === date && item.time === time)
             })
-            console.log('Apiset1 = ', ApiSet1)
+
+            const findDate = limit.filter((item) => {
+                return ((item.date === date) && (item.time === time))
+            })
+            if (findCaseReserved.length !== 0) {
+                alert("ไม่สามารถจองภาระงานในช่วงเวลาเดียวกันได้, กรุณาเปลี่ยนวันที่หรือช่วงเวลา")
+                return history.push('/StudentDashboard')
+            } else {
+                if (findDate.length === 1) {
+                    let a = getUnique;
+
+                    console.log("Check Form :", user.first_name, user.student_year, date, time, clinic, type, patient, dn, hn);
+                    const ApiSet = ({ name: user.first_name, uniqueID: a, studentyear: user.student_year, date: date, time: time, clinic: clinic, worktype: type, patient: patient, dn: dn, hn: hn, toolStatus: "รอการเบิก" })
+
+                    if (clinic === "OD") {
+                        if (findDate[0].od === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { od: findDate[0].od - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("OD = ", findDate[0].od)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyOd: findDate[0].odyOd + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "TMD") {
+                        if (findDate[0].tmd === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { tmd: findDate[0].tmd - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateTMD = ", findDate[0].tmd)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyTmd: findDate[0].odyTmd + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "OPER") {
+                        if (findDate[0].oper === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { oper: findDate[0].oper - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateOper = ", findDate[0].oper)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyOper: findDate[0].odyOper + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "PERIO") {
+                        if (findDate[0].perio === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { perio: findDate[0].perio - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDatePerio = ", findDate[0].perio)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyPerio: findDate[0].odyPerio + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "SUR") {
+                        if (findDate[0].sur === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { sur: findDate[0].sur - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateSur = ", findDate[0].sur)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odySur: findDate[0].odySur + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "PROSTH") {
+                        if (findDate[0].prosth === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { prosth: findDate[0].prosth - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateProsth = ", findDate[0].prosth)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyProsth: findDate[0].odyProsth + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "ENDO") {
+                        if (findDate[0].endo === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { endo: findDate[0].endo - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateEndo = ", findDate[0].endo)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyEndo: findDate[0].odyEndo + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "PEDO") {
+                        if (findDate[0].pedo === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { pedo: findDate[0].pedo - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDatePedo = ", findDate[0].pedo)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyPedo: findDate[0].odyPedo + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "X-RAY") {
+                        if (findDate[0].xray === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { xray: findDate[0].xray - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateXray = ", findDate[0].xray)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyXray: findDate[0].odyXray + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "OM") {
+                        if (findDate[0].om === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { om: findDate[0].om - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateOm = ", findDate[0].om)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyOm: findDate[0].odyOm + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    } else if (clinic === "ORTHO") {
+                        if (findDate[0].ortho === '0') {
+                            alert("ภาระงานเต็มกรุณาจองใหม่กรุณาจองใหม่")
+                            return history.push('/StudentDashboard')
+                        } else {
+                            console.log("FindDate :", findDate)
+                            let limit_id = findDate[0].limit_id
+                            let UpdateCase = { ortho: findDate[0].ortho - 1 }
+                            console.log("limit ID :", limit_id)
+                            console.log("findDateOrtho = ", findDate[0].ortho)
+                            console.log(" Case - 1 :", UpdateCase)
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, UpdateCase);
+                            let coutingLimit = { odyOrtho: findDate[0].odyOrtho + 1 }
+                            axios.put("http://localhost:3000/limitcase/updateClinicCase/" + limit_id, coutingLimit);
+                        }
+                    }
+
+                    console.log(confirmBox)
+                    let ApiSet1 = confirmtool[0];
+                    axios.post('http://localhost:3000/Tool/create', ApiSet1).then(res => {
+                        console.log('Res API 1 SET :', res)
+                        history.push('/StudentDashboard')
+                    })
+                    console.log('Apiset1 = ', ApiSet1)
+
+                    return axios.post("http://localhost:3000/details/create", ApiSet).then((res) => {
+                        console.log("Res Create Details :", res)
+                        // setOpen(true);
+                        // handleClose();
+                    })
+
+                } else {
+                    alert('ไม่มีรายละเอียดงานวันที่เลือกกรุณาจองใหม่')
+                    return history.push('/StudentDashboard')
+                }
+            }
+
         } else {
             alert('โปรตรวจสอบข้อมูลอีกครั้ง')
             console.log(confirmBox)
